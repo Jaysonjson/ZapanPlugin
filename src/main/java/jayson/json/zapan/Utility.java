@@ -3,6 +3,7 @@ package jayson.json.zapan;
 import jayson.json.zapan.data.zArea;
 import jayson.json.zapan.data.zPlayer;
 import jayson.json.zapan.io.DataHandler;
+import jayson.json.zapan.items.IzItem;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -113,6 +114,10 @@ public class Utility {
             return area.dropItems || player.isOp();
         }
         return true;
+    }
+
+    public static void SpawnCustomItem(IzItem item, World world, Location location) {
+        world.dropItemNaturally(location, item.GetItem());
     }
 
     public static double CountMoney(Player player) {
