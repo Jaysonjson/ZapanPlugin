@@ -1,0 +1,15 @@
+name: Zapan
+version: ${project.version}
+main: jayson.json.zapan.Zapan
+api-version: 1.16
+commands:
+  sethealth:
+    description: Ändert das Leben eines Spielers (2 - 2048)
+    usage: /<command> <spieler> <leben>
+  area:
+    description: Erstellt ein Gebiet
+    usage: /<command> <name> <area>
+permissions:
+  zapan.sethealth:
+    description: SetHealth
+    default: false
