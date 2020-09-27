@@ -16,7 +16,7 @@ public class PlayerDeath implements Listener {
         zPlayer player = DataHandler.LoadPlayer(event.getEntity().getUniqueId());
         player.GetHealth().health -= 2;
         DataHandler.SavePlayer(player);
-        Utility.RefreshHearts(event.getEntity(), player);
+        //Utility.RefreshHearts(event.getEntity(), player);
     }
 
 }

@@ -31,13 +31,17 @@ public final class Zapan extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new MobSpawn(), this);
         Bukkit.getPluginManager().registerEvents(new CraftItem(), this);
         Bukkit.getPluginManager().registerEvents(new BlockBreak(), this);
+        Bukkit.getPluginManager().registerEvents(new BlockPlace(), this);
+        Bukkit.getPluginManager().registerEvents(new DropItem(), this);
         this.getCommand("sethealth").setExecutor(new SetHealthCommand());
         this.getCommand("area").setExecutor(new CreateAreaCommand());
 
         areas.clear();
 
         for (File file : new File(DataHandler.AREA_DIR).listFiles()) {
-            areas.add(DataHandler.LoadArea(file.getName().replaceAll(".json", "")));
+            zArea area = DataHandler.LoadArea(file.getName().replaceAll(".json", ""));
+            areas.add(area);
+            DataHandler.SaveArea(area);
         }
     }
 

@@ -11,7 +11,7 @@ public class MobSpawn implements Listener {
 
         @EventHandler
         public void EntitySpawn(EntitySpawnEvent event) {
-            if(Utility.CanEntitySpawn(event.getLocation(), event.getEntity().getWorld())) {
+            if(!Utility.CanEntitySpawn(event.getLocation(), event.getEntity().getWorld())) {
                 event.setCancelled(true);
             }
         }

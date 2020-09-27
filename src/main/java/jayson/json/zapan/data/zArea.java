@@ -16,6 +16,8 @@ public class zArea {
     public WORLD world = WORLD.OVERWORLD;
     public boolean breakBlocks = true;
     public boolean spawnMobs = true;
+    public boolean dropItems = true;
+    public boolean placeBlocks = true;
     public Location CreateLocation(World world) {
         return new Location(world, location.x, location.y, location.z);
     }
