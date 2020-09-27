@@ -3,6 +3,7 @@ package jayson.json.zapan.io;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import jayson.json.zapan.data.zArea;
+import jayson.json.zapan.data.zGuild;
 import jayson.json.zapan.data.zPlayer;
 
 import java.io.File;
@@ -20,9 +21,12 @@ public class DataHandler {
 
     public static String PLAYER_DIR = "plugins/zapan/players/";
     public static String AREA_DIR = "plugins/zapan/areas/";
+    public static String GUILD_DIR = "plugins/zapan/guilds/";
+    private static Gson gsonBuilder = new GsonBuilder().setPrettyPrinting().excludeFieldsWithModifiers(Modifier.TRANSIENT).create();
+    private static Gson gson = new Gson();
+
 
     public static zPlayer LoadPlayer(UUID uuid) {
-        Gson gson = new Gson();
         File file = new File(PLAYER_DIR + uuid.toString() + ".json");
         zPlayer player;
         if(!file.exists()) {
@@ -37,8 +41,7 @@ public class DataHandler {
     }
 
     public static void SavePlayer(zPlayer player) {
-        Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithModifiers(Modifier.TRANSIENT).create();
-        String json = gson.toJson(player);
+        String json = gsonBuilder.toJson(player);
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(new File(PLAYER_DIR + player.GetUuid().toString() + ".json"));
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
@@ -51,8 +54,7 @@ public class DataHandler {
 
 
     public static void SaveArea(zArea area) {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String json = gson.toJson(area);
+        String json = gsonBuilder.toJson(area);
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(new File(AREA_DIR + area.name.toLowerCase() + ".json"));
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
@@ -64,7 +66,6 @@ public class DataHandler {
     }
 
     public static zArea LoadArea(String name) {
-        Gson gson = new Gson();
         File file = new File(AREA_DIR + name.toLowerCase() + ".json");
         zArea area;
         if(!file.exists()) {
@@ -75,6 +76,31 @@ public class DataHandler {
             area = gson.fromJson(ReadData(file), zArea.class);
         }
         return area;
+    }
+
+    public static void SaveGuild(zGuild guild) {
+        String json = gsonBuilder.toJson(guild);
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(new File(GUILD_DIR + guild.name.toLowerCase() + ".json"));
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
+            outputStreamWriter.append(json);
+            outputStreamWriter.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static zGuild LoadGuild(String name) {
+        File file = new File(GUILD_DIR + name.toLowerCase() + ".json");
+        zGuild guild;
+        if(!file.exists()) {
+            guild = new zGuild();
+            guild.name = name;
+            SaveGuild(guild);
+        } else {
+            guild = gson.fromJson(ReadData(file), zGuild.class);
+        }
+        return guild;
     }
 
     public static boolean AreaExists(String name) {

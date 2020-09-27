@@ -3,10 +3,13 @@ package jayson.json.zapan;
 import jayson.json.zapan.data.zArea;
 import jayson.json.zapan.data.zPlayer;
 import jayson.json.zapan.io.DataHandler;
+import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
+import org.bukkit.craftbukkit.v1_16_R2.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -64,13 +67,27 @@ public class Utility {
 
     public static boolean IsInSpawnArea(Location location, World world) {
         zArea area = GetNearestArea(location);
-        if(area.name.toLowerCase() == "spawn") {
+        if(area.name.toLowerCase().equals("spawn")) {
             Location locationP0 = area.CreateLocation(world).add(area.size, area.size, area.size);
             Location locationP1 = area.CreateLocation(world).subtract(area.size, area.size, area.size);
-            if (Utility.IsInArea(location, locationP0, locationP1)) {
-                return true;
-            }
+            return Utility.IsInArea(location, locationP0, locationP1);
         }
         return false;
+    }
+
+    public static double CountMoney(Player player) {
+        double amount = 0;
+        for (ItemStack content : player.getInventory().getContents()) {
+            if(content != null) {
+                if (content.hasItemMeta()) {
+                    net.minecraft.server.v1_16_R2.ItemStack nmsItem = CraftItemStack.asNMSCopy(content);
+                    NBTTagCompound tag = nmsItem.hasTag() ? nmsItem.getTag() : new NBTTagCompound();
+                    if (tag.hasKey("currencyAmount")) {
+                        amount += (tag.getDouble("currencyAmount") * content.getAmount());
+                    }
+                }
+            }
+        }
+        return amount;
     }
 }
