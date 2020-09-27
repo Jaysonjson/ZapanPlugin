@@ -5,14 +5,23 @@ import org.bukkit.craftbukkit.v1_16_R2.inventory.CraftItemStack;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.CraftItemEvent;
+import org.bukkit.inventory.ItemStack;
 
 public class CraftItem implements Listener {
     @EventHandler
     public void CraftItem(CraftItemEvent event) {
-        net.minecraft.server.v1_16_R2.ItemStack nmsItem = CraftItemStack.asNMSCopy(event.getCurrentItem());
-        NBTTagCompound tag = nmsItem.hasTag() ? nmsItem.getTag() : new NBTTagCompound();
-        if(!tag.getBoolean("canCraft")) {
-            event.setCancelled(true);
+        for (ItemStack content : event.getInventory().getContents()) {
+            if(content != null) {
+                net.minecraft.server.v1_16_R2.ItemStack nmsItem = CraftItemStack.asNMSCopy(content);
+                if(nmsItem.hasTag()) {
+                    NBTTagCompound tag = nmsItem.hasTag() ? nmsItem.getTag() : new NBTTagCompound();
+                    if(tag.hasKey("canCraft")) {
+                        if (!tag.getBoolean("canCraft")) {
+                            event.setCancelled(true);
+                        }
+                    }
+                }
+            }
         }
     }
 }

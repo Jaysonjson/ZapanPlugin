@@ -75,6 +75,30 @@ public class Utility {
         return false;
     }
 
+    public static boolean CanBreakBlock(Player player, Location location, World world) {
+        zArea area = GetNearestArea(location);
+        Location locationP0 = area.CreateLocation(world).add(area.size, area.size, area.size);
+        Location locationP1 = area.CreateLocation(world).subtract(area.size, area.size, area.size);
+        if(Utility.IsInArea(location, locationP0, locationP1)) {
+            if(area.breakBlocks && player.isOp()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean CanEntitySpawn(Location location, World world) {
+        zArea area = GetNearestArea(location);
+        Location locationP0 = area.CreateLocation(world).add(area.size, area.size, area.size);
+        Location locationP1 = area.CreateLocation(world).subtract(area.size, area.size, area.size);
+        if(Utility.IsInArea(location, locationP0, locationP1)) {
+            if(area.spawnMobs) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static double CountMoney(Player player) {
         double amount = 0;
         for (ItemStack content : player.getInventory().getContents()) {
