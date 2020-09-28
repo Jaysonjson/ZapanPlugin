@@ -2,6 +2,7 @@ package jayson.json.zapan.events;
 
 import jayson.json.zapan.Utility;
 import jayson.json.zapan.data.zArea;
+import jayson.json.zapan.other.Scoreboard;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.ComponentBuilder;
@@ -22,6 +23,7 @@ public class PlayerMove implements Listener {
     @EventHandler
     public void PlayerMove(PlayerMoveEvent event) {
         Player player = event.getPlayer();
+        Scoreboard.updateScoreboard(player);
         zArea area = Utility.GetNearestArea(player.getLocation());
         Location locationP0 = area.CreateLocation(player.getWorld()).add(area.size, area.size, area.size);
         Location locationP1 = area.CreateLocation(player.getWorld()).subtract(area.size, area.size, area.size);

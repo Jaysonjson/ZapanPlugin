@@ -2,6 +2,7 @@ package jayson.json.zapan;
 
 import jayson.json.zapan.data.zArea;
 import jayson.json.zapan.data.zPlayer;
+import jayson.json.zapan.data.zareaobj.zLocation;
 import jayson.json.zapan.io.DataHandler;
 import jayson.json.zapan.items.IzItem;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
@@ -64,6 +65,26 @@ public class Utility {
         Collections.sort(distancesD);
         Collections.reverse(distancesD);
         return distances.get(distancesD.get(0));
+    }
+
+    @Deprecated
+    public static zLocation GetNearestAreaDistanceDEP(Location location) {
+        ArrayList<Double> distancesX = new ArrayList<>();
+        ArrayList<Double> distancesZ = new ArrayList<>();
+        for (zArea areas : Zapan.INSTANCE.areas) {
+            distancesX.add(location.getX() - areas.location.x);
+            distancesZ.add(location.getZ() - areas.location.z);
+        }
+        Collections.sort(distancesX);
+        Collections.reverse(distancesX);
+        Collections.sort(distancesZ);
+        Collections.reverse(distancesZ);
+        return new zLocation(distancesX.get(0), 0, distancesZ.get(0));
+    }
+
+    public static zLocation GetNearestAreaDistance(Location location) {
+        zArea area = GetNearestArea(location);
+        return new zLocation(area.location.x - location.getX() - area.size, 0, area.location.z - location.getZ() - area.size);
     }
 
     public static boolean IsInSpawnArea(Location location, World world) {

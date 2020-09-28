@@ -16,7 +16,7 @@ public class GoldBarItem implements IzItem {
         ArrayList<String> lore = new ArrayList<>();
         lore.add("\u00a761.250€");
         im.setLore(lore);
-        im.setDisplayName("\u00a76Gold Bar");
+        im.setDisplayName("\u00a76Gold Barren");
         item.setItemMeta(im);
         net.minecraft.server.v1_16_R2.ItemStack nmsItem = CraftItemStack.asNMSCopy(item);
         NBTTagCompound tag = nmsItem.hasTag() ? nmsItem.getTag() : new NBTTagCompound();

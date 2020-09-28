@@ -15,5 +15,6 @@ public class MobSpawn implements Listener {
                 event.setCancelled(true);
             }
         }
+
 }
 

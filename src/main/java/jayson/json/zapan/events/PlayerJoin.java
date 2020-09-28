@@ -3,6 +3,7 @@ package jayson.json.zapan.events;
 import jayson.json.zapan.Utility;
 import jayson.json.zapan.items.GoldBarItem;
 import jayson.json.zapan.items.TestItem;
+import jayson.json.zapan.other.Scoreboard;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.craftbukkit.v1_16_R2.inventory.CraftItemStack;
 import org.bukkit.event.EventHandler;
@@ -16,6 +17,7 @@ public class PlayerJoin implements Listener {
     public void PlayerJoinEvent(PlayerJoinEvent event) {
         //event.getPlayer().getWorld().dropItemNaturally(event.getPlayer().getLocation(), new GoldBarItem().GetItem());
         Utility.RefreshHearts(event.getPlayer());
+        Scoreboard.updateScoreboard(event.getPlayer());
         /*
         MinecraftServer server = ((CraftServer) Bukkit.getServer()).getServer();
         WorldServer world = ((CraftWorld) Bukkit.getWorld(event.getPlayer().getWorld().getName())).getHandle();
