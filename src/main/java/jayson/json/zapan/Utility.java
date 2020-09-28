@@ -90,7 +90,25 @@ public class Utility {
 
     public static zLocation GetNearestAreaDistance(Location location) {
         zArea area = GetNearestArea(location);
-        return new zLocation(area.location.x - location.getX() - area.size, 0, area.location.z - location.getZ() - area.size);
+        //return new zLocation(area.location.x - location.getX() - area.size, 0, area.location.z - location.getZ() - area.size);
+        return new zLocation(area.location.x - location.getX(), 0, area.location.z - location.getZ());
+    }
+
+    public static boolean AreaOverlap(Location locationP1, Location locationP2, Location locationBP1, Location locationBP2)
+    {
+        boolean XCol = IsAreaBetween(locationP1.getX(), locationP2.getX(), locationBP1.getX()) || IsAreaBetween(locationP1.getX(), locationP2.getX(), locationBP2.getX());
+        boolean YCol = IsAreaBetween(locationP1.getY(), locationP2.getY(), locationBP1.getY()) || IsAreaBetween(locationP1.getY(), locationP2.getY(), locationBP2.getY());
+        boolean ZCol = IsAreaBetween(locationP1.getZ(), locationP2.getZ(), locationBP1.getZ()) || IsAreaBetween(locationP1.getZ(), locationP2.getZ(), locationBP2.getZ());
+
+        return XCol && YCol && ZCol;
+    }
+
+    public static boolean IsAreaBetween(double point1, double point2, double target) {
+        if(point1 < point2) {
+            return target >= point1 && target <= point2;
+        } else {
+            return target >= point2 && target <= point1;
+        }
     }
 
     public static boolean IsInSpawnArea(Location location, World world) {

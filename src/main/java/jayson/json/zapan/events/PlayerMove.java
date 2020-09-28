@@ -30,12 +30,12 @@ public class PlayerMove implements Listener {
         if (Utility.IsInArea(player.getLocation(), locationP0, locationP1)) {
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new ComponentBuilder(area.name).color(ChatColor.DARK_PURPLE).create());
             if (!players.contains(player)) {
-                player.sendMessage("Du bist jetzt im Gebiet " + area.name + "!");
+                //player.sendMessage("Du bist jetzt im Gebiet " + area.name + "!");
                 players.add(player);
             }
         } else {
             if (players.contains(player)) {
-                player.sendMessage("Du hast das Gebiet " + area.name + " verlassen!");
+                //player.sendMessage("Du hast das Gebiet " + area.name + " verlassen!");
                 players.remove(player);
             }
         }

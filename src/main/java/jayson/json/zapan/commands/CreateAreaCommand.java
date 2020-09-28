@@ -29,7 +29,8 @@ public class CreateAreaCommand implements CommandExecutor {
                         DataHandler.SaveArea(area);
                         player.sendMessage("Gebiet " + args[0] + " erstellt!");
                         Zapan.INSTANCE.areas.add(area);
-                    } else {
+                        //player.sendMessage(Utility.AreaOverlap(area.CreateLocation(player.getWorld()).add(Utility.GetNearestArea(player.getLocation()).size, Utility.GetNearestArea(player.getLocation()).size, Utility.GetNearestArea(player.getLocation()).size), area.CreateLocation(player.getWorld()).subtract(Utility.GetNearestArea(player.getLocation()).size, Utility.GetNearestArea(player.getLocation()).size, Utility.GetNearestArea(player.getLocation()).size), player.getLocation().add(size, size, size), player.getLocation().subtract(size, size, size)) + "");
+                        } else {
                         commandSender.sendMessage("Gebiet ist zu groß! Max: 50000");
                     }
                 } else {
