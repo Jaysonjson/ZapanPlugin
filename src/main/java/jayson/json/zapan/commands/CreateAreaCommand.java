@@ -1,5 +1,6 @@
 package jayson.json.zapan.commands;
 
+import jayson.json.zapan.Utility;
 import jayson.json.zapan.Zapan;
 import jayson.json.zapan.data.zArea;
 import jayson.json.zapan.data.zareaobj.zLocation;
@@ -15,7 +16,7 @@ public class CreateAreaCommand implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
         if(commandSender instanceof Player && commandSender.isOp()) {
             if(args.length >= 2) {
-                if(!DataHandler.AreaExists(args[0])) {
+                if(!Utility.AreaExists(args[0])) {
                     Player player = (Player) commandSender;
                     int size = Integer.parseInt(args[1]);
                     if(size < 50000) {
@@ -36,7 +37,11 @@ public class CreateAreaCommand implements CommandExecutor {
                 }
                 return true;
             } else {
-                commandSender.sendMessage("Nicht genug Argumente!");
+                if(args[0].equalsIgnoreCase("Reload")) {
+                    Utility.ReloadAreas();
+                    commandSender.sendMessage("Gebiete wurden Neugeladen!");
+                    return true;
+                }
             }
         }
         return false;

@@ -81,7 +81,7 @@ public class DataHandler {
     public static void SaveGuild(zGuild guild) {
         String json = gsonBuilder.toJson(guild);
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream(new File(GUILD_DIR + guild.name.toLowerCase() + ".json"));
+            FileOutputStream fileOutputStream = new FileOutputStream(new File(GUILD_DIR + guild.uuid.toString() + ".json"));
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
             outputStreamWriter.append(json);
             outputStreamWriter.close();
@@ -90,23 +90,22 @@ public class DataHandler {
         }
     }
 
-    public static zGuild LoadGuild(String name) {
-        File file = new File(GUILD_DIR + name.toLowerCase() + ".json");
+    public static zGuild LoadGuild(UUID uuid) {
+        return LoadGuild(uuid.toString());
+    }
+
+    public static zGuild LoadGuild(String uuid) {
+        File file = new File(GUILD_DIR + uuid.toString() + ".json");
         zGuild guild;
         if(!file.exists()) {
             guild = new zGuild();
-            guild.name = name;
+            guild.name = "Unbekannt";
             SaveGuild(guild);
         } else {
             guild = gson.fromJson(ReadData(file), zGuild.class);
         }
         return guild;
     }
-
-    public static boolean AreaExists(String name) {
-        return new File(AREA_DIR + name.toLowerCase() + ".json").exists();
-    }
-
 
     private static String ReadData(File file)
     {

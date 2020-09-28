@@ -27,7 +27,7 @@ public class Scoreboard {
         Score lineSpace0 = score.getScore("-0-----=0=-----0-");
         Score geldScore = score.getScore(ChatColor.DARK_GREEN + "Geld" + ChatColor.GRAY + ": " + ChatColor.GOLD + money);
         Score lineSpace1 = score.getScore("-0-----=0=-----0-");
-        Score areaScore = score.getScore(ChatColor.DARK_GREEN + "Nächstes Gebiet" + ChatColor.GRAY + ": " + ChatColor.GOLD + area + "(" + (int)areaDistance.x + ", " + (int)areaDistance.z + " )");
+        Score areaScore = score.getScore(ChatColor.GOLD + area + ChatColor.RESET + " (" + ChatColor.BOLD + (int)areaDistance.x + ChatColor.RESET + ", " +  ChatColor.BOLD + (int)areaDistance.z + ChatColor.RESET + ")");
 
         lineSpace0.setScore(3);
         geldScore.setScore(2);

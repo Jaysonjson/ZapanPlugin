@@ -1,6 +1,8 @@
 package jayson.json.zapan;
 
 import jayson.json.zapan.commands.CreateAreaCommand;
+import jayson.json.zapan.commands.CreateGuildCommand;
+import jayson.json.zapan.commands.ReloadAreasCommand;
 import jayson.json.zapan.commands.SetHealthCommand;
 import jayson.json.zapan.data.zArea;
 import jayson.json.zapan.events.*;
@@ -33,16 +35,11 @@ public final class Zapan extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new BlockBreak(), this);
         Bukkit.getPluginManager().registerEvents(new BlockPlace(), this);
         Bukkit.getPluginManager().registerEvents(new DropItem(), this);
+        Bukkit.getPluginManager().registerEvents(new EntityDeath(), this);
         this.getCommand("sethealth").setExecutor(new SetHealthCommand());
         this.getCommand("area").setExecutor(new CreateAreaCommand());
-
-        areas.clear();
-
-        for (File file : new File(DataHandler.AREA_DIR).listFiles()) {
-            zArea area = DataHandler.LoadArea(file.getName().replaceAll(".json", ""));
-            areas.add(area);
-            DataHandler.SaveArea(area);
-        }
+        this.getCommand("guild").setExecutor(new CreateGuildCommand());
+        Utility.ReloadAreas();
     }
 
     @Override

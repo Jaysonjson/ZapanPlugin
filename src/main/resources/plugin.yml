@@ -9,6 +9,9 @@ commands:
   area:
     description: Erstellt ein Gebiet
     usage: /<command> <name> <area>
+  guild:
+    description: Guild Commands
+    usage: /<command>
 permissions:
   zapan.sethealth:
     description: SetHealth

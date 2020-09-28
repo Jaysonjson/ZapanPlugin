@@ -1,10 +1,12 @@
 package jayson.json.zapan;
 
 import jayson.json.zapan.data.zArea;
+import jayson.json.zapan.data.zGuild;
 import jayson.json.zapan.data.zPlayer;
 import jayson.json.zapan.data.zareaobj.zLocation;
 import jayson.json.zapan.io.DataHandler;
 import jayson.json.zapan.items.IzItem;
+import jayson.json.zapan.items.zItem;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -13,6 +15,7 @@ import org.bukkit.craftbukkit.v1_16_R2.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -59,11 +62,14 @@ public class Utility {
         ArrayList<Double> distancesD = new ArrayList<>();
         HashMap<Double, zArea> distances = new HashMap<>();
         for (zArea areas : Zapan.INSTANCE.areas) {
-            distances.put(location.getX() - areas.location.x, areas);
-            distancesD.add(location.getX() - areas.location.x);
+           // distances.put((location.getX() - areas.location.x), areas);
+           // distancesD.add((location.getX() - areas.location.x));
+            double distance = location.distance(areas.CreateLocation(location.getWorld()));
+            distances.put(distance, areas);
+            distancesD.add(distance);
         }
         Collections.sort(distancesD);
-        Collections.reverse(distancesD);
+        //Collections.reverse(distancesD);
         return distances.get(distancesD.get(0));
     }
 
@@ -148,12 +154,41 @@ public class Utility {
                 if (content.hasItemMeta()) {
                     net.minecraft.server.v1_16_R2.ItemStack nmsItem = CraftItemStack.asNMSCopy(content);
                     NBTTagCompound tag = nmsItem.hasTag() ? nmsItem.getTag() : new NBTTagCompound();
-                    if (tag.hasKey("currencyAmount")) {
-                        amount += (tag.getDouble("currencyAmount") * content.getAmount());
+                    if (tag.hasKey(zItem.CONST_CURRENCY_AMOUNT)) {
+                        amount += (tag.getDouble(zItem.CONST_CURRENCY_AMOUNT) * content.getAmount());
                     }
                 }
             }
         }
         return amount;
     }
+
+    public static void ReloadAreas() {
+        Zapan.INSTANCE.areas.clear();
+
+        for (File file : new File(DataHandler.AREA_DIR).listFiles()) {
+            zArea area = DataHandler.LoadArea(file.getName().replaceAll(".json", ""));
+            Zapan.INSTANCE.areas.add(area);
+            DataHandler.SaveArea(area);
+        }
+    }
+
+    public static boolean GuildExists(UUID uuid) {
+        return new File(DataHandler.GUILD_DIR + uuid.toString() + ".json").exists();
+    }
+
+    public static boolean GuildExists(String name) {
+        for (File file : new File(DataHandler.GUILD_DIR).listFiles()) {
+            zGuild guild = DataHandler.LoadGuild(file.getName().replaceAll(".json", ""));
+            if(guild.name.equalsIgnoreCase(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean AreaExists(String name) {
+        return new File(DataHandler.AREA_DIR + name.toLowerCase() + ".json").exists();
+    }
+
 }

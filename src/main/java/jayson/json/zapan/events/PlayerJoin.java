@@ -1,14 +1,9 @@
 package jayson.json.zapan.events;
 
 import jayson.json.zapan.Utility;
-import jayson.json.zapan.items.GoldBarItem;
-import jayson.json.zapan.items.TestItem;
 import jayson.json.zapan.other.Scoreboard;
-import net.minecraft.server.v1_16_R2.NBTTagCompound;
-import org.bukkit.craftbukkit.v1_16_R2.inventory.CraftItemStack;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 public class PlayerJoin implements Listener {
