@@ -21,8 +21,8 @@ public class ScrapItem implements IzItem{
         item.setItemMeta(im);
         net.minecraft.server.v1_16_R2.ItemStack nmsItem = CraftItemStack.asNMSCopy(item);
         NBTTagCompound tag = nmsItem.hasTag() ? nmsItem.getTag() : new NBTTagCompound();
-        tag.setDouble(zItem.CONST_CURRENCY_AMOUNT, 0.25);
-        tag.setBoolean(zItem.CONST_CAN_CRAFT_MINECRAFT, false);
+        tag.setDouble(zItemNBT.CONST_CURRENCY_AMOUNT, 0.25);
+        tag.setBoolean(zItemNBT.CONST_CAN_CRAFT_MINECRAFT, false);
         nmsItem.setTag(tag);
         item = CraftItemStack.asBukkitCopy(nmsItem);
         return item;

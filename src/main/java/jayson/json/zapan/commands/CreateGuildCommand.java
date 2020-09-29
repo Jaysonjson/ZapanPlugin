@@ -30,7 +30,7 @@ public class CreateGuildCommand implements CommandExecutor {
                             zGuild zGuild = new zGuild();
                             zGuild.name = args[1];
                             zGuild.owner = player.getUniqueId();
-                            zGuild.uuid = UUID.randomUUID();
+                            CreateGuildUUID(zGuild);
                             zGuild.members.put(player.getUniqueId(), zGuildRank.OWNER);
                             zPlayer.SetGuildUuid(zGuild.uuid);
                             DataHandler.SaveGuild(zGuild);
@@ -55,5 +55,14 @@ public class CreateGuildCommand implements CommandExecutor {
             }
         }
         return false;
+    }
+
+    private void CreateGuildUUID(zGuild zGuild) {
+        UUID uuid = UUID.randomUUID();
+        if(!Utility.GuildExists(uuid)) {
+            zGuild.uuid = uuid;
+        } else {
+            CreateGuildUUID(zGuild);
+        }
     }
 }

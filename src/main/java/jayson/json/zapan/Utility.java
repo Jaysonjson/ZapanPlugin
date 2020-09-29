@@ -6,7 +6,7 @@ import jayson.json.zapan.data.zPlayer;
 import jayson.json.zapan.data.zareaobj.zLocation;
 import jayson.json.zapan.io.DataHandler;
 import jayson.json.zapan.items.IzItem;
-import jayson.json.zapan.items.zItem;
+import jayson.json.zapan.items.zItemNBT;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -172,8 +172,8 @@ public class Utility {
                 if (content.hasItemMeta()) {
                     net.minecraft.server.v1_16_R2.ItemStack nmsItem = CraftItemStack.asNMSCopy(content);
                     NBTTagCompound tag = nmsItem.hasTag() ? nmsItem.getTag() : new NBTTagCompound();
-                    if (tag.hasKey(zItem.CONST_CURRENCY_AMOUNT)) {
-                        amount += (tag.getDouble(zItem.CONST_CURRENCY_AMOUNT) * content.getAmount());
+                    if (tag.hasKey(zItemNBT.CONST_CURRENCY_AMOUNT)) {
+                        amount += (tag.getDouble(zItemNBT.CONST_CURRENCY_AMOUNT) * content.getAmount());
                     }
                 }
             }

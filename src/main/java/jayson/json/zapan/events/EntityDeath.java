@@ -2,6 +2,7 @@ package jayson.json.zapan.events;
 
 import jayson.json.zapan.Utility;
 import jayson.json.zapan.items.zItem;
+import jayson.json.zapan.items.zItemNBT;
 import org.bukkit.entity.Monster;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,7 +15,7 @@ public class EntityDeath implements Listener {
     public void EntityDeath(EntityDeathEvent event) {
         if(event.getEntity() instanceof Monster) {
             if(new Random().nextInt(2) == 1) {
-                Utility.SpawnCustomItem(zItem.SCRAP, event.getEntity().getWorld(), event.getEntity().getLocation());
+                Utility.SpawnCustomItem(zItem.SCRAP.getItem(), event.getEntity().getWorld(), event.getEntity().getLocation());
             }
         }
     }

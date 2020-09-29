@@ -1,6 +1,6 @@
 package jayson.json.zapan.events;
 
-import jayson.json.zapan.items.zItem;
+import jayson.json.zapan.items.zItemNBT;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.craftbukkit.v1_16_R2.inventory.CraftItemStack;
 import org.bukkit.event.EventHandler;
@@ -16,8 +16,8 @@ public class CraftItem implements Listener {
                 net.minecraft.server.v1_16_R2.ItemStack nmsItem = CraftItemStack.asNMSCopy(content);
                 if(nmsItem.hasTag()) {
                     NBTTagCompound tag = nmsItem.hasTag() ? nmsItem.getTag() : new NBTTagCompound();
-                    if(tag.hasKey(zItem.CONST_CAN_CRAFT_MINECRAFT)) {
-                        if (!tag.getBoolean(zItem.CONST_CAN_CRAFT_MINECRAFT)) {
+                    if(tag.hasKey(zItemNBT.CONST_CAN_CRAFT_MINECRAFT)) {
+                        if (!tag.getBoolean(zItemNBT.CONST_CAN_CRAFT_MINECRAFT)) {
                             event.setCancelled(true);
                         }
                     }
