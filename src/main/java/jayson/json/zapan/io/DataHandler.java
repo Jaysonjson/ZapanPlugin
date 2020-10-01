@@ -22,28 +22,28 @@ public class DataHandler {
     public static String PLAYER_DIR = "plugins/zapan/players/";
     public static String AREA_DIR = "plugins/zapan/areas/";
     public static String GUILD_DIR = "plugins/zapan/guilds/";
-    private static Gson gsonBuilder = new GsonBuilder().setPrettyPrinting().excludeFieldsWithModifiers(Modifier.TRANSIENT).create();
-    private static Gson gson = new Gson();
+    private static final Gson gsonBuilder = new GsonBuilder().setPrettyPrinting().excludeFieldsWithModifiers(Modifier.TRANSIENT).create();
+    private static final Gson gson = new Gson();
 
 
-    public static zPlayer LoadPlayer(UUID uuid) {
+    public static zPlayer loadPlayer(UUID uuid) {
         File file = new File(PLAYER_DIR + uuid.toString() + ".json");
         zPlayer player;
         if(!file.exists()) {
             player = new zPlayer();
-            player.SetUuid(uuid);
-            SavePlayer(player);
+            player.setUuid(uuid);
+            savePlayer(player);
         } else {
-            player = gson.fromJson(ReadData(file), zPlayer.class);
+            player = gson.fromJson(readData(file), zPlayer.class);
         }
-        player.SetUuid(uuid);
+        player.setUuid(uuid);
         return player;
     }
 
-    public static void SavePlayer(zPlayer player) {
+    public static void savePlayer(zPlayer player) {
         String json = gsonBuilder.toJson(player);
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream(new File(PLAYER_DIR + player.GetUuid().toString() + ".json"));
+            FileOutputStream fileOutputStream = new FileOutputStream(new File(PLAYER_DIR + player.getUuid().toString() + ".json"));
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
             outputStreamWriter.append(json);
             outputStreamWriter.close();
@@ -53,7 +53,7 @@ public class DataHandler {
     }
 
 
-    public static void SaveArea(zArea area) {
+    public static void saveArea(zArea area) {
         String json = gsonBuilder.toJson(area);
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(new File(AREA_DIR + area.name.toLowerCase() + ".json"));
@@ -65,20 +65,20 @@ public class DataHandler {
         }
     }
 
-    public static zArea LoadArea(String name) {
+    public static zArea loadArea(String name) {
         File file = new File(AREA_DIR + name.toLowerCase() + ".json");
         zArea area;
         if(!file.exists()) {
             area = new zArea();
             area.name = name;
-            SaveArea(area);
+            saveArea(area);
         } else {
-            area = gson.fromJson(ReadData(file), zArea.class);
+            area = gson.fromJson(readData(file), zArea.class);
         }
         return area;
     }
 
-    public static void SaveGuild(zGuild guild) {
+    public static void saveGuild(zGuild guild) {
         String json = gsonBuilder.toJson(guild);
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(new File(GUILD_DIR + guild.uuid.toString() + ".json"));
@@ -90,24 +90,24 @@ public class DataHandler {
         }
     }
 
-    public static zGuild LoadGuild(UUID uuid) {
-        return LoadGuild(uuid.toString());
+    public static zGuild loadGuild(UUID uuid) {
+        return loadGuild(uuid.toString());
     }
 
-    public static zGuild LoadGuild(String uuid) {
+    public static zGuild loadGuild(String uuid) {
         File file = new File(GUILD_DIR + uuid.toString() + ".json");
         zGuild guild;
         if(!file.exists()) {
             guild = new zGuild();
             guild.name = "Unbekannt";
-            SaveGuild(guild);
+            saveGuild(guild);
         } else {
-            guild = gson.fromJson(ReadData(file), zGuild.class);
+            guild = gson.fromJson(readData(file), zGuild.class);
         }
         return guild;
     }
 
-    private static String ReadData(File file)
+    private static String readData(File file)
     {
         StringBuilder contentBuilder = new StringBuilder();
 

@@ -14,29 +14,40 @@ public class zPlayer {
 
     private UUID guildUuid = null;
 
+    private zStats stats = new zStats();
 
-    public zHealth GetHealth() {
+
+    public zHealth getHealth() {
         return health;
     }
 
-    public void SetHealth(zHealth health) {
+    public void setHealth(zHealth health) {
         this.health = health;
     }
 
-    public UUID GetUuid() {
+    public UUID getUuid() {
         return uuid;
     }
 
-    public void SetUuid(UUID uuid) {
+    public void setUuid(UUID uuid) {
         this.uuid = uuid;
     }
 
     @Nullable
-    public UUID GetGuildUuid() {
+    public UUID getGuildUuid() {
         return guildUuid;
     }
 
-    public void SetGuildUuid(UUID guildUuid) {
+    public void setGuildUuid(UUID guildUuid) {
         this.guildUuid = guildUuid;
     }
+
+    public zStats getStats() {
+        return stats;
+    }
+
+    public void setStats(zStats stats) {
+        this.stats = stats;
+    }
+
 }

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class GoldBarItem implements IzItem {
 
     @Override
-    public ItemStack GetItem() {
+    public ItemStack getItem() {
         ItemStack item = new ItemStack(Material.GOLD_INGOT);
         ItemMeta im = item.getItemMeta();
         ArrayList<String> lore = new ArrayList<>();

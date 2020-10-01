@@ -9,6 +9,6 @@ public class PlayerRespawn implements Listener {
 
     @EventHandler
     public void PlayerRespawn(PlayerRespawnEvent event) {
-        Utility.RefreshHearts(event.getPlayer());
+        Utility.refreshHearts(event.getPlayer());
     }
 }

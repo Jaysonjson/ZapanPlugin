@@ -18,23 +18,23 @@ public class CreateGuildCommand implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
         if(commandSender instanceof Player) {
             Player player = (Player) commandSender;
-            zPlayer zPlayer = DataHandler.LoadPlayer(player.getUniqueId());
+            zPlayer zPlayer = DataHandler.loadPlayer(player.getUniqueId());
             if(args.length >= 1) {
                 if(args[0].equalsIgnoreCase("create")) {
-                    if(zPlayer.GetGuildUuid() != null) {
+                    if(zPlayer.getGuildUuid() != null) {
                         player.sendMessage("Du bist bereits in einer Guilde!");
                         return true;
                     }
-                    if(Utility.CountMoney(player) >= 50000) {
-                        if(!Utility.GuildExists(args[1])) {
+                    if(Utility.countMoney(player) >= 50000) {
+                        if(!Utility.guildExists(args[1])) {
                             zGuild zGuild = new zGuild();
                             zGuild.name = args[1];
                             zGuild.owner = player.getUniqueId();
                             CreateGuildUUID(zGuild);
                             zGuild.members.put(player.getUniqueId(), zGuildRank.OWNER);
-                            zPlayer.SetGuildUuid(zGuild.uuid);
-                            DataHandler.SaveGuild(zGuild);
-                            DataHandler.SavePlayer(zPlayer);
+                            zPlayer.setGuildUuid(zGuild.uuid);
+                            DataHandler.saveGuild(zGuild);
+                            DataHandler.savePlayer(zPlayer);
                             player.sendMessage("Guilde " + zGuild.name + " (" + zGuild.uuid + ") erstellt!");
                         } else {
                             player.sendMessage("Eine Guilde mit dem Namen \"" + args[1] + "\" existiert bereits!");
@@ -46,8 +46,8 @@ public class CreateGuildCommand implements CommandExecutor {
                     return true;
                 }
             } else {
-                if(zPlayer.GetGuildUuid() != null) {
-                    zGuild zGuild = DataHandler.LoadGuild(zPlayer.GetGuildUuid());
+                if(zPlayer.getGuildUuid() != null) {
+                    zGuild zGuild = DataHandler.loadGuild(zPlayer.getGuildUuid());
                 } else {
                     player.sendMessage("Du bist in keiner Guilde!");
                 }
@@ -59,7 +59,7 @@ public class CreateGuildCommand implements CommandExecutor {
 
     private void CreateGuildUUID(zGuild zGuild) {
         UUID uuid = UUID.randomUUID();
-        if(!Utility.GuildExists(uuid)) {
+        if(!Utility.guildExists(uuid)) {
             zGuild.uuid = uuid;
         } else {
             CreateGuildUUID(zGuild);

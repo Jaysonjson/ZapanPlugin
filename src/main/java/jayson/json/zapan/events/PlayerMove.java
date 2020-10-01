@@ -24,10 +24,10 @@ public class PlayerMove implements Listener {
     public void PlayerMove(PlayerMoveEvent event) {
         Player player = event.getPlayer();
         Scoreboard.updateScoreboard(player);
-        zArea area = Utility.GetNearestArea(player.getLocation());
-        Location locationP0 = area.CreateLocation(player.getWorld()).add(area.size, area.size, area.size);
-        Location locationP1 = area.CreateLocation(player.getWorld()).subtract(area.size, area.size, area.size);
-        if (Utility.IsInArea(player.getLocation(), locationP0, locationP1)) {
+        zArea area = Utility.getNearestArea(event.getPlayer().getWorld().getEnvironment(), player.getLocation());
+        Location locationP0 = area.createLocation(player.getWorld()).add(area.size, area.size, area.size);
+        Location locationP1 = area.createLocation(player.getWorld()).subtract(area.size, area.size, area.size);
+        if (Utility.isInArea(player.getLocation(), locationP0, locationP1)) {
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new ComponentBuilder(area.name.toUpperCase()).color(ChatColor.DARK_PURPLE).create());
             if (!players.contains(player)) {
                 //player.sendMessage("Du bist jetzt im Gebiet " + area.name + "!");

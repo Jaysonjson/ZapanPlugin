@@ -13,7 +13,7 @@ import org.bukkit.scoreboard.ScoreboardManager;
 public class Scoreboard {
 
     public static void updateScoreboard(Player player) {
-        sendScoreboard(player, Utility.CountMoney(player), Utility.GetNearestArea(player.getLocation()).name, Utility.GetNearestAreaDistance(player.getLocation()));
+        sendScoreboard(player, Utility.countMoney(player), Utility.getNearestArea(player.getWorld().getEnvironment(), player.getLocation()).name, Utility.getNearestAreaDistance(player.getWorld().getEnvironment(), player.getLocation()));
     }
 
     public static void sendScoreboard(Player player, double money, String area, zLocation areaDistance) {

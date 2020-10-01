@@ -9,7 +9,7 @@ public class BlockBreak implements Listener {
 
     @EventHandler
     public void BlockBreak(BlockBreakEvent event) {
-        if(!Utility.CanBreakBlock(event.getPlayer(), event.getBlock().getLocation(), event.getBlock().getWorld())) {
+        if(!Utility.canBreakBlock(event.getPlayer(), event.getBlock().getLocation(), event.getBlock().getWorld())) {
             event.setCancelled(true);
         }
     }

@@ -35,11 +35,11 @@ public class SetHealthCommand implements CommandExecutor {
                     }
                 }
                 UUID uuid = player.getUniqueId();
-                zPlayer zPlayer = DataHandler.LoadPlayer(uuid);
-                zPlayer.GetHealth().health = health;
-                DataHandler.SavePlayer(zPlayer);
-                Utility.RefreshHearts(player, zPlayer);
-                commandSender.sendMessage("Das Leben von " + player.getDisplayName() + " wurde auf " + zPlayer.GetHealth().health + " geändert!");
+                zPlayer zPlayer = DataHandler.loadPlayer(uuid);
+                zPlayer.getHealth().health = health;
+                DataHandler.savePlayer(zPlayer);
+                Utility.refreshHearts(player, zPlayer);
+                commandSender.sendMessage("Das Leben von " + player.getDisplayName() + " wurde auf " + zPlayer.getHealth().health + " geändert!");
                 return true;
             }
             return false;

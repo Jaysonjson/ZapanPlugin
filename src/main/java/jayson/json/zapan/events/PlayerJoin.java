@@ -11,7 +11,7 @@ public class PlayerJoin implements Listener {
     @EventHandler
     public void PlayerJoinEvent(PlayerJoinEvent event) {
         //event.getPlayer().getWorld().dropItemNaturally(event.getPlayer().getLocation(), new GoldBarItem().GetItem());
-        Utility.RefreshHearts(event.getPlayer());
+        Utility.refreshHearts(event.getPlayer());
         Scoreboard.updateScoreboard(event.getPlayer());
         /*
         MinecraftServer server = ((CraftServer) Bukkit.getServer()).getServer();

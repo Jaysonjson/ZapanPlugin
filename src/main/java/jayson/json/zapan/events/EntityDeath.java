@@ -11,12 +11,14 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import java.util.Random;
 
 public class EntityDeath implements Listener {
+
     @EventHandler
     public void EntityDeath(EntityDeathEvent event) {
         if(event.getEntity() instanceof Monster) {
             if(new Random().nextInt(2) == 1) {
-                Utility.SpawnCustomItem(zItem.SCRAP.getItem(), event.getEntity().getWorld(), event.getEntity().getLocation());
+                Utility.spawnCustomItem(zItem.SCRAP.getzItem(), event.getEntity().getWorld(), event.getEntity().getLocation());
             }
         }
     }
+
 }

@@ -12,6 +12,12 @@ commands:
   guild:
     description: Guild Commands
     usage: /<command>
+  giveItem:
+    description: Gibt ein eigenes Item
+    usage: /<command> <itemID>
+  items:
+    description: Zeit alle Items an
+    usage: /<command>
 permissions:
   zapan.sethealth:
     description: SetHealth

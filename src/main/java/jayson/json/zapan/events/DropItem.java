@@ -10,7 +10,7 @@ public class DropItem implements Listener {
 
     @EventHandler
     public void DropItem(PlayerDropItemEvent event) {
-        if(!Utility.CanDropItem(event.getPlayer(), event.getPlayer().getLocation(), event.getPlayer().getWorld())) {
+        if(!Utility.canDropItem(event.getPlayer(), event.getPlayer().getLocation(), event.getPlayer().getWorld())) {
             event.setCancelled(true);
         }
         Scoreboard.updateScoreboard(event.getPlayer());

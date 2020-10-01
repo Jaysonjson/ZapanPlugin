@@ -1,11 +1,9 @@
 package jayson.json.zapan;
 
-import jayson.json.zapan.commands.CreateAreaCommand;
-import jayson.json.zapan.commands.CreateGuildCommand;
-import jayson.json.zapan.commands.ReloadAreasCommand;
-import jayson.json.zapan.commands.SetHealthCommand;
+import jayson.json.zapan.commands.*;
 import jayson.json.zapan.data.zArea;
 import jayson.json.zapan.events.*;
+import jayson.json.zapan.events.inventory.AreaEditClick;
 import jayson.json.zapan.io.DataHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -36,10 +34,13 @@ public final class Zapan extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new BlockPlace(), this);
         Bukkit.getPluginManager().registerEvents(new DropItem(), this);
         Bukkit.getPluginManager().registerEvents(new EntityDeath(), this);
+        Bukkit.getPluginManager().registerEvents(new AreaEditClick(), this);
         this.getCommand("sethealth").setExecutor(new SetHealthCommand());
         this.getCommand("area").setExecutor(new CreateAreaCommand());
         this.getCommand("guild").setExecutor(new CreateGuildCommand());
-        Utility.ReloadAreas();
+        this.getCommand("giveItem").setExecutor(new GiveCustomItem());
+        this.getCommand("items").setExecutor(new ItemCommand());
+        Utility.reloadAreas();
     }
 
     @Override

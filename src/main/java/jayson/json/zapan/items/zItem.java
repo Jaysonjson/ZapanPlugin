@@ -11,10 +11,11 @@ public enum zItem {
     IzItem item;
     String id;
     zItem(IzItem item, String id) {
-
+        this.item = item;
+        this.id = id;
     }
 
-    public IzItem getItem() {
+    public IzItem getzItem() {
         return item;
     }
 
