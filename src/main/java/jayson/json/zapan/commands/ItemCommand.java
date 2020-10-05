@@ -46,19 +46,6 @@ public class ItemCommand implements CommandExecutor {
                     page_index = 0;
                 }
             }
-            for (zItemAbility value : zItemAbility.values()) {
-                page_index++;
-                if (page_index < 44) {
-                    page_content.add(value.getAbstractItem().getItem(player));
-                }
-                if (page_index >= 44 || page_index.equals(zItem.values().length) || page_index.equals(page_check)) {
-                    page++;
-                    page_check -= 45;
-                    pageContainer.addPage(new InventoryPage<>(page_content, page));
-                    //page_content.clear();
-                    page_index = 0;
-                }
-            }
             createPage(gui, pageContainer, 0);
 
 

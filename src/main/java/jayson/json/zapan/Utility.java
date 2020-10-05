@@ -342,7 +342,7 @@ public class Utility {
 
     public static boolean isAbilityItem(ItemStack itemStack) {
         for (zItemAbility value : zItemAbility.values()) {
-            if(value.getAbstractItem().isAbilityItem() && value.getAbstractItem().getItem().isSimilar(itemStack)) {
+            if(value.getAbstractItem().getItem().getType().equals(itemStack.getType())) {
                 return true;
             }
         }

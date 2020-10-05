@@ -24,7 +24,7 @@ public class WallBlazeRodItem extends AbstractzItem {
             if(zPlayer.getStats().getIntelligence() >= 5) {
                 oItem.lore.add(ChatColor.GREEN + "Benötigt Intelligenz 5");
             } else {
-                oItem.lore.add(ChatColor.RED + "Benötigt Intelligenz 5 (Du hast: " + zPlayer.getStats().getIntelligence());
+                oItem.lore.add(ChatColor.RED + "Benötigt Intelligenz 5 (Du hast: " + zPlayer.getStats().getIntelligence() + ")");
             }
         } else {
             oItem.lore.add(ChatColor.GRAY + "Benötigt Intelligenz 5");

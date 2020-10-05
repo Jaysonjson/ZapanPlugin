@@ -15,6 +15,7 @@ public abstract class AbstractzItem implements IzItem, IzAbilityItem, IzAmmo {
         return new ItemStack(Material.AIR);
     }
 
+    @Override
     public ItemStack getItem() {
         return getItem(null);
     }
