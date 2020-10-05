@@ -8,19 +8,16 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_16_R2.inventory.CraftItemStack;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.ArrayList;
-
-public class GoldBarItem implements IzItem {
+public class EmeraldItem implements IzItem {
 
     @Override
     public ItemStack getItem() {
-        zOItem oItem = new zOItem(new ItemStack(Material.GOLD_INGOT));
-        oItem.lore.add(ChatColor.GRAY + "1.250Φ");
-        oItem.setItem("\u00a76Gold Barren");
+        zOItem oItem = new zOItem(new ItemStack(Material.EMERALD));
+        oItem.lore.add(ChatColor.GRAY + "1¢");
+        oItem.setItem(ChatColor.DARK_GREEN + "Smaragd");
         NBTTagCompound tag = oItem.tagCompound();
-        tag.setDouble(zItemNBT.CONST_CURRENCY_AMOUNT, 1250);
+        tag.setDouble(zItemNBT.CONST_EMERALD_AMOUNT, 1);
         tag.setBoolean(zItemNBT.CONST_CAN_CRAFT_MINECRAFT, false);
         oItem.nmsCopy.setTag(tag);
         oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
@@ -36,5 +33,4 @@ public class GoldBarItem implements IzItem {
     public float setCurrencyValue() {
         return 0;
     }
-
 }

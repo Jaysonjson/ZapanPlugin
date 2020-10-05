@@ -10,19 +10,28 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 
 public class ScrapItem implements IzItem {
+
     @Override
     public ItemStack getItem() {
-        zOItem oItem = new zOItem(new ItemStack(Material.NETHERITE_SCRAP), new ArrayList<>());
-        oItem.lore.add("\u00a760.25€");
-        oItem.itemMeta.setLore(oItem.lore);
-        oItem.itemMeta.setDisplayName(ChatColor.BOLD + "Schrott");
-        oItem.item.setItemMeta(oItem.itemMeta);
-        net.minecraft.server.v1_16_R2.ItemStack nmsItem = CraftItemStack.asNMSCopy(oItem.item);
-        NBTTagCompound tag = nmsItem.hasTag() ? nmsItem.getTag() : new NBTTagCompound();
+        zOItem oItem = new zOItem(new ItemStack(Material.NETHERITE_SCRAP));
+        oItem.lore.add("\u00a760.25Φ");
+        oItem.setItem(ChatColor.BOLD + "Schrott");
+        NBTTagCompound tag = oItem.tagCompound();
         tag.setDouble(zItemNBT.CONST_CURRENCY_AMOUNT, 0.25);
         tag.setBoolean(zItemNBT.CONST_CAN_CRAFT_MINECRAFT, false);
-        nmsItem.setTag(tag);
-        oItem.item = CraftItemStack.asBukkitCopy(nmsItem);
+        oItem.nmsCopy.setTag(tag);
+        oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
         return oItem.item;
     }
+
+    @Override
+    public float getCurrencyValue() {
+        return 0;
+    }
+
+    @Override
+    public float setCurrencyValue() {
+        return 0;
+    }
+
 }

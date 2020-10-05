@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import jayson.json.zapan.data.zArea;
 import jayson.json.zapan.data.zGuild;
 import jayson.json.zapan.data.zPlayer;
+import jayson.json.zapan.data.zServer;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -22,6 +23,7 @@ public class DataHandler {
     public static String PLAYER_DIR = "plugins/zapan/players/";
     public static String AREA_DIR = "plugins/zapan/areas/";
     public static String GUILD_DIR = "plugins/zapan/guilds/";
+    public static String SERVER_DIR = "plugins/zapan/";
     private static final Gson gsonBuilder = new GsonBuilder().setPrettyPrinting().excludeFieldsWithModifiers(Modifier.TRANSIENT).create();
     private static final Gson gson = new Gson();
 
@@ -50,6 +52,31 @@ public class DataHandler {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+
+    public static void saveServer(zServer server) {
+        String json = gsonBuilder.toJson(server);
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(new File(SERVER_DIR + "server.json"));
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
+            outputStreamWriter.append(json);
+            outputStreamWriter.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static zServer loadServer() {
+        File file = new File(SERVER_DIR + "server.json");
+        zServer server;
+        if(!file.exists()) {
+            server = new zServer();
+            saveServer(server);
+        } else {
+            server = gson.fromJson(readData(file), zServer.class);
+        }
+        return server;
     }
 
 

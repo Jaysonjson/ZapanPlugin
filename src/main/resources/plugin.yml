@@ -18,6 +18,12 @@ commands:
   items:
     description: Zeit alle Items an
     usage: /<command>
+  npc:
+    description: NPC
+    usage: /<command>
+  gba:
+    description: NPC
+    usage: /<command>
 permissions:
   zapan.sethealth:
     description: SetHealth

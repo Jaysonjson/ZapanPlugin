@@ -5,5 +5,6 @@ import org.bukkit.inventory.ItemStack;
 public interface IzItem {
 
     ItemStack getItem();
-
+    float getCurrencyValue();
+    float setCurrencyValue();
 }

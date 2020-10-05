@@ -1,16 +1,28 @@
 package jayson.json.zapan.other;
 
-public class InventoryPage {
-    String content;
+import org.bukkit.inventory.ItemStack;
+
+import java.util.ArrayList;
+
+public class InventoryPage<T> {
+    T content;
     Integer index;
-    public InventoryPage(String content, Integer index) {
-        this.content = content;
+    public InventoryPage(T content, Integer index) {
+        if(this.content instanceof ArrayList) {
+            ArrayList<?> st = (ArrayList<?>) content;
+            for (Object o : st) {
+                ((ArrayList<Object>) this.content).add(o);
+            }
+        } else {
+            this.content = content;
+        }
         this.index = index;
     }
-    public String getContent() {
+    public T getContent() {
         return content;
     }
     Integer getIndex() {
         return index;
     }
 }
+

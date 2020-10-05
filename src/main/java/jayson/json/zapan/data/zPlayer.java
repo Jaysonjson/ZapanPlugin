@@ -1,6 +1,7 @@
 package jayson.json.zapan.data;
 
 import com.google.gson.annotations.Expose;
+import jayson.json.zapan.Utility;
 import jayson.json.zapan.data.zplayerobj.*;
 
 import javax.annotation.Nullable;
@@ -16,6 +17,7 @@ public class zPlayer {
 
     private zStats stats = new zStats();
 
+    private zLevel level = new zLevel();
 
     public zHealth getHealth() {
         return health;
@@ -50,4 +52,18 @@ public class zPlayer {
         this.stats = stats;
     }
 
+    public boolean isInGuild() {
+        if(!Utility.guildExists(getGuildUuid())) {
+            setGuildUuid(null);
+        }
+        return getGuildUuid() != null;
+    }
+
+    public void setLevel(zLevel level) {
+        this.level = level;
+    }
+
+    public zLevel getLevel() {
+        return level;
+    }
 }

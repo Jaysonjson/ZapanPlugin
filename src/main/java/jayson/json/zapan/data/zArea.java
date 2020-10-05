@@ -18,6 +18,7 @@ public class zArea {
     public boolean spawnMobs = true;
     public boolean dropItems = true;
     public boolean placeBlocks = true;
+
     public Location createLocation(World world) {
         return new Location(world, location.x, location.y, location.z);
     }

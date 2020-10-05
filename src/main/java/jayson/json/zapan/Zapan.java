@@ -4,7 +4,10 @@ import jayson.json.zapan.commands.*;
 import jayson.json.zapan.data.zArea;
 import jayson.json.zapan.events.*;
 import jayson.json.zapan.events.inventory.AreaEditClick;
+import jayson.json.zapan.events.inventory.ItemClick;
 import jayson.json.zapan.io.DataHandler;
+import jayson.json.zapan.npc.NPC;
+import net.minecraft.server.v1_16_R2.EntityPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -35,12 +38,18 @@ public final class Zapan extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new DropItem(), this);
         Bukkit.getPluginManager().registerEvents(new EntityDeath(), this);
         Bukkit.getPluginManager().registerEvents(new AreaEditClick(), this);
+        Bukkit.getPluginManager().registerEvents(new ItemClick(), this);
+        Bukkit.getPluginManager().registerEvents(new ChatEvent(), this);
         this.getCommand("sethealth").setExecutor(new SetHealthCommand());
         this.getCommand("area").setExecutor(new CreateAreaCommand());
         this.getCommand("guild").setExecutor(new CreateGuildCommand());
         this.getCommand("giveItem").setExecutor(new GiveCustomItem());
         this.getCommand("items").setExecutor(new ItemCommand());
+        this.getCommand("npc").setExecutor(new CreateNPCCommand());
+        this.getCommand("gba").setExecutor(new SetGuildBannerCommand());
+
         Utility.reloadAreas();
+        NPC.loadNPCS();
     }
 
     @Override

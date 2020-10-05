@@ -21,7 +21,7 @@ public class CreateGuildCommand implements CommandExecutor {
             zPlayer zPlayer = DataHandler.loadPlayer(player.getUniqueId());
             if(args.length >= 1) {
                 if(args[0].equalsIgnoreCase("create")) {
-                    if(zPlayer.getGuildUuid() != null) {
+                    if(zPlayer.isInGuild()) {
                         player.sendMessage("Du bist bereits in einer Guilde!");
                         return true;
                     }

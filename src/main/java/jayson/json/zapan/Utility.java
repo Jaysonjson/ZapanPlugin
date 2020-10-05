@@ -196,6 +196,26 @@ public class Utility {
         return amount;
     }
 
+    public static double countEmerald(Inventory inventory) {
+        double amount = 0;
+        for (ItemStack content : inventory.getContents()) {
+            if(content != null) {
+                if (content.hasItemMeta()) {
+                    net.minecraft.server.v1_16_R2.ItemStack nmsItem = CraftItemStack.asNMSCopy(content);
+                    NBTTagCompound tag = nmsItem.hasTag() ? nmsItem.getTag() : new NBTTagCompound();
+                    if (tag.hasKey(zItemNBT.CONST_EMERALD_AMOUNT)) {
+                        amount += (tag.getDouble(zItemNBT.CONST_EMERALD_AMOUNT) * content.getAmount());
+                    }
+                }
+            }
+        }
+        return amount;
+    }
+
+    public static double countEmerald(Player player) {
+        return countEmerald(player.getInventory());
+    }
+
     public static void reloadAreas() {
         Zapan.INSTANCE.areas.clear();
 
@@ -250,4 +270,18 @@ public class Utility {
             new File(DataHandler.AREA_DIR + name.toLowerCase() + ".json").delete();
         }
     }
+
+    public static String formatInteger(Integer integer) {
+        String string = String.valueOf(integer);
+        if(integer > 1000) string = String.format("%.2fk", integer / 1000.0);
+        if(integer > 1000000) string = String.format("%.2fM", integer / 1000000.0);
+        if(integer > 1000000000) string = String.format("%.2fG", integer / 1000000000.0);
+        return string;
+    }
+    public static String formatTime(Integer integer) {
+        String string = integer + "s";
+        if(integer > 60) string = String.format("%.1fm", (integer / 60.0) % 60);
+        return string;
+    }
+
 }

@@ -2,14 +2,14 @@ package jayson.json.zapan.other;
 
 import java.util.ArrayList;
 
-public class InventoryPageContainer {
+public class InventoryPageContainer<T> {
     ArrayList<InventoryPage> pages = new ArrayList<>();
-    public InventoryPage addPage(InventoryPage page) {
+    public InventoryPage<T> addPage(InventoryPage<T> page) {
         page.index = size();
         pages.add(page);
         return page;
     }
-    InventoryPage getPage(Integer index) {
+    public InventoryPage<T> getPage(Integer index) {
         return this.pages.get(index);
     }
     public Integer size() {
