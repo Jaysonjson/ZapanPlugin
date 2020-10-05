@@ -38,16 +38,20 @@ public class Scoreboard {
             emeraldSTR = Utility.formatInteger((int) emeraldValue);
         }
 
-        Score geldScore = score.getScore(ChatColor.GRAY + "Hacksilber" + ChatColor.DARK_GRAY + ": " + ChatColor.GOLD + moneySTR + "Φ");
+        Score hacksilverScore = score.getScore(ChatColor.GRAY + "Hacksilber" + ChatColor.DARK_GRAY + ": " + ChatColor.GOLD + moneySTR + "Φ");
+        Score hacksilver1Score = score.getScore(ChatColor.GRAY + "(" + ChatColor.RESET + (Utility.formatInteger((int) (money + Utility.convertEmeraldToHacksilver(emeraldValue)))) + ChatColor.RESET + ChatColor.GRAY + ")");
+        Score emerald1Score = score.getScore(ChatColor.GRAY + "(" + ChatColor.RESET + (Utility.formatInteger((int) (emeraldValue + Utility.convertHacksilverToEmerald(money)))) + ChatColor.RESET + ChatColor.GRAY + ")");
         Score emeraldScore = score.getScore(ChatColor.DARK_GREEN + "Smaragde" + ChatColor.DARK_GRAY + ": " + ChatColor.GOLD + emeraldSTR + "¢");
         Score lineSpace1 = score.getScore("-0------=1=------0-");
-        Score areaScore = score.getScore(ChatColor.GOLD + area + ChatColor.RESET + " (" + ChatColor.BOLD + (int)areaDistance.x + ChatColor.RESET + ", " +  ChatColor.BOLD + (int)areaDistance.z + ChatColor.RESET + ")");
+        Score areaScore = score.getScore(ChatColor.GOLD + area + ChatColor.RESET + " (" + ChatColor.BOLD + Utility.formatInteger((int)areaDistance.x) + ChatColor.RESET + ", " +  ChatColor.BOLD + Utility.formatInteger((int) areaDistance.z) + ChatColor.RESET + ")");
         Score lineSpace2 = score.getScore("-0------=2=------0-");
         Score levelScore = score.getScore("LvL: " + zPlayer.getLevel().level);
 
-        lineSpace0.setScore(6);
-        emeraldScore.setScore(5);
-        geldScore.setScore(4);
+        lineSpace0.setScore(8);
+        emeraldScore.setScore(7);
+        emerald1Score.setScore(6);
+        hacksilverScore.setScore(5);
+        hacksilver1Score.setScore(4);
         lineSpace1.setScore(3);
         areaScore.setScore(2);
         lineSpace2.setScore(1);

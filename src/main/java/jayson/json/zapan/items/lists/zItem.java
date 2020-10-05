@@ -1,9 +1,13 @@
-package jayson.json.zapan.items;
+package jayson.json.zapan.items.lists;
 
+import jayson.json.zapan.items.AbstractzItem;
+import jayson.json.zapan.items.other.ScrapItem;
+import jayson.json.zapan.items.other.SkillBookItem;
 import jayson.json.zapan.items.currency.EmeraldItem;
 import jayson.json.zapan.items.currency.GoldBarItem;
 import jayson.json.zapan.items.currency.GoldNuggetItem;
 import jayson.json.zapan.items.currency.HackSilverItem;
+import jayson.json.zapan.items.interfaces.IzItem;
 
 public enum zItem {
 
@@ -11,18 +15,23 @@ public enum zItem {
     GOLDNUGGET(new GoldNuggetItem(), "goldNuggetItem"),
     HACKSILVER(new HackSilverItem(), "hackSilverItem"),
     EMERALD(new EmeraldItem(), "emeraldItem"),
-    SKILLBOOK(new SkillBookItem(), "skillBook"),
+    SKILLBOOK(new SkillBookItem(), "skillBookItem"),
     SCRAP(new ScrapItem(), "scrapItem");
 
     //TODO: Market-Value -> Wert des Items verändert sich
-    IzItem item;
+    AbstractzItem item;
     String id;
-    zItem(IzItem item, String id) {
+    zItem(AbstractzItem item, String id) {
         this.item = item;
         this.id = id;
     }
 
+    @Deprecated
     public IzItem getzItem() {
+        return item;
+    }
+
+    public AbstractzItem getAbstractItem() {
         return item;
     }
 

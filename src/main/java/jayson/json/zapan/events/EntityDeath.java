@@ -1,8 +1,7 @@
 package jayson.json.zapan.events;
 
 import jayson.json.zapan.Utility;
-import jayson.json.zapan.items.zItem;
-import jayson.json.zapan.items.zItemNBT;
+import jayson.json.zapan.items.lists.zItem;
 import org.bukkit.entity.Monster;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

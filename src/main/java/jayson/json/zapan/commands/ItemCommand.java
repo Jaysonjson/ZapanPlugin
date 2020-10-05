@@ -1,6 +1,7 @@
 package jayson.json.zapan.commands;
 
-import jayson.json.zapan.items.zItem;
+import jayson.json.zapan.items.lists.zItem;
+import jayson.json.zapan.items.lists.zItemAbility;
 import jayson.json.zapan.items.zItemNBT;
 import jayson.json.zapan.other.InventoryPage;
 import jayson.json.zapan.other.InventoryPageContainer;
@@ -35,7 +36,20 @@ public class ItemCommand implements CommandExecutor {
             for (zItem value : zItem.values()) {
                 page_index++;
                 if (page_index < 44) {
-                    page_content.add(value.getzItem().getItem());
+                    page_content.add(value.getAbstractItem().getItem(player));
+                }
+                if (page_index >= 44 || page_index.equals(zItem.values().length) || page_index.equals(page_check)) {
+                    page++;
+                    page_check -= 45;
+                    pageContainer.addPage(new InventoryPage<>(page_content, page));
+                    //page_content.clear();
+                    page_index = 0;
+                }
+            }
+            for (zItemAbility value : zItemAbility.values()) {
+                page_index++;
+                if (page_index < 44) {
+                    page_content.add(value.getAbstractItem().getItem(player));
                 }
                 if (page_index >= 44 || page_index.equals(zItem.values().length) || page_index.equals(page_check)) {
                     page++;

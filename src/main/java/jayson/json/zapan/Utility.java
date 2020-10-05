@@ -5,9 +5,10 @@ import jayson.json.zapan.data.zGuild;
 import jayson.json.zapan.data.zPlayer;
 import jayson.json.zapan.data.zareaobj.zLocation;
 import jayson.json.zapan.io.DataHandler;
-import jayson.json.zapan.items.IzItem;
-import jayson.json.zapan.items.zItem;
-import jayson.json.zapan.items.zItemNBT;
+import jayson.json.zapan.items.*;
+import jayson.json.zapan.items.interfaces.IzItem;
+import jayson.json.zapan.items.lists.zItem;
+import jayson.json.zapan.items.lists.zItemAbility;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -16,6 +17,7 @@ import org.bukkit.craftbukkit.v1_16_R2.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.BookMeta;
 
 import javax.annotation.Nullable;
 import java.io.File;
@@ -216,6 +218,14 @@ public class Utility {
         return countEmerald(player.getInventory());
     }
 
+    public static double convertHacksilverToEmerald(double hacksilverAmount) {
+        return hacksilverAmount / Constant.HACKSILVER_TO_EMERALD_VALUE;
+    }
+
+    public static double convertEmeraldToHacksilver(double emeraldAmount) {
+        return emeraldAmount * Constant.HACKSILVER_TO_EMERALD_VALUE;
+    }
+
     public static void reloadAreas() {
         Zapan.INSTANCE.areas.clear();
 
@@ -244,15 +254,46 @@ public class Utility {
         return new File(DataHandler.AREA_DIR + name.toLowerCase() + ".json").exists();
     }
 
+    @Deprecated
     @Nullable
     public static IzItem getItemByID(String id) {
         IzItem item = null;
+
         for (zItem value : zItem.values()) {
             if(value.getId().equalsIgnoreCase(id)) {
                 item = value.getzItem();
                 break;
             }
         }
+
+        for (zItemAbility value : zItemAbility.values()) {
+            if(value.getId().equalsIgnoreCase(id)) {
+                item = value.getzItem();
+                break;
+            }
+        }
+
+        return item;
+    }
+
+    @Nullable
+    public static AbstractzItem getAbstractItemByID(String id) {
+        AbstractzItem item = null;
+
+        for (zItem value : zItem.values()) {
+            if(value.getId().equalsIgnoreCase(id)) {
+                item = value.getAbstractItem();
+                break;
+            }
+        }
+
+        for (zItemAbility value : zItemAbility.values()) {
+            if(value.getId().equalsIgnoreCase(id)) {
+                item = value.getAbstractItem();
+                break;
+            }
+        }
+
         return item;
     }
 
@@ -278,10 +319,34 @@ public class Utility {
         if(integer > 1000000000) string = String.format("%.2fG", integer / 1000000000.0);
         return string;
     }
+
     public static String formatTime(Integer integer) {
         String string = integer + "s";
         if(integer > 60) string = String.format("%.1fm", (integer / 60.0) % 60);
         return string;
+    }
+
+    public static void updateSkillBook(BookMeta bookMeta) {
+
+    }
+
+    @Deprecated
+    public static boolean isValidAbilityItem(ItemStack itemStack) {
+        for (zItemAbility value : zItemAbility.values()) {
+            if(value.getzItem().getItem().isSimilar(itemStack)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean isAbilityItem(ItemStack itemStack) {
+        for (zItemAbility value : zItemAbility.values()) {
+            if(value.getAbstractItem().isAbilityItem() && value.getAbstractItem().getItem().isSimilar(itemStack)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

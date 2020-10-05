@@ -7,7 +7,6 @@ import jayson.json.zapan.events.inventory.AreaEditClick;
 import jayson.json.zapan.events.inventory.ItemClick;
 import jayson.json.zapan.io.DataHandler;
 import jayson.json.zapan.npc.NPC;
-import net.minecraft.server.v1_16_R2.EntityPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -40,6 +39,8 @@ public final class Zapan extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new AreaEditClick(), this);
         Bukkit.getPluginManager().registerEvents(new ItemClick(), this);
         Bukkit.getPluginManager().registerEvents(new ChatEvent(), this);
+        Bukkit.getPluginManager().registerEvents(new ItemUse(), this);
+        Bukkit.getPluginManager().registerEvents(new EntityDamage(), this);
         this.getCommand("sethealth").setExecutor(new SetHealthCommand());
         this.getCommand("area").setExecutor(new CreateAreaCommand());
         this.getCommand("guild").setExecutor(new CreateGuildCommand());

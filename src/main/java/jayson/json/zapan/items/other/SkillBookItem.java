@@ -1,4 +1,4 @@
-package jayson.json.zapan.items.currency;
+package jayson.json.zapan.items.other;
 
 import jayson.json.zapan.items.AbstractzItem;
 import jayson.json.zapan.items.zItemNBT;
@@ -9,17 +9,17 @@ import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_16_R2.inventory.CraftItemStack;
 import org.bukkit.inventory.ItemStack;
 
-public class HackSilverItem extends AbstractzItem {
+public class SkillBookItem extends AbstractzItem {
     @Override
     public ItemStack getItem() {
-        zOItem oItem = new zOItem(new ItemStack(Material.IRON_NUGGET));
-        oItem.lore.add(ChatColor.GRAY + "1Φ");
-        oItem.setItem(ChatColor.GRAY + "Hacksilber");
+        zOItem oItem = new zOItem(new ItemStack(Material.WRITTEN_BOOK));
+        oItem.setItem(ChatColor.BOLD + "Skill Buch");
         NBTTagCompound tag = oItem.tagCompound();
-        tag.setDouble(zItemNBT.CONST_CURRENCY_AMOUNT, 1);
         tag.setBoolean(zItemNBT.CONST_CAN_CRAFT_MINECRAFT, false);
+        tag.setString(zItemNBT.CONST_ITEM_ID, "skillBookItem");
         oItem.nmsCopy.setTag(tag);
         oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
         return oItem.item;
     }
+
 }

@@ -1,6 +1,6 @@
 package jayson.json.zapan.items.currency;
 
-import jayson.json.zapan.items.IzItem;
+import jayson.json.zapan.items.AbstractzItem;
 import jayson.json.zapan.items.zItemNBT;
 import jayson.json.zapan.items.zOItem;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
@@ -9,7 +9,7 @@ import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_16_R2.inventory.CraftItemStack;
 import org.bukkit.inventory.ItemStack;
 
-public class EmeraldItem implements IzItem {
+public class EmeraldItem extends AbstractzItem {
 
     @Override
     public ItemStack getItem() {
@@ -24,13 +24,4 @@ public class EmeraldItem implements IzItem {
         return oItem.item;
     }
 
-    @Override
-    public float getCurrencyValue() {
-        return 0;
-    }
-
-    @Override
-    public float setCurrencyValue() {
-        return 0;
-    }
 }

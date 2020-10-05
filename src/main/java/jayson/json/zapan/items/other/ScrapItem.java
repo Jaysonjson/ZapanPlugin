@@ -1,5 +1,8 @@
-package jayson.json.zapan.items;
+package jayson.json.zapan.items.other;
 
+import jayson.json.zapan.items.AbstractzItem;
+import jayson.json.zapan.items.zItemNBT;
+import jayson.json.zapan.items.zOItem;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -9,7 +12,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 
-public class ScrapItem implements IzItem {
+public class ScrapItem extends AbstractzItem {
 
     @Override
     public ItemStack getItem() {
@@ -22,16 +25,6 @@ public class ScrapItem implements IzItem {
         oItem.nmsCopy.setTag(tag);
         oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
         return oItem.item;
-    }
-
-    @Override
-    public float getCurrencyValue() {
-        return 0;
-    }
-
-    @Override
-    public float setCurrencyValue() {
-        return 0;
     }
 
 }
