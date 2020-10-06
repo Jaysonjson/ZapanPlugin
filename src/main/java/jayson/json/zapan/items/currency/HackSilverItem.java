@@ -11,9 +11,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public class HackSilverItem extends AbstractzItem {
+    String id;
+    public HackSilverItem(String id) {
+        this.id = id;
+    }
+
     @Override
     public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(new ItemStack(Material.IRON_NUGGET));
+        zOItem oItem = new zOItem(new ItemStack(Material.IRON_NUGGET), getId());
         oItem.lore.add(ChatColor.GRAY + "1Φ");
         oItem.setItem(ChatColor.GRAY + "Hacksilber");
         NBTTagCompound tag = oItem.tagCompound();
@@ -22,5 +27,10 @@ public class HackSilverItem extends AbstractzItem {
         oItem.nmsCopy.setTag(tag);
         oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
         return oItem.item;
+    }
+
+    @Override
+    public String getId() {
+        return id;
     }
 }

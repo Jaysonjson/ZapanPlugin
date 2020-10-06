@@ -1,19 +1,19 @@
 package jayson.json.zapan.items.lists;
 
 import jayson.json.zapan.items.AbstractzItem;
+import jayson.json.zapan.items.ability.FireEs01BlazeRodItem;
 import jayson.json.zapan.items.ability.WallBlazeRodItem;
 import jayson.json.zapan.items.interfaces.IzItem;
 import jayson.json.zapan.items.interfaces.IzItemRegistry;
 
 public enum zItemAbility implements IzItemRegistry {
 
-    WALLBLAZEROD(new WallBlazeRodItem(), "wallBlazeRodItem");
+    FIREES01BLAZEROD(new FireEs01BlazeRodItem("fireEs01BlazeRodItem")),
+    WALLBLAZEROD(new WallBlazeRodItem("wallBlazeRodItem"));
 
     AbstractzItem item;
-    String id;
-    zItemAbility(AbstractzItem item, String id) {
+    zItemAbility(AbstractzItem item) {
         this.item = item;
-        this.id = id;
     }
 
     @Override
@@ -21,8 +21,4 @@ public enum zItemAbility implements IzItemRegistry {
         return item;
     }
 
-    @Override
-    public String getId() {
-        return id;
-    }
 }

@@ -15,9 +15,14 @@ import java.util.ArrayList;
 
 public class ScrapItem extends AbstractzItem {
 
+    String id;
+    public ScrapItem(String id) {
+        this.id = id;
+    }
+
     @Override
     public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(new ItemStack(Material.NETHERITE_SCRAP));
+        zOItem oItem = new zOItem(new ItemStack(Material.NETHERITE_SCRAP), getId());
         oItem.lore.add("\u00a760.25Φ");
         oItem.setItem(ChatColor.BOLD + "Schrott");
         NBTTagCompound tag = oItem.tagCompound();
@@ -28,4 +33,8 @@ public class ScrapItem extends AbstractzItem {
         return oItem.item;
     }
 
+    @Override
+    public String getId() {
+        return id;
+    }
 }

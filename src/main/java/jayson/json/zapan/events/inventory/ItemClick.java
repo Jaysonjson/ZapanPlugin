@@ -14,13 +14,15 @@ public class ItemClick implements Listener {
     @EventHandler
     public void ClickEvent(InventoryClickEvent event) {
         if(event.getView().getTitle().equalsIgnoreCase("Items")) {
-            if(event.getCurrentItem().hasItemMeta()) {
-                net.minecraft.server.v1_16_R2.ItemStack nmsItem = CraftItemStack.asNMSCopy(event.getCurrentItem());
-                if(nmsItem.hasTag()) {
-                    NBTTagCompound tag = nmsItem.hasTag() ? nmsItem.getTag() : new NBTTagCompound();
-                    if (tag.hasKey(zItemNBT.CONST_CAN_MOVE)) {
-                        if (!tag.getBoolean(zItemNBT.CONST_CAN_MOVE)) {
-                            event.setCancelled(true);
+            if(event.getCurrentItem() != null) {
+                if (event.getCurrentItem().hasItemMeta()) {
+                    net.minecraft.server.v1_16_R2.ItemStack nmsItem = CraftItemStack.asNMSCopy(event.getCurrentItem());
+                    if (nmsItem.hasTag()) {
+                        NBTTagCompound tag = nmsItem.hasTag() ? nmsItem.getTag() : new NBTTagCompound();
+                        if (tag.hasKey(zItemNBT.CONST_CAN_MOVE)) {
+                            if (!tag.getBoolean(zItemNBT.CONST_CAN_MOVE)) {
+                                event.setCancelled(true);
+                            }
                         }
                     }
                 }

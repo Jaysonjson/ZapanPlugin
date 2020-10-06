@@ -6,5 +6,4 @@ public interface IzItemRegistry {
 
     AbstractzItem getAbstractItem();
 
-    String getId();
 }

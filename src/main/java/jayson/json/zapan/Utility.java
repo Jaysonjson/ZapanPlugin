@@ -263,14 +263,14 @@ public class Utility {
         IzItem item = null;
 
         for (zItem value : zItem.values()) {
-            if(value.getId().equalsIgnoreCase(id)) {
+            if(value.getAbstractItem().getId().equalsIgnoreCase(id)) {
                 item = value.getAbstractItem();
                 break;
             }
         }
 
         for (zItemAbility value : zItemAbility.values()) {
-            if(value.getId().equalsIgnoreCase(id)) {
+            if(value.getAbstractItem().getId().equalsIgnoreCase(id)) {
                 item = value.getAbstractItem();
                 break;
             }
@@ -282,7 +282,7 @@ public class Utility {
     @Nullable
     public static AbstractzItem getAbstractItemByID(String id) {
         for (IzItemRegistry item : ItemRegistry.items) {
-            if(item.getId().equalsIgnoreCase(id)) {
+            if(item.getAbstractItem().getId().equalsIgnoreCase(id)) {
                 return item.getAbstractItem();
             }
         }
@@ -291,7 +291,7 @@ public class Utility {
 
     public static boolean itemIDExists(String id) {
         for (zItem value : zItem.values()) {
-            if(value.getId().equalsIgnoreCase(id)) {
+            if(value.getAbstractItem().getId().equalsIgnoreCase(id)) {
                 return true;
             }
         }
@@ -325,7 +325,7 @@ public class Utility {
     @Deprecated
     public static boolean isValidAbilityItem(ItemStack itemStack) {
         for (zItemAbility value : zItemAbility.values()) {
-            if(value.getAbstractItem().getItem().isSimilar(itemStack)) {
+            if(value.getAbstractItem().getItem(null).isSimilar(itemStack)) {
                 return true;
             }
         }
@@ -334,11 +334,41 @@ public class Utility {
 
     public static boolean isAbilityItem(ItemStack itemStack) {
         for (zItemAbility value : zItemAbility.values()) {
-            if(value.getAbstractItem().getItem().getType().equals(itemStack.getType())) {
+            if(value.getAbstractItem().getItem(null).getType().equals(itemStack.getType())) {
                 return true;
             }
         }
         return false;
+    }
+
+    public static boolean iszItem(ItemStack itemStack) {
+        for (IzItemRegistry item : ItemRegistry.items) {
+            if(item.getAbstractItem().getItem().getType().equals(itemStack.getType())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static void updatePlayerInventory(Player player) {
+        for (ItemStack content : player.getInventory().getContents()) {
+            if(iszItem(content)) {
+                AbstractzItem abstractzItem = getAbstractItemFromNMS(content);
+                if(abstractzItem != null) {
+                    abstractzItem.update(player);
+                }
+            }
+        }
+    }
+
+    @Nullable
+    public static AbstractzItem getAbstractItemFromNMS(ItemStack itemStack) {
+        net.minecraft.server.v1_16_R2.ItemStack nmsCopy = CraftItemStack.asNMSCopy(itemStack);
+        NBTTagCompound tag = nmsCopy.hasTag() ? nmsCopy.getTag() : new NBTTagCompound();
+        if(tag.hasKey(zItemNBT.CONST_ITEM_ID)) {
+           return getAbstractItemByID(tag.getString(zItemNBT.CONST_ITEM_ID));
+        }
+        return null;
     }
 
 }

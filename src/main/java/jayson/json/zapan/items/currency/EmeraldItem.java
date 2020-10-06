@@ -12,9 +12,14 @@ import org.bukkit.inventory.ItemStack;
 
 public class EmeraldItem extends AbstractzItem {
 
+    String id;
+    public EmeraldItem(String id) {
+        this.id = id;
+    }
+
     @Override
     public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(new ItemStack(Material.EMERALD));
+        zOItem oItem = new zOItem(new ItemStack(Material.EMERALD), getId());
         oItem.lore.add(ChatColor.GRAY + "1¢");
         oItem.setItem(ChatColor.DARK_GREEN + "Smaragd");
         NBTTagCompound tag = oItem.tagCompound();
@@ -25,4 +30,8 @@ public class EmeraldItem extends AbstractzItem {
         return oItem.item;
     }
 
+    @Override
+    public String getId() {
+        return id;
+    }
 }

@@ -62,7 +62,6 @@ public class ItemCommand implements CommandExecutor {
 
     private void createPage(Inventory inventory, InventoryPageContainer<ArrayList<ItemStack>> pageContainer, int page) {
         ArrayList<ItemStack> contents = pageContainer.getPage(page).getContent();
-        System.out.println(contents);
         for (ItemStack content : contents) {
             inventory.addItem(content);
         }

@@ -11,9 +11,15 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public class GoldNuggetItem extends AbstractzItem {
+
+    String id;
+    public GoldNuggetItem(String id) {
+        this.id = id;
+    }
+
     @Override
     public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(new ItemStack(Material.GOLD_NUGGET));
+        zOItem oItem = new zOItem(new ItemStack(Material.GOLD_NUGGET), getId());
         oItem.lore.add(ChatColor.GRAY + "17.43Φ");
         oItem.setItem(ChatColor.GOLD + "Goldklumpen");
         NBTTagCompound tag = oItem.tagCompound();
@@ -24,4 +30,8 @@ public class GoldNuggetItem extends AbstractzItem {
         return oItem.item;
     }
 
+    @Override
+    public String getId() {
+        return id;
+    }
 }

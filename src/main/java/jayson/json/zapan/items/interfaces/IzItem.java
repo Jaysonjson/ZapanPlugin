@@ -10,4 +10,6 @@ public interface IzItem {
     IzAbilityItem getAbilityItem();
     void update(ItemStack itemStack);
     ItemStack update(Player player);
+    String getId();
+    void setId();
 }

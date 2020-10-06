@@ -12,9 +12,14 @@ import org.bukkit.inventory.ItemStack;
 
 public class GoldBarItem extends AbstractzItem {
 
+    String id;
+    public GoldBarItem(String id) {
+        this.id = id;
+    }
+
     @Override
     public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(new ItemStack(Material.GOLD_INGOT));
+        zOItem oItem = new zOItem(new ItemStack(Material.GOLD_INGOT), getId());
         oItem.lore.add(ChatColor.GRAY + "1.250Φ");
         oItem.setItem("\u00a76Gold Barren");
         NBTTagCompound tag = oItem.tagCompound();
@@ -25,6 +30,8 @@ public class GoldBarItem extends AbstractzItem {
         return oItem.item;
     }
 
-
-
+    @Override
+    public String getId() {
+        return id;
+    }
 }

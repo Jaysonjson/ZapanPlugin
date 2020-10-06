@@ -15,10 +15,12 @@ import org.bukkit.craftbukkit.v1_16_R2.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-public class WallBlazeRodItem extends AbstractzItem {
+import java.util.Random;
+
+public class FireEs01BlazeRodItem extends AbstractzItem {
     private String id;
 
-    public WallBlazeRodItem(String id) {
+    public FireEs01BlazeRodItem(String id) {
         this.id = id;
     }
 
@@ -35,9 +37,9 @@ public class WallBlazeRodItem extends AbstractzItem {
         } else {
             oItem.lore.add(ChatColor.GRAY + "Benötigt Intelligenz 5");
         }
-        oItem.lore.add(ChatColor.GRAY + "Macht eine diagonale Wand aus Feuer");
+        oItem.lore.add(ChatColor.GRAY + "Platziert zufällig Feuer in der Nähe");
 
-        oItem.setItem(ChatColor.RED + "Feuer Es05");
+        oItem.setItem(ChatColor.RED + "Feuer Es01");
         NBTTagCompound tag = oItem.tagCompound();
         tag.setBoolean(zItemNBT.CONST_CAN_CRAFT_MINECRAFT, false);
         tag.setInt(zItemNBT.CONST_NEEDED_INTELLIGENCE, 5);
@@ -54,15 +56,34 @@ public class WallBlazeRodItem extends AbstractzItem {
     @Override
     public void ability(World world, Player player, ItemStack itemStack) {
         Location location = player.getLocation();
-        for (int i = 0; i < 5; i++) {
+        Random random = new Random();
+        for (int i = 0; i < random.nextInt(12); i++) {
             Block block = world.getBlockAt(new Location(location.getWorld(), location.getX() + i, location.getY(), location.getZ() + i));
-            if (block.getType() == Material.AIR) {
+            if (block.getType() == Material.AIR && random.nextInt(3) == 1) {
                 block.setType(Material.FIRE);
             }
-            for (int j = 0; j < 5; j++) {
-                block = world.getBlockAt(new Location(location.getWorld(), location.getX() - j, location.getY(), location.getZ() - j));
-                if (block.getType() == Material.AIR) {
+            for (int j = 0; j < random.nextInt(12); j++) {
+                block = world.getBlockAt(new Location(location.getWorld(), location.getX() - i, location.getY(), location.getZ() - j));
+                if (block.getType() == Material.AIR && random.nextInt(3) == 1) {
                     block.setType(Material.FIRE);
+                }
+                for (int k = 0; k < random.nextInt(12); k++) {
+                    block = world.getBlockAt(new Location(location.getWorld(), location.getX() - k, location.getY(), location.getZ() + j));
+                    if (block.getType() == Material.AIR && random.nextInt(3) == 1) {
+                        block.setType(Material.FIRE);
+                    }
+                    for (int l = 0; l < random.nextInt(12); l++) {
+                        block = world.getBlockAt(new Location(location.getWorld(), location.getX() + l - k, location.getY(), location.getZ() - k));
+                        if (block.getType() == Material.AIR && random.nextInt(3) == 1) {
+                            block.setType(Material.FIRE);
+                        }
+                        for (int m = 0; m < random.nextInt(12); m++) {
+                            block = world.getBlockAt(new Location(location.getWorld(), location.getX() + l - m + i, location.getY(), location.getZ() - m));
+                            if (block.getType() == Material.AIR && random.nextInt(2) == 1) {
+                                block.setType(Material.FIRE);
+                            }
+                        }
+                    }
                 }
             }
         }

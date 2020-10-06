@@ -1,6 +1,7 @@
 package jayson.json.zapan.events;
 
 import jayson.json.zapan.Utility;
+import jayson.json.zapan.items.AbstractzItem;
 import jayson.json.zapan.items.interfaces.IzAbilityItem;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -19,9 +20,13 @@ public class ItemUse implements Listener {
         bookMeta.setPages(pages);
         event.getItem().setItemMeta(bookMeta);
               */
-        if(Utility.isAbilityItem(event.getItem())) {
-            IzAbilityItem abilityItem = Utility.getAbstractItemByID("wallBlazeRodItem");
-            abilityItem.ability(event.getPlayer().getWorld(), event.getPlayer());
+        if(!event.hasBlock()) {
+            if (Utility.isAbilityItem(event.getItem())) {
+                AbstractzItem abstractzItem = Utility.getAbstractItemFromNMS(event.getItem());
+                if (abstractzItem != null && abstractzItem.isAbilityItem()) {
+                    abstractzItem.ability(event.getPlayer().getWorld(), event.getPlayer(), event.getItem());
+                }
+            }
         }
 
     }

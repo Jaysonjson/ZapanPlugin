@@ -11,9 +11,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public class SkillBookItem extends AbstractzItem {
+    String id;
+    public SkillBookItem(String id) {
+        this.id = id;
+    }
     @Override
     public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(new ItemStack(Material.WRITTEN_BOOK));
+        zOItem oItem = new zOItem(new ItemStack(Material.WRITTEN_BOOK), getId());
         oItem.setItem(ChatColor.BOLD + "Skill Buch");
         NBTTagCompound tag = oItem.tagCompound();
         tag.setBoolean(zItemNBT.CONST_CAN_CRAFT_MINECRAFT, false);
@@ -23,4 +27,8 @@ public class SkillBookItem extends AbstractzItem {
         return oItem.item;
     }
 
+    @Override
+    public String getId() {
+        return id;
+    }
 }

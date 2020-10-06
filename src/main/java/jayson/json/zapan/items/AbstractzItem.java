@@ -42,7 +42,17 @@ public abstract class AbstractzItem implements IzItem, IzAbilityItem, IzAmmo, Iz
     }
 
     @Override
-    public void ability(World world, Player player) {
+    public String getId() {
+        return null;
+    }
+
+    @Override
+    public void setId() {
+
+    }
+
+    @Override
+    public void ability(World world, Player player, ItemStack itemStack) {
 
     }
 
