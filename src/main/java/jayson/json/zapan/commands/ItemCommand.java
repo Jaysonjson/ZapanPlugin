@@ -1,5 +1,8 @@
 package jayson.json.zapan.commands;
 
+import jayson.json.zapan.items.AbstractzItem;
+import jayson.json.zapan.items.interfaces.IzItemRegistry;
+import jayson.json.zapan.items.lists.ItemRegistry;
 import jayson.json.zapan.items.lists.zItem;
 import jayson.json.zapan.items.lists.zItemAbility;
 import jayson.json.zapan.items.zItemNBT;
@@ -32,13 +35,12 @@ public class ItemCommand implements CommandExecutor {
             Integer page = 0;
             ArrayList<ItemStack> page_content = new ArrayList<>();
             int page_check = zItem.values().length;
-
-            for (zItem value : zItem.values()) {
+            for (IzItemRegistry item : ItemRegistry.items) {
                 page_index++;
                 if (page_index < 44) {
-                    page_content.add(value.getAbstractItem().getItem(player));
+                    page_content.add(item.getAbstractItem().getItem(player));
                 }
-                if (page_index >= 44 || page_index.equals(zItem.values().length) || page_index.equals(page_check)) {
+                if (page_index >= 44 || page_index.equals(ItemRegistry.items.size()) || page_index.equals(page_check)) {
                     page++;
                     page_check -= 45;
                     pageContainer.addPage(new InventoryPage<>(page_content, page));
@@ -60,6 +62,7 @@ public class ItemCommand implements CommandExecutor {
 
     private void createPage(Inventory inventory, InventoryPageContainer<ArrayList<ItemStack>> pageContainer, int page) {
         ArrayList<ItemStack> contents = pageContainer.getPage(page).getContent();
+        System.out.println(contents);
         for (ItemStack content : contents) {
             inventory.addItem(content);
         }
@@ -91,6 +94,7 @@ public class ItemCommand implements CommandExecutor {
         NBTTagCompound tag = nmsItem.hasTag() ? nmsItem.getTag() : new NBTTagCompound();
         tag.setBoolean(zItemNBT.CONST_CAN_MOVE, false);
         tag.setInt("FAKENUMBER", new Random().nextInt(5000));
+        tag.setInt("SCFAKENUMBER", new Random().nextInt(7000));
         nmsItem.setTag(tag);
         stack = CraftItemStack.asBukkitCopy(nmsItem);
         return stack;

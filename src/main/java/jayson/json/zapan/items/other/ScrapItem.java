@@ -7,6 +7,7 @@ import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_16_R2.inventory.CraftItemStack;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 public class ScrapItem extends AbstractzItem {
 
     @Override
-    public ItemStack getItem() {
+    public ItemStack getItem(Player player) {
         zOItem oItem = new zOItem(new ItemStack(Material.NETHERITE_SCRAP));
         oItem.lore.add("\u00a760.25Φ");
         oItem.setItem(ChatColor.BOLD + "Schrott");

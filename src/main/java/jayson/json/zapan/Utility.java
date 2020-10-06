@@ -7,6 +7,8 @@ import jayson.json.zapan.data.zareaobj.zLocation;
 import jayson.json.zapan.io.DataHandler;
 import jayson.json.zapan.items.*;
 import jayson.json.zapan.items.interfaces.IzItem;
+import jayson.json.zapan.items.interfaces.IzItemRegistry;
+import jayson.json.zapan.items.lists.ItemRegistry;
 import jayson.json.zapan.items.lists.zItem;
 import jayson.json.zapan.items.lists.zItemAbility;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
@@ -257,18 +259,19 @@ public class Utility {
     @Deprecated
     @Nullable
     public static IzItem getItemByID(String id) {
+
         IzItem item = null;
 
         for (zItem value : zItem.values()) {
             if(value.getId().equalsIgnoreCase(id)) {
-                item = value.getzItem();
+                item = value.getAbstractItem();
                 break;
             }
         }
 
         for (zItemAbility value : zItemAbility.values()) {
             if(value.getId().equalsIgnoreCase(id)) {
-                item = value.getzItem();
+                item = value.getAbstractItem();
                 break;
             }
         }
@@ -278,23 +281,12 @@ public class Utility {
 
     @Nullable
     public static AbstractzItem getAbstractItemByID(String id) {
-        AbstractzItem item = null;
-
-        for (zItem value : zItem.values()) {
-            if(value.getId().equalsIgnoreCase(id)) {
-                item = value.getAbstractItem();
-                break;
+        for (IzItemRegistry item : ItemRegistry.items) {
+            if(item.getId().equalsIgnoreCase(id)) {
+                return item.getAbstractItem();
             }
         }
-
-        for (zItemAbility value : zItemAbility.values()) {
-            if(value.getId().equalsIgnoreCase(id)) {
-                item = value.getAbstractItem();
-                break;
-            }
-        }
-
-        return item;
+        return null;
     }
 
     public static boolean itemIDExists(String id) {
@@ -333,7 +325,7 @@ public class Utility {
     @Deprecated
     public static boolean isValidAbilityItem(ItemStack itemStack) {
         for (zItemAbility value : zItemAbility.values()) {
-            if(value.getzItem().getItem().isSimilar(itemStack)) {
+            if(value.getAbstractItem().getItem().isSimilar(itemStack)) {
                 return true;
             }
         }

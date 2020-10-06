@@ -31,7 +31,7 @@ public class WallBlazeRodItem extends AbstractzItem {
         }
         oItem.lore.add(ChatColor.GRAY + "Macht eine diagonale Wand aus Feuer");
 
-        oItem.setItem(ChatColor.DARK_GREEN + "Feuer Es05");
+        oItem.setItem(ChatColor.RED + "Feuer Es05");
         NBTTagCompound tag = oItem.tagCompound();
         tag.setBoolean(zItemNBT.CONST_CAN_CRAFT_MINECRAFT, false);
         tag.setInt(zItemNBT.CONST_NEEDED_INTELLIGENCE, 5);

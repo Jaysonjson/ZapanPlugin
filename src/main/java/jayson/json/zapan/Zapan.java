@@ -6,6 +6,7 @@ import jayson.json.zapan.events.*;
 import jayson.json.zapan.events.inventory.AreaEditClick;
 import jayson.json.zapan.events.inventory.ItemClick;
 import jayson.json.zapan.io.DataHandler;
+import jayson.json.zapan.items.lists.ItemRegistry;
 import jayson.json.zapan.npc.NPC;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -26,6 +27,7 @@ public final class Zapan extends JavaPlugin {
         new File(DataHandler.PLAYER_DIR).mkdirs();
         new File(DataHandler.AREA_DIR).mkdirs();
         new File(DataHandler.GUILD_DIR).mkdirs();
+        ItemRegistry.reloadItems();
         Bukkit.getPluginManager().registerEvents(new PlayerJoin(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerDeath(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerRespawn(), this);

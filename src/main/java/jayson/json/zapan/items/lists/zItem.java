@@ -1,6 +1,7 @@
 package jayson.json.zapan.items.lists;
 
 import jayson.json.zapan.items.AbstractzItem;
+import jayson.json.zapan.items.interfaces.IzItemRegistry;
 import jayson.json.zapan.items.other.ScrapItem;
 import jayson.json.zapan.items.other.SkillBookItem;
 import jayson.json.zapan.items.currency.EmeraldItem;
@@ -9,7 +10,7 @@ import jayson.json.zapan.items.currency.GoldNuggetItem;
 import jayson.json.zapan.items.currency.HackSilverItem;
 import jayson.json.zapan.items.interfaces.IzItem;
 
-public enum zItem {
+public enum zItem implements IzItemRegistry {
 
     GOLDBAR(new GoldBarItem(), "goldBarItem"),
     GOLDNUGGET(new GoldNuggetItem(), "goldNuggetItem"),
@@ -26,15 +27,12 @@ public enum zItem {
         this.id = id;
     }
 
-    @Deprecated
-    public IzItem getzItem() {
-        return item;
-    }
-
+    @Override
     public AbstractzItem getAbstractItem() {
         return item;
     }
 
+    @Override
     public String getId() {
         return id;
     }

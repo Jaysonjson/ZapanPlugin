@@ -7,11 +7,12 @@ import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_16_R2.inventory.CraftItemStack;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public class HackSilverItem extends AbstractzItem {
     @Override
-    public ItemStack getItem() {
+    public ItemStack getItem(Player player) {
         zOItem oItem = new zOItem(new ItemStack(Material.IRON_NUGGET));
         oItem.lore.add(ChatColor.GRAY + "1Φ");
         oItem.setItem(ChatColor.GRAY + "Hacksilber");
