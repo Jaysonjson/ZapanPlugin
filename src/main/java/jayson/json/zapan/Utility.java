@@ -52,6 +52,15 @@ public class Utility {
         player.setHealth(zPlayer.getHealth().health);
     }
 
+    public static void decreasePlayerHearts(Player player, zPlayer zPlayer, int amount) {
+        zPlayer.getHealth().health = zPlayer.getHealth().health - amount;
+        refreshHearts(player, zPlayer);
+    }
+    
+    public static void increasePlayerHearts(Player player, zPlayer zPlayer, int amount) {
+        decreasePlayerHearts(player, zPlayer,amount / -1);
+    }
+
     public static boolean isInArea(Location location, Location locationP0, Location locationP1) {
         double maxX = (Math.max(locationP0.getX(), locationP1.getX()));
         double minX = (Math.min(locationP0.getX(), locationP1.getX()));

@@ -33,7 +33,7 @@ public abstract class AbstractzItem implements IzItem, IzAbilityItem, IzAmmo, Iz
     @Override
     @Deprecated
     public void update(ItemStack itemStack) {
-        itemStack = getItem();
+        itemStack = getItem(null);
     }
 
     @Override
