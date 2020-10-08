@@ -27,6 +27,7 @@ public final class Zapan extends JavaPlugin {
         new File(DataHandler.PLAYER_DIR).mkdirs();
         new File(DataHandler.AREA_DIR).mkdirs();
         new File(DataHandler.GUILD_DIR).mkdirs();
+        new File(DataHandler.BACKPACK_DIR).mkdirs();
         ItemRegistry.reloadItems();
         Bukkit.getPluginManager().registerEvents(new PlayerJoin(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerDeath(), this);

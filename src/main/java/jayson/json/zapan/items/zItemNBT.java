@@ -11,6 +11,6 @@ public class zItemNBT {
     public static final String CONST_CAN_MOVE = "canMove";
     public static final String CONST_EMERALD_AMOUNT = "emeraldValueAmount";
     public static final String CONST_ITEM_ID = "itemID";
-
+    public static final String CONST_ITEM_UUID = "itemUUID";
     public static final String CONST_NEEDED_INTELLIGENCE = "neededIntelligence";
 }

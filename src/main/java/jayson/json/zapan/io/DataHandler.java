@@ -2,10 +2,7 @@ package jayson.json.zapan.io;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import jayson.json.zapan.data.zArea;
-import jayson.json.zapan.data.zGuild;
-import jayson.json.zapan.data.zPlayer;
-import jayson.json.zapan.data.zServer;
+import jayson.json.zapan.data.*;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -24,6 +21,7 @@ public class DataHandler {
     public static String AREA_DIR = "plugins/zapan/areas/";
     public static String GUILD_DIR = "plugins/zapan/guilds/";
     public static String SERVER_DIR = "plugins/zapan/";
+    public static String BACKPACK_DIR = "plugins/zapan/players/backpacks/";
     private static final Gson gsonBuilder = new GsonBuilder().setPrettyPrinting().excludeFieldsWithModifiers(Modifier.TRANSIENT).create();
     private static final Gson gson = new Gson();
 
@@ -53,6 +51,33 @@ public class DataHandler {
             ex.printStackTrace();
         }
     }
+
+    public static zBackPack loadBackPack(UUID uuid) {
+        File file = new File(BACKPACK_DIR + uuid.toString() + ".json");
+        zBackPack backPack;
+        if(!file.exists()) {
+            backPack = new zBackPack();
+            backPack.setUuid(uuid);
+            saveBackPack(backPack);
+        } else {
+            backPack = gson.fromJson(readData(file), zBackPack.class);
+        }
+        backPack.setUuid(uuid);
+        return backPack;
+    }
+
+    public static void saveBackPack(zBackPack backPack) {
+        String json = gsonBuilder.toJson(backPack);
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(new File(BACKPACK_DIR + backPack.getUuid().toString() + ".json"));
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
+            outputStreamWriter.append(json);
+            outputStreamWriter.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
 
 
     public static void saveServer(zServer server) {

@@ -331,6 +331,14 @@ public class Utility {
 
     }
 
+    public static NBTTagCompound getItemTag(net.minecraft.server.v1_16_R2.ItemStack itemStack) {
+        return itemStack.hasTag() ? itemStack.getTag() : new NBTTagCompound();
+    }
+
+    public static net.minecraft.server.v1_16_R2.ItemStack createNMSCopy(ItemStack itemStack) {
+        return CraftItemStack.asNMSCopy(itemStack);
+    }
+
     @Deprecated
     public static boolean isValidAbilityItem(ItemStack itemStack) {
         for (zItemAbility value : zItemAbility.values()) {
@@ -341,9 +349,23 @@ public class Utility {
         return false;
     }
 
+    @Deprecated
     public static boolean isAbilityItem(ItemStack itemStack) {
+        return isAbilityItem(null, itemStack);
+    }
+
+    public static boolean isAbilityItem(Player player, ItemStack itemStack) {
         for (zItemAbility value : zItemAbility.values()) {
-            if(value.getAbstractItem().getItem(null).getType().equals(itemStack.getType())) {
+            if(value.getAbstractItem().getItem(player).getType().equals(itemStack.getType())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean isAbilityItemAll(Player player, ItemStack itemStack) {
+        for (IzItemRegistry value : ItemRegistry.items) {
+            if(value.getAbstractItem().getItem(player).getType().equals(itemStack.getType())) {
                 return true;
             }
         }

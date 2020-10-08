@@ -24,7 +24,7 @@ import java.util.Random;
 
 public class ItemInventory implements Listener {
     @Nullable
-    private final Inventory inventory = null;
+    private Inventory inventory = null;
     public InventoryPageContainer<ArrayList<ItemStack>> pageContainer = new InventoryPageContainer<>();
     public int currentPage = 0;
     public ItemInventory() {
@@ -55,16 +55,18 @@ public class ItemInventory implements Listener {
 
     @EventHandler
     public void InventoryClick(InventoryClickEvent event) {
-        ItemStack clickedItem = event.getCurrentItem();
-        if(clickedItem.hasItemMeta()) {
-            if(clickedItem.getItemMeta().getDisplayName().equalsIgnoreCase("Nächste Seite")) {
-                if(currentPage + 1 < pageContainer.size()) {
-                    openInventory((Player) event.getWhoClicked(), currentPage + 1);
+        if(event.getInventory() == this.inventory) {
+            ItemStack clickedItem = event.getCurrentItem();
+            if (clickedItem.hasItemMeta()) {
+                if (clickedItem.getItemMeta().getDisplayName().equalsIgnoreCase("Nächste Seite")) {
+                    if (currentPage + 1 < pageContainer.size()) {
+                        openInventory((Player) event.getWhoClicked(), currentPage + 1);
+                    }
                 }
-            }
-            if(clickedItem.getItemMeta().getDisplayName().equalsIgnoreCase("Letzte Seite")) {
-                if(currentPage > 0) {
-                    openInventory((Player) event.getWhoClicked(), currentPage - 1);
+                if (clickedItem.getItemMeta().getDisplayName().equalsIgnoreCase("Letzte Seite")) {
+                    if (currentPage > 0) {
+                        openInventory((Player) event.getWhoClicked(), currentPage - 1);
+                    }
                 }
             }
         }
@@ -72,6 +74,7 @@ public class ItemInventory implements Listener {
 
     public void openInventory(Player player, int page) {
         Inventory gui = Bukkit.createInventory(player, 54, "Items");
+        inventory = gui;
         currentPage = page;
         createPage(player, gui, page);
     }

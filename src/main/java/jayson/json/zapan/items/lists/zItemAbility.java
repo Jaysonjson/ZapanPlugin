@@ -5,9 +5,11 @@ import jayson.json.zapan.items.ability.FireEs01BlazeRodItem;
 import jayson.json.zapan.items.ability.WallBlazeRodItem;
 import jayson.json.zapan.items.interfaces.IzItem;
 import jayson.json.zapan.items.interfaces.IzItemRegistry;
+import jayson.json.zapan.items.other.BackPackItem;
 
 public enum zItemAbility implements IzItemRegistry {
 
+    BACKPACKITEM(new BackPackItem("backPackItem")),
     FIREES01BLAZEROD(new FireEs01BlazeRodItem("fireEs01BlazeRodItem")),
     WALLBLAZEROD(new WallBlazeRodItem("wallBlazeRodItem"));
 

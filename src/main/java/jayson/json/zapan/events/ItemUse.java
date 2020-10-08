@@ -21,7 +21,7 @@ public class ItemUse implements Listener {
         event.getItem().setItemMeta(bookMeta);
               */
         if(!event.hasBlock()) {
-            if (Utility.isAbilityItem(event.getItem())) {
+            if (Utility.isAbilityItemAll(event.getPlayer(), event.getItem())) {
                 AbstractzItem abstractzItem = Utility.getAbstractItemFromNMS(event.getItem());
                 if (abstractzItem != null && abstractzItem.isAbilityItem()) {
                     abstractzItem.ability(event.getPlayer().getWorld(), event.getPlayer(), event.getItem());
