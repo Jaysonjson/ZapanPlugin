@@ -8,6 +8,7 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
@@ -26,11 +27,6 @@ public abstract class AbstractzItem implements IzItem, IzAbilityItem, IzAmmo, Iz
     }
 
     @Override
-    public IzAbilityItem getAbilityItem() {
-        return this;
-    }
-
-    @Override
     @Deprecated
     public void update(ItemStack itemStack) {
         itemStack = getItem(null);
@@ -41,10 +37,12 @@ public abstract class AbstractzItem implements IzItem, IzAbilityItem, IzAmmo, Iz
         return getItem(player);
     }
 
+    @NotNull
     @Override
     public String getId() {
-        return null;
+        return "null";
     }
+
 
     @Override
     public void setId() {

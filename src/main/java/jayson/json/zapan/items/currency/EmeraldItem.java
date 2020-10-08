@@ -9,6 +9,7 @@ import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_16_R2.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 public class EmeraldItem extends AbstractzItem {
 
@@ -31,7 +32,7 @@ public class EmeraldItem extends AbstractzItem {
     }
 
     @Override
-    public String getId() {
+    public @NotNull String getId() {
         return id;
     }
 }

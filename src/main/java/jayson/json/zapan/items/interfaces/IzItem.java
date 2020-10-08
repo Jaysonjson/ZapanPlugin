@@ -7,7 +7,6 @@ public interface IzItem {
 
     ItemStack getItem();
     ItemStack getItem(Player player);
-    IzAbilityItem getAbilityItem();
     void update(ItemStack itemStack);
     ItemStack update(Player player);
     String getId();

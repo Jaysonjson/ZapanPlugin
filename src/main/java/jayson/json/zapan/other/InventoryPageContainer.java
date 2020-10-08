@@ -3,7 +3,7 @@ package jayson.json.zapan.other;
 import java.util.ArrayList;
 
 public class InventoryPageContainer<T> {
-    ArrayList<InventoryPage> pages = new ArrayList<>();
+    public ArrayList<InventoryPage> pages = new ArrayList<>();
     public InventoryPage<T> addPage(InventoryPage<T> page) {
         page.index = size();
         pages.add(page);

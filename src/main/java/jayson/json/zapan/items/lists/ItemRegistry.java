@@ -16,4 +16,12 @@ public class ItemRegistry {
     public static void addItem(IzItemRegistry izItemRegistry) {
         items.add(izItemRegistry);
     }
+
+    public static <T extends Enum<T>> void addItems(T[] itemEnum) {
+        for (T t : itemEnum) {
+            if(t instanceof IzItemRegistry) {
+                items.add((IzItemRegistry) t);
+            }
+        }
+    }
 }

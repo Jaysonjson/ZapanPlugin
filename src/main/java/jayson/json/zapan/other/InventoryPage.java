@@ -6,18 +6,25 @@ import java.util.ArrayList;
 
 public class InventoryPage<T> {
     T content;
+    public ItemStack[] stacks;
     Integer index;
     public InventoryPage(T content, Integer index) {
-        if(this.content instanceof ArrayList) {
+       /* if(this.content instanceof ArrayList) {
             ArrayList<?> st = (ArrayList<?>) content;
             for (Object o : st) {
                 ((ArrayList<Object>) this.content).add(o);
             }
         } else {
             this.content = content;
-        }
+        }*/
+
         this.index = index;
     }
+
+    public ItemStack[] getStacks() {
+        return stacks;
+    }
+
     public T getContent() {
         return content;
     }
