@@ -24,6 +24,18 @@ commands:
   gba:
     description: NPC
     usage: /<command>
+  gmc:
+    description: gamemode creative
+    usage: /gmc
+  gms:
+    description: gamemode survival
+    usage: /gms
+  gma:
+    description: gamemode adventure,
+    usage: /gma
+  gmsp:
+    description: gamemode spectator
+    usage: /gmsp
 permissions:
   zapan.sethealth:
     description: SetHealth

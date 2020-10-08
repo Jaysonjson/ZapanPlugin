@@ -43,6 +43,7 @@ public final class Zapan extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new ChatEvent(), this);
         Bukkit.getPluginManager().registerEvents(new ItemUse(), this);
         Bukkit.getPluginManager().registerEvents(new EntityDamage(), this);
+        Bukkit.getPluginManager().registerEvents(new BanPlayer(), this);
         this.getCommand("sethealth").setExecutor(new SetHealthCommand());
         this.getCommand("area").setExecutor(new CreateAreaCommand());
         this.getCommand("guild").setExecutor(new CreateGuildCommand());
@@ -50,7 +51,10 @@ public final class Zapan extends JavaPlugin {
         this.getCommand("items").setExecutor(new ItemCommand());
         this.getCommand("npc").setExecutor(new CreateNPCCommand());
         this.getCommand("gba").setExecutor(new SetGuildBannerCommand());
-
+        this.getCommand("gmc").setExecutor(new GamemodeCommand());
+        this.getCommand("gms").setExecutor(new GamemodeCommand());
+        this.getCommand("gma").setExecutor(new GamemodeCommand());
+        this.getCommand("gmsp").setExecutor(new GamemodeCommand());
         Utility.reloadAreas();
         NPC.loadNPCS();
     }

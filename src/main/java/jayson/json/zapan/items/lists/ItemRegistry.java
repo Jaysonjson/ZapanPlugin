@@ -11,6 +11,9 @@ public class ItemRegistry {
     public static void reloadItems() {
         items.addAll(Arrays.asList(zItemAbility.values()));
         items.addAll(Arrays.asList(zItem.values()));
-        System.out.println(items);
+    }
+
+    public static void addItem(IzItemRegistry izItemRegistry) {
+        items.add(izItemRegistry);
     }
 }
