@@ -13,7 +13,6 @@ import org.bukkit.inventory.ItemStack;
 public class ItemClick implements Listener {
     @EventHandler
     public void ClickEvent(InventoryClickEvent event) {
-        if(event.getView().getTitle().equalsIgnoreCase("Items")) {
             if(event.getCurrentItem() != null) {
                 if (event.getCurrentItem().hasItemMeta()) {
                     net.minecraft.server.v1_16_R2.ItemStack nmsItem = CraftItemStack.asNMSCopy(event.getCurrentItem());
@@ -26,7 +25,6 @@ public class ItemClick implements Listener {
                         }
                     }
                 }
-            }
         }
     }
 }
