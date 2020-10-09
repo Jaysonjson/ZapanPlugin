@@ -14,10 +14,10 @@ public class zArea {
     public int size;
     public UUID owner;
     public WORLD world = WORLD.OVERWORLD;
-    public boolean breakBlocks = true;
-    public boolean spawnMobs = true;
-    public boolean dropItems = true;
-    public boolean placeBlocks = true;
+    public boolean breakBlocks = false;
+    public boolean spawnMobs = false;
+    public boolean dropItems = false;
+    public boolean placeBlocks = false;
 
     public Location createLocation(World world) {
         return new Location(world, location.x, location.y, location.z);
