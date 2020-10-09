@@ -73,10 +73,9 @@ public class ItemInventory implements Listener {
     }
 
     public void openInventory(Player player, int page) {
-        Inventory gui = Bukkit.createInventory(player, 54, "Items");
-        inventory = gui;
+        inventory = Bukkit.createInventory(player, 54, "Items");
         currentPage = page;
-        createPage(player, gui, page);
+        createPage(player, inventory, page);
     }
 
     private void createPage(Player player, Inventory inventory, int page) {

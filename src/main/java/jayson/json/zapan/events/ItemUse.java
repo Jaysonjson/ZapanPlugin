@@ -1,8 +1,8 @@
 package jayson.json.zapan.events;
 
 import jayson.json.zapan.Utility;
-import jayson.json.zapan.items.AbstractzItem;
-import jayson.json.zapan.items.interfaces.IzAbilityItem;
+import jayson.json.zapan.items.AbstractItem;
+import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -20,14 +20,15 @@ public class ItemUse implements Listener {
         bookMeta.setPages(pages);
         event.getItem().setItemMeta(bookMeta);
               */
-        if(!event.hasBlock()) {
-            if (Utility.isAbilityItemAll(event.getPlayer(), event.getItem())) {
-                AbstractzItem abstractzItem = Utility.getAbstractItemFromNMS(event.getItem());
-                if (abstractzItem != null && abstractzItem.isAbilityItem()) {
-                    abstractzItem.ability(event.getPlayer().getWorld(), event.getPlayer(), event.getItem());
+        if(event.getItem() != null) {
+            if (event.getItem().getType() != Material.AIR) {
+                if (Utility.isAbilityItemAll(event.getPlayer(), event.getItem())) {
+                    AbstractItem abstractItem = Utility.getAbstractItemFromNMS(event.getItem());
+                    if (abstractItem != null && abstractItem.isAbilityItem()) {
+                        abstractItem.ability(event.getPlayer().getWorld(), event.getPlayer(), event.getItem());
+                    }
                 }
             }
         }
-
     }
 }

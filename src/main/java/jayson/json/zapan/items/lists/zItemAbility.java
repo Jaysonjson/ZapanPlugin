@@ -1,11 +1,11 @@
 package jayson.json.zapan.items.lists;
 
-import jayson.json.zapan.items.AbstractzItem;
+import jayson.json.zapan.items.AbstractItem;
 import jayson.json.zapan.items.ability.FireEs01BlazeRodItem;
 import jayson.json.zapan.items.ability.WallBlazeRodItem;
-import jayson.json.zapan.items.interfaces.IzItem;
 import jayson.json.zapan.items.interfaces.IzItemRegistry;
 import jayson.json.zapan.items.other.BackPackItem;
+import jayson.json.zapan.items.other.BackPackItemNBT;
 
 public enum zItemAbility implements IzItemRegistry {
 
@@ -18,13 +18,13 @@ public enum zItemAbility implements IzItemRegistry {
     FIREES01BLAZEROD(new FireEs01BlazeRodItem("fireEs01BlazeRodItem")),
     WALLBLAZEROD(new WallBlazeRodItem("wallBlazeRodItem"));
 
-    AbstractzItem item;
-    zItemAbility(AbstractzItem item) {
+    AbstractItem item;
+    zItemAbility(AbstractItem item) {
         this.item = item;
     }
 
     @Override
-    public AbstractzItem getAbstractItem() {
+    public AbstractItem getAbstractItem() {
         return item;
     }
 

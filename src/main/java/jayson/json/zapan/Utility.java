@@ -209,8 +209,8 @@ public class Utility {
                 if (content.hasItemMeta()) {
                     net.minecraft.server.v1_16_R2.ItemStack nmsItem = CraftItemStack.asNMSCopy(content);
                     NBTTagCompound tag = nmsItem.hasTag() ? nmsItem.getTag() : new NBTTagCompound();
-                    if (tag.hasKey(zItemNBT.CONST_CURRENCY_AMOUNT)) {
-                        amount += (tag.getDouble(zItemNBT.CONST_CURRENCY_AMOUNT) * content.getAmount());
+                    if (tag.hasKey(zItemNBT.CONST_HACKSILVER_AMOUNT)) {
+                        amount += (tag.getDouble(zItemNBT.CONST_HACKSILVER_AMOUNT) * content.getAmount());
                     }
                 }
             }
@@ -225,8 +225,8 @@ public class Utility {
                 if (content.hasItemMeta()) {
                     net.minecraft.server.v1_16_R2.ItemStack nmsItem = CraftItemStack.asNMSCopy(content);
                     NBTTagCompound tag = nmsItem.hasTag() ? nmsItem.getTag() : new NBTTagCompound();
-                    if (tag.hasKey(zItemNBT.CONST_CURRENCY_AMOUNT)) {
-                        amount += (tag.getDouble(zItemNBT.CONST_CURRENCY_AMOUNT) * content.getAmount());
+                    if (tag.hasKey(zItemNBT.CONST_HACKSILVER_AMOUNT)) {
+                        amount += (tag.getDouble(zItemNBT.CONST_HACKSILVER_AMOUNT) * content.getAmount());
                     }
                     if(tag.hasKey(zItemNBT.CONST_IS_BACKPACK)) {
                         ItemStack[] contents = generateInventoryContent(DataHandler.loadBackPack(UUID.fromString(tag.getString(zItemNBT.CONST_ITEM_UUID))).inventoryContent);
@@ -342,7 +342,7 @@ public class Utility {
     }
 
     @Nullable
-    public static AbstractzItem getAbstractItemByID(String id) {
+    public static AbstractItem getAbstractItemByID(String id) {
         for (IzItemRegistry item : ItemRegistry.items) {
             if(item.getAbstractItem().getId().equalsIgnoreCase(id)) {
                 return item.getAbstractItem();
@@ -437,16 +437,16 @@ public class Utility {
     public static void updatePlayerInventory(Player player) {
         for (ItemStack content : player.getInventory().getContents()) {
             if(iszItem(content)) {
-                AbstractzItem abstractzItem = getAbstractItemFromNMS(content);
-                if(abstractzItem != null) {
-                    abstractzItem.update(player);
+                AbstractItem abstractItem = getAbstractItemFromNMS(content);
+                if(abstractItem != null) {
+                    abstractItem.update(player);
                 }
             }
         }
     }
 
     @Nullable
-    public static AbstractzItem getAbstractItemFromNMS(ItemStack itemStack) {
+    public static AbstractItem getAbstractItemFromNMS(ItemStack itemStack) {
         net.minecraft.server.v1_16_R2.ItemStack nmsCopy = CraftItemStack.asNMSCopy(itemStack);
         NBTTagCompound tag = nmsCopy.hasTag() ? nmsCopy.getTag() : new NBTTagCompound();
         if(tag.hasKey(zItemNBT.CONST_ITEM_ID)) {

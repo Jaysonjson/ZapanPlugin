@@ -1,5 +1,6 @@
 package jayson.json.zapan.events;
 
+import jayson.json.zapan.items.lists.BannedItems;
 import jayson.json.zapan.items.zItemNBT;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.Material;
@@ -23,6 +24,11 @@ public class CraftItem implements Listener {
                         if (!tag.getBoolean(zItemNBT.CONST_CAN_CRAFT_MINECRAFT)) {
                             event.setCancelled(true);
                         }
+                    }
+                }
+                for (BannedItems value : BannedItems.values()) {
+                    if(value.getMaterial().equals(content.getType()) || value.getMaterial().equals(event.getRecipe().getResult().getType())) {
+                        event.setCancelled(true);
                     }
                 }
             }

@@ -1,6 +1,6 @@
 package jayson.json.zapan.items.other;
 
-import jayson.json.zapan.items.AbstractzItem;
+import jayson.json.zapan.items.AbstractItem;
 import jayson.json.zapan.items.zItemNBT;
 import jayson.json.zapan.items.zOItem;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-public class SkillBookItem extends AbstractzItem {
+public class SkillBookItem extends AbstractItem {
     String id;
     public SkillBookItem(String id) {
         this.id = id;

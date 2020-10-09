@@ -11,4 +11,5 @@ public interface IzItem {
     ItemStack update(Player player);
     String getId();
     void setId();
+
 }

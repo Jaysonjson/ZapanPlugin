@@ -1,9 +1,8 @@
-package jayson.json.zapan;
 
+package jayson.json.zapan;
 import jayson.json.zapan.commands.*;
 import jayson.json.zapan.data.zArea;
 import jayson.json.zapan.events.*;
-import jayson.json.zapan.events.inventory.AreaEditClick;
 import jayson.json.zapan.events.inventory.ItemClick;
 import jayson.json.zapan.io.DataHandler;
 import jayson.json.zapan.items.lists.ItemRegistry;
@@ -39,7 +38,6 @@ public final class Zapan extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new BlockPlace(), this);
         Bukkit.getPluginManager().registerEvents(new DropItem(), this);
         Bukkit.getPluginManager().registerEvents(new EntityDeath(), this);
-        Bukkit.getPluginManager().registerEvents(new AreaEditClick(), this);
         Bukkit.getPluginManager().registerEvents(new ItemClick(), this);
         Bukkit.getPluginManager().registerEvents(new ChatEvent(), this);
         Bukkit.getPluginManager().registerEvents(new ItemUse(), this);

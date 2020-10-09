@@ -2,7 +2,7 @@ package jayson.json.zapan.items.ability;
 
 import jayson.json.zapan.data.zPlayer;
 import jayson.json.zapan.io.DataHandler;
-import jayson.json.zapan.items.AbstractzItem;
+import jayson.json.zapan.items.AbstractItem;
 import jayson.json.zapan.items.zItemNBT;
 import jayson.json.zapan.items.zOItem;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
@@ -16,7 +16,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-public class WallBlazeRodItem extends AbstractzItem {
+public class WallBlazeRodItem extends AbstractItem {
     private String id;
 
     public WallBlazeRodItem(String id) {

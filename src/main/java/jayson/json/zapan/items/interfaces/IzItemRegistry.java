@@ -1,9 +1,9 @@
 package jayson.json.zapan.items.interfaces;
 
-import jayson.json.zapan.items.AbstractzItem;
+import jayson.json.zapan.items.AbstractItem;
 
 public interface IzItemRegistry {
 
-    AbstractzItem getAbstractItem();
+    AbstractItem getAbstractItem();
 
 }

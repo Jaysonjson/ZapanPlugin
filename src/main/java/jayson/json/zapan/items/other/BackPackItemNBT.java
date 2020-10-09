@@ -1,6 +1,7 @@
 package jayson.json.zapan.items.other;
 
 import jayson.json.zapan.inventories.BackPackInventory;
+import jayson.json.zapan.inventories.BackPackNBTInventory;
 import jayson.json.zapan.items.AbstractItem;
 import jayson.json.zapan.items.zItemNBT;
 import jayson.json.zapan.items.zOItem;
@@ -15,10 +16,10 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
 
-public class BackPackItem extends AbstractItem {
+public class BackPackItemNBT extends AbstractItem {
     int inventorySize = 36;
     String id;
-    public BackPackItem(String id, int inventorySize) {
+    public BackPackItemNBT(String id, int inventorySize) {
         this.id = id;
         this.inventorySize = inventorySize;
     }
@@ -29,9 +30,10 @@ public class BackPackItem extends AbstractItem {
         oItem.lore.add(inventorySize + " Slots");
         oItem.setItem(ChatColor.RESET + "Rucksack");
         NBTTagCompound tag = oItem.tagCompound();
-        tag.setString(zItemNBT.CONST_ITEM_UUID, UUID.randomUUID().toString());
+        //tag.setString(zItemNBT.CONST_ITEM_UUID, UUID.randomUUID().toString());
         tag.setBoolean(zItemNBT.CONST_CAN_CRAFT_MINECRAFT, false);
         tag.setBoolean(zItemNBT.CONST_IS_BACKPACK, true);
+        tag.setString(zItemNBT.CONST_INVENTORY_CONTENT, "");
         oItem.nmsCopy.setTag(tag);
         oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
         return oItem.item;
@@ -39,7 +41,7 @@ public class BackPackItem extends AbstractItem {
 
     @Override
     public void ability(World world, Player player, ItemStack itemStack) {
-        BackPackInventory inventory = new BackPackInventory(itemStack, inventorySize);
+        BackPackNBTInventory inventory = new BackPackNBTInventory(itemStack, inventorySize);
         inventory.openInventory(player);
     }
 

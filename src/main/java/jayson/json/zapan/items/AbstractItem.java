@@ -1,9 +1,6 @@
 package jayson.json.zapan.items;
 
-import jayson.json.zapan.items.interfaces.IzAbilityItem;
-import jayson.json.zapan.items.interfaces.IzAmmo;
-import jayson.json.zapan.items.interfaces.IzCurrencyItem;
-import jayson.json.zapan.items.interfaces.IzItem;
+import jayson.json.zapan.items.interfaces.*;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -12,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
-public abstract class AbstractzItem implements IzItem, IzAbilityItem, IzAmmo, IzCurrencyItem {
+public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzCurrencyItem, IzMarketItem {
 
     @Override
     public ItemStack getItem(Player player) {
@@ -100,5 +97,15 @@ public abstract class AbstractzItem implements IzItem, IzAbilityItem, IzAmmo, Iz
     @Override
     public void decreaseEmeraldAmount(double amount) {
 
+    }
+
+    @Override
+    public double getSellValue() {
+        return 0;
+    }
+
+    @Override
+    public double getBuyValue() {
+        return 0;
     }
 }

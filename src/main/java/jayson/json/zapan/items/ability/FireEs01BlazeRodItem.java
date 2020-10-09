@@ -2,7 +2,7 @@ package jayson.json.zapan.items.ability;
 
 import jayson.json.zapan.data.zPlayer;
 import jayson.json.zapan.io.DataHandler;
-import jayson.json.zapan.items.AbstractzItem;
+import jayson.json.zapan.items.AbstractItem;
 import jayson.json.zapan.items.zItemNBT;
 import jayson.json.zapan.items.zOItem;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
@@ -18,7 +18,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
-public class FireEs01BlazeRodItem extends AbstractzItem {
+public class FireEs01BlazeRodItem extends AbstractItem {
     private String id;
 
     public FireEs01BlazeRodItem(String id) {

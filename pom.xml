@@ -6,7 +6,7 @@
 
     <groupId>jayson.json</groupId>
     <artifactId>zapan</artifactId>
-    <version>1.4-SNAPSHOT</version>
+    <version>1.5-ALPHA</version>
     <packaging>jar</packaging>
 
     <name>Zapan</name>

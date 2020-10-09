@@ -2,7 +2,9 @@ package jayson.json.zapan.data;
 
 import com.google.gson.annotations.Expose;
 import jayson.json.zapan.Utility;
+import jayson.json.zapan.data.zguildobj.zPlayerClass;
 import jayson.json.zapan.data.zplayerobj.*;
+import jayson.json.zapan.skillclass.zClass;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
@@ -18,6 +20,13 @@ public class zPlayer {
     private zStats stats = new zStats();
 
     private zLevel level = new zLevel();
+
+    private zPlayerClass playerClass = new zPlayerClass();
+
+
+    public zPlayerClass getPlayerClass() {
+        return playerClass;
+    }
 
     public zHealth getHealth() {
         return health;
