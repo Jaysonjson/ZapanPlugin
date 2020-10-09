@@ -25,7 +25,7 @@ public class CreateGuildCommand implements CommandExecutor {
                         player.sendMessage("Du bist bereits in einer Guilde!");
                         return true;
                     }
-                    if(Utility.countMoney(player) >= 50000) {
+                    if(Utility.countMoneyBackpack(player.getInventory()) >= 50000) {
                         if(!Utility.guildExists(args[1])) {
                             zGuild zGuild = new zGuild();
                             zGuild.name = args[1];

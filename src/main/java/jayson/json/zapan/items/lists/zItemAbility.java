@@ -9,7 +9,12 @@ import jayson.json.zapan.items.other.BackPackItem;
 
 public enum zItemAbility implements IzItemRegistry {
 
-    BACKPACKITEM(new BackPackItem("backPackItem")),
+    BACKPACKITEM9(new BackPackItem("backPackItem9", 9)),
+    BACKPACKITEM18(new BackPackItem("backPackItem18", 18)),
+    BACKPACKITEM27(new BackPackItem("backPackItem27", 27)),
+    BACKPACKITEM36(new BackPackItem("backPackItem36", 36)),
+    BACKPACKITEM45(new BackPackItem("backPackItem45", 45)),
+    BACKPACKITEM54(new BackPackItem("backPackItem54", 54)),
     FIREES01BLAZEROD(new FireEs01BlazeRodItem("fireEs01BlazeRodItem")),
     WALLBLAZEROD(new WallBlazeRodItem("wallBlazeRodItem"));
 

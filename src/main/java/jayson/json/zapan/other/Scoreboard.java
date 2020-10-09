@@ -15,7 +15,7 @@ import org.bukkit.scoreboard.ScoreboardManager;
 public class Scoreboard {
 
     public static void updateScoreboard(Player player) {
-        sendScoreboard(player, DataHandler.loadPlayer(player.getUniqueId()),Utility.countMoney(player), Utility.countEmerald(player), Utility.getNearestArea(player.getWorld().getEnvironment(), player.getLocation()).name, Utility.getNearestAreaDistance(player.getWorld().getEnvironment(), player.getLocation()));
+        sendScoreboard(player, DataHandler.loadPlayer(player.getUniqueId()),Utility.countMoneyBackpack(player.getInventory()), Utility.countEmeraldBackpack(player.getInventory()), Utility.getNearestArea(player.getWorld().getEnvironment(), player.getLocation()).name, Utility.getNearestAreaDistance(player.getWorld().getEnvironment(), player.getLocation()));
     }
 
     public static void sendScoreboard(Player player, zPlayer zPlayer, double money, double emeraldValue, String area, zLocation areaDistance) {

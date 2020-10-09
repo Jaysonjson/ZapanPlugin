@@ -199,8 +199,12 @@ public class Utility {
     }
 
     public static double countMoney(Inventory inventory) {
+        return countMoney(inventory.getContents());
+    }
+
+    public static double countMoney(ItemStack[] contents) {
         double amount = 0;
-        for (ItemStack content : inventory.getContents()) {
+        for (ItemStack content : contents) {
             if(content != null) {
                 if (content.hasItemMeta()) {
                     net.minecraft.server.v1_16_R2.ItemStack nmsItem = CraftItemStack.asNMSCopy(content);
@@ -214,7 +218,47 @@ public class Utility {
         return amount;
     }
 
+    public static double countMoneyBackpack(Inventory inventory) {
+        double amount = 0;
+        for (ItemStack content : inventory.getContents()) {
+            if(content != null) {
+                if (content.hasItemMeta()) {
+                    net.minecraft.server.v1_16_R2.ItemStack nmsItem = CraftItemStack.asNMSCopy(content);
+                    NBTTagCompound tag = nmsItem.hasTag() ? nmsItem.getTag() : new NBTTagCompound();
+                    if (tag.hasKey(zItemNBT.CONST_CURRENCY_AMOUNT)) {
+                        amount += (tag.getDouble(zItemNBT.CONST_CURRENCY_AMOUNT) * content.getAmount());
+                    }
+                    if(tag.hasKey(zItemNBT.CONST_IS_BACKPACK)) {
+                        ItemStack[] contents = generateInventoryContent(DataHandler.loadBackPack(UUID.fromString(tag.getString(zItemNBT.CONST_ITEM_UUID))).inventoryContent);
+                        amount += countMoney(contents);
+                    }
+                }
+            }
+        }
+        return amount;
+    }
+
     public static double countEmerald(Inventory inventory) {
+        return countEmerald(inventory.getContents());
+    }
+
+    public static double countEmerald(ItemStack[] contents) {
+        double amount = 0;
+        for (ItemStack content : contents) {
+            if(content != null) {
+                if (content.hasItemMeta()) {
+                    net.minecraft.server.v1_16_R2.ItemStack nmsItem = CraftItemStack.asNMSCopy(content);
+                    NBTTagCompound tag = nmsItem.hasTag() ? nmsItem.getTag() : new NBTTagCompound();
+                    if (tag.hasKey(zItemNBT.CONST_EMERALD_AMOUNT)) {
+                        amount += (tag.getDouble(zItemNBT.CONST_EMERALD_AMOUNT) * content.getAmount());
+                    }
+                }
+            }
+        }
+        return amount;
+    }
+
+    public static double countEmeraldBackpack(Inventory inventory) {
         double amount = 0;
         for (ItemStack content : inventory.getContents()) {
             if(content != null) {
@@ -223,6 +267,10 @@ public class Utility {
                     NBTTagCompound tag = nmsItem.hasTag() ? nmsItem.getTag() : new NBTTagCompound();
                     if (tag.hasKey(zItemNBT.CONST_EMERALD_AMOUNT)) {
                         amount += (tag.getDouble(zItemNBT.CONST_EMERALD_AMOUNT) * content.getAmount());
+                    }
+                    if(tag.hasKey(zItemNBT.CONST_IS_BACKPACK)) {
+                        ItemStack[] contents = generateInventoryContent(DataHandler.loadBackPack(UUID.fromString(tag.getString(zItemNBT.CONST_ITEM_UUID))).inventoryContent);
+                        amount += countEmerald(contents);
                     }
                 }
             }

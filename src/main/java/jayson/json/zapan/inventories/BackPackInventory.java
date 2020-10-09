@@ -25,13 +25,15 @@ public class BackPackInventory implements Listener {
     private Inventory inventory = null;
     public zBackPack backPack;
     public ItemStack backPackItem;
-    public BackPackInventory(ItemStack backPack) {
+    int inventorySize = 36;
+    public BackPackInventory(ItemStack backPack, int inventorySize) {
         this.backPackItem = backPack;
+        this.inventorySize = inventorySize;
         Bukkit.getPluginManager().registerEvents(this, Zapan.INSTANCE);
     }
 
     public void openInventory(Player player) {
-        Inventory gui = Bukkit.createInventory(player, 36, "Items");
+        Inventory gui = Bukkit.createInventory(player, inventorySize, "Items");
         UUID uuid = UUID.fromString(Utility.getItemTag(Utility.createNMSCopy(backPackItem)).getString(zItemNBT.CONST_ITEM_UUID));
         backPack = DataHandler.loadBackPack(uuid);
         gui.setContents(backPack.getItemStacks());

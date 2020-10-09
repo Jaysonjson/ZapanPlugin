@@ -13,4 +13,5 @@ public class zItemNBT {
     public static final String CONST_ITEM_ID = "itemID";
     public static final String CONST_ITEM_UUID = "itemUUID";
     public static final String CONST_NEEDED_INTELLIGENCE = "neededIntelligence";
+    public static final String CONST_IS_BACKPACK = "isBackPack";
 }
