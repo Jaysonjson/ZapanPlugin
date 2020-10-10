@@ -2,11 +2,11 @@ package jayson.json.zapan.items.interfaces;
 
 public interface IzCurrencyItem {
     double getHacksilverAmount();
-    double getEmeraldAmount();
+    double getZoryhaShardAmount();
     void setHacksilverAmount(double amount);
-    void setEmeraldAmount(double amount);
+    void setZoryhaShardAmount(double amount);
     void increaseHacksilverAmount(double amount);
-    void increaseEmeraldAmount(double amount);
+    void increaseZoryhaShardAmount(double amount);
     void decreaseHacksilverAmount(double amount);
-    void decreaseEmeraldAmount(double amount);
+    void decreaseZoryhaShardAmount(double amount);
 }

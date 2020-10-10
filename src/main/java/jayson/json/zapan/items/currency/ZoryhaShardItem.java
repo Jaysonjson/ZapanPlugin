@@ -11,20 +11,20 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-public class EmeraldItem extends AbstractItem {
+public class ZoryhaShardItem extends AbstractItem {
 
     String id;
-    public EmeraldItem(String id) {
+    public ZoryhaShardItem(String id) {
         this.id = id;
     }
 
     @Override
     public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(new ItemStack(Material.EMERALD), getId());
+        zOItem oItem = new zOItem(new ItemStack(Material.NETHER_STAR), getId());
         oItem.lore.add(ChatColor.GRAY + "1¢");
-        oItem.setItem(ChatColor.DARK_GREEN + "Smaragd");
+        oItem.setItem(ChatColor.AQUA + "Zoryha Bruckstück");
         NBTTagCompound tag = oItem.tagCompound();
-        tag.setDouble(zItemNBT.CONST_EMERALD_AMOUNT, 1);
+        tag.setDouble(zItemNBT.CONST_ZORYHASHARD_AMOUNT, 1);
         tag.setBoolean(zItemNBT.CONST_CAN_CRAFT_MINECRAFT, false);
         oItem.nmsCopy.setTag(tag);
         oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);

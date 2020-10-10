@@ -59,45 +59,6 @@ public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzC
         return false;
     }
 
-    @Override
-    public double getHacksilverAmount() {
-        return 0;
-    }
-
-    @Override
-    public double getEmeraldAmount() {
-        return 0;
-    }
-
-    @Override
-    public void setHacksilverAmount(double amount) {
-
-    }
-
-    @Override
-    public void setEmeraldAmount(double amount) {
-
-    }
-
-    @Override
-    public void increaseHacksilverAmount(double amount) {
-
-    }
-
-    @Override
-    public void increaseEmeraldAmount(double amount) {
-
-    }
-
-    @Override
-    public void decreaseHacksilverAmount(double amount) {
-
-    }
-
-    @Override
-    public void decreaseEmeraldAmount(double amount) {
-
-    }
 
     @Override
     public double getSellValue() {
@@ -107,5 +68,45 @@ public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzC
     @Override
     public double getBuyValue() {
         return 0;
+    }
+
+    @Override
+    public double getHacksilverAmount() {
+        return 0;
+    }
+
+    @Override
+    public double getZoryhaShardAmount() {
+        return 0;
+    }
+
+    @Override
+    public void setHacksilverAmount(double amount) {
+
+    }
+
+    @Override
+    public void setZoryhaShardAmount(double amount) {
+
+    }
+
+    @Override
+    public void increaseHacksilverAmount(double amount) {
+
+    }
+
+    @Override
+    public void increaseZoryhaShardAmount(double amount) {
+
+    }
+
+    @Override
+    public void decreaseHacksilverAmount(double amount) {
+
+    }
+
+    @Override
+    public void decreaseZoryhaShardAmount(double amount) {
+
     }
 }

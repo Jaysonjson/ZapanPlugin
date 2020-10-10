@@ -33,6 +33,10 @@ public class GuildChunkInventory implements Listener {
             inventory.setItem(i, new ItemStack(Material.WHITE_STAINED_GLASS_PANE));
         }
 
+        for (int i = 0; i < 9; i++) {
+            inventory.setItem(i, new ItemStack(Material.CYAN_STAINED_GLASS_PANE));
+        }
+
         ItemStack orangePane = new ItemStack(Material.ORANGE_STAINED_GLASS_PANE);
         orangePane.setAmount(5);
         ItemMeta orangePaneMeta = orangePane.getItemMeta();

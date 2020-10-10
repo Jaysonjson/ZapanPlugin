@@ -238,19 +238,19 @@ public class Utility {
         return amount;
     }
 
-    public static double countEmerald(Inventory inventory) {
-        return countEmerald(inventory.getContents());
+    public static double countZoryhaShard(Inventory inventory) {
+        return countZoryhaShard(inventory.getContents());
     }
 
-    public static double countEmerald(ItemStack[] contents) {
+    public static double countZoryhaShard(ItemStack[] contents) {
         double amount = 0;
         for (ItemStack content : contents) {
             if(content != null) {
                 if (content.hasItemMeta()) {
                     net.minecraft.server.v1_16_R2.ItemStack nmsItem = CraftItemStack.asNMSCopy(content);
                     NBTTagCompound tag = nmsItem.hasTag() ? nmsItem.getTag() : new NBTTagCompound();
-                    if (tag.hasKey(zItemNBT.CONST_EMERALD_AMOUNT)) {
-                        amount += (tag.getDouble(zItemNBT.CONST_EMERALD_AMOUNT) * content.getAmount());
+                    if (tag.hasKey(zItemNBT.CONST_ZORYHASHARD_AMOUNT)) {
+                        amount += (tag.getDouble(zItemNBT.CONST_ZORYHASHARD_AMOUNT) * content.getAmount());
                     }
                 }
             }
@@ -258,19 +258,19 @@ public class Utility {
         return amount;
     }
 
-    public static double countEmeraldBackpack(Inventory inventory) {
+    public static double countZoryhaShardBackpack(Inventory inventory) {
         double amount = 0;
         for (ItemStack content : inventory.getContents()) {
             if(content != null) {
                 if (content.hasItemMeta()) {
                     net.minecraft.server.v1_16_R2.ItemStack nmsItem = CraftItemStack.asNMSCopy(content);
                     NBTTagCompound tag = nmsItem.hasTag() ? nmsItem.getTag() : new NBTTagCompound();
-                    if (tag.hasKey(zItemNBT.CONST_EMERALD_AMOUNT)) {
-                        amount += (tag.getDouble(zItemNBT.CONST_EMERALD_AMOUNT) * content.getAmount());
+                    if (tag.hasKey(zItemNBT.CONST_ZORYHASHARD_AMOUNT)) {
+                        amount += (tag.getDouble(zItemNBT.CONST_ZORYHASHARD_AMOUNT) * content.getAmount());
                     }
                     if(tag.hasKey(zItemNBT.CONST_IS_BACKPACK)) {
                         ItemStack[] contents = generateInventoryContent(DataHandler.loadBackPack(UUID.fromString(tag.getString(zItemNBT.CONST_ITEM_UUID))).inventoryContent);
-                        amount += countEmerald(contents);
+                        amount += countZoryhaShard(contents);
                     }
                 }
             }
@@ -278,16 +278,16 @@ public class Utility {
         return amount;
     }
 
-    public static double countEmerald(Player player) {
-        return countEmerald(player.getInventory());
+    public static double countZoryhaShard(Player player) {
+        return countZoryhaShard(player.getInventory());
     }
 
-    public static double convertHacksilverToEmerald(double hacksilverAmount) {
-        return hacksilverAmount / Constant.HACKSILVER_TO_EMERALD_VALUE;
+    public static double convertHacksilverToZoryhaShard(double hacksilverAmount) {
+        return hacksilverAmount / Constant.HACKSILVER_TO_ZORYHASHARD_VALUE;
     }
 
-    public static double convertEmeraldToHacksilver(double emeraldAmount) {
-        return emeraldAmount * Constant.HACKSILVER_TO_EMERALD_VALUE;
+    public static double convertZoryhaShardToHacksilver(double zoryhaShardAmount) {
+        return zoryhaShardAmount * Constant.HACKSILVER_TO_ZORYHASHARD_VALUE;
     }
 
     public static void reloadAreas() {
