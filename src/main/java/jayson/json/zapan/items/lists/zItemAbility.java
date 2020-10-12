@@ -15,6 +15,7 @@ public enum zItemAbility implements IzItemRegistry {
     BACKPACKITEM36(new BackPackItem("backPackItem36", 36)),
     BACKPACKITEM45(new BackPackItem("backPackItem45", 45)),
     BACKPACKITEM54(new BackPackItem("backPackItem54", 54)),
+    BACKPACKITEMNBT9(new BackPackItemNBT("backPackItemNBT9", 9)),
     FIREES01BLAZEROD(new FireEs01BlazeRodItem("fireEs01BlazeRodItem")),
     WALLBLAZEROD(new WallBlazeRodItem("wallBlazeRodItem"));
 

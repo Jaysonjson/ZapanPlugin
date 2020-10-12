@@ -9,7 +9,7 @@ import jayson.json.zapan.skillclass.zClass;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-public class zPlayer {
+public class zPlayer implements IHasUUID {
 
     private zHealth health = new zHealth();
 
@@ -36,12 +36,19 @@ public class zPlayer {
         this.health = health;
     }
 
+    @Override
     public UUID getUuid() {
         return uuid;
     }
 
+    @Override
     public void setUuid(UUID uuid) {
         this.uuid = uuid;
+    }
+
+    @Override
+    public UUID randomUuid() {
+        return UUID.randomUUID();
     }
 
     @Nullable

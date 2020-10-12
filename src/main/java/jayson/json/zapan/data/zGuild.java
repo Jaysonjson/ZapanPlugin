@@ -5,11 +5,26 @@ import jayson.json.zapan.data.zguildobj.zGuildRank;
 import java.util.HashMap;
 import java.util.UUID;
 
-public class zGuild {
+public class zGuild implements IHasUUID {
 
     public UUID owner;
     public String name = "";
     public HashMap<UUID, zGuildRank> members = new HashMap<>();
     public UUID uuid;
     public zGuildBanner banner = new zGuildBanner();
+
+    @Override
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    @Override
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
+    }
+
+    @Override
+    public UUID randomUuid() {
+        return UUID.randomUUID();
+    }
 }

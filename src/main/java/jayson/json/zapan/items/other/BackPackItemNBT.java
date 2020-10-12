@@ -41,7 +41,7 @@ public class BackPackItemNBT extends AbstractItem {
 
     @Override
     public void ability(World world, Player player, ItemStack itemStack) {
-        BackPackNBTInventory inventory = new BackPackNBTInventory(itemStack, inventorySize);
+        BackPackNBTInventory inventory = new BackPackNBTInventory(player.getInventory().getHeldItemSlot(), inventorySize);
         inventory.openInventory(player);
     }
 
