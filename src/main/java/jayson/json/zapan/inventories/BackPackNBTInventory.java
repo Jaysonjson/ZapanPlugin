@@ -32,7 +32,7 @@ public class BackPackNBTInventory implements Listener {
 
     public void openInventory(Player player) {
         inventory = Bukkit.createInventory(player, inventorySize, "Items");
-        String contents = Utility.getItemTag(Utility.createNMSCopy(player.getInventory().getItemInMainHand())).getString(zItemNBT.CONST_INVENTORY_CONTENT);
+        String contents = Utility.getItemTag(Utility.createNMSCopy(inventory.getItem(backPackItem))).getString(zItemNBT.CONST_INVENTORY_CONTENT);
         inventory.setContents(Utility.generateInventoryContent(contents));
         player.openInventory(inventory);
     }

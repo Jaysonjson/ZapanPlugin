@@ -28,7 +28,7 @@ public class BackPackItemNBT extends AbstractItem {
     public ItemStack getItem(Player player) {
         zOItem oItem = new zOItem(new ItemStack(Material.HEART_OF_THE_SEA), getId());
         oItem.lore.add(inventorySize + " Slots");
-        oItem.setItem(ChatColor.RESET + "Rucksack");
+        oItem.setItem(ChatColor.RESET + "Rucksack NBT");
         NBTTagCompound tag = oItem.tagCompound();
         //tag.setString(zItemNBT.CONST_ITEM_UUID, UUID.randomUUID().toString());
         tag.setBoolean(zItemNBT.CONST_CAN_CRAFT_MINECRAFT, false);

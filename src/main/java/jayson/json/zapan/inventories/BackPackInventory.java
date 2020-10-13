@@ -6,6 +6,7 @@ import jayson.json.zapan.data.zBackPack;
 import jayson.json.zapan.io.DataHandler;
 import jayson.json.zapan.items.zItemNBT;
 import jayson.json.zapan.other.InventoryPageContainer;
+import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -36,8 +37,11 @@ public class BackPackInventory implements Listener {
     public void InventoryClick(InventoryClickEvent event) {
         if(event.getInventory().equals(inventory)) {
             if(event.getCurrentItem().hasItemMeta()) {
-                if(Utility.getItemTag(Utility.createNMSCopy(backPackItem)).getBoolean(zItemNBT.CONST_IS_BACKPACK)) {
-                    event.setCancelled(true);
+                NBTTagCompound tag = Utility.getItemTag(Utility.createNMSCopy(backPackItem));
+                if(tag.hasKey(zItemNBT.CONST_IS_BACKPACK)) {
+                    if (tag.getBoolean(zItemNBT.CONST_IS_BACKPACK)) {
+                        event.setCancelled(true);
+                    }
                 }
             }
         }
