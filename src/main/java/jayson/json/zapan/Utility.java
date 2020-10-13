@@ -456,36 +456,39 @@ public class Utility {
     }
 
     public static String createInventoryContent(ItemStack[] itemStacks) {
-        try {
-            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            BukkitObjectOutputStream dataOutput = new BukkitObjectOutputStream(outputStream);
-            dataOutput.writeInt(itemStacks.length);
-            for (ItemStack itemStack : itemStacks) {
-                dataOutput.writeObject(itemStack);
+        if(itemStacks.length > 0) {
+            try {
+                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                BukkitObjectOutputStream dataOutput = new BukkitObjectOutputStream(outputStream);
+                dataOutput.writeInt(itemStacks.length);
+                for (ItemStack itemStack : itemStacks) {
+                    dataOutput.writeObject(itemStack);
+                }
+                dataOutput.close();
+                return Base64Coder.encodeLines(outputStream.toByteArray());
+            } catch (Exception exc) {
+                exc.printStackTrace();
             }
-            dataOutput.close();
-            return Base64Coder.encodeLines(outputStream.toByteArray());
-        } catch (Exception exc) {
-            exc.printStackTrace();
         }
-        return "rO0ABXcEAAAACXBwcHBzcgAab3JnLmJ1a2tpdC51dGlsLmlvLldyYXBwZXLyUEfs8RJvBQIAAUwA\\r\\nA21hcHQAD0xqYXZhL3V0aWwvTWFwO3hwc3IANWNvbS5nb29nbGUuY29tbW9uLmNvbGxlY3QuSW1t\\r\\ndXRhYmxlTWFwJFNlcmlhbGl6ZWRGb3JtAAAAAAAAAAACAAJbAARrZXlzdAATW0xqYXZhL2xhbmcv\\r\\nT2JqZWN0O1sABnZhbHVlc3EAfgAEeHB1cgATW0xqYXZhLmxhbmcuT2JqZWN0O5DOWJ8QcylsAgAA\\r\\neHAAAAADdAACPT10AAF2dAAEdHlwZXVxAH4ABgAAAAN0AB5vcmcuYnVra2l0LmludmVudG9yeS5J\\r\\ndGVtU3RhY2tzcgARamF2YS5sYW5nLkludGVnZXIS4qCk94GHOAIAAUkABXZhbHVleHIAEGphdmEu\\r\\nbGFuZy5OdW1iZXKGrJUdC5TgiwIAAHhwAAAKFHQADFJPVFRFTl9GTEVTSHBwcHA\\u003d\\r\\n";
+        return "";
     }
 
     public static ItemStack[] generateInventoryContent(String inventoryContent) {
-        try {
-            ByteArrayInputStream inputStream = new ByteArrayInputStream(Base64Coder.decodeLines(inventoryContent));
-            BukkitObjectInputStream dataInput = new BukkitObjectInputStream(inputStream);
-            ItemStack[] items = new ItemStack[dataInput.readInt()];
-            for (int i = 0; i < items.length; i++) {
-                items[i] = (ItemStack) dataInput.readObject();
+        if (inventoryContent.length() > 0) {
+            try {
+                ByteArrayInputStream inputStream = new ByteArrayInputStream(Base64Coder.decodeLines(inventoryContent));
+                BukkitObjectInputStream dataInput = new BukkitObjectInputStream(inputStream);
+                ItemStack[] items = new ItemStack[dataInput.readInt()];
+                for (int i = 0; i < items.length; i++) {
+                    items[i] = (ItemStack) dataInput.readObject();
+                }
+                dataInput.close();
+                return items;
+            } catch (Exception exc) {
+                exc.printStackTrace();
             }
-            dataInput.close();
-            return items;
-        } catch (Exception exc) {
-            exc.printStackTrace();
+            return new ItemStack[0];
         }
         return new ItemStack[0];
     }
-
-
 }
