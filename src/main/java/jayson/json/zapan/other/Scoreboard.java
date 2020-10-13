@@ -37,10 +37,15 @@ public class Scoreboard {
         if(zoryhaShardValue > 10000) {
             zoryhaShardSTR = Utility.formatInteger((int) zoryhaShardValue);
         }
-
+        Score hackSilver1Score = score.getScore("-//-");
+        Score zoryhaShard1Score = score.getScore("-//-");
+        if(Utility.convertZoryhaShardToHacksilver(zoryhaShardValue) > 0) {
+            hackSilver1Score = score.getScore(ChatColor.GRAY + "(" + ChatColor.RESET + (Utility.formatInteger((int) (money + Utility.convertZoryhaShardToHacksilver(zoryhaShardValue)))) + ChatColor.RESET + ChatColor.GRAY + ")");
+        }
         Score hackSilverScore = score.getScore(ChatColor.GRAY + "Hacksilber" + ChatColor.DARK_GRAY + ": " + ChatColor.GOLD + moneySTR + "Φ");
-        Score hackSilver1Score = score.getScore(ChatColor.GRAY + "(" + ChatColor.RESET + (Utility.formatInteger((int) (money + Utility.convertZoryhaShardToHacksilver(zoryhaShardValue)))) + ChatColor.RESET + ChatColor.GRAY + ")");
-        Score zoryhaShard1Score = score.getScore(ChatColor.GRAY + "(" + ChatColor.RESET + (Utility.formatInteger((int) (zoryhaShardValue + Utility.convertHacksilverToZoryhaShard(money)))) + ChatColor.RESET + ChatColor.GRAY + ")");
+        if(Utility.convertHacksilverToZoryhaShard(money) > 0) {
+            zoryhaShard1Score = score.getScore(ChatColor.GRAY + "(" + ChatColor.RESET + (Utility.formatInteger((int) (zoryhaShardValue + Utility.convertHacksilverToZoryhaShard(money)))) + ChatColor.RESET + ChatColor.GRAY + ")");
+        }
         Score zoryhaShardScore = score.getScore(ChatColor.AQUA + "Zoryha Bruckstücke" + ChatColor.DARK_GRAY + ": " + ChatColor.GOLD + zoryhaShardSTR + "¢");
         Score lineSpace1 = score.getScore("-0------=1=------0-");
         Score areaScore = score.getScore(ChatColor.GOLD + area + ChatColor.RESET + " (" + ChatColor.BOLD + Utility.formatInteger((int)areaDistance.x) + ChatColor.RESET + ", " +  ChatColor.BOLD + Utility.formatInteger((int) areaDistance.z) + ChatColor.RESET + ")");

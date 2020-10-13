@@ -1,5 +1,6 @@
 package jayson.json.zapan.inventories;
 
+import jayson.json.zapan.Utility;
 import jayson.json.zapan.Zapan;
 import jayson.json.zapan.items.interfaces.IzItemRegistry;
 import jayson.json.zapan.items.lists.ItemRegistry;
@@ -57,15 +58,23 @@ public class ItemInventory implements Listener {
     public void InventoryClick(InventoryClickEvent event) {
         if(event.getInventory() == this.inventory) {
             ItemStack clickedItem = event.getCurrentItem();
-            if (clickedItem.hasItemMeta()) {
-                if (clickedItem.getItemMeta().getDisplayName().equalsIgnoreCase("Nächste Seite")) {
-                    if (currentPage + 1 < pageContainer.size()) {
-                        openInventory((Player) event.getWhoClicked(), currentPage + 1);
+            if (clickedItem != null) {
+                if (clickedItem.hasItemMeta()) {
+                    net.minecraft.server.v1_16_R2.ItemStack nmsCopy = Utility.createNMSCopy(clickedItem);
+                    NBTTagCompound tag = Utility.getItemTag(nmsCopy);
+                    if(tag.hasKey(zItemNBT.CONST_ITEM_ID)) {
+                        event.getView().setCursor(clickedItem);
+                        event.setCancelled(true);
                     }
-                }
-                if (clickedItem.getItemMeta().getDisplayName().equalsIgnoreCase("Letzte Seite")) {
-                    if (currentPage > 0) {
-                        openInventory((Player) event.getWhoClicked(), currentPage - 1);
+                    if (clickedItem.getItemMeta().getDisplayName().equalsIgnoreCase("Nächste Seite")) {
+                        if (currentPage + 1 < pageContainer.size()) {
+                            openInventory((Player) event.getWhoClicked(), currentPage + 1);
+                        }
+                    }
+                    if (clickedItem.getItemMeta().getDisplayName().equalsIgnoreCase("Letzte Seite")) {
+                        if (currentPage > 0) {
+                            openInventory((Player) event.getWhoClicked(), currentPage - 1);
+                        }
                     }
                 }
             }

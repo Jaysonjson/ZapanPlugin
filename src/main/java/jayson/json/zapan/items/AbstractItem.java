@@ -11,6 +11,10 @@ import javax.annotation.Nullable;
 
 public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzCurrencyItem, IzMarketItem {
 
+    public final double itemVersion() {
+        return 0.1;
+    }
+
     @Override
     public ItemStack getItem(Player player) {
         return new ItemStack(Material.AIR);

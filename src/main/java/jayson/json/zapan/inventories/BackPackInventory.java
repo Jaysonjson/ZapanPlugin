@@ -36,11 +36,14 @@ public class BackPackInventory implements Listener {
     @EventHandler
     public void InventoryClick(InventoryClickEvent event) {
         if(event.getInventory().equals(inventory)) {
-            if(event.getCurrentItem().hasItemMeta()) {
-                NBTTagCompound tag = Utility.getItemTag(Utility.createNMSCopy(backPackItem));
-                if(tag.hasKey(zItemNBT.CONST_IS_BACKPACK)) {
-                    if (tag.getBoolean(zItemNBT.CONST_IS_BACKPACK)) {
-                        event.setCancelled(true);
+            ItemStack clickedItem = event.getCurrentItem();
+            if(clickedItem != null) {
+                if (clickedItem.hasItemMeta()) {
+                    NBTTagCompound tag = Utility.getItemTag(Utility.createNMSCopy(clickedItem));
+                    if (tag.hasKey(zItemNBT.CONST_IS_BACKPACK)) {
+                        if (tag.getBoolean(zItemNBT.CONST_IS_BACKPACK)) {
+                            event.setCancelled(true);
+                        }
                     }
                 }
             }

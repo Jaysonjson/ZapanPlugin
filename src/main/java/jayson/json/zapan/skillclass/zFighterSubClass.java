@@ -4,4 +4,8 @@ public enum zFighterSubClass {
     HEALER(),
     DPS(),
     TANK();
+
+    zFighterSubClass() {
+
+    }
 }

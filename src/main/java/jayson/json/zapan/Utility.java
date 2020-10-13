@@ -207,8 +207,8 @@ public class Utility {
         for (ItemStack content : contents) {
             if(content != null) {
                 if (content.hasItemMeta()) {
-                    net.minecraft.server.v1_16_R2.ItemStack nmsItem = CraftItemStack.asNMSCopy(content);
-                    NBTTagCompound tag = nmsItem.hasTag() ? nmsItem.getTag() : new NBTTagCompound();
+                    net.minecraft.server.v1_16_R2.ItemStack nmsItem = createNMSCopy(content);
+                    NBTTagCompound tag = getItemTag(nmsItem);
                     if (tag.hasKey(zItemNBT.CONST_HACKSILVER_AMOUNT)) {
                         amount += (tag.getDouble(zItemNBT.CONST_HACKSILVER_AMOUNT) * content.getAmount());
                     }
@@ -223,8 +223,8 @@ public class Utility {
         for (ItemStack content : inventory.getContents()) {
             if(content != null) {
                 if (content.hasItemMeta()) {
-                    net.minecraft.server.v1_16_R2.ItemStack nmsItem = CraftItemStack.asNMSCopy(content);
-                    NBTTagCompound tag = nmsItem.hasTag() ? nmsItem.getTag() : new NBTTagCompound();
+                    net.minecraft.server.v1_16_R2.ItemStack nmsItem = createNMSCopy(content);
+                    NBTTagCompound tag = getItemTag(nmsItem);
                     if (tag.hasKey(zItemNBT.CONST_HACKSILVER_AMOUNT)) {
                         amount += (tag.getDouble(zItemNBT.CONST_HACKSILVER_AMOUNT) * content.getAmount());
                     }
@@ -247,8 +247,8 @@ public class Utility {
         for (ItemStack content : contents) {
             if(content != null) {
                 if (content.hasItemMeta()) {
-                    net.minecraft.server.v1_16_R2.ItemStack nmsItem = CraftItemStack.asNMSCopy(content);
-                    NBTTagCompound tag = nmsItem.hasTag() ? nmsItem.getTag() : new NBTTagCompound();
+                    net.minecraft.server.v1_16_R2.ItemStack nmsItem = createNMSCopy(content);
+                    NBTTagCompound tag = getItemTag(nmsItem);
                     if (tag.hasKey(zItemNBT.CONST_ZORYHASHARD_AMOUNT)) {
                         amount += (tag.getDouble(zItemNBT.CONST_ZORYHASHARD_AMOUNT) * content.getAmount());
                     }
@@ -263,8 +263,8 @@ public class Utility {
         for (ItemStack content : inventory.getContents()) {
             if(content != null) {
                 if (content.hasItemMeta()) {
-                    net.minecraft.server.v1_16_R2.ItemStack nmsItem = CraftItemStack.asNMSCopy(content);
-                    NBTTagCompound tag = nmsItem.hasTag() ? nmsItem.getTag() : new NBTTagCompound();
+                    net.minecraft.server.v1_16_R2.ItemStack nmsItem = createNMSCopy(content);
+                    NBTTagCompound tag = getItemTag(nmsItem);
                     if (tag.hasKey(zItemNBT.CONST_ZORYHASHARD_AMOUNT)) {
                         amount += (tag.getDouble(zItemNBT.CONST_ZORYHASHARD_AMOUNT) * content.getAmount());
                     }
