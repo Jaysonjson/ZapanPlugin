@@ -15,5 +15,5 @@ public class zItemNBT {
     public static final String CONST_NEEDED_INTELLIGENCE = "neededIntelligence";
     public static final String CONST_IS_BACKPACK = "isBackPack";
     public static final String CONST_INVENTORY_CONTENT = "inventoryContent";
-
+    public static final String CONST_ITEM_VERSION = "itemVersion";
 }
