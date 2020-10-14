@@ -16,9 +16,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-public class WallBlazeRodItem extends AbstractItem {
+import java.util.Random;
 
-    public WallBlazeRodItem(String id, Material material) {
+public class BombBeltItem extends AbstractItem {
+
+    public BombBeltItem(String id, Material material) {
         super(id, material);
     }
 
@@ -28,19 +30,20 @@ public class WallBlazeRodItem extends AbstractItem {
         if(player != null) {
             zPlayer zPlayer = DataHandler.loadPlayer(player.getUniqueId());
             if(zPlayer.getStats().getIntelligence() >= 5) {
-                oItem.lore.add(ChatColor.GREEN + "Benötigt Intelligenz 5");
+                oItem.lore.add(ChatColor.GREEN + "Benötigt Intelligenz -1");
             } else {
-                oItem.lore.add(ChatColor.RED + "Benötigt Intelligenz 5 (Du hast: " + zPlayer.getStats().getIntelligence() + ")");
+                oItem.lore.add(ChatColor.RED + "Benötigt Intelligenz -1 (Du hast: " + zPlayer.getStats().getIntelligence() + ")");
             }
         } else {
-            oItem.lore.add(ChatColor.GRAY + "Benötigt Intelligenz 5");
+            oItem.lore.add(ChatColor.GRAY + "Benötigt Intelligenz -1");
         }
-        oItem.lore.add(ChatColor.GRAY + "Macht eine diagonale Wand aus Feuer");
+        oItem.lore.add(ChatColor.GRAY + "Die Intelligenz wurde für Clarest angepasst!");
 
-        oItem.setItem(ChatColor.RED + "Feuer Es05");
+        oItem.setItem(ChatColor.RED + "Bombengürtel");
         NBTTagCompound tag = oItem.tagCompound();
         tag.setBoolean(zItemNBT.CONST_CAN_CRAFT_MINECRAFT, false);
-        tag.setInt(zItemNBT.CONST_NEEDED_INTELLIGENCE, 5);
+        tag.setInt(zItemNBT.CONST_NEEDED_INTELLIGENCE, -1);
+        tag.setInt(new Random().nextInt(150) + "IDChange", new Random().nextInt(500));
         oItem.nmsCopy.setTag(tag);
         oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
         return oItem.item;
@@ -49,21 +52,11 @@ public class WallBlazeRodItem extends AbstractItem {
 
     @Override
     public void ability(World world, Player player, ItemStack itemStack) {
-        Location location = player.getLocation();
-        for (int i = 0; i < 5; i++) {
-            Block block = world.getBlockAt(new Location(location.getWorld(), location.getX() + i, location.getY(), location.getZ() + i));
-            if (block.getType() == Material.AIR) {
-                block.setType(Material.FIRE);
+        if(player.getInventory().getChestplate().getType().equals(Material.AIR)) {
+            player.getInventory().setChestplate(getItem(player));
+            if (itemStack != null) {
+                itemStack.setAmount(itemStack.getAmount() - 1);
             }
-            for (int j = 0; j < 5; j++) {
-                block = world.getBlockAt(new Location(location.getWorld(), location.getX() - j, location.getY(), location.getZ() - j));
-                if (block.getType() == Material.AIR) {
-                    block.setType(Material.FIRE);
-                }
-            }
-        }
-        if(itemStack != null) {
-            itemStack.setAmount(itemStack.getAmount() - 1);
         }
     }
 

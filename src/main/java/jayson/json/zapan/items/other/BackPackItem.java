@@ -18,14 +18,14 @@ import java.util.UUID;
 public class BackPackItem extends AbstractItem {
     int inventorySize = 36;
 
-    public BackPackItem(String id, int inventorySize) {
-        super(id);
+    public BackPackItem(String id, Material material, int inventorySize) {
+        super(id, material);
         this.inventorySize = inventorySize;
     }
 
     @Override
     public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(new ItemStack(Material.HEART_OF_THE_SEA), super.getId());
+        zOItem oItem = new zOItem(this, player, new ItemStack(getItemType()), super.getId());
         oItem.lore.add(inventorySize + " Slots");
         oItem.setItem(ChatColor.RESET + "Rucksack");
         NBTTagCompound tag = oItem.tagCompound();
@@ -47,5 +47,13 @@ public class BackPackItem extends AbstractItem {
     public boolean isAbilityItem() {
         return true;
     }
+    @Override
+    public @NotNull String getId() {
+        return super.getId();
+    }
 
+    @Override
+    public Material getItemType() {
+        return super.getItemType();
+    }
 }

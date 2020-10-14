@@ -13,11 +13,11 @@ public class EntityDeath implements Listener {
 
     @EventHandler
     public void EntityDeath(EntityDeathEvent event) {
-        if(event.getEntity() instanceof Monster) {
+        /*if(event.getEntity() instanceof Monster) {
             if(new Random().nextInt(2) == 1) {
                 Utility.spawnCustomItem(zItem.SCRAP.getAbstractItem(), event.getEntity().getWorld(), event.getEntity().getLocation());
             }
-        }
+        }*/
     }
 
 }

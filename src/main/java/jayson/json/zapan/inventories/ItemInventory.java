@@ -56,7 +56,7 @@ public class ItemInventory implements Listener {
 
     @EventHandler
     public void InventoryClick(InventoryClickEvent event) {
-        if(event.getInventory() == this.inventory) {
+        if(event.getInventory().equals(this.inventory)) {
             ItemStack clickedItem = event.getCurrentItem();
             if (clickedItem != null) {
                 if (clickedItem.hasItemMeta()) {

@@ -351,9 +351,10 @@ public class Utility {
         return null;
     }
 
+    @Deprecated
     public static boolean itemIDExists(String id) {
-        for (zItem value : zItem.values()) {
-            if(value.getAbstractItem().getId().equalsIgnoreCase(id)) {
+        for (IzItemRegistry item : ItemRegistry.items) {
+            if(item.getAbstractItem().getId().equalsIgnoreCase(id)) {
                 return true;
             }
         }
@@ -404,11 +405,24 @@ public class Utility {
 
     @Deprecated
     public static boolean isAbilityItem(ItemStack itemStack) {
-        return isAbilityItem(null, itemStack);
+        return isAbilityItemINEFF(null, itemStack);
     }
 
-    public static boolean isAbilityItem(Player player, ItemStack itemStack) {
+    @Deprecated
+    public static boolean isAbilityItemINEFF(Player player, ItemStack itemStack) {
         for (zItemAbility value : zItemAbility.values()) {
+            if(value.getAbstractItem().getItem(player).getType().equals(itemStack.getType())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+
+    @Deprecated
+    public static boolean isAbilityItemAllINEFF(Player player, ItemStack itemStack) {
+        for (IzItemRegistry value : ItemRegistry.items) {
             if(value.getAbstractItem().getItem(player).getType().equals(itemStack.getType())) {
                 return true;
             }
@@ -418,12 +432,13 @@ public class Utility {
 
     public static boolean isAbilityItemAll(Player player, ItemStack itemStack) {
         for (IzItemRegistry value : ItemRegistry.items) {
-            if(value.getAbstractItem().getItem(player).getType().equals(itemStack.getType())) {
+            if(value.getAbstractItem().getItemType().equals(itemStack.getType())) {
                 return true;
             }
         }
         return false;
     }
+
 
     public static boolean iszItem(ItemStack itemStack) {
         for (IzItemRegistry item : ItemRegistry.items) {

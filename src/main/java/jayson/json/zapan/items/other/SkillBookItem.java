@@ -13,12 +13,12 @@ import org.jetbrains.annotations.NotNull;
 
 public class SkillBookItem extends AbstractItem {
 
-    public SkillBookItem(String id) {
-        super(id);
+    public SkillBookItem(String id, Material material) {
+        super(id, material);
     }
     @Override
     public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(new ItemStack(Material.WRITTEN_BOOK), super.getId());
+        zOItem oItem = new zOItem(this, player, new ItemStack(getItemType()), super.getId());
         oItem.setItem(ChatColor.BOLD + "Skillbuch");
         NBTTagCompound tag = oItem.tagCompound();
         tag.setBoolean(zItemNBT.CONST_CAN_CRAFT_MINECRAFT, false);
@@ -28,4 +28,13 @@ public class SkillBookItem extends AbstractItem {
         return oItem.item;
     }
 
+    @Override
+    public @NotNull String getId() {
+        return super.getId();
+    }
+
+    @Override
+    public Material getItemType() {
+        return super.getItemType();
+    }
 }

@@ -12,11 +12,21 @@ import java.util.HashMap;
 import java.util.UUID;
 
 public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzCurrencyItem, IzMarketItem, IzNBTItem {
+    @Override
+    public Material getItemType() {
+        return material;
+    }
+
+    @Override
+    public Material setItemType() {
+        return material;
+    }
 
     public String id;
-
-    public AbstractItem(String id) {
+    public Material material;
+    public AbstractItem(String id, Material material) {
         this.id = id;
+        this.material = material;
     }
 
     public final double itemVersion() {

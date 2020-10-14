@@ -14,14 +14,14 @@ import org.jetbrains.annotations.NotNull;
 public class ScrapItem extends AbstractItem {
 
     double hacksilverAmount;
-    public ScrapItem(String id, double hacksilverAmount) {
-        super(id);
+    public ScrapItem(String id, Material material, double hacksilverAmount) {
+        super(id, material);
         this.hacksilverAmount = hacksilverAmount;
     }
 
     @Override
     public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(new ItemStack(Material.NETHERITE_SCRAP), super.getId());
+        zOItem oItem = new zOItem(this, player, new ItemStack(getItemType()), super.getId());
         oItem.lore.add(ChatColor.GRAY + "" + getHacksilverAmount() + "Φ");
         oItem.setItem(ChatColor.RESET + "Schrott");
         NBTTagCompound tag = oItem.tagCompound();
@@ -32,6 +32,15 @@ public class ScrapItem extends AbstractItem {
         return oItem.item;
     }
 
+    @Override
+    public @NotNull String getId() {
+        return super.getId();
+    }
+
+    @Override
+    public Material getItemType() {
+        return super.getItemType();
+    }
 
     @Override
     public double getHacksilverAmount() {

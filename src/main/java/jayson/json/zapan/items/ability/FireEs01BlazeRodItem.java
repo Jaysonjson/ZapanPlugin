@@ -20,13 +20,13 @@ import java.util.Random;
 
 public class FireEs01BlazeRodItem extends AbstractItem {
 
-    public FireEs01BlazeRodItem(String id) {
-        super(id);
+    public FireEs01BlazeRodItem(String id, Material material) {
+        super(id, material);
     }
 
     @Override
     public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(new ItemStack(Material.BLAZE_POWDER), getId());
+        zOItem oItem = new zOItem(this, player, new ItemStack(getItemType()), getId());
         if(player != null) {
             zPlayer zPlayer = DataHandler.loadPlayer(player.getUniqueId());
             if(zPlayer.getStats().getIntelligence() >= 5) {
@@ -91,5 +91,15 @@ public class FireEs01BlazeRodItem extends AbstractItem {
     @Override
     public boolean isAbilityItem() {
         return true;
+    }
+
+    @Override
+    public @NotNull String getId() {
+        return super.getId();
+    }
+
+    @Override
+    public Material getItemType() {
+        return super.getItemType();
     }
 }

@@ -14,13 +14,13 @@ import org.jetbrains.annotations.NotNull;
 public class ZoryhaShardItem extends AbstractItem {
 
 
-    public ZoryhaShardItem(String id) {
-        super(id);
+    public ZoryhaShardItem(String id, Material material) {
+        super(id, material);
     }
 
     @Override
     public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(new ItemStack(Material.NETHER_STAR), super.getId());
+        zOItem oItem = new zOItem(this, player, new ItemStack(getItemType()), super.getId());
         oItem.lore.add(ChatColor.GRAY + "1¢");
         oItem.setItem(ChatColor.AQUA + "Zoryha Bruckstück");
         NBTTagCompound tag = oItem.tagCompound();
@@ -29,5 +29,15 @@ public class ZoryhaShardItem extends AbstractItem {
         oItem.nmsCopy.setTag(tag);
         oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
         return oItem.item;
+    }
+
+    @Override
+    public @NotNull String getId() {
+        return super.getId();
+    }
+
+    @Override
+    public Material getItemType() {
+        return super.getItemType();
     }
 }

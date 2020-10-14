@@ -14,13 +14,13 @@ import org.jetbrains.annotations.NotNull;
 
 public class HackSilverItem extends AbstractItem {
 
-    public HackSilverItem(String id) {
-        super(id);
+    public HackSilverItem(String id, Material material) {
+        super(id, material);
     }
 
     @Override
     public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(new ItemStack(Material.IRON_NUGGET), super.getId());
+        zOItem oItem = new zOItem(this, player, new ItemStack(getItemType()), super.getId());
         oItem.lore.add(ChatColor.GRAY + "1Φ");
         oItem.setItem(ChatColor.GRAY + "Hacksilber");
         NBTTagCompound tag = oItem.tagCompound();
@@ -29,5 +29,15 @@ public class HackSilverItem extends AbstractItem {
         oItem.nmsCopy.setTag(tag);
         oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
         return oItem.item;
+    }
+
+    @Override
+    public @NotNull String getId() {
+        return super.getId();
+    }
+
+    @Override
+    public Material getItemType() {
+        return super.getItemType();
     }
 }

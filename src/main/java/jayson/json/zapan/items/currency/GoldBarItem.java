@@ -13,13 +13,13 @@ import org.jetbrains.annotations.NotNull;
 
 public class GoldBarItem extends AbstractItem {
 
-    public GoldBarItem(String id) {
-        super(id);
+    public GoldBarItem(String id, Material material) {
+        super(id, material);
     }
 
     @Override
     public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(new ItemStack(Material.GOLD_INGOT), super.getId());
+        zOItem oItem = new zOItem(this, player, new ItemStack(getItemType()), super.getId());
         oItem.lore.add(ChatColor.GRAY + "1.250Φ");
         oItem.setItem("\u00a76Gold Barren");
         NBTTagCompound tag = oItem.tagCompound();
@@ -28,5 +28,15 @@ public class GoldBarItem extends AbstractItem {
         oItem.nmsCopy.setTag(tag);
         oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
         return oItem.item;
+    }
+
+    @Override
+    public @NotNull String getId() {
+        return super.getId();
+    }
+
+    @Override
+    public Material getItemType() {
+        return super.getItemType();
     }
 }
