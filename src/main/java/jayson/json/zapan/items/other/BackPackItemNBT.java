@@ -20,7 +20,7 @@ public class BackPackItemNBT extends AbstractItem {
     int inventorySize = 36;
     String id;
     public BackPackItemNBT(String id, int inventorySize) {
-        this.id = id;
+        super(id);
         this.inventorySize = inventorySize;
     }
 
