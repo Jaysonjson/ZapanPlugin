@@ -1,6 +1,7 @@
 package jayson.json.zapan.items.currency;
 
 import jayson.json.zapan.items.AbstractItem;
+import jayson.json.zapan.items.interfaces.IzItem;
 import jayson.json.zapan.items.zItemNBT;
 import jayson.json.zapan.items.zOItem;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
@@ -12,9 +13,9 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 public class HackSilverItem extends AbstractItem {
-    String id;
+
     public HackSilverItem(String id) {
-        this.id = id;
+        super(id);
     }
 
     @Override
@@ -28,10 +29,5 @@ public class HackSilverItem extends AbstractItem {
         oItem.nmsCopy.setTag(tag);
         oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
         return oItem.item;
-    }
-
-    @Override
-    public @NotNull String getId() {
-        return id;
     }
 }

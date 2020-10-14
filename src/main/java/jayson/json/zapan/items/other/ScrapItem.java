@@ -13,10 +13,9 @@ import org.jetbrains.annotations.NotNull;
 
 public class ScrapItem extends AbstractItem {
 
-    String id;
     double hacksilverAmount;
     public ScrapItem(String id, double hacksilverAmount) {
-        this.id = id;
+        super(id);
         this.hacksilverAmount = hacksilverAmount;
     }
 
@@ -33,10 +32,6 @@ public class ScrapItem extends AbstractItem {
         return oItem.item;
     }
 
-    @Override
-    public @NotNull String getId() {
-        return id;
-    }
 
     @Override
     public double getHacksilverAmount() {

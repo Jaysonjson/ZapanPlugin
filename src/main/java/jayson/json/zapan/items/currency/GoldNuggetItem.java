@@ -13,9 +13,8 @@ import org.jetbrains.annotations.NotNull;
 
 public class GoldNuggetItem extends AbstractItem {
 
-    String id;
     public GoldNuggetItem(String id) {
-        this.id = id;
+        super(id);
     }
 
     @Override
@@ -29,10 +28,5 @@ public class GoldNuggetItem extends AbstractItem {
         oItem.nmsCopy.setTag(tag);
         oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
         return oItem.item;
-    }
-
-    @Override
-    public @NotNull String getId() {
-        return id;
     }
 }

@@ -8,11 +8,39 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
+import java.util.HashMap;
+import java.util.UUID;
 
-public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzCurrencyItem, IzMarketItem {
+public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzCurrencyItem, IzMarketItem, IzNBTItem {
+
+    public String id;
+
+    public AbstractItem(String id) {
+        this.id = id;
+    }
 
     public final double itemVersion() {
         return 0.1;
+    }
+
+    @Override
+    public HashMap<String, String> getNBTStrings() {
+        return IzNBTItem.strings;
+    }
+
+    @Override
+    public HashMap<String, Integer> getNBTInts() {
+        return IzNBTItem.ints;
+    }
+
+    @Override
+    public HashMap<String, UUID> getNBTUUIDS() {
+        return IzNBTItem.uuids;
+    }
+
+    @Override
+    public HashMap<String, Double> getNBTDoubles() {
+        return IzNBTItem.doubles;
     }
 
     @Override
@@ -41,7 +69,7 @@ public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzC
     @NotNull
     @Override
     public String getId() {
-        return "null";
+        return id;
     }
 
 

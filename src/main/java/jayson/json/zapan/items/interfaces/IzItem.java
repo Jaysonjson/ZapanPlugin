@@ -5,6 +5,7 @@ import org.bukkit.inventory.ItemStack;
 
 public interface IzItem {
 
+    String id = "";
     ItemStack getItem();
     ItemStack getItem(Player player);
     void update(ItemStack itemStack);

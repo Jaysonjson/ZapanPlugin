@@ -12,9 +12,9 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 public class SkillBookItem extends AbstractItem {
-    String id;
+
     public SkillBookItem(String id) {
-        this.id = id;
+        super(id);
     }
     @Override
     public ItemStack getItem(Player player) {
@@ -28,8 +28,4 @@ public class SkillBookItem extends AbstractItem {
         return oItem.item;
     }
 
-    @Override
-    public @NotNull String getId() {
-        return id;
-    }
 }

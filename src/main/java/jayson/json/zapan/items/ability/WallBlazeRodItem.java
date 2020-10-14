@@ -17,10 +17,9 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 public class WallBlazeRodItem extends AbstractItem {
-    private String id;
 
     public WallBlazeRodItem(String id) {
-        this.id = id;
+        super(id);
     }
 
     @Override
@@ -47,10 +46,6 @@ public class WallBlazeRodItem extends AbstractItem {
         return oItem.item;
     }
 
-    @Override
-    public @NotNull String getId() {
-        return id;
-    }
 
     @Override
     public void ability(World world, Player player, ItemStack itemStack) {

@@ -37,17 +37,17 @@ public class zPlayer implements IHasUUID {
     }
 
     @Override
-    public UUID getUuid() {
+    public UUID getUUID() {
         return uuid;
     }
 
     @Override
-    public void setUuid(UUID uuid) {
+    public void setUUID(UUID uuid) {
         this.uuid = uuid;
     }
 
     @Override
-    public UUID randomUuid() {
+    public UUID randomUUID() {
         return UUID.randomUUID();
     }
 

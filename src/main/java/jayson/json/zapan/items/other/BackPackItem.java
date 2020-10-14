@@ -17,9 +17,9 @@ import java.util.UUID;
 
 public class BackPackItem extends AbstractItem {
     int inventorySize = 36;
-    String id;
+
     public BackPackItem(String id, int inventorySize) {
-        this.id = id;
+        super(id);
         this.inventorySize = inventorySize;
     }
 
@@ -48,8 +48,4 @@ public class BackPackItem extends AbstractItem {
         return true;
     }
 
-    @Override
-    public @NotNull String getId() {
-        return id;
-    }
 }

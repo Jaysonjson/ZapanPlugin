@@ -31,19 +31,19 @@ public class DataHandler {
         zPlayer player;
         if(!file.exists()) {
             player = new zPlayer();
-            player.setUuid(uuid);
+            player.setUUID(uuid);
             savePlayer(player);
         } else {
             player = gson.fromJson(readData(file), zPlayer.class);
         }
-        player.setUuid(uuid);
+        player.setUUID(uuid);
         return player;
     }
 
     public static void savePlayer(zPlayer player) {
         String json = gsonBuilder.toJson(player);
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream(new File(PLAYER_DIR + player.getUuid().toString() + ".json"));
+            FileOutputStream fileOutputStream = new FileOutputStream(new File(PLAYER_DIR + player.getUUID().toString() + ".json"));
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
             outputStreamWriter.append(json);
             outputStreamWriter.close();
@@ -57,19 +57,19 @@ public class DataHandler {
         zBackPack backPack;
         if(!file.exists()) {
             backPack = new zBackPack();
-            backPack.setUuid(uuid);
+            backPack.setUUID(uuid);
             saveBackPack(backPack);
         } else {
             backPack = gson.fromJson(readData(file), zBackPack.class);
         }
-        backPack.setUuid(uuid);
+        backPack.setUUID(uuid);
         return backPack;
     }
 
     public static void saveBackPack(zBackPack backPack) {
         String json = gsonBuilder.toJson(backPack);
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream(new File(BACKPACK_DIR + backPack.getUuid().toString() + ".json"));
+            FileOutputStream fileOutputStream = new FileOutputStream(new File(BACKPACK_DIR + backPack.getUUID().toString() + ".json"));
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
             outputStreamWriter.append(json);
             outputStreamWriter.close();

@@ -19,10 +19,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Random;
 
 public class FireEs01BlazeRodItem extends AbstractItem {
-    private String id;
 
     public FireEs01BlazeRodItem(String id) {
-        this.id = id;
+        super(id);
     }
 
     @Override
@@ -49,10 +48,6 @@ public class FireEs01BlazeRodItem extends AbstractItem {
         return oItem.item;
     }
 
-    @Override
-    public @NotNull String getId() {
-        return id;
-    }
 
     @Override
     public void ability(World world, Player player, ItemStack itemStack) {

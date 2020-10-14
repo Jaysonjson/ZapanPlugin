@@ -9,7 +9,7 @@ public class zBackPack implements IHasUUID {
     public UUID uuid = UUID.randomUUID();
 
     @Override
-    public UUID getUuid() {
+    public UUID getUUID() {
         return uuid;
     }
 
@@ -22,12 +22,12 @@ public class zBackPack implements IHasUUID {
     }
 
     @Override
-    public void setUuid(UUID uuid) {
+    public void setUUID(UUID uuid) {
         this.uuid = uuid;
     }
 
     @Override
-    public UUID randomUuid() {
+    public UUID randomUUID() {
         return null;
     }
 }
