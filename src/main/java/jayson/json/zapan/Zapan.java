@@ -54,6 +54,7 @@ public final class Zapan extends JavaPlugin {
         this.getCommand("gms").setExecutor(new GamemodeCommand());
         this.getCommand("gma").setExecutor(new GamemodeCommand());
         this.getCommand("gmsp").setExecutor(new GamemodeCommand());
+        this.getCommand("discordlink").setExecutor(new DiscordLinkCommand());
         Utility.reloadAreas();
         NPC.loadNPCS();
     }

@@ -104,6 +104,31 @@ public class DataHandler {
         return server;
     }
 
+    public static void saveDiscord(zDiscord discord) {
+        String json = gsonBuilder.toJson(discord);
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(new File(SERVER_DIR + "discord.json"));
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
+            outputStreamWriter.append(json);
+            outputStreamWriter.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static zDiscord loadDiscord() {
+        File file = new File(SERVER_DIR + "discord.json");
+        zDiscord discord;
+        if(!file.exists()) {
+            discord = new zDiscord();
+            saveDiscord(discord);
+        } else {
+            discord = gson.fromJson(readData(file), zDiscord.class);
+        }
+        return discord;
+    }
+
+
 
     public static void saveArea(zArea area) {
         String json = gsonBuilder.toJson(area);

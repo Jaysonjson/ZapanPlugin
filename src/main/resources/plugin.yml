@@ -36,6 +36,9 @@ commands:
   gmsp:
     description: gamemode spectator
     usage: /gmsp
+  discordlink:
+    description: sends discord code
+    usage: /discordlink
 permissions:
   zapan.sethealth:
     description: SetHealth
