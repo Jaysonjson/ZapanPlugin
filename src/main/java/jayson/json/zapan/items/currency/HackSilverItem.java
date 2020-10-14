@@ -20,7 +20,7 @@ public class HackSilverItem extends AbstractItem {
 
     @Override
     public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(new ItemStack(Material.IRON_NUGGET), getId());
+        zOItem oItem = new zOItem(new ItemStack(Material.IRON_NUGGET), super.getId());
         oItem.lore.add(ChatColor.GRAY + "1Φ");
         oItem.setItem(ChatColor.GRAY + "Hacksilber");
         NBTTagCompound tag = oItem.tagCompound();

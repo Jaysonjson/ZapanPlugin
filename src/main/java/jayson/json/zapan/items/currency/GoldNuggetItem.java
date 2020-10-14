@@ -19,7 +19,7 @@ public class GoldNuggetItem extends AbstractItem {
 
     @Override
     public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(new ItemStack(Material.GOLD_NUGGET), getId());
+        zOItem oItem = new zOItem(new ItemStack(Material.GOLD_NUGGET), super.getId());
         oItem.lore.add(ChatColor.GRAY + "17.43Φ");
         oItem.setItem(ChatColor.GOLD + "Goldklumpen");
         NBTTagCompound tag = oItem.tagCompound();

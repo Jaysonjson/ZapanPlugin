@@ -19,7 +19,7 @@ public class GoldBarItem extends AbstractItem {
 
     @Override
     public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(new ItemStack(Material.GOLD_INGOT), getId());
+        zOItem oItem = new zOItem(new ItemStack(Material.GOLD_INGOT), super.getId());
         oItem.lore.add(ChatColor.GRAY + "1.250Φ");
         oItem.setItem("\u00a76Gold Barren");
         NBTTagCompound tag = oItem.tagCompound();

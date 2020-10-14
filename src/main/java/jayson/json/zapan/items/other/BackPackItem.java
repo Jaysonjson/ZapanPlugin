@@ -25,7 +25,7 @@ public class BackPackItem extends AbstractItem {
 
     @Override
     public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(new ItemStack(Material.HEART_OF_THE_SEA), getId());
+        zOItem oItem = new zOItem(new ItemStack(Material.HEART_OF_THE_SEA), super.getId());
         oItem.lore.add(inventorySize + " Slots");
         oItem.setItem(ChatColor.RESET + "Rucksack");
         NBTTagCompound tag = oItem.tagCompound();

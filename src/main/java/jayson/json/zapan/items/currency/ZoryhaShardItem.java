@@ -20,7 +20,7 @@ public class ZoryhaShardItem extends AbstractItem {
 
     @Override
     public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(new ItemStack(Material.NETHER_STAR), getId());
+        zOItem oItem = new zOItem(new ItemStack(Material.NETHER_STAR), super.getId());
         oItem.lore.add(ChatColor.GRAY + "1¢");
         oItem.setItem(ChatColor.AQUA + "Zoryha Bruckstück");
         NBTTagCompound tag = oItem.tagCompound();

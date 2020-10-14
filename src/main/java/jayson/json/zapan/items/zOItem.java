@@ -19,6 +19,7 @@ public class zOItem {
         this.itemMeta = this.item.getItemMeta();
         this.lore = lore;
         this.id = id;
+        System.out.println("Creating Item: " + id);
     }
 
     public zOItem(ItemStack itemStack, String id) {

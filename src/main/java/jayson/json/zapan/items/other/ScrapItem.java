@@ -21,7 +21,7 @@ public class ScrapItem extends AbstractItem {
 
     @Override
     public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(new ItemStack(Material.NETHERITE_SCRAP), getId());
+        zOItem oItem = new zOItem(new ItemStack(Material.NETHERITE_SCRAP), super.getId());
         oItem.lore.add(ChatColor.GRAY + "" + getHacksilverAmount() + "Φ");
         oItem.setItem(ChatColor.RESET + "Schrott");
         NBTTagCompound tag = oItem.tagCompound();

@@ -18,7 +18,7 @@ public class SkillBookItem extends AbstractItem {
     }
     @Override
     public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(new ItemStack(Material.WRITTEN_BOOK), getId());
+        zOItem oItem = new zOItem(new ItemStack(Material.WRITTEN_BOOK), super.getId());
         oItem.setItem(ChatColor.BOLD + "Skill Buch");
         NBTTagCompound tag = oItem.tagCompound();
         tag.setBoolean(zItemNBT.CONST_CAN_CRAFT_MINECRAFT, false);
