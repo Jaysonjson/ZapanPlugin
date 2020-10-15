@@ -13,6 +13,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
 import java.util.UUID;
 
 public class BackPackItem extends AbstractItem {
@@ -28,13 +29,27 @@ public class BackPackItem extends AbstractItem {
         zOItem oItem = new zOItem(this, player, new ItemStack(getItemType()), super.getId());
         oItem.lore.add(inventorySize + " Slots");
         oItem.setItem(ChatColor.RESET + "Rucksack");
-        NBTTagCompound tag = oItem.tagCompound();
-        tag.setString(zItemNBT.CONST_ITEM_UUID, UUID.randomUUID().toString());
+        NBTTagCompound tag = oItem.getTagCompound();
+       /* tag.setString(zItemNBT.CONST_ITEM_UUID, UUID.randomUUID().toString());
         tag.setBoolean(zItemNBT.CONST_CAN_CRAFT_MINECRAFT, false);
-        tag.setBoolean(zItemNBT.CONST_IS_BACKPACK, true);
+        tag.setBoolean(zItemNBT.CONST_IS_BACKPACK, true);*/
+        getNBTUUIDS().put(zItemNBT.CONST_ITEM_UUID, UUID.randomUUID());
+        getNBTBooleans().put(zItemNBT.CONST_CAN_CRAFT_MINECRAFT, false);
+        getNBTBooleans().put(zItemNBT.CONST_IS_BACKPACK, true);
+        oItem.setTagCompound();
         oItem.nmsCopy.setTag(tag);
         oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
         return oItem.item;
+    }
+
+    @Override
+    public HashMap<String, Boolean> getNBTBooleans() {
+        return super.getNBTBooleans();
+    }
+
+    @Override
+    public HashMap<String, UUID> getNBTUUIDS() {
+        return super.getNBTUUIDS();
     }
 
     @Override

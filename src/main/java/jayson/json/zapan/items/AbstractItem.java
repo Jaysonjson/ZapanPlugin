@@ -11,7 +11,8 @@ import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.UUID;
 
-public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzCurrencyItem, IzMarketItem, IzNBTItem {
+public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzCurrencyItem, IzMarketItem, IzNBTItem, IzMItem {
+
     @Override
     public Material getItemType() {
         return material;
@@ -51,6 +52,11 @@ public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzC
     @Override
     public HashMap<String, Double> getNBTDoubles() {
         return IzNBTItem.doubles;
+    }
+
+    @Override
+    public HashMap<String, Boolean> getNBTBooleans() {
+        return IzNBTItem.booleans;
     }
 
     @Override

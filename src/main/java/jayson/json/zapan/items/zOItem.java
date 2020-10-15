@@ -62,7 +62,18 @@ public class zOItem {
         return CraftItemStack.asNMSCopy(item);
     }
 
-    public NBTTagCompound tagCompound() {
+    public void setTagCompound() {
+        NBTTagCompound tag = getTagCompound();
+        //tag.setString(zItemNBT.CONST_ITEM_ID, id);
+        //tag.setDouble(zItemNBT.CONST_ITEM_VERSION, zItem.itemVersion());
+        zItem.getNBTStrings().keySet().forEach((s -> tag.setString(s, zItem.getNBTStrings().get(s))));
+        zItem.getNBTUUIDS().keySet().forEach((s -> tag.setString(s, zItem.getNBTUUIDS().get(s).toString())));
+        zItem.getNBTInts().keySet().forEach((s -> tag.setInt(s, zItem.getNBTInts().get(s))));
+        zItem.getNBTDoubles().keySet().forEach((s -> tag.setDouble(s, zItem.getNBTDoubles().get(s))));
+        zItem.getNBTBooleans().keySet().forEach((s -> tag.setBoolean(s, zItem.getNBTBooleans().get(s))));
+    }
+
+    public NBTTagCompound getTagCompound() {
         NBTTagCompound tag = nmsCopy.hasTag() ? nmsCopy.getTag() : new NBTTagCompound();
         tag.setString(zItemNBT.CONST_ITEM_ID, id);
         tag.setDouble(zItemNBT.CONST_ITEM_VERSION, zItem.itemVersion());
