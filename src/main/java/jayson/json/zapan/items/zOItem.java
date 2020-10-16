@@ -73,6 +73,10 @@ public class zOItem {
         zItem.getNBTBooleans().keySet().forEach((s -> tag.setBoolean(s, zItem.getNBTBooleans().get(s))));
     }
 
+    public NBTTagCompound tagCompound() {
+        return getTagCompound();
+    }
+
     public NBTTagCompound getTagCompound() {
         NBTTagCompound tag = nmsCopy.hasTag() ? nmsCopy.getTag() : new NBTTagCompound();
         tag.setString(zItemNBT.CONST_ITEM_ID, id);

@@ -22,7 +22,7 @@ public class GoldBarItem extends AbstractItem {
         zOItem oItem = new zOItem(this, player, new ItemStack(getItemType()), super.getId());
         oItem.lore.add(ChatColor.GRAY + "1.250Φ");
         oItem.setItem("\u00a76Gold Barren");
-        NBTTagCompound tag = oItem.tagCompound();
+        NBTTagCompound tag = oItem.getTagCompound();
         tag.setDouble(zItemNBT.CONST_HACKSILVER_AMOUNT, 1250);
         tag.setBoolean(zItemNBT.CONST_CAN_CRAFT_MINECRAFT, false);
         oItem.nmsCopy.setTag(tag);

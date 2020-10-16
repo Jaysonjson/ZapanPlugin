@@ -1,5 +1,6 @@
 package jayson.json.zapan.inventories;
 
+import jayson.json.zapan.Utility;
 import jayson.json.zapan.Zapan;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -37,13 +38,7 @@ public class GuildChunkInventory implements Listener {
             inventory.setItem(i, new ItemStack(Material.CYAN_STAINED_GLASS_PANE));
         }
 
-        ItemStack orangePane = new ItemStack(Material.ORANGE_STAINED_GLASS_PANE);
-        orangePane.setAmount(5);
-        ItemMeta orangePaneMeta = orangePane.getItemMeta();
-        orangePaneMeta.setDisplayName("Chunks verbleibend");
-        orangePane.setItemMeta(orangePaneMeta);
-
-        inventory.setItem(2, orangePane);
+        inventory.setItem(2, Utility.createInventoryStack(Material.ORANGE_STAINED_GLASS_PANE, 5, "Chunks verbleibend"));
         inventory.setItem(6, new ItemStack(Material.PURPLE_STAINED_GLASS_PANE));
         inventory.setItem(31, new ItemStack(Material.RED_STAINED_GLASS_PANE));
     }

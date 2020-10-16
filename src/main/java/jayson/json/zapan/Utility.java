@@ -13,6 +13,7 @@ import jayson.json.zapan.items.lists.zItem;
 import jayson.json.zapan.items.lists.zItemAbility;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.craftbukkit.libs.org.apache.commons.io.output.ByteArrayOutputStream;
@@ -21,6 +22,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.io.BukkitObjectInputStream;
 import org.bukkit.util.io.BukkitObjectOutputStream;
 import org.yaml.snakeyaml.external.biz.base64Coder.Base64Coder;
@@ -505,5 +507,14 @@ public class Utility {
             return new ItemStack[0];
         }
         return new ItemStack[0];
+    }
+
+    public static ItemStack createInventoryStack(Material material, int amount, String displayName) {
+        ItemStack itemstack = new ItemStack(material);
+        itemstack.setAmount(amount);
+        ItemMeta itemstackMeta = itemstack.getItemMeta();
+        itemstackMeta.setDisplayName(displayName);
+        itemstack.setItemMeta(itemstackMeta);
+        return itemstack;
     }
 }
