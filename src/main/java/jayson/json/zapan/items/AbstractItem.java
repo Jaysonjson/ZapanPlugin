@@ -11,7 +11,7 @@ import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.UUID;
 
-public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzCurrencyItem, IzMarketItem, IzNBTItem, IzMItem {
+public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzCurrencyItem, IzMarketItem, IzNBTItem, IzMItem, IzConsumeItem {
 
     @Override
     public Material getItemType() {
@@ -88,7 +88,7 @@ public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzC
         return id;
     }
 
-
+    @Deprecated
     @Override
     public void setId() {
 
@@ -99,7 +99,16 @@ public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzC
 
     }
 
+    @Override
+    public void consume() {
+
+    }
+
     public boolean isAbilityItem() {
+        return false;
+    }
+
+    public boolean isConsumeAble() {
         return false;
     }
 
@@ -157,4 +166,5 @@ public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzC
     public void decreaseZoryhaShardAmount(double amount) {
 
     }
+
 }

@@ -6,4 +6,5 @@ import org.bukkit.inventory.ItemStack;
 
 public interface IzAbilityItem extends IzItem {
     void ability(World world, Player player, ItemStack itemStack);
+    boolean isAbilityItem();
 }

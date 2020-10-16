@@ -5,7 +5,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public interface IzItem extends IzMItem {
-
     String id = "";
     ItemStack getItem();
     ItemStack getItem(Player player);
