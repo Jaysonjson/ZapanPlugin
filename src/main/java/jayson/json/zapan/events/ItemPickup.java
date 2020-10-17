@@ -1,6 +1,8 @@
 package jayson.json.zapan.events;
 
 import jayson.json.zapan.Utility;
+import jayson.json.zapan.items.zItemNBT;
+import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,12 +15,25 @@ public class ItemPickup implements Listener {
     @EventHandler
     public void ItemPickup(EntityPickupItemEvent event) {
         ItemStack itemStack = event.getItem().getItemStack();
-        if(Utility.isAbstractItem(itemStack)) {
-            if (event.getEntity() instanceof Player) {
-                Player player = (Player) event.getEntity();
-                event.getItem().setItemStack(Utility.getAbstractItemFromNMS(itemStack).getItem(player));
+        if (event.getEntity() instanceof Player) {
+            Player player = (Player) event.getEntity();
+            NBTTagCompound tag = Utility.getItemTag(Utility.createNMSCopy(itemStack));
+            if (Utility.isAbstractItem(itemStack)) {
+                System.out.println("Item geändert -> Pickup");
+                ItemStack item = Utility.getAbstractItemFromNMS(itemStack).getItem(player);
+                item.setAmount(itemStack.getAmount());
+                event.getItem().setItemStack(item);
+            }
+            if(!tag.hasKey(zItemNBT.CONST_ITEM_ID)) {
+                if (Utility.isAbstractVanillaItem(itemStack)) {
+                    System.out.println("Vanilla Item geändert -> Pickup");
+                    ItemStack item = Utility.getAbstractVanillaOverride(itemStack).getItem(player);
+                    item.setAmount(itemStack.getAmount());
+                    event.getItem().setItemStack(item);
+                }
             }
         }
     }
-
 }
+
+

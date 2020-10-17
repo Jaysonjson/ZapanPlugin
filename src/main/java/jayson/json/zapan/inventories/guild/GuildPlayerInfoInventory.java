@@ -45,12 +45,14 @@ public class GuildPlayerInfoInventory implements Listener {
 
     @EventHandler
     public void InventoryClick(InventoryClickEvent event) {
-        if(event.getCurrentItem().getType().equals(Material.PLAYER_HEAD)) {
-            GuildPlayerInfoInventory guildPlayerInfoInventory = new GuildPlayerInfoInventory("Zapan", guildInventory);
-        }
-        if(event.getCurrentItem().hasItemMeta()) {
-            if (event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("Zurück")) {
-                guildInventory.openInventory((Player) event.getWhoClicked());
+        if(event.getInventory().equals(inventory) && Utility.isTopInventory(event)) {
+            if (event.getCurrentItem().getType().equals(Material.PLAYER_HEAD)) {
+                GuildPlayerInfoInventory guildPlayerInfoInventory = new GuildPlayerInfoInventory("Zapan", guildInventory);
+            }
+            if (event.getCurrentItem().hasItemMeta()) {
+                if (event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("Zurück")) {
+                    guildInventory.openInventory((Player) event.getWhoClicked());
+                }
             }
         }
     }

@@ -3,6 +3,7 @@ package jayson.json.zapan.items.ability;
 import jayson.json.zapan.data.zPlayer;
 import jayson.json.zapan.io.DataHandler;
 import jayson.json.zapan.items.AbstractItem;
+import jayson.json.zapan.items.ItemUseType;
 import jayson.json.zapan.items.zItemNBT;
 import jayson.json.zapan.items.zOItem;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
@@ -18,8 +19,9 @@ import org.jetbrains.annotations.NotNull;
 
 public class WallBlazeRodItem extends AbstractItem {
 
-    public WallBlazeRodItem(String id, Material material) {
-        super(id, material);
+
+    public WallBlazeRodItem(String id, Material material, ItemUseType itemUseType) {
+        super(id, material, itemUseType);
     }
 
     @Override
@@ -80,5 +82,10 @@ public class WallBlazeRodItem extends AbstractItem {
     @Override
     public Material getItemType() {
         return super.getItemType();
+    }
+
+    @Override
+    public ItemUseType getItemUseType() {
+        return super.getItemUseType();
     }
 }

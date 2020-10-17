@@ -8,6 +8,7 @@ import jayson.json.zapan.io.DataHandler;
 import jayson.json.zapan.items.*;
 import jayson.json.zapan.items.interfaces.IzItem;
 import jayson.json.zapan.items.interfaces.IzItemRegistry;
+import jayson.json.zapan.items.lists.BannedItems;
 import jayson.json.zapan.items.lists.ItemRegistry;
 import jayson.json.zapan.items.lists.zItem;
 import jayson.json.zapan.items.lists.zItemAbility;
@@ -19,6 +20,7 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.craftbukkit.libs.org.apache.commons.io.output.ByteArrayOutputStream;
 import org.bukkit.craftbukkit.v1_16_R2.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
@@ -463,6 +465,40 @@ public class Utility {
         return false;
     }
 
+    public static boolean isAbstractVanillaItem(ItemStack itemStack) {
+        for (IzItemRegistry item : ItemRegistry.items) {
+            if(item.getAbstractItem().isVanillaOverride()) {
+                if(item.getAbstractItem().defaultVanillaOverride().equals(itemStack.getType())) {
+                    if(!isBannedItem(itemStack)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    @Nullable
+    public static AbstractItem getAbstractVanillaOverride(ItemStack itemStack) {
+        for (IzItemRegistry item : ItemRegistry.items) {
+            if(item.getAbstractItem().isVanillaOverride()) {
+                if(item.getAbstractItem().defaultVanillaOverride().equals(itemStack.getType())) {
+                    return item.getAbstractItem();
+                }
+            }
+        }
+        return null;
+    }
+
+    public static boolean isBannedItem(ItemStack itemStack) {
+        for (BannedItems value : BannedItems.values()) {
+            if(value.getMaterial().equals(itemStack.getType())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static void updatePlayerInventory(Player player) {
         for (ItemStack content : player.getInventory().getContents()) {
             if(iszItem(content)) {
@@ -528,5 +564,9 @@ public class Utility {
         itemstackMeta.setDisplayName(displayName);
         itemstack.setItemMeta(itemstackMeta);
         return itemstack;
+    }
+
+    public static boolean isTopInventory(InventoryClickEvent event) {
+        return event.getRawSlot() < event.getView().getTopInventory().getSize();
     }
 }

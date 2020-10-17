@@ -54,9 +54,11 @@ public class GuildInventory implements Listener {
 
     @EventHandler
     public void InventoryClick(InventoryClickEvent event) {
-        if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("Spieler")) {
-            GuildPlayersInventory guildPlayersInventory = new GuildPlayersInventory(this);
-            guildPlayersInventory.openInventory((Player) event.getWhoClicked());
+        if(event.getInventory().equals(inventory) && Utility.isTopInventory(event)) {
+            if (event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase("Spieler")) {
+                GuildPlayersInventory guildPlayersInventory = new GuildPlayersInventory(this);
+                guildPlayersInventory.openInventory((Player) event.getWhoClicked());
+            }
         }
     }
 }

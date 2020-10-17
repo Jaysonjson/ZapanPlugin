@@ -1,6 +1,7 @@
 package jayson.json.zapan.items.other;
 
 import jayson.json.zapan.items.AbstractItem;
+import jayson.json.zapan.items.ItemUseType;
 import jayson.json.zapan.items.zItemNBT;
 import jayson.json.zapan.items.zOItem;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
@@ -14,8 +15,8 @@ import org.jetbrains.annotations.NotNull;
 public class ScrapItem extends AbstractItem {
 
     double hacksilverAmount;
-    public ScrapItem(String id, Material material, double hacksilverAmount) {
-        super(id, material);
+    public ScrapItem(String id, Material material, ItemUseType itemUseType, double hacksilverAmount) {
+        super(id, material, itemUseType);
         this.hacksilverAmount = hacksilverAmount;
     }
 
@@ -45,5 +46,10 @@ public class ScrapItem extends AbstractItem {
     @Override
     public double getHacksilverAmount() {
         return hacksilverAmount;
+    }
+
+    @Override
+    public ItemUseType getItemUseType() {
+        return super.getItemUseType();
     }
 }

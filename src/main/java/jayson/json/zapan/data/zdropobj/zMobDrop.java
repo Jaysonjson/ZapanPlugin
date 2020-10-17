@@ -2,8 +2,6 @@ package jayson.json.zapan.data.zdropobj;
 
 import jayson.json.zapan.items.AbstractItem;
 import org.bukkit.entity.EntityType;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class zMobDrop {

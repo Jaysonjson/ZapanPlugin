@@ -1,5 +1,6 @@
 package jayson.json.zapan.inventories;
 
+import jayson.json.zapan.Utility;
 import jayson.json.zapan.Zapan;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -34,7 +35,7 @@ public class AreaInventory implements Listener {
 
     @EventHandler
     public void InventoryClick(InventoryClickEvent event) {
-        if(event.getInventory().equals(inventory)) {
+        if(event.getInventory().equals(inventory) && Utility.isTopInventory(event)) {
 
         }
     }

@@ -1,6 +1,7 @@
 package jayson.json.zapan.items.currency;
 
 import jayson.json.zapan.items.AbstractItem;
+import jayson.json.zapan.items.ItemUseType;
 import jayson.json.zapan.items.zItemNBT;
 import jayson.json.zapan.items.zOItem;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
@@ -14,8 +15,8 @@ import org.jetbrains.annotations.NotNull;
 public class ZoryhaShardItem extends AbstractItem {
 
 
-    public ZoryhaShardItem(String id, Material material) {
-        super(id, material);
+    public ZoryhaShardItem(String id, Material material, ItemUseType itemUseType) {
+        super(id, material, itemUseType);
     }
 
     @Override
@@ -39,5 +40,10 @@ public class ZoryhaShardItem extends AbstractItem {
     @Override
     public Material getItemType() {
         return super.getItemType();
+    }
+
+    @Override
+    public ItemUseType getItemUseType() {
+        return super.getItemUseType();
     }
 }

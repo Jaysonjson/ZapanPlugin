@@ -3,6 +3,7 @@ package jayson.json.zapan.items.other;
 import jayson.json.zapan.inventories.BackPackInventory;
 import jayson.json.zapan.inventories.BackPackNBTInventory;
 import jayson.json.zapan.items.AbstractItem;
+import jayson.json.zapan.items.ItemUseType;
 import jayson.json.zapan.items.zItemNBT;
 import jayson.json.zapan.items.zOItem;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
@@ -19,8 +20,8 @@ import java.util.UUID;
 public class BackPackItemNBT extends AbstractItem {
     int inventorySize = 36;
     String id;
-    public BackPackItemNBT(String id, Material material, int inventorySize) {
-        super(id, material);
+    public BackPackItemNBT(String id, Material material, ItemUseType itemUseType, int inventorySize) {
+        super(id, material, itemUseType);
         this.inventorySize = inventorySize;
     }
 
@@ -58,5 +59,10 @@ public class BackPackItemNBT extends AbstractItem {
     @Override
     public Material getItemType() {
         return super.getItemType();
+    }
+
+    @Override
+    public ItemUseType getItemUseType() {
+        return super.getItemUseType();
     }
 }

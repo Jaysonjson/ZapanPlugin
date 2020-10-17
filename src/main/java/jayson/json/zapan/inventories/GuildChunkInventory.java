@@ -45,7 +45,7 @@ public class GuildChunkInventory implements Listener {
 
     @EventHandler
     public void InventoryClick(InventoryClickEvent event) {
-        if(event.getInventory().equals(inventory)) {
+        if(event.getInventory().equals(inventory) && Utility.isTopInventory(event)) {
             event.setCancelled(true);
         }
     }

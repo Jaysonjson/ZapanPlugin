@@ -1,6 +1,7 @@
 package jayson.json.zapan.items.currency;
 
 import jayson.json.zapan.items.AbstractItem;
+import jayson.json.zapan.items.ItemUseType;
 import jayson.json.zapan.items.interfaces.IzItem;
 import jayson.json.zapan.items.zItemNBT;
 import jayson.json.zapan.items.zOItem;
@@ -14,8 +15,9 @@ import org.jetbrains.annotations.NotNull;
 
 public class HackSilverItem extends AbstractItem {
 
-    public HackSilverItem(String id, Material material) {
-        super(id, material);
+
+    public HackSilverItem(String id, Material material, ItemUseType itemUseType) {
+        super(id, material, itemUseType);
     }
 
     @Override
@@ -39,5 +41,10 @@ public class HackSilverItem extends AbstractItem {
     @Override
     public Material getItemType() {
         return super.getItemType();
+    }
+
+    @Override
+    public ItemUseType getItemUseType() {
+        return super.getItemUseType();
     }
 }

@@ -8,10 +8,10 @@ import org.jetbrains.annotations.NotNull;
 
 public class GenericItem extends AbstractItem {
 
-    public GenericItem(String id, Material material) {
-        super(id, material);
-    }
 
+    public GenericItem(String id, Material material, ItemUseType itemUseType) {
+        super(id, material, itemUseType);
+    }
 
     @Override
     public ItemStack getItem(Player player) {

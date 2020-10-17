@@ -25,9 +25,11 @@ public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzC
 
     public String id;
     public Material material;
-    public AbstractItem(String id, Material material) {
+    public ItemUseType itemUseType;
+    public AbstractItem(String id, Material material, ItemUseType itemUseType) {
         this.id = id;
         this.material = material;
+        this.itemUseType = itemUseType;
     }
 
     public final double itemVersion() {
@@ -116,6 +118,13 @@ public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzC
         return false;
     }
 
+    public boolean isVanillaOverride() {
+        return false;
+    }
+
+    public Material defaultVanillaOverride() {
+        return getItemType();
+    }
 
     @Override
     public double getSellValue() {
@@ -167,4 +176,8 @@ public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzC
 
     }
 
+    @Override
+    public ItemUseType getItemUseType() {
+        return itemUseType;
+    }
 }

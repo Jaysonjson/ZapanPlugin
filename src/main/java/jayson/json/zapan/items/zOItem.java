@@ -46,9 +46,13 @@ public class zOItem {
 
     public void setItem(String displayName) {
         //System.out.println("Creating Item: " + id);
+        if(zItem.getItemUseType().equals(ItemUseType.CRAFTING)) {
+            lore.add(ChatColor.AQUA + "Herstellungsmaterial");
+        }
         if(player != null) {
             if(player.getGameMode().equals(GameMode.CREATIVE) ||player.getGameMode().equals(GameMode.SPECTATOR)) {
                 lore.add(ChatColor.LIGHT_PURPLE + "In Kreativ bekommen");
+                lore.add(ChatColor.DARK_GRAY + "" + ChatColor.ITALIC + "»" + player.getDisplayName() + "«");
             }
         }
         lore.add(ChatColor.DARK_GRAY + "" + ChatColor.ITALIC + id + " [" + zItem.itemVersion() + "]");
