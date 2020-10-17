@@ -2,10 +2,7 @@ package jayson.json.zapan.items.lists;
 
 import jayson.json.zapan.items.AbstractItem;
 import jayson.json.zapan.items.ItemUseType;
-import jayson.json.zapan.items.crafting.CopperIngotItem;
-import jayson.json.zapan.items.crafting.HopItem;
-import jayson.json.zapan.items.crafting.MaltItem;
-import jayson.json.zapan.items.crafting.SilverIngotItem;
+import jayson.json.zapan.items.crafting.*;
 import jayson.json.zapan.items.interfaces.IzItemRegistry;
 import jayson.json.zapan.items.other.ScrapItem;
 import jayson.json.zapan.items.other.SkillBookItem;
@@ -24,10 +21,14 @@ public enum zItem implements IzItemRegistry {
     ZORYHASHARD(new ZoryhaShardItem("zoryhaShardItem", Material.NETHER_STAR, ItemUseType.CURRENCY)),
     SKILLBOOK(new SkillBookItem("skillBookItem", Material.WRITTEN_BOOK, ItemUseType.OTHER)),
     COPPERINGOT(new CopperIngotItem("copperIngotItem", Material.NETHERITE_HOE, ItemUseType.CRAFTING, 1)),
+    COPPERROD(new CopperRodItem("copperRodItem", Material.NETHERITE_HOE, ItemUseType.CRAFTING, 5)),
+    COPPERPIPE(new CopperPipeItem("copperPipeItem", Material.NETHERITE_HOE, ItemUseType.CRAFTING, 6)),
+    COPPERLIQUID(new LiquidCopperItem("copperLiquidItem", Material.NETHERITE_HOE, ItemUseType.CRAFTING, 6)),
+    COPPERSWORD(new CopperSwordItem("copperSwordItem", Material.NETHERITE_HOE, ItemUseType.TOOL, 7)),
     SILVERINGOT(new SilverIngotItem("silverIngotItem", Material.NETHERITE_HOE, ItemUseType.CRAFTING, 2)),
     MALTITEM(new MaltItem("maltItem", Material.NETHERITE_HOE, ItemUseType.CRAFTING, 3)),
     HOPITEM(new HopItem("hopItem", Material.NETHERITE_HOE, ItemUseType.CRAFTING, 4)),
-    IRONINGOT(new IronIngotItem("ironIngot", Material.IRON_INGOT, ItemUseType.CRAFTING)),
+    IRONINGOT(new IronIngotItem("ironIngotItem", Material.IRON_INGOT, ItemUseType.CRAFTING)),
     SCRAP(new ScrapItem("scrapItem", Material.NETHERITE_SCRAP, ItemUseType.CURRENCY, 0.25));
 
     //TODO: Market-Value -> Wert des Items verändert sich

@@ -45,9 +45,10 @@ public class zOItem {
     }
 
     public void setItem(String displayName) {
-        //System.out.println("Creating Item: " + id);
-        if(zItem.getItemUseType().equals(ItemUseType.CRAFTING)) {
-            lore.add(ChatColor.AQUA + "Herstellungsmaterial");
+        switch (zItem.getItemUseType()) {
+            case CRAFTING: lore.add(ChatColor.AQUA + "Herstellungsmaterial"); break;
+            case CURRENCY: lore.add(ChatColor.AQUA + "Währung"); break;
+            case ABILITY: lore.add(ChatColor.AQUA + "Benutzbar"); break;
         }
         if(player != null) {
             if(player.getGameMode().equals(GameMode.CREATIVE) ||player.getGameMode().equals(GameMode.SPECTATOR)) {
