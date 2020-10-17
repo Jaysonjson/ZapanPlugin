@@ -11,18 +11,22 @@ import org.bukkit.craftbukkit.v1_16_R2.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.Damageable;
 import org.jetbrains.annotations.NotNull;
 
 public class MaltItem extends AbstractItem {
 
-
-    public MaltItem(String id, Material material, ItemUseType itemUseType) {
+    int damage;
+    public MaltItem(String id, Material material, ItemUseType itemUseType, int damageValue) {
         super(id, material, itemUseType);
+        this.damage = damageValue;
     }
 
     @Override
     public ItemStack getItem(Player player) {
         zOItem oItem = new zOItem(this, player, new ItemStack(getItemType()), super.getId());
+        Damageable damageable = (Damageable) oItem.itemMeta;
+        damageable.setDamage(getDamageValue());
         oItem.itemMeta.setUnbreakable(true);
         oItem.itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
         oItem.setItem(ChatColor.YELLOW + "Malz");
@@ -47,5 +51,10 @@ public class MaltItem extends AbstractItem {
     @Override
     public ItemUseType getItemUseType() {
         return super.getItemUseType();
+    }
+
+    @Override
+    public int getDamageValue() {
+        return damage;
     }
 }

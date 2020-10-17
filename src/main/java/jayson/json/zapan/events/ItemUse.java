@@ -21,6 +21,9 @@ public class ItemUse implements Listener {
         event.getItem().setItemMeta(bookMeta);
               */
         if(event.getItem() != null) {
+            if(Utility.isBannedItem(event.getItem())) {
+                event.setCancelled(true);
+            }
             if (event.getItem().getType() != Material.AIR) {
                 if (Utility.isAbilityItemAll(event.getPlayer(), event.getItem())) {
                     AbstractItem abstractItem = Utility.getAbstractItemFromNMS(event.getItem());
