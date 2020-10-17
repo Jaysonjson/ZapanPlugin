@@ -40,6 +40,7 @@ public class CopperSwordItem extends AbstractItem {
         oItem.nmsCopy.setTag(tag);
         oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
         oItem.lore.add(ChatColor.BLUE + "" + tag.getInt(zItemNBT.CONST_ITEM_DURABILITY) + "/" + getDurability());
+        oItem.itemMeta = oItem.item.getItemMeta();
         oItem.itemMeta.setLore(oItem.lore);
         oItem.item.setItemMeta(oItem.itemMeta);
         return oItem.item;
