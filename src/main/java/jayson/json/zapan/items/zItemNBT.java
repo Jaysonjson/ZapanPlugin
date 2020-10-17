@@ -10,8 +10,8 @@ public class zItemNBT {
     public static final String CONST_MARKED_VALUE = "marketValue";
     public static final String CONST_CAN_MOVE = "canMove";
     public static final String CONST_ZORYHASHARD_AMOUNT = "zoryhaShardValueAmount";
-    public static final String CONST_ITEM_ID = "itemID";
-    public static final String CONST_ITEM_UUID = "itemUUID";
+    public static final String CONST_ITEM_ID = "abstractItemID";
+    public static final String CONST_ITEM_UUID = "abstractItemUUID";
     public static final String CONST_NEEDED_INTELLIGENCE = "neededIntelligence";
     public static final String CONST_IS_BACKPACK = "isBackPack";
     public static final String CONST_INVENTORY_CONTENT = "inventoryContent";

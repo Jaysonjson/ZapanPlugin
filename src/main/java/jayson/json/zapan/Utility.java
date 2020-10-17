@@ -192,8 +192,8 @@ public class Utility {
         return true;
     }
 
-    public static void spawnCustomItem(IzItem item, World world, Location location) {
-        world.dropItemNaturally(location, item.getItem());
+    public static void spawnCustomItem(Player player, AbstractItem item, World world, Location location) {
+        world.dropItemNaturally(location, item.getItem(player));
     }
 
     public static double countMoney(Player player) {
@@ -442,10 +442,22 @@ public class Utility {
     }
 
 
+    @Deprecated
     public static boolean iszItem(ItemStack itemStack) {
         for (IzItemRegistry item : ItemRegistry.items) {
-            if(item.getAbstractItem().getItem().getType().equals(itemStack.getType())) {
+            if(item.getAbstractItem().getItem(null).getType().equals(itemStack.getType())) {
                 return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean isAbstractItem(ItemStack itemStack) {
+        for (IzItemRegistry item : ItemRegistry.items) {
+            if(item.getAbstractItem().getItem(null).getType().equals(itemStack.getType())) {
+                if(Utility.getItemTag(Utility.createNMSCopy(itemStack)).hasKey(zItemNBT.CONST_ITEM_ID)) {
+                    return true;
+                }
             }
         }
         return false;

@@ -2,7 +2,9 @@ package jayson.json.zapan.io;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import jayson.json.zapan.Utility;
 import jayson.json.zapan.data.*;
+import jayson.json.zapan.data.zdropobj.zMobDrop;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -17,11 +19,13 @@ import java.util.stream.Stream;
 
 public class DataHandler {
 
-    public static String PLAYER_DIR = "plugins/zapan/players/";
-    public static String AREA_DIR = "plugins/zapan/areas/";
-    public static String GUILD_DIR = "plugins/zapan/guilds/";
-    public static String SERVER_DIR = "plugins/zapan/";
-    public static String BACKPACK_DIR = "plugins/zapan/players/backpacks/";
+    public static String ROOT = "plugins/zapan/";
+    public static String PLAYER_DIR = ROOT + "/players/";
+    public static String AREA_DIR = ROOT + "/areas/";
+    public static String GUILD_DIR = ROOT + "/guilds/";
+    public static String SERVER_DIR = ROOT;
+    public static String BACKPACK_DIR = PLAYER_DIR + "/backpacks/";
+    public static String MOBDROPS_DIR = ROOT + "/drops/mobs/";
     private static final Gson gsonBuilder = new GsonBuilder().setPrettyPrinting().excludeFieldsWithModifiers(Modifier.TRANSIENT).create();
     private static final Gson gson = new Gson();
 
@@ -184,16 +188,46 @@ public class DataHandler {
         return guild;
     }
 
-    private static String readData(File file)
-    {
+    public static zDrops loadDrops() {
+        File mobDrops = new File(MOBDROPS_DIR);
+        zDrops zDrops = new zDrops();
+        for (File file : mobDrops.listFiles()) {
+            if(file.getName().toLowerCase().contains("json")) {
+                zMobDrop mobDrop = gson.fromJson(readData(file), zMobDrop.class);
+                for (String s : mobDrop.itemDropsID.keySet()) {
+                    if(Utility.itemIDExists(s)) {
+                        mobDrop.itemDrops.put(Utility.getAbstractItemByID(s), mobDrop.itemDropsID.get(s));
+                        System.out.println("[Zapan {MobDrops}] " + mobDrop.itemDrops);
+                    } else {
+                        System.out.println("[Zapan {MobDrops}] Item mit der ID " + s + " existiert nicht, überspringen...");
+                    }
+                }
+                zDrops.getMobDrops().add(mobDrop);
+            }
+        }
+        return zDrops;
+    }
+
+    public static void createMobDrop() {
+        zMobDrop mobDrop = new zMobDrop();
+        mobDrop.itemDropsID.put("scrapItem", 2);
+        String json = gsonBuilder.toJson(mobDrop);
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(new File(MOBDROPS_DIR + "test.json"));
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
+            outputStreamWriter.append(json);
+            outputStreamWriter.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private static String readData(File file) {
         StringBuilder contentBuilder = new StringBuilder();
 
-        try (Stream<String> stream = Files.lines( Paths.get(file.getPath()), StandardCharsets.UTF_8))
-        {
+        try (Stream<String> stream = Files.lines(Paths.get(file.getPath()), StandardCharsets.UTF_8)) {
             stream.forEach(s -> contentBuilder.append(s).append("\n"));
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 

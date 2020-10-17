@@ -2,6 +2,7 @@
 package jayson.json.zapan;
 import jayson.json.zapan.commands.*;
 import jayson.json.zapan.data.zArea;
+import jayson.json.zapan.data.zDrops;
 import jayson.json.zapan.events.*;
 import jayson.json.zapan.events.inventory.ItemClick;
 import jayson.json.zapan.io.DataHandler;
@@ -27,7 +28,12 @@ public final class Zapan extends JavaPlugin {
         new File(DataHandler.AREA_DIR).mkdirs();
         new File(DataHandler.GUILD_DIR).mkdirs();
         new File(DataHandler.BACKPACK_DIR).mkdirs();
+        new File(DataHandler.MOBDROPS_DIR).mkdirs();
+        DataHandler.createMobDrop();
         ItemRegistry.reloadItems();
+        References.reloadDrops();
+        Utility.reloadAreas();
+        NPC.loadNPCS();
         Bukkit.getPluginManager().registerEvents(new PlayerJoin(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerDeath(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerRespawn(), this);
@@ -43,6 +49,7 @@ public final class Zapan extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new ItemUse(), this);
         Bukkit.getPluginManager().registerEvents(new EntityDamage(), this);
         Bukkit.getPluginManager().registerEvents(new BanPlayer(), this);
+        Bukkit.getPluginManager().registerEvents(new ItemPickup(), this);
         this.getCommand("sethealth").setExecutor(new SetHealthCommand());
         this.getCommand("area").setExecutor(new CreateAreaCommand());
         this.getCommand("guild").setExecutor(new CreateGuildCommand());
@@ -55,8 +62,6 @@ public final class Zapan extends JavaPlugin {
         this.getCommand("gma").setExecutor(new GamemodeCommand());
         this.getCommand("gmsp").setExecutor(new GamemodeCommand());
         this.getCommand("discordlink").setExecutor(new DiscordLinkCommand());
-        Utility.reloadAreas();
-        NPC.loadNPCS();
     }
 
     @Override
