@@ -63,4 +63,14 @@ public class CopperIngotItem extends AbstractItem {
     public int getDamageValue() {
         return damage;
     }
+
+    @Override
+    public int getEarthValue() {
+        return 2;
+    }
+
+    @Override
+    public int getWaterValue() {
+        return 6;
+    }
 }
