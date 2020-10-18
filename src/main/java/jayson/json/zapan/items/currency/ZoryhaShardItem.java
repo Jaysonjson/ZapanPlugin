@@ -22,13 +22,16 @@ public class ZoryhaShardItem extends AbstractItem {
     @Override
     public ItemStack getItem(Player player) {
         zOItem oItem = new zOItem(this, player, new ItemStack(getItemType()), super.getId());
-        oItem.lore.add(ChatColor.GRAY + "1¢");
-        oItem.setItem(ChatColor.AQUA + "Zoryha Bruckstück");
+        oItem.init();
+
         NBTTagCompound tag = oItem.tagCompound();
         tag.setDouble(zItemNBT.CONST_ZORYHASHARD_AMOUNT, 1);
         tag.setBoolean(zItemNBT.CONST_CAN_CRAFT_MINECRAFT, false);
         oItem.nmsCopy.setTag(tag);
         oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
+
+        oItem.lore.add(ChatColor.GRAY + "1¢");
+        oItem.setItem(ChatColor.AQUA + "Zoryha Bruckstück");
         return oItem.item;
     }
 

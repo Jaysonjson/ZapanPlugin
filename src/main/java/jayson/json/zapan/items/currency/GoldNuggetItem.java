@@ -22,13 +22,16 @@ public class GoldNuggetItem extends AbstractItem {
     @Override
     public ItemStack getItem(Player player) {
         zOItem oItem = new zOItem(this, player, new ItemStack(getItemType()), super.getId());
-        oItem.lore.add(ChatColor.GRAY + "17.43Φ");
-        oItem.setItem(ChatColor.GOLD + "Goldklumpen");
+        oItem.init();
+
         NBTTagCompound tag = oItem.tagCompound();
         tag.setDouble(zItemNBT.CONST_HACKSILVER_AMOUNT, 5.43);
         tag.setBoolean(zItemNBT.CONST_CAN_CRAFT_MINECRAFT, false);
         oItem.nmsCopy.setTag(tag);
         oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
+
+        oItem.lore.add(ChatColor.GRAY + "17.43Φ");
+        oItem.setItem(ChatColor.GOLD + "Goldklumpen");
         return oItem.item;
     }
 

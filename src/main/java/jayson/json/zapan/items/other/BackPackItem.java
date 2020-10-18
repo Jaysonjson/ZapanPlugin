@@ -28,18 +28,18 @@ public class BackPackItem extends AbstractItem {
     @Override
     public ItemStack getItem(Player player) {
         zOItem oItem = new zOItem(this, player, new ItemStack(getItemType()), super.getId());
-        oItem.lore.add(inventorySize + " Slots");
-        oItem.setItem(ChatColor.RESET + "Rucksack");
+        oItem.init();
+
         NBTTagCompound tag = oItem.getTagCompound();
-       /* tag.setString(zItemNBT.CONST_ITEM_UUID, UUID.randomUUID().toString());
-        tag.setBoolean(zItemNBT.CONST_CAN_CRAFT_MINECRAFT, false);
-        tag.setBoolean(zItemNBT.CONST_IS_BACKPACK, true);*/
         getNBTUUIDS().put(zItemNBT.CONST_ITEM_UUID, UUID.randomUUID());
         getNBTBooleans().put(zItemNBT.CONST_CAN_CRAFT_MINECRAFT, false);
         getNBTBooleans().put(zItemNBT.CONST_IS_BACKPACK, true);
         oItem.setTagCompound();
         oItem.nmsCopy.setTag(tag);
         oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
+
+        oItem.lore.add(inventorySize + " Slots");
+        oItem.setItem(ChatColor.RESET + "Rucksack");
         return oItem.item;
     }
 

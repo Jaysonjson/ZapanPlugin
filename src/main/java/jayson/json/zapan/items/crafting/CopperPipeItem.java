@@ -25,13 +25,16 @@ public class CopperPipeItem extends AbstractItem {
     @Override
     public ItemStack getItem(Player player) {
         zOItem oItem = new zOItem(this, player,true);
-        oItem.lore.add(ChatColor.GRAY + "Ein Rohr aus Kupfer");
-        oItem.setItem(ChatColor.GOLD + "Kupfer Rohr");
+        oItem.init();
+
         NBTTagCompound tag = oItem.tagCompound();
         tag.setBoolean(zItemNBT.CONST_CAN_CRAFT, true);
         tag.setBoolean(zItemNBT.CONST_CAN_CRAFT_MINECRAFT, false);
         oItem.nmsCopy.setTag(tag);
         oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
+
+        oItem.lore.add(ChatColor.GRAY + "Ein Rohr aus Kupfer");
+        oItem.setItem(ChatColor.GOLD + "Kupfer Rohr");
         return oItem.item;
     }
 

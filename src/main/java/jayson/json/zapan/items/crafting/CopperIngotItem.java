@@ -15,6 +15,8 @@ import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Random;
+
 public class CopperIngotItem extends AbstractItem {
 
     int damage;
@@ -26,12 +28,19 @@ public class CopperIngotItem extends AbstractItem {
     @Override
     public ItemStack getItem(Player player) {
         zOItem oItem = new zOItem(this, player,true);
-        oItem.setItem(ChatColor.GOLD + "Kupfer");
+        oItem.init();
+        int amount = new Random().nextInt(400);
+        amount += new Random().nextInt(100);
         NBTTagCompound tag = oItem.tagCompound();
         tag.setBoolean(zItemNBT.CONST_CAN_CRAFT, true);
         tag.setBoolean(zItemNBT.CONST_CAN_CRAFT_MINECRAFT, false);
+        if(!tag.hasKey("amount")) {
+            tag.setInt("amount", amount);
+        }
         oItem.nmsCopy.setTag(tag);
         oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
+        oItem.lore.add(ChatColor.GRAY + "" + tag.getInt("amount") + "g");
+        oItem.setItem(ChatColor.GOLD + "Kupfer");
         return oItem.item;
     }
 

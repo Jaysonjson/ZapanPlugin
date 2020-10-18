@@ -27,6 +27,7 @@ public class WallBlazeRodItem extends AbstractItem {
     @Override
     public ItemStack getItem(Player player) {
         zOItem oItem = new zOItem(this, player, new ItemStack(getItemType()), getId());
+        oItem.init();
         if(player != null) {
             zPlayer zPlayer = DataHandler.loadPlayer(player.getUniqueId());
             if(zPlayer.getStats().getIntelligence() >= 5) {
@@ -39,12 +40,13 @@ public class WallBlazeRodItem extends AbstractItem {
         }
         oItem.lore.add(ChatColor.GRAY + "Macht eine diagonale Wand aus Feuer");
 
-        oItem.setItem(ChatColor.RED + "Feuer Es05");
         NBTTagCompound tag = oItem.tagCompound();
         tag.setBoolean(zItemNBT.CONST_CAN_CRAFT_MINECRAFT, false);
         tag.setInt(zItemNBT.CONST_NEEDED_INTELLIGENCE, 5);
         oItem.nmsCopy.setTag(tag);
         oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
+
+        oItem.setItem(ChatColor.RED + "Feuer Es05");
         return oItem.item;
     }
 

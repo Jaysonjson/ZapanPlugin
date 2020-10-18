@@ -22,13 +22,16 @@ public class GoldBarItem extends AbstractItem {
     @Override
     public ItemStack getItem(Player player) {
         zOItem oItem = new zOItem(this, player, new ItemStack(getItemType()), super.getId());
-        oItem.lore.add(ChatColor.GRAY + "1.250Φ");
-        oItem.setItem("\u00a76Gold Barren");
+        oItem.init();
+
         NBTTagCompound tag = oItem.getTagCompound();
         tag.setDouble(zItemNBT.CONST_HACKSILVER_AMOUNT, 1250);
         tag.setBoolean(zItemNBT.CONST_CAN_CRAFT_MINECRAFT, false);
         oItem.nmsCopy.setTag(tag);
         oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
+
+        oItem.lore.add(ChatColor.GRAY + "1.250Φ");
+        oItem.setItem("\u00a76Gold Barren");
         return oItem.item;
     }
 

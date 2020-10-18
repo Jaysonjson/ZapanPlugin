@@ -11,7 +11,7 @@ import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.UUID;
 
-public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzCurrencyItem, IzMarketItem, IzNBTItem, IzMItem, IzConsumeItem, IzTextureItem, IzToolItem {
+public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzCurrencyItem, IzMarketItem, IzNBTItem, IzMItem, IzConsumeItem, IzTextureItem, IzToolItem, IzAlchemyItem {
 
     @Override
     public Material getItemType() {
@@ -91,6 +91,16 @@ public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzC
 
     @Override
     public int getDurability() {
+        return 0;
+    }
+
+    @Override
+    public int getEarthValue() {
+        return 0;
+    }
+
+    @Override
+    public int getWaterValue() {
         return 0;
     }
 

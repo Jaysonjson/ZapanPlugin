@@ -29,6 +29,7 @@ public class BombBeltItem extends AbstractItem {
     @Override
     public ItemStack getItem(Player player) {
         zOItem oItem = new zOItem(this, player, new ItemStack(getItemType()), getId());
+        oItem.init();
         if(player != null) {
             zPlayer zPlayer = DataHandler.loadPlayer(player.getUniqueId());
             if(zPlayer.getStats().getIntelligence() >= 5) {
@@ -41,13 +42,14 @@ public class BombBeltItem extends AbstractItem {
         }
         oItem.lore.add(ChatColor.GRAY + "Die Intelligenz wurde für Clarest angepasst!");
 
-        oItem.setItem(ChatColor.RED + "Bombengürtel");
         NBTTagCompound tag = oItem.tagCompound();
         tag.setBoolean(zItemNBT.CONST_CAN_CRAFT_MINECRAFT, false);
         tag.setInt(zItemNBT.CONST_NEEDED_INTELLIGENCE, -1);
         tag.setInt(new Random().nextInt(150) + "IDChange", new Random().nextInt(500));
         oItem.nmsCopy.setTag(tag);
         oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
+
+        oItem.setItem(ChatColor.RED + "Bombengürtel");
         return oItem.item;
     }
 

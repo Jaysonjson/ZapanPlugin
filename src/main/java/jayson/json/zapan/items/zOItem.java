@@ -1,5 +1,8 @@
 package jayson.json.zapan.items;
 
+import jayson.json.zapan.data.zPlayer;
+import jayson.json.zapan.io.DataHandler;
+import jayson.json.zapan.skillclass.zClass;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -71,6 +74,10 @@ public class zOItem {
         this.textureDamage = textureDamage;
     }
 
+    public void init() {
+        nmsCopy = createNMSCopy();
+    }
+
     public void setItem(String displayName) {
         switch (zItem.getItemUseType()) {
             case CRAFTING: lore.add(ChatColor.AQUA + "Herstellungsmaterial"); break;
@@ -78,6 +85,22 @@ public class zOItem {
             case ABILITY: lore.add(ChatColor.AQUA + "Benutzbar"); break;
         }
         if(player != null) {
+            zPlayer zPlayer = DataHandler.loadPlayer(player.getUniqueId());
+            if(zPlayer.getPlayerClass().type.equals(zClass.ALCHEMIST)) {
+                lore.add("");
+                //Checken if Spieler hat Item gelernt
+                if(false) {
+                    if (zItem.getEarthValue() > 0) {
+                        lore.add(ChatColor.GREEN + "Erde: " + zItem.getEarthValue());
+                    }
+                    if (zItem.getWaterValue() > 0) {
+                        lore.add(ChatColor.AQUA + "Wasser: " + zItem.getWaterValue());
+                    }
+                } else {
+                    lore.add("Item noch nicht gelernt!");
+                }
+                lore.add("");
+            }
             if(player.getGameMode().equals(GameMode.CREATIVE) ||player.getGameMode().equals(GameMode.SPECTATOR)) {
                 lore.add(ChatColor.LIGHT_PURPLE + "In Kreativ bekommen");
                 lore.add(ChatColor.DARK_GRAY + "" + ChatColor.ITALIC + "»" + player.getDisplayName() + "«");
@@ -93,7 +116,7 @@ public class zOItem {
         itemMeta.setLore(lore);
         itemMeta.setDisplayName(displayName);
         item.setItemMeta(itemMeta);
-        nmsCopy = createNMSCopy();
+        //nmsCopy = createNMSCopy();
     }
 
     public net.minecraft.server.v1_16_R2.ItemStack createNMSCopy() {

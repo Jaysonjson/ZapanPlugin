@@ -25,8 +25,8 @@ public class CopperSwordItem extends AbstractItem {
     @Override
     public ItemStack getItem(Player player) {
         zOItem oItem = new zOItem(this, player,true);
-        oItem.lore.add(ChatColor.GRAY + "Ein Schwert aus Kupfer");
-        oItem.setItem(ChatColor.GOLD + "Kupfer Schwert");
+        oItem.init();
+
         NBTTagCompound tag = oItem.tagCompound();
         tag.setBoolean(zItemNBT.CONST_CAN_CRAFT, true);
         tag.setBoolean(zItemNBT.CONST_CAN_CRAFT_MINECRAFT, false);
@@ -35,10 +35,10 @@ public class CopperSwordItem extends AbstractItem {
         }
         oItem.nmsCopy.setTag(tag);
         oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
+
+        oItem.lore.add(ChatColor.GRAY + "Ein Schwert aus Kupfer");
         oItem.lore.add(ChatColor.BLUE + "" + tag.getInt(zItemNBT.CONST_ITEM_DURABILITY) + "/" + getDurability());
-        oItem.itemMeta = oItem.item.getItemMeta();
-        oItem.itemMeta.setLore(oItem.lore);
-        oItem.item.setItemMeta(oItem.itemMeta);
+        oItem.setItem(ChatColor.GOLD + "Kupfer Schwert");
         return oItem.item;
     }
 
