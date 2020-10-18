@@ -25,11 +25,7 @@ public class CopperIngotItem extends AbstractItem {
 
     @Override
     public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(this, player, new ItemStack(getItemType()), super.getId());
-        Damageable damageable = (Damageable) oItem.itemMeta;
-        damageable.setDamage(getDamageValue());
-        oItem.itemMeta.setUnbreakable(true);
-        oItem.itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
+        zOItem oItem = new zOItem(this, player,true);
         oItem.setItem(ChatColor.GOLD + "Kupfer");
         NBTTagCompound tag = oItem.tagCompound();
         tag.setBoolean(zItemNBT.CONST_CAN_CRAFT, true);

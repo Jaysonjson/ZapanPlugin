@@ -5,7 +5,9 @@ import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.craftbukkit.v1_16_R2.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
@@ -19,6 +21,8 @@ public class zOItem {
     public net.minecraft.server.v1_16_R2.ItemStack nmsCopy;
     public AbstractItem zItem;
     public Player player = null;
+    public Boolean textureDamage = false;
+    @Deprecated
     public zOItem(AbstractItem zItem, ItemStack itemStack, ArrayList<String> lore, String id) {
         this.item = itemStack;
         this.itemMeta = this.item.getItemMeta();
@@ -27,6 +31,7 @@ public class zOItem {
         this.zItem = zItem;
     }
 
+    @Deprecated
     public zOItem(AbstractItem zItem, ItemStack itemStack, String id) {
         this.item = itemStack;
         this.itemMeta = this.item.getItemMeta();
@@ -35,6 +40,7 @@ public class zOItem {
         this.zItem = zItem;
     }
 
+    @Deprecated
     public zOItem(AbstractItem zItem, Player player, ItemStack itemStack, String id) {
         this.item = itemStack;
         this.itemMeta = this.item.getItemMeta();
@@ -42,6 +48,27 @@ public class zOItem {
         this.id = id;
         this.zItem = zItem;
         this.player = player;
+    }
+
+    @Deprecated
+    public zOItem(AbstractItem zItem, Player player, ItemStack itemStack, String id, Boolean textureDamage) {
+        this.item = itemStack;
+        this.itemMeta = this.item.getItemMeta();
+        this.lore = new ArrayList<>();
+        this.id = id;
+        this.zItem = zItem;
+        this.player = player;
+        this.textureDamage = textureDamage;
+    }
+
+    public zOItem(AbstractItem zItem, Player player, Boolean textureDamage) {
+        this.item = new ItemStack(zItem.getItemType());
+        this.itemMeta = this.item.getItemMeta();
+        this.lore = new ArrayList<>();
+        this.id = zItem.getId();
+        this.zItem = zItem;
+        this.player = player;
+        this.textureDamage = textureDamage;
     }
 
     public void setItem(String displayName) {
@@ -57,6 +84,12 @@ public class zOItem {
             }
         }
         lore.add(ChatColor.DARK_GRAY + "" + ChatColor.ITALIC + id + " [" + zItem.itemVersion() + "]");
+        if(textureDamage) {
+            Damageable damageable = (Damageable) itemMeta;
+            damageable.setDamage(zItem.getDamageValue());
+            itemMeta.setUnbreakable(true);
+            itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
+        }
         itemMeta.setLore(lore);
         itemMeta.setDisplayName(displayName);
         item.setItemMeta(itemMeta);

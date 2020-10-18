@@ -24,11 +24,7 @@ public class LiquidCopperItem extends AbstractItem {
 
     @Override
     public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(this, player, new ItemStack(getItemType()), super.getId());
-        Damageable damageable = (Damageable) oItem.itemMeta;
-        damageable.setDamage(getDamageValue());
-        oItem.itemMeta.setUnbreakable(true);
-        oItem.itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
+        zOItem oItem = new zOItem(this, player,true);
         oItem.lore.add(ChatColor.GRAY + "Flüssiges Kupfer in einen Eimer");
         oItem.setItem(ChatColor.GOLD + "Flüssiges Kupfer");
         NBTTagCompound tag = oItem.tagCompound();
