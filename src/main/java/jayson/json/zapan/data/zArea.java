@@ -1,6 +1,6 @@
 package jayson.json.zapan.data;
 
-import jayson.json.zapan.data.zareaobj.WORLD;
+import jayson.json.zapan.data.zareaobj.zWorld;
 import jayson.json.zapan.data.zareaobj.zLocation;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -13,7 +13,7 @@ public class zArea {
     public zLocation location = new zLocation();
     public int size;
     public UUID owner;
-    public WORLD world = WORLD.OVERWORLD;
+    public zWorld world = zWorld.OVERWORLD;
     public boolean breakBlocks = false;
     public boolean spawnMobs = false;
     public boolean dropItems = false;

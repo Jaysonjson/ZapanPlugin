@@ -4,10 +4,12 @@ import jayson.json.zapan.Utility;
 import jayson.json.zapan.data.zGuild;
 import jayson.json.zapan.data.zPlayer;
 import jayson.json.zapan.inventories.GuildChunkInventory;
+import jayson.json.zapan.inventories.StarterClassInventory;
 import jayson.json.zapan.inventories.guild.GuildInventory;
 import jayson.json.zapan.io.DataHandler;
 import jayson.json.zapan.npc.NPC;
 import jayson.json.zapan.other.Scoreboard;
+import jayson.json.zapan.skillclass.zClass;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -20,10 +22,16 @@ public class PlayerJoin implements Listener {
 
     @EventHandler
     public void PlayerJoinEvent(PlayerJoinEvent event) {
-        //event.getPlayer().getWorld().dropItemNaturally(event.getPlayer().getLocation(), new GoldBarItem().GetItem());
-        Utility.refreshHearts(event.getPlayer());
-        Scoreboard.updateScoreboard(event.getPlayer());
-        NPC.sendSinglePacket(event.getPlayer());
+        Player player = event.getPlayer();
+        zPlayer zPlayer = DataHandler.loadPlayer(player.getUniqueId());
+        Utility.refreshHearts(event.getPlayer(), zPlayer);
+        Scoreboard.updateScoreboard(player, zPlayer);
+        NPC.sendSinglePacket(player);
+        if(zPlayer.getPlayerClass().type.equals(zClass.NONE)) {
+            StarterClassInventory classInventory = new StarterClassInventory();
+            classInventory.openInventory(event.getPlayer());
+        }
+
         //GuildChunkInventory inventory = new GuildChunkInventory();
         //inventory.openInventory(event.getPlayer());
       /*  zPlayer player = DataHandler.loadPlayer(event.getPlayer().getUniqueId());

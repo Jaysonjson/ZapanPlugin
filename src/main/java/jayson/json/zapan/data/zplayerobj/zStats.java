@@ -2,9 +2,9 @@ package jayson.json.zapan.data.zplayerobj;
 
 public class zStats {
 
-    int strength = 0;
-    int intelligence = 0;
-
+    int strength = 1;
+    int intelligence = 1;
+    int agility = 1;
     public int getIntelligence() {
         return intelligence;
     }

@@ -18,6 +18,10 @@ public class Scoreboard {
         sendScoreboard(player, DataHandler.loadPlayer(player.getUniqueId()),Utility.countMoneyBackpack(player.getInventory()), Utility.countZoryhaShardBackpack(player.getInventory()), Utility.getNearestArea(player.getWorld().getEnvironment(), player.getLocation()).name, Utility.getNearestAreaDistance(player.getWorld().getEnvironment(), player.getLocation()));
     }
 
+    public static void updateScoreboard(Player player, zPlayer zPlayer) {
+        sendScoreboard(player, zPlayer,Utility.countMoneyBackpack(player.getInventory()), Utility.countZoryhaShardBackpack(player.getInventory()), Utility.getNearestArea(player.getWorld().getEnvironment(), player.getLocation()).name, Utility.getNearestAreaDistance(player.getWorld().getEnvironment(), player.getLocation()));
+    }
+
     public static void sendScoreboard(Player player, zPlayer zPlayer, double money, double zoryhaShardValue, String area, zLocation areaDistance) {
         ScoreboardManager scoreboardManager = Bukkit.getScoreboardManager();
         org.bukkit.scoreboard.Scoreboard scoreboard = scoreboardManager.getNewScoreboard();

@@ -22,6 +22,7 @@ import org.bukkit.craftbukkit.v1_16_R2.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -561,6 +562,7 @@ public class Utility {
         ItemStack itemstack = new ItemStack(material);
         itemstack.setAmount(amount);
         ItemMeta itemstackMeta = itemstack.getItemMeta();
+        itemstackMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
         itemstackMeta.setDisplayName(displayName);
         itemstack.setItemMeta(itemstackMeta);
         return itemstack;

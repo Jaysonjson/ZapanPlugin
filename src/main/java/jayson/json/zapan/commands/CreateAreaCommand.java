@@ -3,7 +3,7 @@ package jayson.json.zapan.commands;
 import jayson.json.zapan.Utility;
 import jayson.json.zapan.Zapan;
 import jayson.json.zapan.data.zArea;
-import jayson.json.zapan.data.zareaobj.WORLD;
+import jayson.json.zapan.data.zareaobj.zWorld;
 import jayson.json.zapan.data.zareaobj.zLocation;
 import jayson.json.zapan.io.DataHandler;
 import org.bukkit.*;
@@ -12,11 +12,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-
-import java.io.File;
 
 public class CreateAreaCommand implements CommandExecutor {
     @Override
@@ -49,12 +46,12 @@ public class CreateAreaCommand implements CommandExecutor {
                         DataHandler.saveArea(area);
                         player.sendMessage("Gebiet " + args[0] + " erstellt!");
                         Zapan.INSTANCE.areas.add(area);
-                        area.world = WORLD.OVERWORLD;
+                        area.world = zWorld.OVERWORLD;
                         if(player.getWorld().getEnvironment() == World.Environment.NETHER) {
-                            area.world = WORLD.NETHER;
+                            area.world = zWorld.NETHER;
                         }
                         if(player.getWorld().getEnvironment() == World.Environment.THE_END) {
-                            area.world = WORLD.END;
+                            area.world = zWorld.END;
                         }
                             //player.sendMessage(Utility.AreaOverlap(area.CreateLocation(player.getWorld()).add(Utility.GetNearestArea(player.getLocation()).size, Utility.GetNearestArea(player.getLocation()).size, Utility.GetNearestArea(player.getLocation()).size), area.CreateLocation(player.getWorld()).subtract(Utility.GetNearestArea(player.getLocation()).size, Utility.GetNearestArea(player.getLocation()).size, Utility.GetNearestArea(player.getLocation()).size), player.getLocation().add(size, size, size), player.getLocation().subtract(size, size, size)) + "");
                         } else {
