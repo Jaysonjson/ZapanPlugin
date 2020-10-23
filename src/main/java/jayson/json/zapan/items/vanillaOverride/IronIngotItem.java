@@ -22,7 +22,7 @@ public class IronIngotItem extends AbstractItem {
 
     @Override
     public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(this, player, new ItemStack(getItemType()), super.getId());
+        zOItem oItem = new zOItem(this, player, new ItemStack(getMaterial()), super.getId());
         oItem.init();
 
         NBTTagCompound tag = oItem.tagCompound();
@@ -42,8 +42,8 @@ public class IronIngotItem extends AbstractItem {
     }
 
     @Override
-    public Material getItemType() {
-        return super.getItemType();
+    public Material getMaterial() {
+        return super.getMaterial();
     }
 
     @Override

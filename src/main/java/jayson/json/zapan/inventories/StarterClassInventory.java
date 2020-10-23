@@ -50,7 +50,7 @@ public class StarterClassInventory implements Listener {
                         inventory.setItem(slot, new ItemStack(Material.WHITE_STAINED_GLASS_PANE));
                         color++;
                     } else {
-                        inventory.setItem(slot, new ItemStack(Material.YELLOW_STAINED_GLASS_PANE));
+                        inventory.setItem(slot, new ItemStack(Material.WHITE_STAINED_GLASS_PANE));
                         color = 0;
                     }
                 }

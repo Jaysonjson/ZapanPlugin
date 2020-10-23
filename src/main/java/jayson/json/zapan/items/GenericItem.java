@@ -1,6 +1,5 @@
 package jayson.json.zapan.items;
 
-import jayson.json.zapan.items.interfaces.IzMItem;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -24,8 +23,8 @@ public class GenericItem extends AbstractItem {
     }
 
     @Override
-    public Material getItemType() {
-        return super.getItemType();
+    public Material getMaterial() {
+        return super.getMaterial();
     }
 
 

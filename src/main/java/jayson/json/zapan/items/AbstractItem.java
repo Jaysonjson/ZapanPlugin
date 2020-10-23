@@ -11,16 +11,17 @@ import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.UUID;
 
-public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzCurrencyItem, IzMarketItem, IzNBTItem, IzMItem, IzConsumeItem, IzTextureItem, IzToolItem, IzAlchemyItem {
+public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzCurrencyItem, IzMarketItem, IzNBTItem, IzConsumeItem, IzTextureItem, IzToolItem, IzAlchemyItem {
 
     @Override
-    public Material getItemType() {
-        return material;
+    public Material getMaterial() {
+        return Material.AIR;
     }
 
+    @Deprecated
     @Override
-    public Material setItemType() {
-        return material;
+    public void setMaterial(Material material) {
+
     }
 
     public String id;
@@ -122,7 +123,7 @@ public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzC
 
     @Deprecated
     @Override
-    public void setId() {
+    public void setId(String id) {
 
     }
 
@@ -158,7 +159,7 @@ public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzC
     }
 
     public Material defaultVanillaOverride() {
-        return getItemType();
+        return getMaterial();
     }
 
     @Override

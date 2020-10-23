@@ -25,11 +25,11 @@ public class GuildChunkInventory implements Listener {
 
     public void openInventory(Player player) {
         inventory = Bukkit.createInventory(player, 54, "Guilden Gebiete");
-        setGlasses();
+        setContents();
         player.openInventory(inventory);
     }
 
-    private void setGlasses() {
+    private void setContents() {
         for (int i = 0; i < 54; i++) {
             inventory.setItem(i, new ItemStack(Material.WHITE_STAINED_GLASS_PANE));
         }

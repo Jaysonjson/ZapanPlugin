@@ -29,7 +29,7 @@ public final class Zapan extends JavaPlugin {
         new File(DataHandler.GUILD_DIR).mkdirs();
         new File(DataHandler.BACKPACK_DIR).mkdirs();
         new File(DataHandler.MOBDROPS_DIR).mkdirs();
-        DataHandler.createMobDrop();
+        //DataHandler.createMobDrop();
         ItemRegistry.reloadItems();
         References.reloadDrops();
         Utility.reloadAreas();

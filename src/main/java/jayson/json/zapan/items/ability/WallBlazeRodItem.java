@@ -26,7 +26,7 @@ public class WallBlazeRodItem extends AbstractItem {
 
     @Override
     public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(this, player, new ItemStack(getItemType()), getId());
+        zOItem oItem = new zOItem(this, player, new ItemStack(getMaterial()), getId());
         oItem.init();
         if(player != null) {
             zPlayer zPlayer = DataHandler.loadPlayer(player.getUniqueId());
@@ -82,8 +82,8 @@ public class WallBlazeRodItem extends AbstractItem {
     }
 
     @Override
-    public Material getItemType() {
-        return super.getItemType();
+    public Material getMaterial() {
+        return super.getMaterial();
     }
 
     @Override

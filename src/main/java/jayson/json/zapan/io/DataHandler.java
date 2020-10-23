@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import jayson.json.zapan.Utility;
 import jayson.json.zapan.data.*;
 import jayson.json.zapan.data.zdropobj.zMobDrop;
+import org.bukkit.entity.EntityType;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -210,6 +211,7 @@ public class DataHandler {
 
     public static void createMobDrop() {
         zMobDrop mobDrop = new zMobDrop();
+        mobDrop.type = EntityType.ZOMBIFIED_PIGLIN;
         mobDrop.itemDropsID.put("scrapItem", 2);
         String json = gsonBuilder.toJson(mobDrop);
         try {

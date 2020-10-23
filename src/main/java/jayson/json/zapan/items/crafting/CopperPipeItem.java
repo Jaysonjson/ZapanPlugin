@@ -44,8 +44,8 @@ public class CopperPipeItem extends AbstractItem {
     }
 
     @Override
-    public Material getItemType() {
-        return super.getItemType();
+    public Material getMaterial() {
+        return super.getMaterial();
     }
 
     @Override
