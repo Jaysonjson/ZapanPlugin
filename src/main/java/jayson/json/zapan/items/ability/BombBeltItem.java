@@ -1,6 +1,5 @@
 package jayson.json.zapan.items.ability;
 
-import jayson.json.zapan.data.zPlayer;
 import jayson.json.zapan.io.DataHandler;
 import jayson.json.zapan.items.AbstractItem;
 import jayson.json.zapan.items.ItemUseType;
@@ -11,6 +10,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
+import jayson.json.zapan.data.zPlayer;
 import org.bukkit.block.Block;
 import org.bukkit.craftbukkit.v1_16_R2.inventory.CraftItemStack;
 import org.bukkit.entity.Player;

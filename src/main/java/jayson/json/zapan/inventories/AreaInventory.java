@@ -72,6 +72,7 @@ public class AreaInventory implements Listener {
                 chatPlayers.remove(player);
                 DataHandler.saveArea(area);
                 openInventory(player, area.name);
+                Utility.reloadAreas();
                 event.setCancelled(true);
             }
         }

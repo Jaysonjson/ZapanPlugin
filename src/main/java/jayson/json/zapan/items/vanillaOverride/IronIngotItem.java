@@ -54,4 +54,5 @@ public class IronIngotItem extends AbstractItem {
     public boolean isVanillaOverride() {
         return true;
     }
+
 }

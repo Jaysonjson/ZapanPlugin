@@ -89,8 +89,7 @@ public class zOItem {
     }
 
     public void setItem(String displayName) {
-        item = CraftItemStack.asBukkitCopy(nmsCopy);
-        if(itemMeta != null) {
+        //item = CraftItemStack.asBukkitCopy(nmsCopy);
             try {
                 switch (zItem.getItemUseType()) {
                     case CRAFTING:
@@ -143,7 +142,6 @@ public class zOItem {
                 System.out.println("Fehler beim Item: " + zItem.getId());
             }
         }
-    }
 
     public net.minecraft.server.v1_16_R2.ItemStack createNMSCopy() {
         return CraftItemStack.asNMSCopy(item);

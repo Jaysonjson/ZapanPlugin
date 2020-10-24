@@ -1,5 +1,6 @@
 package jayson.json.zapan.items.currency;
 
+import jayson.json.zapan.Utility;
 import jayson.json.zapan.items.AbstractItem;
 import jayson.json.zapan.items.ItemUseType;
 import jayson.json.zapan.items.zItemNBT;
@@ -21,7 +22,7 @@ public class GoldBarItem extends AbstractItem {
 
     @Override
     public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(this, player);
+        zOItem oItem = new zOItem(this, player, new ItemStack(getMaterial()), super.getId());
         oItem.init();
 
         NBTTagCompound tag = oItem.getTagCompound();
@@ -29,9 +30,11 @@ public class GoldBarItem extends AbstractItem {
         tag.setBoolean(zItemNBT.CONST_CAN_CRAFT_MINECRAFT, false);
         oItem.nmsCopy.setTag(tag);
         oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
-
+        System.out.println(Utility.getItemTag(oItem.nmsCopy).hasKey(zItemNBT.CONST_ITEM_ID));
+        System.out.println(Utility.getItemTag(Utility.createNMSCopy(oItem.item)).hasKey(zItemNBT.CONST_ITEM_ID));
         oItem.lore.add(ChatColor.GRAY + "1.250Φ");
         oItem.setItem("\u00a76Gold Barren");
+        System.out.println(Utility.getItemTag(Utility.createNMSCopy(oItem.item)).hasKey(zItemNBT.CONST_ITEM_ID));
         return oItem.item;
     }
 

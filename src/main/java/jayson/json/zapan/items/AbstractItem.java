@@ -159,7 +159,7 @@ public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzC
     }
 
     public Material defaultVanillaOverride() {
-        return getMaterial();
+        return material;
     }
 
     @Override
