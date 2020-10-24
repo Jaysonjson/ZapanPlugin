@@ -107,6 +107,16 @@ public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzM
     }
 
     @Override
+    public int getMetalValue() {
+        return 0;
+    }
+
+    @Override
+    public int getFireValue() {
+        return 0;
+    }
+
+    @Override
     public void setDamage(int value) {
 
     }

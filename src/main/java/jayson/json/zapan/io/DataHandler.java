@@ -83,6 +83,13 @@ public class DataHandler {
         }
     }
 
+    public static void deleteBackPack(UUID uuid) {
+        new File(BACKPACK_DIR + uuid.toString() + ".json").delete();
+    }
+
+    public static boolean backPackExists(UUID uuid) {
+        return new File(BACKPACK_DIR + uuid.toString() + ".json").exists();
+    }
 
 
     public static void saveServer(zServer server) {

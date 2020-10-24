@@ -51,6 +51,7 @@ public final class Zapan extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new EntityDamage(), this);
         Bukkit.getPluginManager().registerEvents(new BanPlayer(), this);
         Bukkit.getPluginManager().registerEvents(new ItemPickup(), this);
+        Bukkit.getPluginManager().registerEvents(new ItemDespawn(), this);
         this.getCommand("sethealth").setExecutor(new SetHealthCommand());
         this.getCommand("area").setExecutor(new CreateAreaCommand());
         this.getCommand("guild").setExecutor(new CreateGuildCommand());

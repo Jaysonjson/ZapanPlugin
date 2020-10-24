@@ -2,6 +2,7 @@ package jayson.json.zapan.items.other;
 
 import jayson.json.zapan.Utility;
 import jayson.json.zapan.inventories.BackPackInventory;
+import jayson.json.zapan.io.DataHandler;
 import jayson.json.zapan.items.AbstractItem;
 import jayson.json.zapan.items.ItemUseType;
 import jayson.json.zapan.items.zItemNBT;
@@ -42,7 +43,7 @@ public class BackPackItem extends AbstractItem {
                 uuid = tag.getString(zItemNBT.ITEM_UUID);
             }
         } else {
-            uuid = UUID.randomUUID().toString();
+            uuid = generateUUID();
         }
 
         oItem.lore.add(inventorySize + " Slots");
@@ -62,6 +63,14 @@ public class BackPackItem extends AbstractItem {
             tag.setString(zItemNBT.ITEM_UUID, uuid);
         }
         return tag;
+    }
+
+    private String generateUUID() {
+        String uuid = UUID.randomUUID().toString();
+        if(DataHandler.backPackExists(UUID.fromString(uuid))) {
+            uuid = generateUUID();
+        }
+        return uuid;
     }
 
     @Override

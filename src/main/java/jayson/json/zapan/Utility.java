@@ -398,6 +398,10 @@ public class Utility {
         return itemStack.hasTag() ? itemStack.getTag() : new NBTTagCompound();
     }
 
+    public static NBTTagCompound getItemTag(ItemStack itemStack) {
+        return getItemTag(createNMSCopy(itemStack));
+    }
+
     public static net.minecraft.server.v1_16_R2.ItemStack createNMSCopy(ItemStack itemStack) {
         return CraftItemStack.asNMSCopy(itemStack);
     }
