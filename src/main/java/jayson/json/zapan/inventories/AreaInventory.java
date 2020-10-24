@@ -11,6 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerChatEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -49,24 +50,29 @@ public class AreaInventory implements Listener {
     public void InventoryClick(InventoryClickEvent event) {
         if(event.getInventory().equals(inventory) && Utility.isTopInventory(event)) {
             ItemStack clickedItem = event.getCurrentItem();
-            if(clickedItem.hasItemMeta()) {
-                String itemName = clickedItem.getItemMeta().getDisplayName();
-                if(itemName.equalsIgnoreCase("Name")) {
-                    chatPlayers.put((Player) event.getWhoClicked(), area);
-                    event.getWhoClicked().closeInventory();
+            if(clickedItem != null) {
+                if (clickedItem.hasItemMeta()) {
+                    String itemName = clickedItem.getItemMeta().getDisplayName();
+                    if (itemName.equalsIgnoreCase(area.displayName)) {
+                        chatPlayers.put((Player) event.getWhoClicked(), area);
+                        event.getWhoClicked().closeInventory();
+                    }
                 }
             }
         }
     }
 
     @EventHandler
-    public void ChatEvent(AsyncPlayerChatEvent event) {
+    public void ChatEvent(PlayerChatEvent event) {
         Player player = event.getPlayer();
         if(chatPlayers.containsKey(player)) {
             if(!event.getMessage().equalsIgnoreCase("abbrechen")) {
-                chatPlayers.get(player).displayName = event.getMessage();
+                zArea area = chatPlayers.get(player);
+                area.displayName = event.getMessage();
                 chatPlayers.remove(player);
-                openInventory(player, chatPlayers.get(player).name);
+                DataHandler.saveArea(area);
+                openInventory(player, area.name);
+                event.setCancelled(true);
             }
         }
     }

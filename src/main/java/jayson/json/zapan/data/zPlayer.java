@@ -69,10 +69,13 @@ public class zPlayer implements IHasUUID {
     }
 
     public boolean isInGuild() {
-        if(!Utility.guildExists(getGuildUuid())) {
-            setGuildUuid(null);
+        if(getGuildUuid() != null) {
+            if (!Utility.guildExists(getGuildUuid())) {
+                setGuildUuid(null);
+            }
+            return true;
         }
-        return getGuildUuid() != null;
+        return false;
     }
 
     public void setLevel(zLevel level) {
