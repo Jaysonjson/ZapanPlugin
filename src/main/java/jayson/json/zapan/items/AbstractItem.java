@@ -12,7 +12,7 @@ import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.UUID;
 
-public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzCurrencyItem, IzMarketItem, IzNBTItem, IzConsumeItem, IzTextureItem, IzToolItem, IzAlchemyItem {
+public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzMarketItem, IzNBTItem, IzConsumeItem, IzTextureItem, IzToolItem, IzAlchemyItem {
 
     @Override
     public Material getMaterial() {
@@ -183,45 +183,7 @@ public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzC
         return 0;
     }
 
-    @Override
-    public double getHacksilverAmount() {
-        return 0;
-    }
 
-    @Override
-    public double getZoryhaShardAmount() {
-        return 0;
-    }
-
-    @Override
-    public void setHacksilverAmount(double amount) {
-
-    }
-
-    @Override
-    public void setZoryhaShardAmount(double amount) {
-
-    }
-
-    @Override
-    public void increaseHacksilverAmount(double amount) {
-
-    }
-
-    @Override
-    public void increaseZoryhaShardAmount(double amount) {
-
-    }
-
-    @Override
-    public void decreaseHacksilverAmount(double amount) {
-
-    }
-
-    @Override
-    public void decreaseZoryhaShardAmount(double amount) {
-
-    }
 
     @Override
     public ItemUseType getItemUseType() {

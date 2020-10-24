@@ -12,6 +12,7 @@ import jayson.json.zapan.npc.NPC;
 import jayson.json.zapan.other.Scoreboard;
 import jayson.json.zapan.skillclass.zClass;
 import org.bukkit.Bukkit;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -32,8 +33,8 @@ public class PlayerJoin implements Listener {
             StarterClassInventory classInventory = new StarterClassInventory();
             classInventory.openInventory(event.getPlayer());
         }
-        AreaInventory areaInventory = new AreaInventory();
-        areaInventory.openInventory(player, "fuchsia");
+        //AreaInventory areaInventory = new AreaInventory();
+        //areaInventory.openInventory(player, Utility.getNearestArea(World.Environment.NORMAL, player.getLocation()).name);
         //GuildChunkInventory inventory = new GuildChunkInventory();
         //inventory.openInventory(event.getPlayer());
       /*  zPlayer player = DataHandler.loadPlayer(event.getPlayer().getUniqueId());

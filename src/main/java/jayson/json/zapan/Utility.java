@@ -572,6 +572,14 @@ public class Utility {
         return itemstack;
     }
 
+    public static ItemStack createInventoryWoolColor(boolean bool, String displayName, int amount) {
+        if(bool) {
+            return createInventoryStack(Material.GREEN_WOOL, amount, displayName);
+        } else {
+            return createInventoryStack(Material.RED_WOOL, amount, displayName);
+        }
+    }
+
     public static boolean isTopInventory(InventoryClickEvent event) {
         return event.getRawSlot() < event.getView().getTopInventory().getSize();
     }

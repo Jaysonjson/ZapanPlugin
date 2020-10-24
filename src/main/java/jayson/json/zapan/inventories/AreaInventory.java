@@ -44,18 +44,29 @@ public class AreaInventory implements Listener {
             inventory.setItem(i, new ItemStack(Material.GLASS_PANE));
         }
         inventory.setItem(10, Utility.createInventoryStack(Material.PAPER, 1, area.displayName));
+        inventory.setItem(19, Utility.createInventoryWoolColor(area.breakBlocks, "Blöcke Zerstören", 1));
     }
 
     @EventHandler
     public void InventoryClick(InventoryClickEvent event) {
         if(event.getInventory().equals(inventory) && Utility.isTopInventory(event)) {
+            event.setCancelled(true);
             ItemStack clickedItem = event.getCurrentItem();
             if(clickedItem != null) {
                 if (clickedItem.hasItemMeta()) {
-                    String itemName = clickedItem.getItemMeta().getDisplayName();
-                    if (itemName.equalsIgnoreCase(area.displayName)) {
-                        chatPlayers.put((Player) event.getWhoClicked(), area);
-                        event.getWhoClicked().closeInventory();
+                    if(event.getWhoClicked() instanceof Player) {
+                        Player player = (Player) event.getWhoClicked();
+                        String itemName = clickedItem.getItemMeta().getDisplayName();
+                        if (itemName.equalsIgnoreCase(area.displayName)) {
+                            chatPlayers.put(player, area);
+                            player.closeInventory();
+                        }
+                        if (itemName.equalsIgnoreCase("Blöcke Zerstören")) {
+                            area.breakBlocks = !area.breakBlocks;
+                            DataHandler.saveArea(area);
+                            //player.updateInventory();
+                        }
+                        setContents();
                     }
                 }
             }
@@ -63,19 +74,21 @@ public class AreaInventory implements Listener {
     }
 
     @EventHandler
-    public void ChatEvent(PlayerChatEvent event) {
+    public void ChatEvent(AsyncPlayerChatEvent event) {
+
         Player player = event.getPlayer();
         if(chatPlayers.containsKey(player)) {
             if(!event.getMessage().equalsIgnoreCase("abbrechen")) {
-                zArea area = chatPlayers.get(player);
-                area.displayName = event.getMessage();
-                chatPlayers.remove(player);
-                DataHandler.saveArea(area);
-                openInventory(player, area.name);
-                Utility.reloadAreas();
                 event.setCancelled(true);
+                Bukkit.getScheduler().runTask(Zapan.INSTANCE, () -> {
+                    zArea area = chatPlayers.get(player);
+                    area.displayName = event.getMessage();
+                    chatPlayers.remove(player);
+                    DataHandler.saveArea(area);
+                    Utility.reloadAreas();
+                    openInventory(player, area.name);
+                });
             }
         }
     }
-
 }

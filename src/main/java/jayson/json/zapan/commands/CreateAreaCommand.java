@@ -5,6 +5,7 @@ import jayson.json.zapan.Zapan;
 import jayson.json.zapan.data.zArea;
 import jayson.json.zapan.data.zareaobj.zWorld;
 import jayson.json.zapan.data.zareaobj.zLocation;
+import jayson.json.zapan.inventories.AreaInventory;
 import jayson.json.zapan.io.DataHandler;
 import org.bukkit.*;
 import org.bukkit.command.Command;
@@ -22,13 +23,8 @@ public class CreateAreaCommand implements CommandExecutor {
             if(args.length >= 2) {
                 if(args[0].equalsIgnoreCase("edit")) {
                     if(Utility.areaExists(args[1])) {
-                        Player player = (Player) commandSender;
-                        Inventory gui = Bukkit.createInventory(player, 9, ChatColor.RED + "Gebiet Bearbeiten");
-                        zArea area = DataHandler.loadArea(args[1]);
-                        ItemStack spawnMobs = GetWoolColor(area.spawnMobs, "Spawn Mobs");
-
-                        gui.addItem(spawnMobs);
-                        player.openInventory(gui);
+                        AreaInventory areaInventory = new AreaInventory();
+                        areaInventory.openInventory((Player) commandSender, Utility.getNearestArea(World.Environment.NORMAL, ((Player) commandSender).getLocation()).name);
                     } else {
                         commandSender.sendMessage("Gebiet existiert nicht!");
                     }
