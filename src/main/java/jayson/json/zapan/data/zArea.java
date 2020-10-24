@@ -10,6 +10,7 @@ import java.util.UUID;
 public class zArea {
 
     public String name;
+    public String displayName;
     public zLocation location = new zLocation();
     public int size;
     public UUID owner;
@@ -18,7 +19,7 @@ public class zArea {
     public boolean spawnMobs = false;
     public boolean dropItems = false;
     public boolean placeBlocks = false;
-
+    public int priority = 0;
     public Location createLocation(World world) {
         return new Location(world, location.x, location.y, location.z);
     }

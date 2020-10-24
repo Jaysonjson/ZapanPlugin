@@ -40,6 +40,7 @@ public class CreateAreaCommand implements CommandExecutor {
                         zArea area = new zArea();
                         area.owner = ((Player) commandSender).getUniqueId();
                         area.name = args[0];
+                        area.displayName = area.name;
                         area.size = size;
                         Location location = ((Player) commandSender).getLocation();
                         area.location = new zLocation(location.getX(), location.getY(), location.getZ());

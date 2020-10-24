@@ -27,7 +27,7 @@ public class BackPackItemNBT extends AbstractItem {
 
     @Override
     public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(this, player, new ItemStack(getMaterial()), super.getId());
+        zOItem oItem = new zOItem(this, player);
         oItem.init();
 
         NBTTagCompound tag = oItem.tagCompound();
@@ -36,7 +36,6 @@ public class BackPackItemNBT extends AbstractItem {
         tag.setBoolean(zItemNBT.CONST_IS_BACKPACK, true);
         tag.setString(zItemNBT.CONST_INVENTORY_CONTENT, "");
         oItem.nmsCopy.setTag(tag);
-        oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
 
         oItem.lore.add(inventorySize + " Slots");
         oItem.setItem(ChatColor.RESET + "Rucksack NBT");

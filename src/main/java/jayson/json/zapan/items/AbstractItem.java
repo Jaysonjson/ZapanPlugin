@@ -15,7 +15,7 @@ public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzC
 
     @Override
     public Material getMaterial() {
-        return Material.AIR;
+        return material;
     }
 
     @Deprecated

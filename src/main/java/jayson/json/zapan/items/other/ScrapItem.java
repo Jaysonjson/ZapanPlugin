@@ -22,14 +22,13 @@ public class ScrapItem extends AbstractItem {
 
     @Override
     public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(this, player, new ItemStack(getMaterial()), super.getId());
+        zOItem oItem = new zOItem(this, player);
         oItem.init();
 
         NBTTagCompound tag = oItem.tagCompound();
         tag.setDouble(zItemNBT.CONST_HACKSILVER_AMOUNT, hacksilverAmount);
         tag.setBoolean(zItemNBT.CONST_CAN_CRAFT_MINECRAFT, false);
         oItem.nmsCopy.setTag(tag);
-        oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
 
         oItem.lore.add(ChatColor.GRAY + "" + getHacksilverAmount() + "Φ");
         oItem.setItem(ChatColor.RESET + "Schrott");

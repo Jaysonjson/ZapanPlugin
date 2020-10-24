@@ -21,7 +21,7 @@ public class GoldBarItem extends AbstractItem {
 
     @Override
     public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(this, player, new ItemStack(getMaterial()), super.getId());
+        zOItem oItem = new zOItem(this, player);
         oItem.init();
 
         NBTTagCompound tag = oItem.getTagCompound();

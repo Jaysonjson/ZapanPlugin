@@ -65,7 +65,7 @@ public class zOItem {
     }
 
     public zOItem(AbstractItem zItem, Player player, Boolean textureDamage) {
-        this.item = new ItemStack(zItem.getItemType());
+        this.item = new ItemStack(zItem.getMaterial());
         this.itemMeta = this.item.getItemMeta();
         this.lore = new ArrayList<>();
         this.id = zItem.getId();
@@ -74,49 +74,75 @@ public class zOItem {
         this.textureDamage = textureDamage;
     }
 
+    public zOItem(AbstractItem zItem, Player player) {
+        this.item = new ItemStack(zItem.getMaterial());
+        this.itemMeta = this.item.getItemMeta();
+        this.lore = new ArrayList<>();
+        this.id = zItem.getId();
+        this.zItem = zItem;
+        this.player = player;
+        this.textureDamage = false;
+    }
+
     public void init() {
         nmsCopy = createNMSCopy();
     }
 
     public void setItem(String displayName) {
-        switch (zItem.getItemUseType()) {
-            case CRAFTING: lore.add(ChatColor.AQUA + "Herstellungsmaterial"); break;
-            case CURRENCY: lore.add(ChatColor.AQUA + "Währung"); break;
-            case ABILITY: lore.add(ChatColor.AQUA + "Benutzbar"); break;
-        }
-        if(player != null) {
-            zPlayer zPlayer = DataHandler.loadPlayer(player.getUniqueId());
-            if(zPlayer.getPlayerClass().type.equals(zClass.ALCHEMIST)) {
-                lore.add("");
-                //Checken if Spieler hat Item gelernt
-                if(false) {
-                    if (zItem.getEarthValue() > 0) {
-                        lore.add(ChatColor.GREEN + "Erde: " + zItem.getEarthValue());
-                    }
-                    if (zItem.getWaterValue() > 0) {
-                        lore.add(ChatColor.AQUA + "Wasser: " + zItem.getWaterValue());
-                    }
-                } else {
-                    lore.add("Item noch nicht gelernt!");
+        item = CraftItemStack.asBukkitCopy(nmsCopy);
+        if(itemMeta != null) {
+            try {
+                switch (zItem.getItemUseType()) {
+                    case CRAFTING:
+                        lore.add(ChatColor.AQUA + "Herstellungsmaterial");
+                        break;
+                    case CURRENCY:
+                        lore.add(ChatColor.AQUA + "Währung");
+                        break;
+                    case ABILITY:
+                        lore.add(ChatColor.AQUA + "Benutzbar");
+                        break;
                 }
-                lore.add("");
-            }
-            if(player.getGameMode().equals(GameMode.CREATIVE) ||player.getGameMode().equals(GameMode.SPECTATOR)) {
-                lore.add(ChatColor.LIGHT_PURPLE + "In Kreativ bekommen");
-                lore.add(ChatColor.DARK_GRAY + "" + ChatColor.ITALIC + "»" + player.getDisplayName() + "«");
+                if (player != null) {
+                    zPlayer zPlayer = DataHandler.loadPlayer(player.getUniqueId());
+                    if (zPlayer.getPlayerClass().type.equals(zClass.ALCHEMIST)) {
+                        lore.add("");
+                        //Checken if Spieler hat Item gelernt
+                        if (false) {
+                            if (zItem.getEarthValue() > 0) {
+                                lore.add(ChatColor.GREEN + "Erde: " + zItem.getEarthValue());
+                            }
+                            if (zItem.getWaterValue() > 0) {
+                                lore.add(ChatColor.AQUA + "Wasser: " + zItem.getWaterValue());
+                            }
+                        } else {
+                            lore.add("Item noch nicht gelernt!");
+                        }
+                        lore.add("");
+                    }
+                    if (player.getGameMode().equals(GameMode.CREATIVE) || player.getGameMode().equals(GameMode.SPECTATOR)) {
+                        lore.add(ChatColor.LIGHT_PURPLE + "In Kreativ bekommen");
+                        lore.add(ChatColor.DARK_GRAY + "" + ChatColor.ITALIC + "»" + player.getDisplayName() + "«");
+                    }
+                }
+                lore.add(ChatColor.DARK_GRAY + "" + ChatColor.ITALIC + id + " [" + zItem.itemVersion() + "]");
+
+                if (textureDamage) {
+                    Damageable damageable = (Damageable) itemMeta;
+                    damageable.setDamage(zItem.getDamageValue());
+                    itemMeta.setUnbreakable(true);
+                    itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
+                }
+                itemMeta.setLore(lore);
+                itemMeta.setDisplayName(displayName);
+                item.setItemMeta(itemMeta);
+                //nmsCopy = createNMSCopy();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("Fehler beim Item: " + zItem.getId());
             }
         }
-        lore.add(ChatColor.DARK_GRAY + "" + ChatColor.ITALIC + id + " [" + zItem.itemVersion() + "]");
-        if(textureDamage) {
-            Damageable damageable = (Damageable) itemMeta;
-            damageable.setDamage(zItem.getDamageValue());
-            itemMeta.setUnbreakable(true);
-            itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
-        }
-        itemMeta.setLore(lore);
-        itemMeta.setDisplayName(displayName);
-        item.setItemMeta(itemMeta);
-        //nmsCopy = createNMSCopy();
     }
 
     public net.minecraft.server.v1_16_R2.ItemStack createNMSCopy() {

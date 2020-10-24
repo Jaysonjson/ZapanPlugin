@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.UUID;
 
 public class BackPackItem extends AbstractItem {
-    int inventorySize = 36;
+    int inventorySize;
 
     public BackPackItem(String id, Material material, ItemUseType itemUseType, int inventorySize) {
         super(id, material, itemUseType);
@@ -27,7 +27,7 @@ public class BackPackItem extends AbstractItem {
 
     @Override
     public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(this, player, new ItemStack(getMaterial()), super.getId());
+        zOItem oItem = new zOItem(this, player);
         oItem.init();
 
         NBTTagCompound tag = oItem.getTagCompound();
@@ -36,7 +36,6 @@ public class BackPackItem extends AbstractItem {
         getNBTBooleans().put(zItemNBT.CONST_IS_BACKPACK, true);
         oItem.setTagCompound();
         oItem.nmsCopy.setTag(tag);
-        oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
 
         oItem.lore.add(inventorySize + " Slots");
         oItem.setItem(ChatColor.RESET + "Rucksack");

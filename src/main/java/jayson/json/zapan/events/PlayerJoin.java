@@ -3,6 +3,7 @@ package jayson.json.zapan.events;
 import jayson.json.zapan.Utility;
 import jayson.json.zapan.data.zGuild;
 import jayson.json.zapan.data.zPlayer;
+import jayson.json.zapan.inventories.AreaInventory;
 import jayson.json.zapan.inventories.GuildChunkInventory;
 import jayson.json.zapan.inventories.StarterClassInventory;
 import jayson.json.zapan.inventories.guild.GuildInventory;
@@ -31,7 +32,8 @@ public class PlayerJoin implements Listener {
             StarterClassInventory classInventory = new StarterClassInventory();
             classInventory.openInventory(event.getPlayer());
         }
-
+        AreaInventory areaInventory = new AreaInventory();
+        areaInventory.openInventory(player, "fuchsia");
         //GuildChunkInventory inventory = new GuildChunkInventory();
         //inventory.openInventory(event.getPlayer());
       /*  zPlayer player = DataHandler.loadPlayer(event.getPlayer().getUniqueId());

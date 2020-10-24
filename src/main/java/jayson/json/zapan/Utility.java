@@ -33,10 +33,7 @@ import org.yaml.snakeyaml.external.biz.base64Coder.Base64Coder;
 import javax.annotation.Nullable;
 import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.UUID;
+import java.util.*;
 
 public class Utility {
 
@@ -297,11 +294,18 @@ public class Utility {
 
     public static void reloadAreas() {
         Zapan.INSTANCE.areas.clear();
-
+        HashMap<String, zArea> areaHash = new HashMap<>();
+        ArrayList<String> sortedHash = new ArrayList<>();
         for (File file : new File(DataHandler.AREA_DIR).listFiles()) {
             zArea area = DataHandler.loadArea(file.getName().replaceAll(".json", ""));
-            Zapan.INSTANCE.areas.add(area);
+            areaHash.put(area.priority + "_" + area.name, area);
+            sortedHash.add( area.priority + "_" + area.name);
             DataHandler.saveArea(area);
+        }
+        Collections.sort(sortedHash);
+        Collections.reverse(sortedHash);
+        for (String hash : sortedHash) {
+            Zapan.INSTANCE.areas.add(areaHash.get(hash));
         }
     }
 
@@ -409,14 +413,14 @@ public class Utility {
     }
 
     @Deprecated
-    public static boolean isAbilityItem(ItemStack itemStack) {
-        return isAbilityItemINEFF(null, itemStack);
+    public static boolean isAbilityItemINEF(ItemStack itemStack) {
+        return isAbilityItemINEFF(itemStack);
     }
 
     @Deprecated
-    public static boolean isAbilityItemINEFF(Player player, ItemStack itemStack) {
+    public static boolean isAbilityItemINEFF(ItemStack itemStack) {
         for (zItemAbility value : zItemAbility.values()) {
-            if(value.getAbstractItem().getItem(player).getType().equals(itemStack.getType())) {
+            if(value.getAbstractItem().getMaterial().equals(itemStack.getType())) {
                 return true;
             }
         }
@@ -437,7 +441,7 @@ public class Utility {
 
     public static boolean isAbilityItemAll(Player player, ItemStack itemStack) {
         for (IzItemRegistry value : ItemRegistry.items) {
-            if(value.getAbstractItem().getItemType().equals(itemStack.getType())) {
+            if(value.getAbstractItem().getMaterial().equals(itemStack.getType())) {
                 return true;
             }
         }
@@ -457,7 +461,7 @@ public class Utility {
 
     public static boolean isAbstractItem(ItemStack itemStack) {
         for (IzItemRegistry item : ItemRegistry.items) {
-            if(item.getAbstractItem().getItem(null).getType().equals(itemStack.getType())) {
+            if(item.getAbstractItem().getMaterial().equals(itemStack.getType())) {
                 if(Utility.getItemTag(Utility.createNMSCopy(itemStack)).hasKey(zItemNBT.CONST_ITEM_ID)) {
                     return true;
                 }

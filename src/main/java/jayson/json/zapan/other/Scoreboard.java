@@ -15,11 +15,11 @@ import org.bukkit.scoreboard.ScoreboardManager;
 public class Scoreboard {
 
     public static void updateScoreboard(Player player) {
-        sendScoreboard(player, DataHandler.loadPlayer(player.getUniqueId()),Utility.countMoneyBackpack(player.getInventory()), Utility.countZoryhaShardBackpack(player.getInventory()), Utility.getNearestArea(player.getWorld().getEnvironment(), player.getLocation()).name, Utility.getNearestAreaDistance(player.getWorld().getEnvironment(), player.getLocation()));
+        sendScoreboard(player, DataHandler.loadPlayer(player.getUniqueId()), Utility.countMoneyBackpack(player.getInventory()), Utility.countZoryhaShardBackpack(player.getInventory()), Utility.getNearestArea(player.getWorld().getEnvironment(), player.getLocation()).displayName, Utility.getNearestAreaDistance(player.getWorld().getEnvironment(), player.getLocation()));
     }
 
     public static void updateScoreboard(Player player, zPlayer zPlayer) {
-        sendScoreboard(player, zPlayer,Utility.countMoneyBackpack(player.getInventory()), Utility.countZoryhaShardBackpack(player.getInventory()), Utility.getNearestArea(player.getWorld().getEnvironment(), player.getLocation()).name, Utility.getNearestAreaDistance(player.getWorld().getEnvironment(), player.getLocation()));
+        sendScoreboard(player, zPlayer, Utility.countMoneyBackpack(player.getInventory()), Utility.countZoryhaShardBackpack(player.getInventory()), Utility.getNearestArea(player.getWorld().getEnvironment(), player.getLocation()).displayName, Utility.getNearestAreaDistance(player.getWorld().getEnvironment(), player.getLocation()));
     }
 
     public static void sendScoreboard(Player player, zPlayer zPlayer, double money, double zoryhaShardValue, String area, zLocation areaDistance) {

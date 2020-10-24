@@ -28,7 +28,7 @@ public class BombBeltItem extends AbstractItem {
 
     @Override
     public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(this, player, new ItemStack(getMaterial()), getId());
+        zOItem oItem = new zOItem(this, player);
         oItem.init();
         if(player != null) {
             zPlayer zPlayer = DataHandler.loadPlayer(player.getUniqueId());
