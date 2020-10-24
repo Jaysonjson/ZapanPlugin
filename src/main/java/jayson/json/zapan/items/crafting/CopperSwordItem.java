@@ -1,5 +1,6 @@
 package jayson.json.zapan.items.crafting;
 
+import jayson.json.zapan.Utility;
 import jayson.json.zapan.items.AbstractItem;
 import jayson.json.zapan.items.ItemUseType;
 import jayson.json.zapan.items.zItemNBT;
@@ -14,33 +15,55 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Random;
+
 public class CopperSwordItem extends AbstractItem {
 
     int damage;
+    int durability;
     public CopperSwordItem(String id, Material material, ItemUseType itemUseType, int damageValue) {
         super(id, material, itemUseType);
         this.damage = damageValue;
     }
 
-    @Override
-    public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(this, player,true);
-        oItem.init();
 
-        NBTTagCompound tag = oItem.tagCompound();
-        tag.setBoolean(zItemNBT.CONST_CAN_CRAFT, true);
-        tag.setBoolean(zItemNBT.CONST_CAN_CRAFT_MINECRAFT, false);
-        if (!tag.hasKey(zItemNBT.CONST_ITEM_DURABILITY)) {
-            tag.setInt(zItemNBT.CONST_ITEM_DURABILITY, getDurability());
+    @Override
+    public ItemStack createItem(Player player, ItemStack stack) {
+        boolean exists = true;
+        if(stack == null) {
+            stack = new ItemStack(getMaterial());
+            exists = false;
         }
-        oItem.nmsCopy.setTag(tag);
-        oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
+        zOItem oItem = new zOItem(this, player, stack, getId(),true);
+
+        if(exists) {
+            NBTTagCompound tag = getTag(Utility.getItemTag(Utility.createNMSCopy(stack)));
+            if(tag.hasKey(zItemNBT.ITEM_DURABILITY)) {
+                durability = tag.getInt(zItemNBT.ITEM_DURABILITY);
+            }
+        } else {
+            durability = getDurability();
+        }
 
         oItem.lore.add(ChatColor.GRAY + "Ein Schwert aus Kupfer");
-        oItem.lore.add(ChatColor.BLUE + "" + tag.getInt(zItemNBT.CONST_ITEM_DURABILITY) + "/" + getDurability());
+        oItem.lore.add(ChatColor.BLUE + "" + durability + "/" + getDurability());
         oItem.setItem(ChatColor.GOLD + "Kupfer Schwert");
+        oItem.createNMSCopy();
+        oItem.nmsCopy.setTag(getTag(oItem.getTagCompound()));
+        oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
         return oItem.item;
     }
+
+    @Override
+    public NBTTagCompound getTag(NBTTagCompound tag) {
+        tag.setBoolean(zItemNBT.CAN_CRAFT, true);
+        tag.setBoolean(zItemNBT.CAN_CRAFT_MINECRAFT, false);
+        if(!tag.hasKey(zItemNBT.ITEM_DURABILITY)) {
+            tag.setInt(zItemNBT.ITEM_DURABILITY, getDurability());
+        }
+        return tag;
+    }
+
 
     @Override
     public @NotNull String getId() {

@@ -23,18 +23,22 @@ public class HopItem extends AbstractItem {
     }
 
     @Override
-    public ItemStack getItem(Player player) {
+    public ItemStack createItem(Player player, ItemStack stack) {
         zOItem oItem = new zOItem(this, player,true);
-        oItem.init();
-
-        NBTTagCompound tag = oItem.tagCompound();
-        tag.setBoolean(zItemNBT.CONST_CAN_CRAFT, true);
-        tag.setBoolean(zItemNBT.CONST_CAN_CRAFT_MINECRAFT, false);
-        oItem.nmsCopy.setTag(tag);
-        oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
 
         oItem.setItem(ChatColor.YELLOW + "Hopfen");
+
+        oItem.createNMSCopy();
+        oItem.nmsCopy.setTag(getTag(oItem.getTagCompound()));
+        oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
         return oItem.item;
+    }
+
+    @Override
+    public NBTTagCompound getTag(NBTTagCompound tag) {
+        tag.setBoolean(zItemNBT.CAN_CRAFT, true);
+        tag.setBoolean(zItemNBT.CAN_CRAFT_MINECRAFT, false);
+        return tag;
     }
 
     @Override

@@ -20,19 +20,22 @@ public class SkillBookItem extends AbstractItem {
     }
 
     @Override
-    public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(this, player);
-        oItem.init();
+    public ItemStack createItem(Player player, ItemStack stack) {
+        zOItem oItem = new zOItem(this, player,true);
 
-        NBTTagCompound tag = oItem.tagCompound();
-        tag.setBoolean(zItemNBT.CONST_CAN_CRAFT_MINECRAFT, false);
-        tag.setString(zItemNBT.CONST_ITEM_ID, "skillBookItem");
-        oItem.nmsCopy.setTag(tag);
+        oItem.setItem(ChatColor.RESET + "Skillbuch");
 
-        oItem.setItem(ChatColor.BOLD + "Skillbuch");
+        oItem.createNMSCopy();
+        oItem.nmsCopy.setTag(getTag(oItem.getTagCompound()));
+        oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
         return oItem.item;
     }
 
+    @Override
+    public NBTTagCompound getTag(NBTTagCompound tag) {
+        tag.setBoolean(zItemNBT.CAN_CRAFT_MINECRAFT, false);
+        return tag;
+    }
     @Override
     public @NotNull String getId() {
         return super.getId();

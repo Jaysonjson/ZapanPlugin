@@ -20,14 +20,14 @@ public class ItemPickup implements Listener {
             NBTTagCompound tag = Utility.getItemTag(Utility.createNMSCopy(itemStack));
             if (Utility.isAbstractItem(itemStack)) {
                 System.out.println("Item geändert -> Pickup");
-                ItemStack item = Utility.getAbstractItemFromNMS(itemStack).getItem(player);
+                ItemStack item = Utility.getAbstractItemFromNMS(itemStack).createItem(player, itemStack);
                 item.setAmount(itemStack.getAmount());
                 event.getItem().setItemStack(item);
             }
-            if(!tag.hasKey(zItemNBT.CONST_ITEM_ID)) {
+            if(!tag.hasKey(zItemNBT.ITEM_ID)) {
                 if (Utility.isAbstractVanillaItem(itemStack)) {
                     System.out.println("Vanilla Item geändert -> Pickup");
-                    ItemStack item = Utility.getAbstractVanillaOverride(itemStack).getItem(player);
+                    ItemStack item = Utility.getAbstractVanillaOverride(itemStack).createItem(player, itemStack);
                     item.setAmount(itemStack.getAmount());
                     event.getItem().setItemStack(item);
                 }

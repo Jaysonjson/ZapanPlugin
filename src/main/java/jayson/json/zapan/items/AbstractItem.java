@@ -1,6 +1,7 @@
 package jayson.json.zapan.items;
 
 import jayson.json.zapan.items.interfaces.*;
+import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -63,26 +64,26 @@ public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzC
     }
 
     @Override
-    public ItemStack getItem(Player player) {
+    public ItemStack createItem(Player player, ItemStack stack) {
         return new ItemStack(Material.AIR);
     }
 
     @Override
     @Nullable
     @Deprecated
-    public ItemStack getItem() {
-        return getItem(null);
+    public ItemStack createItem() {
+        return createItem(null, null);
     }
 
     @Override
     @Deprecated
     public void update(ItemStack itemStack) {
-        itemStack = getItem(null);
+        itemStack = createItem(null, null);
     }
 
     @Override
     public ItemStack update(Player player) {
-        return getItem(player);
+        return createItem(player, null);
     }
 
     @Override
@@ -135,6 +136,16 @@ public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzC
     @Override
     public void consume() {
 
+    }
+
+    @Override
+    public int requiredIntelligence() {
+        return 0;
+    }
+
+    @Override
+    public NBTTagCompound getTag(NBTTagCompound tag) {
+        return null;
     }
 
     @Override

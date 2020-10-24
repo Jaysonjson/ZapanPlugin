@@ -24,9 +24,9 @@ public class BackPackItemNBT extends AbstractItem {
         super(id, material, itemUseType);
         this.inventorySize = inventorySize;
     }
-
+/*
     @Override
-    public ItemStack getItem(Player player) {
+    public ItemStack createItem(Player player) {
         zOItem oItem = new zOItem(this, player);
         oItem.init();
 
@@ -41,7 +41,7 @@ public class BackPackItemNBT extends AbstractItem {
         oItem.setItem(ChatColor.RESET + "Rucksack NBT");
         return oItem.item;
     }
-
+*/
     @Override
     public void ability(World world, Player player, ItemStack itemStack) {
         BackPackNBTInventory inventory = new BackPackNBTInventory(player.getInventory().getHeldItemSlot(), inventorySize);

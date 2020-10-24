@@ -27,32 +27,28 @@ public class FireEs01BlazeRodItem extends AbstractItem {
     }
 
     @Override
-    public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(this, player);
-        oItem.init();
-
-        if(player != null) {
-            zPlayer zPlayer = DataHandler.loadPlayer(player.getUniqueId());
-            if(zPlayer.getStats().getIntelligence() >= 5) {
-                oItem.lore.add(ChatColor.GREEN + "Benötigt Intelligenz 5");
-            } else {
-                oItem.lore.add(ChatColor.RED + "Benötigt Intelligenz 5 (Du hast: " + zPlayer.getStats().getIntelligence() + ")");
-            }
-        } else {
-            oItem.lore.add(ChatColor.GRAY + "Benötigt Intelligenz 5");
-        }
+    public ItemStack createItem(Player player, ItemStack stack) {
+        zOItem oItem = new zOItem(this, player,true);
         oItem.lore.add(ChatColor.GRAY + "Platziert zufällig Feuer in der Nähe");
-
-        NBTTagCompound tag = oItem.tagCompound();
-        tag.setBoolean(zItemNBT.CONST_CAN_CRAFT_MINECRAFT, false);
-        tag.setInt(zItemNBT.CONST_NEEDED_INTELLIGENCE, 5);
-        oItem.nmsCopy.setTag(tag);
-        oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
-
         oItem.setItem(ChatColor.RED + "Feuer Es01");
+
+        oItem.createNMSCopy();
+        oItem.nmsCopy.setTag(getTag(oItem.getTagCompound()));
+        oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
         return oItem.item;
     }
 
+    @Override
+    public NBTTagCompound getTag(NBTTagCompound tag) {
+        tag.setInt(zItemNBT.NEEDED_INTELLIGENCE, requiredIntelligence());
+        tag.setBoolean(zItemNBT.CAN_CRAFT_MINECRAFT, false);
+        return tag;
+    }
+
+    @Override
+    public int requiredIntelligence() {
+        return 5;
+    }
 
     @Override
     public void ability(World world, Player player, ItemStack itemStack) {

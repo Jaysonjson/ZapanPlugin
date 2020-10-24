@@ -1,5 +1,6 @@
 package jayson.json.zapan.items.other;
 
+import jayson.json.zapan.Utility;
 import jayson.json.zapan.items.AbstractItem;
 import jayson.json.zapan.items.ItemUseType;
 import jayson.json.zapan.items.zItemNBT;
@@ -14,25 +15,44 @@ import org.jetbrains.annotations.NotNull;
 
 public class ScrapItem extends AbstractItem {
 
-    double hacksilverAmount;
-    public ScrapItem(String id, Material material, ItemUseType itemUseType, double hacksilverAmount) {
+    double currencyValue;
+    public ScrapItem(String id, Material material, ItemUseType itemUseType) {
         super(id, material, itemUseType);
-        this.hacksilverAmount = hacksilverAmount;
     }
 
     @Override
-    public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(this, player);
-        oItem.init();
+    public ItemStack createItem(Player player, ItemStack stack) {
+        boolean exists = true;
+        if(stack == null) {
+            stack = new ItemStack(getMaterial());
+            exists = false;
+        }
+        zOItem oItem = new zOItem(this, player, stack, getId(),true);
 
-        NBTTagCompound tag = oItem.tagCompound();
-        tag.setDouble(zItemNBT.CONST_HACKSILVER_AMOUNT, hacksilverAmount);
-        tag.setBoolean(zItemNBT.CONST_CAN_CRAFT_MINECRAFT, false);
-        oItem.nmsCopy.setTag(tag);
+        if(exists) {
+            NBTTagCompound tag = getTag(Utility.getItemTag(Utility.createNMSCopy(stack)));
+            if(tag.hasKey(zItemNBT.HACKSILVER_AMOUNT)) {
+                currencyValue = tag.getDouble(zItemNBT.HACKSILVER_AMOUNT);
+            }
+        } else {
+            currencyValue = 0.25;
+        }
 
-        oItem.lore.add(ChatColor.GRAY + "" + getHacksilverAmount() + "Φ");
+        oItem.lore.add(ChatColor.GRAY + "" + currencyValue + "Φ");
         oItem.setItem(ChatColor.RESET + "Schrott");
+        oItem.createNMSCopy();
+        oItem.nmsCopy.setTag(getTag(oItem.getTagCompound()));
+        oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
         return oItem.item;
+    }
+
+    @Override
+    public NBTTagCompound getTag(NBTTagCompound tag) {
+        if(!tag.hasKey(zItemNBT.HACKSILVER_AMOUNT)) {
+            tag.setDouble(zItemNBT.HACKSILVER_AMOUNT, currencyValue);
+        }
+        tag.setBoolean(zItemNBT.CAN_CRAFT_MINECRAFT, false);
+        return tag;
     }
 
     @Override
@@ -45,10 +65,6 @@ public class ScrapItem extends AbstractItem {
         return super.getMaterial();
     }
 
-    @Override
-    public double getHacksilverAmount() {
-        return hacksilverAmount;
-    }
 
     @Override
     public ItemUseType getItemUseType() {

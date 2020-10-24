@@ -40,7 +40,7 @@ public class ItemInventory implements Listener {
         for (IzItemRegistry item : ItemRegistry.items) {
             page_index++;
             if (page_index < 46) {
-                page_content.add(item.getAbstractItem().getItem(player));
+                page_content.add(item.getAbstractItem().createItem(player, null));
             }
             if (page_index >= 46 || page_index.equals(ItemRegistry.items.size()) || page_index.equals(page_check)) {
                 page++;
@@ -62,7 +62,7 @@ public class ItemInventory implements Listener {
                 if (clickedItem.hasItemMeta()) {
                     net.minecraft.server.v1_16_R2.ItemStack nmsCopy = Utility.createNMSCopy(clickedItem);
                     NBTTagCompound tag = Utility.getItemTag(nmsCopy);
-                    if(tag.hasKey(zItemNBT.CONST_ITEM_ID)) {
+                    if(tag.hasKey(zItemNBT.ITEM_ID)) {
                         event.getView().setCursor(clickedItem);
                         event.setCancelled(true);
                     }
@@ -124,7 +124,7 @@ public class ItemInventory implements Listener {
         }
         net.minecraft.server.v1_16_R2.ItemStack nmsItem = CraftItemStack.asNMSCopy(stack);
         NBTTagCompound tag = nmsItem.hasTag() ? nmsItem.getTag() : new NBTTagCompound();
-        tag.setBoolean(zItemNBT.CONST_CAN_MOVE, false);
+        tag.setBoolean(zItemNBT.CAN_MOVE, false);
         tag.setInt("FAKENUMBER", new Random().nextInt(5000));
         tag.setInt("SCFAKENUMBER", new Random().nextInt(7000));
         nmsItem.setTag(tag);

@@ -13,30 +13,51 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Random;
+
 public class GoldBarItem extends AbstractItem {
 
-
+    double currencyValue;
     public GoldBarItem(String id, Material material, ItemUseType itemUseType) {
         super(id, material, itemUseType);
     }
 
-    @Override
-    public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(this, player, new ItemStack(getMaterial()), super.getId());
-        oItem.init();
 
-        NBTTagCompound tag = oItem.getTagCompound();
-        tag.setDouble(zItemNBT.CONST_HACKSILVER_AMOUNT, 1250);
-        tag.setBoolean(zItemNBT.CONST_CAN_CRAFT_MINECRAFT, false);
-        oItem.nmsCopy.setTag(tag);
-        oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
-        System.out.println(Utility.getItemTag(oItem.nmsCopy).hasKey(zItemNBT.CONST_ITEM_ID));
-        System.out.println(Utility.getItemTag(Utility.createNMSCopy(oItem.item)).hasKey(zItemNBT.CONST_ITEM_ID));
-        oItem.lore.add(ChatColor.GRAY + "1.250Φ");
+    @Override
+    public ItemStack createItem(Player player, ItemStack stack) {
+        boolean exists = true;
+        if(stack == null) {
+            stack = new ItemStack(getMaterial());
+            exists = false;
+        }
+        zOItem oItem = new zOItem(this, player, stack, getId(),true);
+
+        if(exists) {
+            NBTTagCompound tag = getTag(Utility.getItemTag(Utility.createNMSCopy(stack)));
+            if(tag.hasKey(zItemNBT.HACKSILVER_AMOUNT)) {
+                currencyValue = tag.getDouble(zItemNBT.HACKSILVER_AMOUNT);
+            }
+        } else {
+            currencyValue = 1.250;
+        }
+
+        oItem.lore.add(ChatColor.GRAY + "" + currencyValue + "Φ");
         oItem.setItem("\u00a76Gold Barren");
-        System.out.println(Utility.getItemTag(Utility.createNMSCopy(oItem.item)).hasKey(zItemNBT.CONST_ITEM_ID));
+        oItem.createNMSCopy();
+        oItem.nmsCopy.setTag(getTag(oItem.getTagCompound()));
+        oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
         return oItem.item;
     }
+
+    @Override
+    public NBTTagCompound getTag(NBTTagCompound tag) {
+        tag.setBoolean(zItemNBT.CAN_CRAFT_MINECRAFT, false);
+        if(!tag.hasKey(zItemNBT.HACKSILVER_AMOUNT)) {
+            tag.setDouble(zItemNBT.HACKSILVER_AMOUNT, currencyValue);
+        }
+        return tag;
+    }
+
 
     @Override
     public @NotNull String getId() {

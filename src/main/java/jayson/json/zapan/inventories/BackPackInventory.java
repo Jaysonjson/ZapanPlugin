@@ -40,8 +40,8 @@ public class BackPackInventory implements Listener {
             if(clickedItem != null) {
                 if (clickedItem.hasItemMeta()) {
                     NBTTagCompound tag = Utility.getItemTag(Utility.createNMSCopy(clickedItem));
-                    if (tag.hasKey(zItemNBT.CONST_IS_BACKPACK)) {
-                        if (tag.getBoolean(zItemNBT.CONST_IS_BACKPACK)) {
+                    if (tag.hasKey(zItemNBT.IS_BACKPACK)) {
+                        if (tag.getBoolean(zItemNBT.IS_BACKPACK)) {
                             event.setCancelled(true);
                         }
                     }
@@ -52,7 +52,7 @@ public class BackPackInventory implements Listener {
 
     public void openInventory(Player player) {
         inventory = Bukkit.createInventory(player, inventorySize, "Items");
-        UUID uuid = UUID.fromString(Utility.getItemTag(Utility.createNMSCopy(backPackItem)).getString(zItemNBT.CONST_ITEM_UUID));
+        UUID uuid = UUID.fromString(Utility.getItemTag(Utility.createNMSCopy(backPackItem)).getString(zItemNBT.ITEM_UUID));
         //Vielleicht als Item NBT Tag speichern?
         backPack = DataHandler.loadBackPack(uuid);
         inventory.setContents(backPack.getItemStacks());

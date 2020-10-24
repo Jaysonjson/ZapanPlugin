@@ -193,7 +193,7 @@ public class Utility {
     }
 
     public static void spawnCustomItem(Player player, AbstractItem item, World world, Location location) {
-        world.dropItemNaturally(location, item.getItem(player));
+        world.dropItemNaturally(location, item.createItem(player, null));
     }
 
     public static double countMoney(Player player) {
@@ -211,8 +211,8 @@ public class Utility {
                 if (content.hasItemMeta()) {
                     net.minecraft.server.v1_16_R2.ItemStack nmsItem = createNMSCopy(content);
                     NBTTagCompound tag = getItemTag(nmsItem);
-                    if (tag.hasKey(zItemNBT.CONST_HACKSILVER_AMOUNT)) {
-                        amount += (tag.getDouble(zItemNBT.CONST_HACKSILVER_AMOUNT) * content.getAmount());
+                    if (tag.hasKey(zItemNBT.HACKSILVER_AMOUNT)) {
+                        amount += (tag.getDouble(zItemNBT.HACKSILVER_AMOUNT) * content.getAmount());
                     }
                 }
             }
@@ -227,11 +227,11 @@ public class Utility {
                 if (content.hasItemMeta()) {
                     net.minecraft.server.v1_16_R2.ItemStack nmsItem = createNMSCopy(content);
                     NBTTagCompound tag = getItemTag(nmsItem);
-                    if (tag.hasKey(zItemNBT.CONST_HACKSILVER_AMOUNT)) {
-                        amount += (tag.getDouble(zItemNBT.CONST_HACKSILVER_AMOUNT) * content.getAmount());
+                    if (tag.hasKey(zItemNBT.HACKSILVER_AMOUNT)) {
+                        amount += (tag.getDouble(zItemNBT.HACKSILVER_AMOUNT) * content.getAmount());
                     }
-                    if(tag.hasKey(zItemNBT.CONST_IS_BACKPACK)) {
-                        ItemStack[] contents = generateInventoryContent(DataHandler.loadBackPack(UUID.fromString(tag.getString(zItemNBT.CONST_ITEM_UUID))).inventoryContent);
+                    if(tag.hasKey(zItemNBT.IS_BACKPACK)) {
+                        ItemStack[] contents = generateInventoryContent(DataHandler.loadBackPack(UUID.fromString(tag.getString(zItemNBT.ITEM_UUID))).inventoryContent);
                         amount += countMoney(contents);
                     }
                 }
@@ -251,8 +251,8 @@ public class Utility {
                 if (content.hasItemMeta()) {
                     net.minecraft.server.v1_16_R2.ItemStack nmsItem = createNMSCopy(content);
                     NBTTagCompound tag = getItemTag(nmsItem);
-                    if (tag.hasKey(zItemNBT.CONST_ZORYHASHARD_AMOUNT)) {
-                        amount += (tag.getDouble(zItemNBT.CONST_ZORYHASHARD_AMOUNT) * content.getAmount());
+                    if (tag.hasKey(zItemNBT.ZORYHASHARD_AMOUNT)) {
+                        amount += (tag.getDouble(zItemNBT.ZORYHASHARD_AMOUNT) * content.getAmount());
                     }
                 }
             }
@@ -267,11 +267,11 @@ public class Utility {
                 if (content.hasItemMeta()) {
                     net.minecraft.server.v1_16_R2.ItemStack nmsItem = createNMSCopy(content);
                     NBTTagCompound tag = getItemTag(nmsItem);
-                    if (tag.hasKey(zItemNBT.CONST_ZORYHASHARD_AMOUNT)) {
-                        amount += (tag.getDouble(zItemNBT.CONST_ZORYHASHARD_AMOUNT) * content.getAmount());
+                    if (tag.hasKey(zItemNBT.ZORYHASHARD_AMOUNT)) {
+                        amount += (tag.getDouble(zItemNBT.ZORYHASHARD_AMOUNT) * content.getAmount());
                     }
-                    if(tag.hasKey(zItemNBT.CONST_IS_BACKPACK)) {
-                        ItemStack[] contents = generateInventoryContent(DataHandler.loadBackPack(UUID.fromString(tag.getString(zItemNBT.CONST_ITEM_UUID))).inventoryContent);
+                    if(tag.hasKey(zItemNBT.IS_BACKPACK)) {
+                        ItemStack[] contents = generateInventoryContent(DataHandler.loadBackPack(UUID.fromString(tag.getString(zItemNBT.ITEM_UUID))).inventoryContent);
                         amount += countZoryhaShard(contents);
                     }
                 }
@@ -405,7 +405,7 @@ public class Utility {
     @Deprecated
     public static boolean isValidAbilityItem(ItemStack itemStack) {
         for (zItemAbility value : zItemAbility.values()) {
-            if(value.getAbstractItem().getItem(null).isSimilar(itemStack)) {
+            if(value.getAbstractItem().createItem(null, itemStack).isSimilar(itemStack)) {
                 return true;
             }
         }
@@ -432,7 +432,7 @@ public class Utility {
     @Deprecated
     public static boolean isAbilityItemAllINEFF(Player player, ItemStack itemStack) {
         for (IzItemRegistry value : ItemRegistry.items) {
-            if(value.getAbstractItem().getItem(player).getType().equals(itemStack.getType())) {
+            if(value.getAbstractItem().createItem(player, itemStack).getType().equals(itemStack.getType())) {
                 return true;
             }
         }
@@ -452,7 +452,7 @@ public class Utility {
     @Deprecated
     public static boolean iszItem(ItemStack itemStack) {
         for (IzItemRegistry item : ItemRegistry.items) {
-            if(item.getAbstractItem().getItem(null).getType().equals(itemStack.getType())) {
+            if(item.getAbstractItem().createItem(null, itemStack).getType().equals(itemStack.getType())) {
                 return true;
             }
         }
@@ -462,7 +462,7 @@ public class Utility {
     public static boolean isAbstractItem(ItemStack itemStack) {
         for (IzItemRegistry item : ItemRegistry.items) {
             if(item.getAbstractItem().getMaterial().equals(itemStack.getType())) {
-                if(Utility.getItemTag(Utility.createNMSCopy(itemStack)).hasKey(zItemNBT.CONST_ITEM_ID)) {
+                if(Utility.getItemTag(Utility.createNMSCopy(itemStack)).hasKey(zItemNBT.ITEM_ID)) {
                     return true;
                 }
             }
@@ -519,8 +519,8 @@ public class Utility {
     public static AbstractItem getAbstractItemFromNMS(ItemStack itemStack) {
         net.minecraft.server.v1_16_R2.ItemStack nmsCopy = CraftItemStack.asNMSCopy(itemStack);
         NBTTagCompound tag = nmsCopy.hasTag() ? nmsCopy.getTag() : new NBTTagCompound();
-        if(tag.hasKey(zItemNBT.CONST_ITEM_ID)) {
-           return getAbstractItemByID(tag.getString(zItemNBT.CONST_ITEM_ID));
+        if(tag.hasKey(zItemNBT.ITEM_ID)) {
+           return getAbstractItemByID(tag.getString(zItemNBT.ITEM_ID));
         }
         return null;
     }

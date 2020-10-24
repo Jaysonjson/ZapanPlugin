@@ -26,9 +26,9 @@ public class BombBeltItem extends AbstractItem {
         super(id, material, itemUseType);
     }
 
-    @Override
-    public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(this, player);
+    //@Override
+    //public ItemStack createItem(Player player) {
+      /*  zOItem oItem = new zOItem(this, player);
         oItem.init();
         if(player != null) {
             zPlayer zPlayer = DataHandler.loadPlayer(player.getUniqueId());
@@ -51,13 +51,15 @@ public class BombBeltItem extends AbstractItem {
 
         oItem.setItem(ChatColor.RED + "Bombengürtel");
         return oItem.item;
-    }
+
+       */
+    //}
 
 
     @Override
     public void ability(World world, Player player, ItemStack itemStack) {
         if(player.getInventory().getChestplate().getType().equals(Material.AIR)) {
-            player.getInventory().setChestplate(getItem(player));
+            player.getInventory().setChestplate(itemStack);
             if (itemStack != null) {
                 itemStack.setAmount(itemStack.getAmount() - 1);
             }

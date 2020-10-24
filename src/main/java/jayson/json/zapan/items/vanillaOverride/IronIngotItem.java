@@ -20,19 +20,25 @@ public class IronIngotItem extends AbstractItem {
         super(id, material, itemUseType);
     }
 
-    @Override
-    public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(this, player);
-        oItem.init();
 
-        NBTTagCompound tag = oItem.tagCompound();
-        tag.setBoolean(zItemNBT.CONST_CAN_CRAFT, true);
-        tag.setBoolean(zItemNBT.CONST_CAN_CRAFT_MINECRAFT, true);
-        oItem.nmsCopy.setTag(tag);
+    @Override
+    public ItemStack createItem(Player player, ItemStack stack) {
+        zOItem oItem = new zOItem(this, player,true);
 
         oItem.itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         oItem.setItem(ChatColor.DARK_GRAY + "Eisen");
+
+        oItem.createNMSCopy();
+        oItem.nmsCopy.setTag(getTag(oItem.getTagCompound()));
+        oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
         return oItem.item;
+    }
+
+    @Override
+    public NBTTagCompound getTag(NBTTagCompound tag) {
+        tag.setBoolean(zItemNBT.CAN_CRAFT, true);
+        tag.setBoolean(zItemNBT.CAN_CRAFT_MINECRAFT, false);
+        return tag;
     }
 
     @Override

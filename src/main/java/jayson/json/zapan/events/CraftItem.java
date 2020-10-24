@@ -20,8 +20,8 @@ public class CraftItem implements Listener {
                 net.minecraft.server.v1_16_R2.ItemStack nmsItem = CraftItemStack.asNMSCopy(content);
                 if(nmsItem.hasTag()) {
                     NBTTagCompound tag = nmsItem.hasTag() ? nmsItem.getTag() : new NBTTagCompound();
-                    if(tag.hasKey(zItemNBT.CONST_CAN_CRAFT_MINECRAFT)) {
-                        if (!tag.getBoolean(zItemNBT.CONST_CAN_CRAFT_MINECRAFT)) {
+                    if(tag.hasKey(zItemNBT.CAN_CRAFT_MINECRAFT)) {
+                        if (!tag.getBoolean(zItemNBT.CAN_CRAFT_MINECRAFT)) {
                             event.setCancelled(true);
                         }
                     }

@@ -1,5 +1,6 @@
 package jayson.json.zapan.items.other;
 
+import jayson.json.zapan.Utility;
 import jayson.json.zapan.inventories.BackPackInventory;
 import jayson.json.zapan.items.AbstractItem;
 import jayson.json.zapan.items.ItemUseType;
@@ -18,28 +19,49 @@ import java.util.HashMap;
 import java.util.UUID;
 
 public class BackPackItem extends AbstractItem {
-    int inventorySize;
 
+    int inventorySize;
+    String uuid;
     public BackPackItem(String id, Material material, ItemUseType itemUseType, int inventorySize) {
         super(id, material, itemUseType);
         this.inventorySize = inventorySize;
     }
 
     @Override
-    public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(this, player);
-        oItem.init();
+    public ItemStack createItem(Player player, ItemStack stack) {
+        boolean exists = true;
+        if(stack == null) {
+            stack = new ItemStack(getMaterial());
+            exists = false;
+        }
+        zOItem oItem = new zOItem(this, player, stack, getId(),true);
 
-        NBTTagCompound tag = oItem.getTagCompound();
-        getNBTUUIDS().put(zItemNBT.CONST_ITEM_UUID, UUID.randomUUID());
-        getNBTBooleans().put(zItemNBT.CONST_CAN_CRAFT_MINECRAFT, false);
-        getNBTBooleans().put(zItemNBT.CONST_IS_BACKPACK, true);
-        oItem.setTagCompound();
-        oItem.nmsCopy.setTag(tag);
+        if(exists) {
+            NBTTagCompound tag = getTag(Utility.getItemTag(Utility.createNMSCopy(stack)));
+            if(tag.hasKey(zItemNBT.ITEM_UUID)) {
+                uuid = tag.getString(zItemNBT.ITEM_UUID);
+            }
+        } else {
+            uuid = UUID.randomUUID().toString();
+        }
 
         oItem.lore.add(inventorySize + " Slots");
+        oItem.lore.add(ChatColor.DARK_GRAY + "" + ChatColor.ITALIC + "»" + uuid + "«");
         oItem.setItem(ChatColor.RESET + "Rucksack");
+        oItem.createNMSCopy();
+        oItem.nmsCopy.setTag(getTag(oItem.getTagCompound()));
+        oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
         return oItem.item;
+    }
+
+    @Override
+    public NBTTagCompound getTag(NBTTagCompound tag) {
+        tag.setBoolean(zItemNBT.CAN_CRAFT_MINECRAFT, false);
+        tag.setBoolean(zItemNBT.IS_BACKPACK, true);
+        if(!tag.hasKey(zItemNBT.ITEM_UUID)) {
+            tag.setString(zItemNBT.ITEM_UUID, uuid);
+        }
+        return tag;
     }
 
     @Override

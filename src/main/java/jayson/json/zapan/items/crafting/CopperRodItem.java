@@ -22,20 +22,25 @@ public class CopperRodItem extends AbstractItem {
         this.damage = damageValue;
     }
 
-    @Override
-    public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(this, player,true);
-        oItem.init();
 
-        NBTTagCompound tag = oItem.tagCompound();
-        tag.setBoolean(zItemNBT.CONST_CAN_CRAFT, true);
-        tag.setBoolean(zItemNBT.CONST_CAN_CRAFT_MINECRAFT, false);
-        oItem.nmsCopy.setTag(tag);
-        oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
+    @Override
+    public ItemStack createItem(Player player, ItemStack stack) {
+        zOItem oItem = new zOItem(this, player,true);
 
         oItem.lore.add(ChatColor.GRAY + "Eine Stange aus Kupfer");
         oItem.setItem(ChatColor.GOLD + "Kupfer Stange");
+
+        oItem.createNMSCopy();
+        oItem.nmsCopy.setTag(getTag(oItem.getTagCompound()));
+        oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
         return oItem.item;
+    }
+
+    @Override
+    public NBTTagCompound getTag(NBTTagCompound tag) {
+        tag.setBoolean(zItemNBT.CAN_CRAFT, true);
+        tag.setBoolean(zItemNBT.CAN_CRAFT_MINECRAFT, false);
+        return tag;
     }
 
     @Override

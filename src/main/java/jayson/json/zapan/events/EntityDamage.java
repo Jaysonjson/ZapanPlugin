@@ -6,6 +6,7 @@ import jayson.json.zapan.data.zPlayer;
 import jayson.json.zapan.io.DataHandler;
 import jayson.json.zapan.items.zItemNBT;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
+import org.bukkit.craftbukkit.v1_16_R2.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -22,9 +23,12 @@ public class EntityDamage implements Listener {
             event.setDamage(event.getDamage() + (zPlayer.getStats().getStrength() * Constant.DAMAGE_MODIFIER));
             if(event.getCause().equals(EntityDamageEvent.DamageCause.ENTITY_ATTACK)) {
                 ItemStack itemStack = ((Player) event.getDamager()).getItemInHand();
-                NBTTagCompound tag = Utility.getItemTag(Utility.createNMSCopy(itemStack));
-                if(tag.hasKey(zItemNBT.CONST_ITEM_DURABILITY)) {
-                    tag.setInt(zItemNBT.CONST_ITEM_DURABILITY, tag.getInt(zItemNBT.CONST_ITEM_DURABILITY) - 1);
+                net.minecraft.server.v1_16_R2.ItemStack nmsCopy = Utility.createNMSCopy(itemStack);
+                NBTTagCompound tag = Utility.getItemTag(nmsCopy);
+                if(tag.hasKey(zItemNBT.ITEM_DURABILITY)) {
+                    tag.setInt(zItemNBT.ITEM_DURABILITY, tag.getInt(zItemNBT.ITEM_DURABILITY) - 1);
+                    nmsCopy.setTag(tag);
+                    ((Player) event.getDamager()).setItemInHand(CraftItemStack.asBukkitCopy(nmsCopy));
                 }
             }
         }

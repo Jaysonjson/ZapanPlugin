@@ -1,5 +1,6 @@
 package jayson.json.zapan.items.currency;
 
+import jayson.json.zapan.Utility;
 import jayson.json.zapan.items.AbstractItem;
 import jayson.json.zapan.items.ItemUseType;
 import jayson.json.zapan.items.zItemNBT;
@@ -14,26 +15,46 @@ import org.jetbrains.annotations.NotNull;
 
 public class ZoryhaShardItem extends AbstractItem {
 
-
+    double currencyValue;
     public ZoryhaShardItem(String id, Material material, ItemUseType itemUseType) {
         super(id, material, itemUseType);
     }
 
     @Override
-    public ItemStack getItem(Player player) {
-        zOItem oItem = new zOItem(this, player);
-        oItem.init();
+    public ItemStack createItem(Player player, ItemStack stack) {
+        boolean exists = true;
+        if(stack == null) {
+            stack = new ItemStack(getMaterial());
+            exists = false;
+        }
+        zOItem oItem = new zOItem(this, player, stack, getId(),true);
 
-        NBTTagCompound tag = oItem.tagCompound();
-        tag.setDouble(zItemNBT.CONST_ZORYHASHARD_AMOUNT, 1);
-        tag.setBoolean(zItemNBT.CONST_CAN_CRAFT_MINECRAFT, false);
-        oItem.nmsCopy.setTag(tag);
-        oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
+        if(exists) {
+            NBTTagCompound tag = getTag(Utility.getItemTag(Utility.createNMSCopy(stack)));
+            if(tag.hasKey(zItemNBT.ZORYHASHARD_AMOUNT)) {
+                currencyValue = tag.getDouble(zItemNBT.ZORYHASHARD_AMOUNT);
+            }
+        } else {
+            currencyValue = 1.250;
+        }
 
-        oItem.lore.add(ChatColor.GRAY + "1¢");
+        oItem.lore.add(ChatColor.GRAY + "" + currencyValue + "¢");
         oItem.setItem(ChatColor.AQUA + "Zoryha Bruckstück");
+        oItem.createNMSCopy();
+        oItem.nmsCopy.setTag(getTag(oItem.getTagCompound()));
+        oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
         return oItem.item;
     }
+
+    @Override
+    public NBTTagCompound getTag(NBTTagCompound tag) {
+        tag.setBoolean(zItemNBT.CAN_CRAFT_MINECRAFT, false);
+        if(!tag.hasKey(zItemNBT.ZORYHASHARD_AMOUNT)) {
+            tag.setDouble(zItemNBT.ZORYHASHARD_AMOUNT, currencyValue);
+        }
+        return tag;
+    }
+
 
     @Override
     public @NotNull String getId() {

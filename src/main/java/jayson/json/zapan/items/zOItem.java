@@ -84,10 +84,13 @@ public class zOItem {
         this.textureDamage = false;
     }
 
+    @Deprecated
     public void init() {
         nmsCopy = createNMSCopy();
     }
 
+
+    //@Deprecated
     public void setItem(String displayName) {
         //item = CraftItemStack.asBukkitCopy(nmsCopy);
             try {
@@ -104,6 +107,13 @@ public class zOItem {
                 }
                 if (player != null) {
                     zPlayer zPlayer = DataHandler.loadPlayer(player.getUniqueId());
+                    if(zItem.requiredIntelligence() > 0) {
+                        if(zPlayer.getStats().getIntelligence() >= 5) {
+                            lore.add(ChatColor.GREEN + "Benötigt Intelligenz " + zItem.requiredIntelligence());
+                        } else {
+                            lore.add(ChatColor.RED + "Benötigt Intelligenz " + zItem.requiredIntelligence() + " (Du hast: " + zPlayer.getStats().getIntelligence() + ")");
+                        }
+                    }
                     if (zPlayer.getPlayerClass().type.equals(zClass.ALCHEMIST)) {
                         lore.add("");
                         //Checken if Spieler hat Item gelernt
@@ -122,6 +132,10 @@ public class zOItem {
                     if (player.getGameMode().equals(GameMode.CREATIVE) || player.getGameMode().equals(GameMode.SPECTATOR)) {
                         lore.add(ChatColor.LIGHT_PURPLE + "In Kreativ bekommen");
                         lore.add(ChatColor.DARK_GRAY + "" + ChatColor.ITALIC + "»" + player.getDisplayName() + "«");
+                    }
+                } else {
+                    if(zItem.requiredIntelligence() > 0) {
+                        lore.add(ChatColor.GRAY + "Benötigt Intelligenz " + zItem.requiredIntelligence());
                     }
                 }
                 lore.add(ChatColor.DARK_GRAY + "" + ChatColor.ITALIC + id + " [" + zItem.itemVersion() + "]");
@@ -144,7 +158,8 @@ public class zOItem {
         }
 
     public net.minecraft.server.v1_16_R2.ItemStack createNMSCopy() {
-        return CraftItemStack.asNMSCopy(item);
+        nmsCopy = CraftItemStack.asNMSCopy(item);
+        return nmsCopy;
     }
 
     public void setTagCompound() {
@@ -158,14 +173,15 @@ public class zOItem {
         zItem.getNBTBooleans().keySet().forEach((s -> tag.setBoolean(s, zItem.getNBTBooleans().get(s))));
     }
 
+    @Deprecated
     public NBTTagCompound tagCompound() {
         return getTagCompound();
     }
 
     public NBTTagCompound getTagCompound() {
         NBTTagCompound tag = nmsCopy.hasTag() ? nmsCopy.getTag() : new NBTTagCompound();
-        tag.setString(zItemNBT.CONST_ITEM_ID, id);
-        tag.setDouble(zItemNBT.CONST_ITEM_VERSION, zItem.itemVersion());
+        tag.setString(zItemNBT.ITEM_ID, id);
+        tag.setDouble(zItemNBT.ITEM_VERSION, zItem.itemVersion());
         return tag;
     }
 }

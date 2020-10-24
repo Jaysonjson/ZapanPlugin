@@ -32,7 +32,7 @@ public class BackPackNBTInventory implements Listener {
 
     public void openInventory(Player player) {
         inventory = Bukkit.createInventory(player, inventorySize, "Items");
-        String contents = Utility.getItemTag(Utility.createNMSCopy(inventory.getItem(backPackItem))).getString(zItemNBT.CONST_INVENTORY_CONTENT);
+        String contents = Utility.getItemTag(Utility.createNMSCopy(inventory.getItem(backPackItem))).getString(zItemNBT.INVENTORY_CONTENT);
         inventory.setContents(Utility.generateInventoryContent(contents));
         player.openInventory(inventory);
     }
@@ -42,7 +42,7 @@ public class BackPackNBTInventory implements Listener {
         if(event.getInventory().equals(inventory)) {
             net.minecraft.server.v1_16_R2.ItemStack nmsStack = Utility.createNMSCopy(inventory.getItem(backPackItem));
             NBTTagCompound tag = Utility.getItemTag(nmsStack);
-            tag.setString(zItemNBT.CONST_INVENTORY_CONTENT, Utility.createInventoryContent(event.getInventory().getContents()));
+            tag.setString(zItemNBT.INVENTORY_CONTENT, Utility.createInventoryContent(event.getInventory().getContents()));
             this.inventory.setItem(backPackItem, CraftItemStack.asBukkitCopy(nmsStack));
         }
     }
