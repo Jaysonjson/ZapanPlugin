@@ -586,11 +586,7 @@ public class Utility {
     }
 
     public static ItemStack createInventoryWoolColor(boolean bool, String displayName, int amount) {
-        if(bool) {
-            return createInventoryStack(Material.GREEN_WOOL, amount, displayName);
-        } else {
-            return createInventoryStack(Material.RED_WOOL, amount, displayName);
-        }
+        return bool ? createInventoryStack(Material.GREEN_WOOL, amount, displayName) : createInventoryStack(Material.RED_WOOL, amount, displayName);
     }
 
     public static boolean isTopInventory(InventoryClickEvent event) {

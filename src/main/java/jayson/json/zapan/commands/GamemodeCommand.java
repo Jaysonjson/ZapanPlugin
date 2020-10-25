@@ -10,17 +10,19 @@ public class GamemodeCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
         String commandString = "";
-        if(s.equalsIgnoreCase("gmc")) {
-            commandString = "gamemode creative";
-        }
-        if(s.equalsIgnoreCase("gms")) {
-            commandString = "gamemode survival";
-        }
-        if(s.equalsIgnoreCase("gmsp")) {
-            commandString = "gamemode spectator";
-        }
-        if(s.equalsIgnoreCase("gma")) {
-            commandString = "gamemode adventure";
+        switch (s) {
+            case "gmc":
+                commandString = "gamemode creative";
+                break;
+            case "gms":
+                commandString = "gamemode survival";
+                break;
+            case "gmsp":
+                commandString = "gamemode spectator";
+                break;
+            case "gma":
+                commandString = "gamemode adventure";
+                break;
         }
         Bukkit.dispatchCommand(commandSender, commandString);
         return true;

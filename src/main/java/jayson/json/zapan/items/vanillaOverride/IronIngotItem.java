@@ -1,5 +1,6 @@
 package jayson.json.zapan.items.vanillaOverride;
 
+import jayson.json.zapan.Utility;
 import jayson.json.zapan.items.AbstractItem;
 import jayson.json.zapan.items.ItemUseType;
 import jayson.json.zapan.items.zItemNBT;
