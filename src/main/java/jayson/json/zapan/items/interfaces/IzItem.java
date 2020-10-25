@@ -10,7 +10,6 @@ public interface IzItem {
     String id = "";
     String getId();
     void setId(String id);
-    ItemStack createItem();
     ItemStack createItem(Player player, ItemStack stack);
     void update(ItemStack itemStack);
     ItemStack update(Player player);

@@ -576,6 +576,15 @@ public class Utility {
         return itemstack;
     }
 
+    public static ItemStack createInventoryStack(ItemStack itemstack, int amount, String displayName) {
+        itemstack.setAmount(amount);
+        ItemMeta itemstackMeta = itemstack.getItemMeta();
+        itemstackMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
+        itemstackMeta.setDisplayName(displayName);
+        itemstack.setItemMeta(itemstackMeta);
+        return itemstack;
+    }
+
     public static ItemStack createInventoryWoolColor(boolean bool, String displayName, int amount) {
         if(bool) {
             return createInventoryStack(Material.GREEN_WOOL, amount, displayName);

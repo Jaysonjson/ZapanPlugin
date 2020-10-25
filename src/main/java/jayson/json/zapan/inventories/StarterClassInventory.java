@@ -37,9 +37,9 @@ public class StarterClassInventory implements Listener {
         for (int i = 0; i < inventory.getSize(); i++) {
             inventory.setItem(i, new ItemStack(Material.GLASS_PANE));
         }
-        inventory.setItem(20, Utility.createInventoryStack(Material.NETHERITE_SWORD, 1, "Kämpfer"));
+        inventory.setItem(20, Utility.createInventoryStack(zClass.FIGHTER.getSymbol(), 1, "Kämpfer"));
         inventory.setItem(29, Utility.createInventoryStack(Material.PAPER, 1, "Lore"));
-        inventory.setItem(24, Utility.createInventoryStack(Material.NETHERITE_HOE, 1, "Farmer"));
+        inventory.setItem(24, Utility.createInventoryStack(zClass.FARMER.getSymbol(), 1, "Farmer"));
         inventory.setItem(33, Utility.createInventoryStack(Material.PAPER, 1, "Lore"));
         for (int row = 0; row < 6; row++) {
             int index = row * 9;

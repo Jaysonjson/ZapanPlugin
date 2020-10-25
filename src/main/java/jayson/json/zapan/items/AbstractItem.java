@@ -69,13 +69,6 @@ public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzM
     }
 
     @Override
-    @Nullable
-    @Deprecated
-    public ItemStack createItem() {
-        return createItem(null, null);
-    }
-
-    @Override
     @Deprecated
     public void update(ItemStack itemStack) {
         itemStack = createItem(null, null);

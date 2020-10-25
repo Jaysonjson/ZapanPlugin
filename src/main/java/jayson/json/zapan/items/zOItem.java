@@ -94,6 +94,7 @@ public class zOItem {
     public void setItem(String displayName) {
         //item = CraftItemStack.asBukkitCopy(nmsCopy);
             try {
+                /*
                 switch (zItem.getItemUseType()) {
                     case CRAFTING:
                         lore.add(ChatColor.AQUA + "Herstellungsmaterial");
@@ -104,6 +105,10 @@ public class zOItem {
                     case ABILITY:
                         lore.add(ChatColor.AQUA + "Benutzbar");
                         break;
+                }
+                 */
+                if(!zItem.getItemUseType().getLoreText().equalsIgnoreCase("")) {
+                    lore.add(zItem.getItemUseType().getLoreText());
                 }
                 if (player != null) {
                     zPlayer zPlayer = DataHandler.loadPlayer(player.getUniqueId());

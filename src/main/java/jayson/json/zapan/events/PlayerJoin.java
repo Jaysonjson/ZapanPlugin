@@ -4,6 +4,7 @@ import jayson.json.zapan.Utility;
 import jayson.json.zapan.data.zGuild;
 import jayson.json.zapan.data.zPlayer;
 import jayson.json.zapan.inventories.AreaInventory;
+import jayson.json.zapan.inventories.ClassInventory;
 import jayson.json.zapan.inventories.GuildChunkInventory;
 import jayson.json.zapan.inventories.StarterClassInventory;
 import jayson.json.zapan.inventories.guild.GuildInventory;
@@ -33,6 +34,9 @@ public class PlayerJoin implements Listener {
             StarterClassInventory classInventory = new StarterClassInventory();
             classInventory.openInventory(event.getPlayer());
         }
+
+        ClassInventory classInventoryST = new ClassInventory();
+        classInventoryST.openInventory(player, 0);
         //AreaInventory areaInventory = new AreaInventory();
         //areaInventory.openInventory(player, Utility.getNearestArea(World.Environment.NORMAL, player.getLocation()).name);
         //GuildChunkInventory inventory = new GuildChunkInventory();

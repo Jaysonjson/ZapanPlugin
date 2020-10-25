@@ -23,14 +23,5 @@ public class ChatEvent implements Listener {
         }
         event.setFormat(guildName + event.getPlayer().getDisplayName() + "§7: " + event.getMessage());
     }
-/*
-    @EventHandler
-    public void EntityRight(PlayerInteractEntityEvent event) {
-        System.out.println("INTERACTION!");
-        if(event.getHand().equals(EquipmentSlot.HAND)) {
-            Inventory gui = Bukkit.createInventory(event.getPlayer(), 54, "Items");
-            event.getPlayer().openInventory(gui);
-        }
-    }
- */
+
 }

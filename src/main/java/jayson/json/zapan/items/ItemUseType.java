@@ -1,5 +1,22 @@
 package jayson.json.zapan.items;
 
+import org.bukkit.ChatColor;
+
 public enum ItemUseType {
-    CRAFTING, ABILITY, CURRENCY, TOOL, OTHER;
+
+    CRAFTING(ChatColor.AQUA + "Herstellungsmaterial"),
+    ABILITY(ChatColor.AQUA + "Benutzbar"),
+    CURRENCY(ChatColor.AQUA + "Währung"),
+    TOOL(ChatColor.AQUA + "Werkzeug"),
+    OTHER("");
+
+    private final String loreText;
+    ItemUseType(String loreText) {
+        this.loreText = loreText;
+    }
+
+    public String getLoreText() {
+        return loreText;
+    }
+
 }

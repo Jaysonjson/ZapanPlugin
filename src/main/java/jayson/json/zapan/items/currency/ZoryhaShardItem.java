@@ -33,9 +33,11 @@ public class ZoryhaShardItem extends AbstractItem {
             NBTTagCompound tag = getTag(Utility.getItemTag(Utility.createNMSCopy(stack)));
             if(tag.hasKey(zItemNBT.ZORYHASHARD_AMOUNT)) {
                 currencyValue = tag.getDouble(zItemNBT.ZORYHASHARD_AMOUNT);
+            } else {
+                currencyValue = 1;
             }
         } else {
-            currencyValue = 1.250;
+            currencyValue = 1;
         }
 
         oItem.lore.add(ChatColor.GRAY + "" + currencyValue + "¢");
