@@ -56,7 +56,7 @@ public class Scoreboard {
         Score lineSpace2 = score.getScore("-0------=2=------0-");
         Score levelScore = score.getScore("LvL: " + zPlayer.getLevel().level);
         Score lineSpace3 = score.getScore("-0------=3=------0-");
-        Score classSore = score.getScore(ChatColor.RED + zPlayer.getPlayerClass().type.getName());
+        Score classSore = score.getScore(ChatColor.RED + zPlayer.getPlayerClass().current.getName());
         lineSpace0.setScore(10);
         zoryhaShardScore.setScore(9);
         zoryhaShard1Score.setScore(8);

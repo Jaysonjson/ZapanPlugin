@@ -40,7 +40,7 @@ public class HackSilverItem extends AbstractItem {
         }
 
         oItem.lore.add(ChatColor.GRAY + "" + currencyValue + "Φ");
-        oItem.setItem("\u00a7Hacksilber");
+        oItem.setItem(ChatColor.GRAY + "Hacksilber");
         oItem.createNMSCopy();
         oItem.nmsCopy.setTag(getTag(oItem.getTagCompound()));
         oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);

@@ -4,6 +4,7 @@ import com.google.gson.annotations.Expose;
 import jayson.json.zapan.Utility;
 import jayson.json.zapan.data.zguildobj.zPlayerClass;
 import jayson.json.zapan.data.zplayerobj.*;
+import jayson.json.zapan.io.DataHandler;
 import jayson.json.zapan.skillclass.zClass;
 
 import javax.annotation.Nullable;
@@ -22,7 +23,6 @@ public class zPlayer implements IHasUUID {
     private zLevel level = new zLevel();
 
     private zPlayerClass playerClass = new zPlayerClass();
-
 
     public zPlayerClass getPlayerClass() {
         return playerClass;

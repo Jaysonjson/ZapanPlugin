@@ -64,9 +64,9 @@ public class StarterClassInventory implements Listener {
             ItemStack clickedItem = event.getCurrentItem();
             ItemMeta clickedItemMeta = clickedItem.getItemMeta();
             if(clickedItemMeta.getDisplayName().equalsIgnoreCase("Kämpfer")) {
-                zPlayer.getPlayerClass().type = zClass.FIGHTER;
+                zPlayer.getPlayerClass().current = zClass.FIGHTER;
             } else if(clickedItemMeta.getDisplayName().equalsIgnoreCase("Farmer")) {
-                zPlayer.getPlayerClass().type = zClass.FARMER;
+                zPlayer.getPlayerClass().current = zClass.FARMER;
             }
             DataHandler.savePlayer(zPlayer);
             event.getWhoClicked().closeInventory();

@@ -57,12 +57,13 @@ public class ItemInventory implements Listener {
     @EventHandler
     public void InventoryClick(InventoryClickEvent event) {
         if(event.getInventory().equals(this.inventory) && Utility.isTopInventory(event)) {
+            event.setCancelled(true);
             ItemStack clickedItem = event.getCurrentItem();
             if (clickedItem != null) {
                 if (clickedItem.hasItemMeta()) {
                     net.minecraft.server.v1_16_R2.ItemStack nmsCopy = Utility.createNMSCopy(clickedItem);
                     NBTTagCompound tag = Utility.getItemTag(nmsCopy);
-                    if(tag.hasKey(zItemNBT.ITEM_ID)) {
+                    if(tag.hasKey(zItemNBT.ITEM_ID) && event.getWhoClicked().isOp()) {
                         event.getView().setCursor(clickedItem);
                         event.setCancelled(true);
                     }
@@ -87,6 +88,31 @@ public class ItemInventory implements Listener {
         createPage(player, inventory, page);
     }
 
+    private void createPage(Player player, Inventory inventory, int page) {
+        inventory.clear();
+        ItemStack[] contents = pageContainer.getPage(page).getStacks();
+        for (int i = 0; i < 54; i++) {
+            inventory.setItem(i, new ItemStack(Material.GLASS_PANE));
+        }
+        int i = 0;
+        for (ItemStack content : contents) {
+            inventory.setItem(i, content);
+            i++;
+        }
+        if (currentPage > 0) {
+            inventory.setItem(45, Utility.createInventoryStack(Material.GREEN_WOOL, 1, "Letzte Seite"));
+        } else {
+            inventory.setItem(45, Utility.createInventoryStack(Material.RED_WOOL, 1, "Letzte Seite"));
+        }
+        inventory.setItem(49, Utility.createInventoryStack(Material.PAPER, 1, "Derzeitige Seite"));
+        if (currentPage + 2 < pageContainer.size()) {
+            inventory.setItem(53, Utility.createInventoryStack(Material.GREEN_WOOL, 1, "Nächste Seite"));
+        } else {
+            inventory.setItem(53, Utility.createInventoryStack(Material.RED_WOOL, 1, "Nächste Seite"));
+        }
+        player.openInventory(inventory);
+    }
+/*
     private void createPage(Player player, Inventory inventory, int page) {
         inventory.clear();
         ItemStack[] contents = pageContainer.getPage(page).getStacks();
@@ -115,6 +141,7 @@ public class ItemInventory implements Listener {
         }
         player.openInventory(inventory);
     }
+*/
 
     private ItemStack differentItem(ItemStack stack, String displayName) {
         if(!displayName.equalsIgnoreCase("")) {

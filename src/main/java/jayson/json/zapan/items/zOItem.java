@@ -119,18 +119,24 @@ public class zOItem {
                             lore.add(ChatColor.RED + "Benötigt Intelligenz " + zItem.requiredIntelligence() + " (Du hast: " + zPlayer.getStats().getIntelligence() + ")");
                         }
                     }
-                    if (zPlayer.getPlayerClass().type.equals(zClass.ALCHEMIST)) {
+                    if (zPlayer.getPlayerClass().current.equals(zClass.ALCHEMIST)) {
                         lore.add("");
                         //Checken if Spieler hat Item gelernt
                         if (false) {
                             if (zItem.getEarthValue() > 0) {
-                                lore.add(ChatColor.GREEN + "Erde: " + zItem.getEarthValue());
+                                lore.add(ChatColor.GREEN + "»Erde: " + zItem.getEarthValue());
                             }
                             if (zItem.getWaterValue() > 0) {
-                                lore.add(ChatColor.AQUA + "Wasser: " + zItem.getWaterValue());
+                                lore.add(ChatColor.AQUA + "»Wasser: " + zItem.getWaterValue());
+                            }
+                            if(zItem.getFireValue() > 0) {
+                                lore.add(ChatColor.RED + "»Feuer: " + zItem.getFireValue());
+                            }
+                            if(zItem.getMetalValue() > 0) {
+                                lore.add(ChatColor.GRAY + "»Metal: " + zItem.getMetalValue());
                             }
                         } else {
-                            lore.add("Item noch nicht gelernt!");
+                            lore.add("»Item noch nicht gelernt!");
                         }
                         lore.add("");
                     }

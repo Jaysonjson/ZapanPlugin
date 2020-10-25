@@ -30,13 +30,10 @@ public class PlayerJoin implements Listener {
         Utility.refreshHearts(event.getPlayer(), zPlayer);
         Scoreboard.updateScoreboard(player, zPlayer);
         NPC.sendSinglePacket(player);
-        if(zPlayer.getPlayerClass().type.equals(zClass.NONE)) {
+        if(zPlayer.getPlayerClass().current.equals(zClass.NONE)) {
             StarterClassInventory classInventory = new StarterClassInventory();
             classInventory.openInventory(event.getPlayer());
         }
-
-        ClassInventory classInventoryST = new ClassInventory();
-        classInventoryST.openInventory(player, 0);
         //AreaInventory areaInventory = new AreaInventory();
         //areaInventory.openInventory(player, Utility.getNearestArea(World.Environment.NORMAL, player.getLocation()).name);
         //GuildChunkInventory inventory = new GuildChunkInventory();
