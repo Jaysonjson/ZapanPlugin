@@ -41,21 +41,7 @@ public class StarterClassInventory implements Listener {
         inventory.setItem(29, Utility.createInventoryStack(Material.PAPER, 1, "Lore"));
         inventory.setItem(24, Utility.createInventoryStack(zClass.FARMER.getSymbol(), 1, "Farmer"));
         inventory.setItem(33, Utility.createInventoryStack(Material.PAPER, 1, "Lore"));
-        for (int row = 0; row < 6; row++) {
-            int index = row * 9;
-            int color = 0;
-            for (int slot = index; slot < index + 9; slot++) {
-                if (row == 0 || row == 5 || index == slot || slot == index + 8) {
-                    if(color == 0) {
-                        inventory.setItem(slot, new ItemStack(Material.WHITE_STAINED_GLASS_PANE));
-                        color++;
-                    } else {
-                        inventory.setItem(slot, new ItemStack(Material.WHITE_STAINED_GLASS_PANE));
-                        color = 0;
-                    }
-                }
-            }
-        }
+        Utility.createInventoryBorder(inventory, Material.WHITE_STAINED_GLASS_PANE);
     }
 
     @EventHandler

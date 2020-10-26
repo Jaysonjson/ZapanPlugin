@@ -39,6 +39,9 @@ commands:
   discordlink:
     description: sends discord code
     usage: /discordlink
+  areas:
+    description: Zeigt Gebiete an
+    usage: /areas
 permissions:
   zapan.sethealth:
     description: SetHealth

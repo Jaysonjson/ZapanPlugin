@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public class zArea {
 
-    public String name;
+    public UUID uuid;
     public String displayName;
     public zLocation location = new zLocation();
     public int size;

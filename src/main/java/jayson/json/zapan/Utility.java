@@ -592,4 +592,27 @@ public class Utility {
     public static boolean isTopInventory(InventoryClickEvent event) {
         return event.getRawSlot() < event.getView().getTopInventory().getSize();
     }
+
+    public static void createInventoryBorder(Inventory inventory, int rowSize, ItemStack itemStack) {
+        for (int i = 0; i < rowSize; i++) {
+            int j = i * 9;
+            for (int slot = j; slot < j + 9; slot++) {
+                if (i == 0 || i == 5 || j == slot || slot == j + 8) {
+                    inventory.setItem(slot, itemStack);
+                }
+            }
+        }
+    }
+
+    public static void createInventoryBorder(Inventory inventory, int rowSize, Material material) {
+        createInventoryBorder(inventory, rowSize, new ItemStack(material));
+    }
+
+    public static void createInventoryBorder(Inventory inventory, Material material) {
+        createInventoryBorder(inventory, (inventory.getSize() + 1) / 9, material);
+    }
+
+    public static void createInventoryBorder(Inventory inventory, ItemStack itemStack) {
+        createInventoryBorder(inventory, (inventory.getSize() + 1) / 9, itemStack);
+    }
 }

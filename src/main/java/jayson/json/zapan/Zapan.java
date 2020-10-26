@@ -5,6 +5,7 @@ import jayson.json.zapan.data.zArea;
 import jayson.json.zapan.data.zDrops;
 import jayson.json.zapan.events.*;
 import jayson.json.zapan.events.inventory.ItemClick;
+import jayson.json.zapan.inventories.AreaListInventory;
 import jayson.json.zapan.io.DataHandler;
 import jayson.json.zapan.items.lists.ItemRegistry;
 import jayson.json.zapan.npc.NPC;
@@ -52,6 +53,7 @@ public final class Zapan extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new BanPlayer(), this);
         Bukkit.getPluginManager().registerEvents(new ItemPickup(), this);
         Bukkit.getPluginManager().registerEvents(new ItemDespawn(), this);
+        this.getCommand("areas").setExecutor(new AreaCommand());
         this.getCommand("sethealth").setExecutor(new SetHealthCommand());
         this.getCommand("area").setExecutor(new CreateAreaCommand());
         this.getCommand("guild").setExecutor(new CreateGuildCommand());

@@ -17,22 +17,29 @@ import org.bukkit.inventory.ItemStack;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.regex.Pattern;
 
 public class AreaInventory implements Listener {
 
     //ArrayList<Player> chatPlayers = new ArrayList<>();
     HashMap<Player, zArea> chatPlayers = new HashMap<>();
+    HashMap<Player, ChatType> chatPlayersType = new HashMap<>();
+
+    enum ChatType {
+        NAME, PRIORITY
+    };
+
     @Nullable
     public Inventory inventory;
     public zArea area;
-    public AreaInventory() {
+    public AreaInventory(zArea area) {
+        this.area = area;
         Bukkit.getPluginManager().registerEvents(this, Zapan.INSTANCE);
     }
 
-    public void openInventory(Player player, String areaName) {
-        if(Utility.areaExists(areaName)) {
-            area = DataHandler.loadArea(areaName);
-            inventory = Bukkit.createInventory(player, 54, area.name);
+    public void openInventory(Player player) {
+        if(area != null) {
+            inventory = Bukkit.createInventory(player, 54, area.displayName);
             setContents();
             player.openInventory(inventory);
         }
@@ -43,6 +50,13 @@ public class AreaInventory implements Listener {
             inventory.setItem(i, new ItemStack(Material.GLASS_PANE));
         }
         inventory.setItem(10, Utility.createInventoryStack(Material.PAPER, 1, area.displayName));
+        int prioItemAmount = area.priority;;
+        if(area.priority < 1) {
+            prioItemAmount = 1;
+        } else if(area.priority > 64) {
+            prioItemAmount = 64;
+        }
+        inventory.setItem(11, Utility.createInventoryStack(Material.SLIME_BALL, prioItemAmount,"Priorität: " + area.priority));
         inventory.setItem(19, Utility.createInventoryWoolColor(area.breakBlocks, "Blöcke Zerstören", 1));
     }
 
@@ -58,6 +72,14 @@ public class AreaInventory implements Listener {
                         String itemName = clickedItem.getItemMeta().getDisplayName();
                         if (itemName.equalsIgnoreCase(area.displayName)) {
                             chatPlayers.put(player, area);
+                            chatPlayersType.put(player, ChatType.NAME);
+                            player.sendMessage("Schreibe eine Naricht in den Chat um den Namen zu ändern. Schreibe \"Abbrechen\" um Abzubrechen");
+                            player.closeInventory();
+                        }
+                        if(itemName.equalsIgnoreCase("Priorität: " + area.priority)) {
+                            chatPlayers.put(player, area);
+                            chatPlayersType.put(player, ChatType.PRIORITY);
+                            player.sendMessage("Schreibe eine Zahl in den Chat, um die Priorität zu ändern. Schreibe \"Abbrechen\" um Abzubrechen");
                             player.closeInventory();
                         }
                         if (itemName.equalsIgnoreCase("Blöcke Zerstören")) {
@@ -74,19 +96,44 @@ public class AreaInventory implements Listener {
 
     @EventHandler
     public void ChatEvent(AsyncPlayerChatEvent event) {
-
         Player player = event.getPlayer();
         if(chatPlayers.containsKey(player)) {
             if(!event.getMessage().equalsIgnoreCase("abbrechen")) {
                 event.setCancelled(true);
                 Bukkit.getScheduler().runTask(Zapan.INSTANCE, () -> {
+                    ChatType type = chatPlayersType.get(player);
                     zArea area = chatPlayers.get(player);
-                    area.displayName = event.getMessage();
-                    chatPlayers.remove(player);
+                    boolean success;
+                    switch (type) {
+                        case NAME:
+                            area.displayName = event.getMessage();
+                            success = true;
+                            break;
+                        case PRIORITY:
+                            if(Pattern.matches("^[0-9]+$", event.getMessage())) {
+                                area.priority = Integer.parseInt(event.getMessage());
+                                success = true;
+                            } else {
+                                player.sendMessage("Dies ist keine Zahl! Versuche es nochmal...");
+                                success = false;
+                            }
+                            break;
+                        default:
+                            //Sicherhaltshaber
+                            success = true;
+                    }
+
+                    if(success) {
+                        chatPlayers.remove(player);
+                        chatPlayersType.remove(player);
+                    }
                     DataHandler.saveArea(area);
                     Utility.reloadAreas();
-                    openInventory(player, area.name);
+                    openInventory(player);
                 });
+            } else {
+                chatPlayers.remove(player);
+                chatPlayersType.remove(player);
             }
         }
     }

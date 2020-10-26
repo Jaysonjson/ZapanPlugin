@@ -16,27 +16,29 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.UUID;
+
 public class CreateAreaCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
         if(commandSender instanceof Player && commandSender.isOp()) {
             if(args.length >= 2) {
-                if(args[0].equalsIgnoreCase("edit")) {
+               /* if(args[0].equalsIgnoreCase("edit")) {
                     if(Utility.areaExists(args[1])) {
                         AreaInventory areaInventory = new AreaInventory();
-                        areaInventory.openInventory((Player) commandSender, Utility.getNearestArea(World.Environment.NORMAL, ((Player) commandSender).getLocation()).name);
+                        areaInventory.openInventory((Player) commandSender, Utility.getNearestArea(World.Environment.NORMAL, ((Player) commandSender).getLocation()).displayName);
                     } else {
                         commandSender.sendMessage("Gebiet existiert nicht!");
                     }
-                }
+                }*/
                 if(!Utility.areaExists(args[0]) && !args[0].equalsIgnoreCase("edit")) {
                     Player player = (Player) commandSender;
                     int size = Integer.parseInt(args[1]);
                     if(size < 50000) {
                         zArea area = new zArea();
                         area.owner = ((Player) commandSender).getUniqueId();
-                        area.name = args[0];
-                        area.displayName = area.name;
+                        area.uuid = UUID.randomUUID();
+                        area.displayName = args[0];
                         area.size = size;
                         Location location = ((Player) commandSender).getLocation();
                         area.location = new zLocation(location.getX(), location.getY(), location.getZ());
