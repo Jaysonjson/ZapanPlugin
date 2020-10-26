@@ -85,7 +85,7 @@ public class AreaListInventory implements Listener {
                     net.minecraft.server.v1_16_R2.ItemStack nmsCopy = Utility.createNMSCopy(clickedItem);
                     NBTTagCompound tag = Utility.getItemTag(nmsCopy);
                     if(tag.hasKey(zItemNBT.ITEM_UUID) && tag.hasKey("areaItemID_LIST")) {
-                        AreaInventory areaInventory = new AreaInventory(DataHandler.loadArea(tag.getString(zItemNBT.ITEM_UUID)));
+                        AreaInventory areaInventory = new AreaInventory(DataHandler.loadArea(UUID.fromString(tag.getString(zItemNBT.ITEM_UUID))));
                         areaInventory.openInventory(player);
                     }
                     if (clickedItem.getItemMeta().getDisplayName().equalsIgnoreCase("Nächste Seite")) {

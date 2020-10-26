@@ -141,10 +141,11 @@ public class Utility {
             return target >= point2 && target <= point1;
         }
     }
-
+    //Einfach boolean isSpawn --> Sinnlos
+    @Deprecated
     public static boolean isInSpawnArea(Location location, World world) {
         zArea area = getNearestArea(world.getEnvironment(), location);
-        if(area.name.toLowerCase().equals("spawn")) {
+        if(area.displayName.toLowerCase().equals("spawn")) {
             Location locationP0 = area.createLocation(world).add(area.size, area.size, area.size);
             Location locationP1 = area.createLocation(world).subtract(area.size, area.size, area.size);
             return Utility.isInArea(location, locationP0, locationP1);
@@ -297,9 +298,9 @@ public class Utility {
         HashMap<String, zArea> areaHash = new HashMap<>();
         ArrayList<String> sortedHash = new ArrayList<>();
         for (File file : new File(DataHandler.AREA_DIR).listFiles()) {
-            zArea area = DataHandler.loadArea(file.getName().replaceAll(".json", ""));
-            areaHash.put(area.priority + "_" + area.name, area);
-            sortedHash.add( area.priority + "_" + area.name);
+            zArea area = DataHandler.loadArea(UUID.fromString(file.getName().replaceAll(".json", "")));
+            areaHash.put(area.priority + "_" + area.displayName, area);
+            sortedHash.add( area.priority + "_" + area.displayName);
             DataHandler.saveArea(area);
         }
         Collections.sort(sortedHash);
