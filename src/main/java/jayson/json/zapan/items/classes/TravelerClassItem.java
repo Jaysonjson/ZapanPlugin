@@ -40,12 +40,12 @@ public class TravelerClassItem extends AbstractItem {
 
     @Override
     public @NotNull String getId() {
-        return super.getId();
+        return super.id;
     }
 
     @Override
-    public Material getMaterial() {
-        return super.getMaterial();
+    public @NotNull Material getMaterial() {
+        return super.material;
     }
 
     @Override

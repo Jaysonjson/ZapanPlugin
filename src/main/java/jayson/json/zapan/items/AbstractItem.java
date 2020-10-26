@@ -1,6 +1,7 @@
 package jayson.json.zapan.items;
 
 import jayson.json.zapan.items.interfaces.*;
+import jayson.json.zapan.other.zItemMarketModifierType;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -13,11 +14,6 @@ import java.util.HashMap;
 import java.util.UUID;
 
 public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzMarketItem, IzNBTItem, IzConsumeItem, IzTextureItem, IzToolItem, IzAlchemyItem {
-
-    @Override
-    public Material getMaterial() {
-        return material;
-    }
 
     @Deprecated
     @Override
@@ -119,12 +115,6 @@ public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzM
 
     }
 
-    @NotNull
-    @Override
-    public String getId() {
-        return id;
-    }
-
     @Deprecated
     @Override
     public void setId(String id) {
@@ -177,16 +167,14 @@ public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzM
     }
 
     @Override
-    public double getSellValue() {
+    public double getMarketValue() {
         return 0;
     }
 
     @Override
-    public double getBuyValue() {
-        return 0;
+    public zItemMarketModifierType MARKET_MODIFIER_TYPE() {
+        return zItemMarketModifierType.SCRAPYARD;
     }
-
-
 
     @Override
     public ItemUseType getItemUseType() {
