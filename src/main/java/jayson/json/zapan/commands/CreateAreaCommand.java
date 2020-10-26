@@ -31,7 +31,7 @@ public class CreateAreaCommand implements CommandExecutor {
                         commandSender.sendMessage("Gebiet existiert nicht!");
                     }
                 }*/
-                if(!Utility.areaExists(args[0]) && !args[0].equalsIgnoreCase("edit")) {
+                if(!Utility.areaExists(args[0])) {
                     Player player = (Player) commandSender;
                     int size = Integer.parseInt(args[1]);
                     if(size < 50000) {

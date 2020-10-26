@@ -36,7 +36,7 @@ public class GuildPlayersInventory implements Listener {
         for (int i = 0; i < 54; i++) {
             inventory.setItem(i, new ItemStack(Material.GLASS_PANE));
         }
-        inventory.setItem(10, Utility.createInventoryStack(Material.PLAYER_HEAD, 1, "Zapan"));
+        inventory.setItem(10, Utility.createInventoryStack(Material.PLAYER_HEAD, 1, "Jayson"));
         inventory.setItem(40, Utility.createInventoryStack(Material.PAPER, 1, "Zurück"));
     }
 

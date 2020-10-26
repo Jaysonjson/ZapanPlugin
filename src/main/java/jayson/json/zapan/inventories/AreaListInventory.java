@@ -43,7 +43,7 @@ public class AreaListInventory implements Listener {
         Integer page_index = 0;
         Integer page = 0;
         ArrayList<ItemStack> page_content = new ArrayList<>();
-        int page_check = ItemRegistry.items.size();
+        int page_check = Zapan.INSTANCE.areas.size();
         for (zArea area : Zapan.INSTANCE.areas) {
             page_index++;
             if (page_index < 46) {
@@ -85,7 +85,7 @@ public class AreaListInventory implements Listener {
                     net.minecraft.server.v1_16_R2.ItemStack nmsCopy = Utility.createNMSCopy(clickedItem);
                     NBTTagCompound tag = Utility.getItemTag(nmsCopy);
                     if(tag.hasKey(zItemNBT.ITEM_UUID) && tag.hasKey("areaItemID_LIST")) {
-                        AreaInventory areaInventory = new AreaInventory(DataHandler.loadArea(UUID.fromString(tag.getString(zItemNBT.ITEM_UUID))));
+                        AreaInventory areaInventory = new AreaInventory(DataHandler.loadArea(UUID.fromString(tag.getString(zItemNBT.ITEM_UUID))), this);
                         areaInventory.openInventory(player);
                     }
                     if (clickedItem.getItemMeta().getDisplayName().equalsIgnoreCase("Nächste Seite")) {

@@ -32,8 +32,10 @@ public class AreaInventory implements Listener {
     @Nullable
     public Inventory inventory;
     public zArea area;
-    public AreaInventory(zArea area) {
+    public AreaListInventory areaListInventory;
+    public AreaInventory(zArea area, AreaListInventory areaListInventory) {
         this.area = area;
+        this.areaListInventory = areaListInventory;
         Bukkit.getPluginManager().registerEvents(this, Zapan.INSTANCE);
     }
 
@@ -58,6 +60,7 @@ public class AreaInventory implements Listener {
         }
         inventory.setItem(11, Utility.createInventoryStack(Material.SLIME_BALL, prioItemAmount,"Priorität: " + area.priority));
         inventory.setItem(19, Utility.createInventoryWoolColor(area.breakBlocks, "Blöcke Zerstören", 1));
+        inventory.setItem(49, Utility.createInventoryStack(Material.PAPER, 1, "Zurück"));
     }
 
     @EventHandler
@@ -87,6 +90,15 @@ public class AreaInventory implements Listener {
                             DataHandler.saveArea(area);
                             //player.updateInventory();
                         }
+                        if(itemName.equalsIgnoreCase("Zurück")) {
+                            if(areaListInventory != null) {
+                                areaListInventory.openInventory(player, 0);
+                            } else {
+                                AreaListInventory inventory = new AreaListInventory();
+                                inventory.createPageData(player);
+                                inventory.openInventory(player, 0);
+                            }
+                        }
                         setContents();
                     }
                 }
@@ -103,11 +115,15 @@ public class AreaInventory implements Listener {
                 Bukkit.getScheduler().runTask(Zapan.INSTANCE, () -> {
                     ChatType type = chatPlayersType.get(player);
                     zArea area = chatPlayers.get(player);
-                    boolean success;
+                    boolean success = false;
                     switch (type) {
                         case NAME:
-                            area.displayName = event.getMessage();
-                            success = true;
+                            if(!Utility.areaExists(area.displayName)) {
+                                area.displayName = event.getMessage();
+                                success = true;
+                            } else {
+                                player.sendMessage("Gebietname exisitert bereits...");
+                            }
                             break;
                         case PRIORITY:
                             if(Pattern.matches("^[0-9]+$", event.getMessage())) {
@@ -115,7 +131,6 @@ public class AreaInventory implements Listener {
                                 success = true;
                             } else {
                                 player.sendMessage("Dies ist keine Zahl! Versuche es nochmal...");
-                                success = false;
                             }
                             break;
                         default:

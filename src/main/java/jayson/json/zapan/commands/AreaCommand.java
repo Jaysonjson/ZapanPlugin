@@ -19,6 +19,7 @@ public class AreaCommand implements CommandExecutor {
                 inventory.createPageData(player);
                 inventory.openInventory(player, 0);
             }
+            return true;
         }
         return false;
     }

@@ -298,10 +298,10 @@ public class Utility {
         HashMap<String, zArea> areaHash = new HashMap<>();
         ArrayList<String> sortedHash = new ArrayList<>();
         for (File file : new File(DataHandler.AREA_DIR).listFiles()) {
-            zArea area = DataHandler.loadArea(UUID.fromString(file.getName().replaceAll(".json", "")));
-            areaHash.put(area.priority + "_" + area.displayName, area);
-            sortedHash.add( area.priority + "_" + area.displayName);
-            DataHandler.saveArea(area);
+                zArea area = DataHandler.loadArea(UUID.fromString(file.getName().replaceAll(".json", "")));
+                areaHash.put(area.priority + "_" + area.displayName, area);
+                sortedHash.add(area.priority + "_" + area.displayName);
+                DataHandler.saveArea(area);
         }
         Collections.sort(sortedHash);
         Collections.reverse(sortedHash);
@@ -324,9 +324,19 @@ public class Utility {
         return false;
     }
 
-    public static boolean areaExists(String name) {
-        return new File(DataHandler.AREA_DIR + name.toLowerCase() + ".json").exists();
+    public static boolean areaExistsUUID(UUID uuid) {
+        return new File(DataHandler.AREA_DIR + uuid.toString() + ".json").exists();
     }
+
+    public static boolean areaExists(String name) {
+        for (zArea area : Zapan.INSTANCE.areas) {
+            if(area.displayName.toLowerCase().equalsIgnoreCase(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     @Deprecated
     @Nullable
