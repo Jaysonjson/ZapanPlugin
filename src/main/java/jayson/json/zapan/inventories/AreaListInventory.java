@@ -5,8 +5,7 @@ import jayson.json.zapan.Utility;
 import jayson.json.zapan.Zapan;
 import jayson.json.zapan.data.zArea;
 import jayson.json.zapan.io.DataHandler;
-import jayson.json.zapan.items.interfaces.IzItemRegistry;
-import jayson.json.zapan.items.lists.ItemRegistry;
+
 import jayson.json.zapan.items.zItemNBT;
 import jayson.json.zapan.other.InventoryPage;
 import jayson.json.zapan.other.InventoryPageContainer;
@@ -14,8 +13,6 @@ import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.World;
-import org.bukkit.craftbukkit.v1_16_R2.block.impl.CraftBamboo;
 import org.bukkit.craftbukkit.v1_16_R2.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -61,7 +58,7 @@ public class AreaListInventory implements Listener {
                 itemStack = CraftItemStack.asBukkitCopy(nmsCopy);
                 page_content.add(itemStack);
             }
-            if (page_index >= 46 || page_index.equals(ItemRegistry.items.size()) || page_index.equals(page_check)) {
+            if (page_index >= 46 || page_index.equals(Zapan.INSTANCE.areas.size()) || page_index.equals(page_check)) {
                 page_content.add(Utility.createInventoryStack(Material.EMERALD, 1, "Neues Gebiet"));
                 page++;
                 page_check -= 46;
@@ -104,7 +101,7 @@ public class AreaListInventory implements Listener {
     }
 
     public void openInventory(Player player, int page) {
-        inventory = Bukkit.createInventory(player, 54, "Items");
+        inventory = Bukkit.createInventory(player, 54, "Gebiete");
         currentPage = page;
         createPage(player, inventory, page);
     }
