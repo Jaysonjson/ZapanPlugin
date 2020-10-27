@@ -37,10 +37,13 @@ public class CreateAreaCommand implements CommandExecutor {
                     if(size < 50000) {
                         zArea nearestArea = Utility.getNearestArea(player);
                         zArea area = new zArea();
+                        area.size = size;
+                        if(!nearestArea.allowOverlap && Utility.areaOverlap(player.getWorld(), area, nearestArea)) {
+                            player.sendMessage("Konnte Gebiet nicht erstellen! Es würde " + nearestArea.displayName + " überlappen und dies Erlaubt " + nearestArea.displayName + " nicht!");
+                        }
                         area.owner = ((Player) commandSender).getUniqueId();
                         area.uuid = UUID.randomUUID();
                         area.displayName = args[0];
-                        area.size = size;
                         Location location = player.getLocation();
                         area.location = new zLocation(location.getX(), location.getY(), location.getZ());
                         DataHandler.saveArea(area);
@@ -54,9 +57,7 @@ public class CreateAreaCommand implements CommandExecutor {
                             area.world = zWorld.END;
                         }
 
-                        player.sendMessage(Utility.areaOverlap(area.createLocation(player.getWorld()).add(Utility.getNearestArea(player).size, Utility.getNearestArea(player).size, Utility.getNearestArea(player).size), area.createLocation(player.getWorld()).subtract(Utility.getNearestArea(player).size, Utility.getNearestArea(player).size, Utility.getNearestArea(player).size), player.getLocation().add(size, size, size), player.getLocation().subtract(size, size, size)) + "");
-                        player.sendMessage(Utility.areaOverlap(player.getWorld(), area, nearestArea) + "_2");
-                        player.sendMessage(Utility.areaOverlapPOINT(player.getWorld(), area, Utility.getNearestArea(player)) + "_3");
+                        //player.sendMessage(Utility.areaOverlap(player.getWorld(), area, nearestArea) + "_2");
                     } else {
                         commandSender.sendMessage("Gebiet ist zu groß! Max: 50000");
                     }

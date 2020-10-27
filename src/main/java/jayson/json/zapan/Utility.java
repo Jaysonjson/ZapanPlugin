@@ -87,6 +87,11 @@ public class Utility {
         return false;
     }
 
+    public static boolean isInArea(zArea area, Player player) {
+        Location p1 = area.createLocation(player.getWorld()).add(area.size, area.size, area.size);
+        Location p2 = area.createLocation(player.getWorld()).subtract(area.size, area.size, area.size);
+        return isInArea(p1, p2, player.getLocation());
+    }
 
     public static zArea getNearestArea(World.Environment environment, Location location) {
         ArrayList<Double> distancesD = new ArrayList<>();
@@ -139,29 +144,6 @@ public class Utility {
         return XCol && YCol && ZCol;
     }
 
-    public static boolean areaOverlapPOINT(World world, zArea area1, zArea area2) {
-        Location p1 = area1.createLocation(world);
-        p1.add(area1.size, area1.size, area1.size);
-        Location p2 = area1.createLocation(world);
-        p1.subtract(area1.size, area1.size, area1.size);
-        Location pb1 = area2.createLocation(world);
-        pb1.add(area2.size, area2.size, area2.size);
-        Location pb2 = area2.createLocation(world);
-        pb2.subtract(area2.size, area2.size, area2.size);
-
-        double pMaxX = Math.max(p1.getX(), p2.getX());
-        double pMaxZ = Math.max(p1.getZ(), p2.getZ());
-        double pMinX = Math.min(p1.getX(), p2.getX());
-        double pMinZ = Math.min(p1.getZ(), p2.getZ());
-
-        double p2MaxX = Math.max(pb1.getX(), pb2.getX());
-        double p2MaxZ = Math.max(pb1.getZ(), pb2.getZ());
-        double p2MinX = Math.min(pb1.getX(), pb2.getX());
-        double p2MinZ = Math.min(pb1.getZ(), pb2.getZ());
-
-        return pMinX <= p2MaxX && pMinZ <= p2MaxZ && p2MinX <= pMaxX && p2MinZ <= pMinZ;
-    }
-
     public static boolean areaOverlap(World world, zArea area1, zArea area2) {
         Location p1 = area1.createLocation(world);
         p1.add(area1.size, area1.size, area1.size);
@@ -171,10 +153,6 @@ public class Utility {
         pb1.add(area2.size, area2.size, area2.size);
         Location pb2 = area2.createLocation(world);
         pb2.subtract(area2.size, area2.size, area2.size);
-        System.out.println(p1 + "P1-" + area1.displayName);
-        System.out.println(p2 + "P2-" + area1.displayName);
-        System.out.println(pb1 + "PB1-" + area2.displayName);
-        System.out.println(pb2 + "PB2-" + area2.displayName);
         return areaOverlap(p1, p2, pb1, pb2);
     }
 

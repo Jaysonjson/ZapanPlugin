@@ -1,6 +1,7 @@
 package jayson.json.zapan.other;
 
 import jayson.json.zapan.Utility;
+import jayson.json.zapan.data.zArea;
 import jayson.json.zapan.data.zPlayer;
 import jayson.json.zapan.data.zareaobj.zLocation;
 import jayson.json.zapan.io.DataHandler;
@@ -15,14 +16,14 @@ import org.bukkit.scoreboard.ScoreboardManager;
 public class Scoreboard {
 
     public static void updateScoreboard(Player player) {
-        sendScoreboard(player, DataHandler.loadPlayer(player.getUniqueId()), Utility.countMoneyBackpack(player.getInventory()), Utility.countZoryhaShardBackpack(player.getInventory()), Utility.getNearestArea(player.getWorld().getEnvironment(), player.getLocation()).displayName, Utility.getNearestAreaDistance(player.getWorld().getEnvironment(), player.getLocation()));
+        sendScoreboard(player, DataHandler.loadPlayer(player.getUniqueId()), Utility.countMoneyBackpack(player.getInventory()), Utility.countZoryhaShardBackpack(player.getInventory()), Utility.getNearestArea(player.getWorld().getEnvironment(), player.getLocation()), Utility.getNearestAreaDistance(player.getWorld().getEnvironment(), player.getLocation()));
     }
 
     public static void updateScoreboard(Player player, zPlayer zPlayer) {
-        sendScoreboard(player, zPlayer, Utility.countMoneyBackpack(player.getInventory()), Utility.countZoryhaShardBackpack(player.getInventory()), Utility.getNearestArea(player.getWorld().getEnvironment(), player.getLocation()).displayName, Utility.getNearestAreaDistance(player.getWorld().getEnvironment(), player.getLocation()));
+        sendScoreboard(player, zPlayer, Utility.countMoneyBackpack(player.getInventory()), Utility.countZoryhaShardBackpack(player.getInventory()), Utility.getNearestArea(player.getWorld().getEnvironment(), player.getLocation()), Utility.getNearestAreaDistance(player.getWorld().getEnvironment(), player.getLocation()));
     }
 
-    public static void sendScoreboard(Player player, zPlayer zPlayer, double money, double zoryhaShardValue, String area, zLocation areaDistance) {
+    public static void sendScoreboard(Player player, zPlayer zPlayer, double money, double zoryhaShardValue, zArea area, zLocation areaDistance) {
         ScoreboardManager scoreboardManager = Bukkit.getScoreboardManager();
         org.bukkit.scoreboard.Scoreboard scoreboard = scoreboardManager.getNewScoreboard();
         Objective score = scoreboard.registerNewObjective("Zapan", "dummy", "Zapan");
@@ -52,7 +53,11 @@ public class Scoreboard {
         }
         Score zoryhaShardScore = score.getScore(ChatColor.AQUA + "Zoryha Bruckstücke" + ChatColor.DARK_GRAY + ": " + ChatColor.GOLD + zoryhaShardSTR + "¢");
         Score lineSpace1 = score.getScore("-0------=1=------0-");
-        Score areaScore = score.getScore(ChatColor.GOLD + area + ChatColor.RESET + " (" + ChatColor.BOLD + Utility.formatInteger((int)areaDistance.x) + ChatColor.RESET + ", " +  ChatColor.BOLD + Utility.formatInteger((int) areaDistance.z) + ChatColor.RESET + ")");
+        String areaColor = ChatColor.GOLD + "";
+        if(Utility.isInArea(area, player)) {
+            areaColor = ChatColor.DARK_PURPLE + "";
+        }
+        Score areaScore = score.getScore(areaColor + area.displayName + ChatColor.RESET + " (" + ChatColor.BOLD + Utility.formatInteger((int)areaDistance.x) + ChatColor.RESET + ", " +  ChatColor.BOLD + Utility.formatInteger((int) areaDistance.z) + ChatColor.RESET + ")");
         Score lineSpace2 = score.getScore("-0------=2=------0-");
         Score levelScore = score.getScore("LvL: " + zPlayer.getLevel().level);
         Score lineSpace3 = score.getScore("-0------=3=------0-");
