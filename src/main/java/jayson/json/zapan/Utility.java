@@ -34,6 +34,7 @@ import javax.annotation.Nullable;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.util.*;
+import java.util.regex.Pattern;
 
 public class Utility {
 
@@ -104,6 +105,10 @@ public class Utility {
         return distances.get(distancesD.get(0));
     }
 
+    public static zArea getNearestArea(Player player) {
+        return getNearestArea(player.getWorld().getEnvironment(), player.getLocation());
+    }
+
     @Deprecated
     public static zLocation getNearestAreaDistanceDEP(Location location) {
         ArrayList<Double> distancesX = new ArrayList<>();
@@ -132,6 +137,45 @@ public class Utility {
         boolean ZCol = isAreaBetween(locationP1.getZ(), locationP2.getZ(), locationBP1.getZ()) || isAreaBetween(locationP1.getZ(), locationP2.getZ(), locationBP2.getZ());
 
         return XCol && YCol && ZCol;
+    }
+
+    public static boolean areaOverlapPOINT(World world, zArea area1, zArea area2) {
+        Location p1 = area1.createLocation(world);
+        p1.add(area1.size, area1.size, area1.size);
+        Location p2 = area1.createLocation(world);
+        p1.subtract(area1.size, area1.size, area1.size);
+        Location pb1 = area2.createLocation(world);
+        pb1.add(area2.size, area2.size, area2.size);
+        Location pb2 = area2.createLocation(world);
+        pb2.subtract(area2.size, area2.size, area2.size);
+
+        double pMaxX = Math.max(p1.getX(), p2.getX());
+        double pMaxZ = Math.max(p1.getZ(), p2.getZ());
+        double pMinX = Math.min(p1.getX(), p2.getX());
+        double pMinZ = Math.min(p1.getZ(), p2.getZ());
+
+        double p2MaxX = Math.max(pb1.getX(), pb2.getX());
+        double p2MaxZ = Math.max(pb1.getZ(), pb2.getZ());
+        double p2MinX = Math.min(pb1.getX(), pb2.getX());
+        double p2MinZ = Math.min(pb1.getZ(), pb2.getZ());
+
+        return pMinX <= p2MaxX && pMinZ <= p2MaxZ && p2MinX <= pMaxX && p2MinZ <= pMinZ;
+    }
+
+    public static boolean areaOverlap(World world, zArea area1, zArea area2) {
+        Location p1 = area1.createLocation(world);
+        p1.add(area1.size, area1.size, area1.size);
+        Location p2 = area1.createLocation(world);
+        p2.subtract(area1.size, area1.size, area1.size);
+        Location pb1 = area2.createLocation(world);
+        pb1.add(area2.size, area2.size, area2.size);
+        Location pb2 = area2.createLocation(world);
+        pb2.subtract(area2.size, area2.size, area2.size);
+        System.out.println(p1 + "P1-" + area1.displayName);
+        System.out.println(p2 + "P2-" + area1.displayName);
+        System.out.println(pb1 + "PB1-" + area2.displayName);
+        System.out.println(pb2 + "PB2-" + area2.displayName);
+        return areaOverlap(p1, p2, pb1, pb2);
     }
 
     public static boolean isAreaBetween(double point1, double point2, double target) {
@@ -298,10 +342,15 @@ public class Utility {
         HashMap<String, zArea> areaHash = new HashMap<>();
         ArrayList<String> sortedHash = new ArrayList<>();
         for (File file : new File(DataHandler.AREA_DIR).listFiles()) {
+            ///^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/
+            try {
                 zArea area = DataHandler.loadArea(UUID.fromString(file.getName().replaceAll(".json", "")));
                 areaHash.put(area.priority + "_" + area.displayName, area);
                 sortedHash.add(area.priority + "_" + area.displayName);
                 DataHandler.saveArea(area);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         Collections.sort(sortedHash);
         Collections.reverse(sortedHash);

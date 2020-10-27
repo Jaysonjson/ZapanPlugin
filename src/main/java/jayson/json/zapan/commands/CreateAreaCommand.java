@@ -35,12 +35,13 @@ public class CreateAreaCommand implements CommandExecutor {
                     Player player = (Player) commandSender;
                     int size = Integer.parseInt(args[1]);
                     if(size < 50000) {
+                        zArea nearestArea = Utility.getNearestArea(player);
                         zArea area = new zArea();
                         area.owner = ((Player) commandSender).getUniqueId();
                         area.uuid = UUID.randomUUID();
                         area.displayName = args[0];
                         area.size = size;
-                        Location location = ((Player) commandSender).getLocation();
+                        Location location = player.getLocation();
                         area.location = new zLocation(location.getX(), location.getY(), location.getZ());
                         DataHandler.saveArea(area);
                         player.sendMessage("Gebiet " + args[0] + " erstellt!");
@@ -52,8 +53,11 @@ public class CreateAreaCommand implements CommandExecutor {
                         if(player.getWorld().getEnvironment() == World.Environment.THE_END) {
                             area.world = zWorld.END;
                         }
-                            //player.sendMessage(Utility.AreaOverlap(area.CreateLocation(player.getWorld()).add(Utility.GetNearestArea(player.getLocation()).size, Utility.GetNearestArea(player.getLocation()).size, Utility.GetNearestArea(player.getLocation()).size), area.CreateLocation(player.getWorld()).subtract(Utility.GetNearestArea(player.getLocation()).size, Utility.GetNearestArea(player.getLocation()).size, Utility.GetNearestArea(player.getLocation()).size), player.getLocation().add(size, size, size), player.getLocation().subtract(size, size, size)) + "");
-                        } else {
+
+                        player.sendMessage(Utility.areaOverlap(area.createLocation(player.getWorld()).add(Utility.getNearestArea(player).size, Utility.getNearestArea(player).size, Utility.getNearestArea(player).size), area.createLocation(player.getWorld()).subtract(Utility.getNearestArea(player).size, Utility.getNearestArea(player).size, Utility.getNearestArea(player).size), player.getLocation().add(size, size, size), player.getLocation().subtract(size, size, size)) + "");
+                        player.sendMessage(Utility.areaOverlap(player.getWorld(), area, nearestArea) + "_2");
+                        player.sendMessage(Utility.areaOverlapPOINT(player.getWorld(), area, Utility.getNearestArea(player)) + "_3");
+                    } else {
                         commandSender.sendMessage("Gebiet ist zu groß! Max: 50000");
                     }
                 } else {

@@ -51,7 +51,7 @@ public class BackPackInventory implements Listener {
     }
 
     public void openInventory(Player player) {
-        inventory = Bukkit.createInventory(player, inventorySize, "Items");
+        inventory = Bukkit.createInventory(player, inventorySize, "Rucksack");
         UUID uuid = UUID.fromString(Utility.getItemTag(Utility.createNMSCopy(backPackItem)).getString(zItemNBT.ITEM_UUID));
         //Vielleicht als Item NBT Tag speichern?
         backPack = DataHandler.loadBackPack(uuid);
