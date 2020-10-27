@@ -54,7 +54,12 @@ public class Scoreboard {
         Score zoryhaShardScore = score.getScore(ChatColor.AQUA + "Zoryha Bruckstücke" + ChatColor.DARK_GRAY + ": " + ChatColor.GOLD + zoryhaShardSTR + "¢");
         Score lineSpace1 = score.getScore("-0------=1=------0-");
         String areaColor = ChatColor.GOLD + "";
-        if(Utility.isInArea(area, player)) {
+        Score nextAreaScore = null;
+        boolean inArea = Utility.isInArea(area, player);
+        if(inArea) {
+            zArea nextArea = Utility.getNearestAreaOutsidePlayer(player);
+            zLocation nextAreaLoc = Utility.getNearestAreaDistanceOutsidePlayer(player);
+            nextAreaScore = score.getScore(ChatColor.GOLD + nextArea.displayName + ChatColor.RESET + " (" + ChatColor.BOLD + Utility.formatInteger((int)nextAreaLoc.x) + ChatColor.RESET + ", " +  ChatColor.BOLD + Utility.formatInteger((int) nextAreaLoc.z) + ChatColor.RESET + ")");
             areaColor = ChatColor.DARK_PURPLE + "";
         }
         Score areaScore = score.getScore(areaColor + area.displayName + ChatColor.RESET + " (" + ChatColor.BOLD + Utility.formatInteger((int)areaDistance.x) + ChatColor.RESET + ", " +  ChatColor.BOLD + Utility.formatInteger((int) areaDistance.z) + ChatColor.RESET + ")");
@@ -62,17 +67,30 @@ public class Scoreboard {
         Score levelScore = score.getScore("LvL: " + zPlayer.getLevel().level);
         Score lineSpace3 = score.getScore("-0------=3=------0-");
         Score classSore = score.getScore(ChatColor.RED + zPlayer.getPlayerClass().current.getName());
-        lineSpace0.setScore(10);
-        zoryhaShardScore.setScore(9);
-        zoryhaShard1Score.setScore(8);
-        hackSilverScore.setScore(7);
-        hackSilver1Score.setScore(6);
-        lineSpace1.setScore(5);
-        areaScore.setScore(4);
-        lineSpace2.setScore(3);
-        levelScore.setScore(2);
-        lineSpace3.setScore(1);
-        classSore.setScore(0);
+        setScores(
+                classSore,
+                lineSpace3,
+                levelScore,
+                lineSpace2,
+                nextAreaScore,
+                areaScore,
+                lineSpace1,
+                hackSilver1Score,
+                hackSilverScore,
+                zoryhaShard1Score,
+                zoryhaShardScore,
+                lineSpace0
+        );
         player.setScoreboard(scoreboard);
+    }
+
+    private static void setScores(Score... scores) {
+        int i = 0;
+        for (Score score : scores) {
+            if(score != null) {
+                score.setScore(i);
+                i++;
+            }
+        }
     }
 }

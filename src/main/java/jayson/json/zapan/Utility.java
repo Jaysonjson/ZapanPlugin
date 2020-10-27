@@ -90,12 +90,15 @@ public class Utility {
     public static boolean isInArea(zArea area, Player player) {
         Location p1 = area.createLocation(player.getWorld()).add(area.size, area.size, area.size);
         Location p2 = area.createLocation(player.getWorld()).subtract(area.size, area.size, area.size);
-        return isInArea(p1, p2, player.getLocation());
+        return isInArea(player.getLocation(), p1, p2);
     }
 
     public static zArea getNearestArea(World.Environment environment, Location location) {
         ArrayList<Double> distancesD = new ArrayList<>();
         HashMap<Double, zArea> distances = new HashMap<>();
+        if(Zapan.INSTANCE.areas.size() < 1) {
+            return new zArea();
+        }
         for (zArea areas : Zapan.INSTANCE.areas) {
            // distances.put((location.getX() - areas.location.x), areas);
            // distancesD.add((location.getX() - areas.location.x));
@@ -107,6 +110,25 @@ public class Utility {
         }
         Collections.sort(distancesD);
         //Collections.reverse(distancesD);
+        return distances.get(distancesD.get(0));
+    }
+
+    public static zArea getNearestAreaOutsidePlayer(Player player) {
+        ArrayList<Double> distancesD = new ArrayList<>();
+        HashMap<Double, zArea> distances = new HashMap<>();
+        if(Zapan.INSTANCE.areas.size() < 1) {
+            return new zArea();
+        }
+        for (zArea areas : Zapan.INSTANCE.areas) {
+            if(!isInArea(areas, player)) {
+                if (areas.world.getEnvironment().equals(player.getWorld().getEnvironment())) {
+                    double distance = player.getLocation().distance(areas.createLocation(player.getWorld()));
+                    distances.put(distance, areas);
+                    distancesD.add(distance);
+                }
+            }
+        }
+        Collections.sort(distancesD);
         return distances.get(distancesD.get(0));
     }
 
@@ -133,6 +155,11 @@ public class Utility {
         zArea area = getNearestArea(environment, location);
         //return new zLocation(area.location.x - location.getX() - area.size, 0, area.location.z - location.getZ() - area.size);
         return new zLocation(area.location.x - location.getX(), 0, area.location.z - location.getZ());
+    }
+
+    public static zLocation getNearestAreaDistanceOutsidePlayer(Player player) {
+        zArea area = getNearestAreaOutsidePlayer(player);
+        return new zLocation(area.location.x - player.getLocation().getX(), 0, area.location.z - player.getLocation().getZ());
     }
 
     public static boolean areaOverlap(Location locationP1, Location locationP2, Location locationBP1, Location locationBP2)
