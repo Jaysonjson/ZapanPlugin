@@ -38,7 +38,7 @@ public class CreateAreaCommand implements CommandExecutor {
                         zArea nearestArea = Utility.getNearestArea(player);
                         zArea area = new zArea();
                         area.size = size;
-                        if(!nearestArea.allowOverlap && Utility.areaOverlap(player.getWorld(), area, nearestArea)) {
+                        if(!area.canOverlap(player) && Utility.areaOverlap(player.getWorld(), area, nearestArea)) {
                             player.sendMessage("Konnte Gebiet nicht erstellen! Es würde " + nearestArea.displayName + " überlappen und dies Erlaubt " + nearestArea.displayName + " nicht!");
                         }
                         area.owner = ((Player) commandSender).getUniqueId();
