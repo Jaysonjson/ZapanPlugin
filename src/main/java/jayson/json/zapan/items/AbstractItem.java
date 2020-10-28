@@ -13,7 +13,7 @@ import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.UUID;
 
-public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzMarketItem, IzNBTItem, IzConsumeItem, IzTextureItem, IzToolItem, IzAlchemyItem {
+public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzMarketItem, IzConsumeItem, IzTextureItem, IzToolItem, IzAlchemyItem {
 
     @Deprecated
     @Override
@@ -35,44 +35,19 @@ public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzM
     }
 
     @Override
-    public HashMap<String, String> getNBTStrings() {
-        return IzNBTItem.strings;
-    }
-
-    @Override
-    public HashMap<String, Integer> getNBTInts() {
-        return IzNBTItem.ints;
-    }
-
-    @Override
-    public HashMap<String, UUID> getNBTUUIDS() {
-        return IzNBTItem.uuids;
-    }
-
-    @Override
-    public HashMap<String, Double> getNBTDoubles() {
-        return IzNBTItem.doubles;
-    }
-
-    @Override
-    public HashMap<String, Boolean> getNBTBooleans() {
-        return IzNBTItem.booleans;
-    }
-
-    @Override
-    public ItemStack createItem(Player player, ItemStack stack) {
+    public ItemStack createItem(Player player, ItemStack stack, zAdditionalItemInformation infoItem) {
         return new ItemStack(Material.AIR);
     }
 
     @Override
     @Deprecated
     public void update(ItemStack itemStack) {
-        itemStack = createItem(null, null);
+        itemStack = createItem(null, null, null);
     }
 
     @Override
     public ItemStack update(Player player) {
-        return createItem(player, null);
+        return createItem(player, null, null);
     }
 
     @Override

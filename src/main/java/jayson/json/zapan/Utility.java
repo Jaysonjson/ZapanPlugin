@@ -243,7 +243,7 @@ public class Utility {
     }
 
     public static void spawnCustomItem(Player player, AbstractItem item, World world, Location location) {
-        world.dropItemNaturally(location, item.createItem(player, null));
+        world.dropItemNaturally(location, item.createItem(player, null, null));
     }
 
     public static double countMoney(Player player) {
@@ -474,7 +474,7 @@ public class Utility {
     @Deprecated
     public static boolean isValidAbilityItem(ItemStack itemStack) {
         for (zItemAbility value : zItemAbility.values()) {
-            if(value.getAbstractItem().createItem(null, itemStack).isSimilar(itemStack)) {
+            if(value.getAbstractItem().createItem(null, itemStack, null).isSimilar(itemStack)) {
                 return true;
             }
         }
@@ -501,7 +501,7 @@ public class Utility {
     @Deprecated
     public static boolean isAbilityItemAllINEFF(Player player, ItemStack itemStack) {
         for (IzItemRegistry value : ItemRegistry.items) {
-            if(value.getAbstractItem().createItem(player, itemStack).getType().equals(itemStack.getType())) {
+            if(value.getAbstractItem().createItem(player, itemStack, null).getType().equals(itemStack.getType())) {
                 return true;
             }
         }
@@ -521,7 +521,7 @@ public class Utility {
     @Deprecated
     public static boolean iszItem(ItemStack itemStack) {
         for (IzItemRegistry item : ItemRegistry.items) {
-            if(item.getAbstractItem().createItem(null, itemStack).getType().equals(itemStack.getType())) {
+            if(item.getAbstractItem().createItem(null, itemStack, null).getType().equals(itemStack.getType())) {
                 return true;
             }
         }
@@ -679,5 +679,20 @@ public class Utility {
 
     public static void createInventoryBorder(Inventory inventory, ItemStack itemStack) {
         createInventoryBorder(inventory, (inventory.getSize() + 1) / 9, itemStack);
+    }
+
+    public static int addAmount(ItemStack original, ItemStack addition) {
+        int amount = 0;
+        NBTTagCompound tag1 = getItemTag(original);
+        if(tag1.hasKey(zItemNBT.ITEM_AMOUNT)) {
+            amount = tag1.getInt(zItemNBT.ITEM_AMOUNT);
+            if(addition != null) {
+                NBTTagCompound tag2 = getItemTag(addition);
+                if (tag2.hasKey(zItemNBT.ITEM_AMOUNT)) {
+                    amount += tag2.getInt(zItemNBT.ITEM_AMOUNT);
+                }
+            }
+        }
+        return amount;
     }
 }

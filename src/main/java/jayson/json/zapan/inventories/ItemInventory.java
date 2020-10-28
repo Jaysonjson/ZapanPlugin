@@ -40,7 +40,7 @@ public class ItemInventory implements Listener {
         for (IzItemRegistry item : ItemRegistry.items) {
             page_index++;
             if (page_index < 46) {
-                page_content.add(item.getAbstractItem().createItem(player, null));
+                page_content.add(item.getAbstractItem().createItem(player, null, null));
             }
             if (page_index >= 46 || page_index.equals(ItemRegistry.items.size()) || page_index.equals(page_check)) {
                 page++;

@@ -1,9 +1,6 @@
 package jayson.json.zapan.items.classes;
 
-import jayson.json.zapan.items.AbstractItem;
-import jayson.json.zapan.items.ItemUseType;
-import jayson.json.zapan.items.zItemNBT;
-import jayson.json.zapan.items.zOItem;
+import jayson.json.zapan.items.*;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -20,7 +17,7 @@ public class PotionerClassItem extends AbstractItem {
     }
 
     @Override
-    public ItemStack createItem(Player player, ItemStack stack) {
+    public ItemStack createItem(Player player, ItemStack stack, zAdditionalItemInformation infoItem) {
         zOItem oItem = new zOItem(this, player,true);
         oItem.itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
         oItem.setItem(ChatColor.BLUE + "Brauer");

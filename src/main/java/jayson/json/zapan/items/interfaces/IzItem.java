@@ -1,6 +1,7 @@
 package jayson.json.zapan.items.interfaces;
 
 import jayson.json.zapan.items.ItemUseType;
+import jayson.json.zapan.items.zAdditionalItemInformation;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -12,7 +13,7 @@ public interface IzItem {
     @NotNull
     String getId();
     void setId(String id);
-    ItemStack createItem(Player player, ItemStack stack);
+    ItemStack createItem(Player player, ItemStack stack, zAdditionalItemInformation infoItem);
     void update(ItemStack itemStack);
     ItemStack update(Player player);
     ItemUseType getItemUseType();

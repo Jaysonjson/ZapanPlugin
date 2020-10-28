@@ -11,6 +11,7 @@ import jayson.json.zapan.items.currency.GoldBarItem;
 import jayson.json.zapan.items.currency.GoldNuggetItem;
 import jayson.json.zapan.items.currency.HackSilverItem;
 import jayson.json.zapan.items.vanillaOverride.IronIngotItem;
+import jayson.json.zapan.items.vanillaOverride.IronOreItem;
 import org.bukkit.Material;
 
 public enum zItem implements IzItemRegistry {
@@ -29,6 +30,7 @@ public enum zItem implements IzItemRegistry {
     MALTITEM(new MaltItem("maltItem", Material.NETHERITE_HOE, ItemUseType.CRAFTING, 3)),
     HOPITEM(new HopItem("hopItem", Material.NETHERITE_HOE, ItemUseType.CRAFTING, 4)),
     IRONINGOT(new IronIngotItem("ironIngotItem", Material.IRON_INGOT, ItemUseType.CRAFTING)),
+    IRONORE(new IronOreItem("ironOreItem", Material.IRON_ORE, ItemUseType.CRAFTING)),
     SCRAP(new ScrapItem("scrapItem", Material.NETHERITE_SCRAP, ItemUseType.CURRENCY));
 
     //TODO: Market-Value -> Wert des Items verändert sich

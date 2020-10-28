@@ -1,5 +1,6 @@
 package jayson.json.zapan.items;
 
+import jayson.json.zapan.Utility;
 import jayson.json.zapan.data.zPlayer;
 import jayson.json.zapan.io.DataHandler;
 import jayson.json.zapan.skillclass.zClass;
@@ -12,8 +13,11 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
+import sun.nio.ch.Util;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.UUID;
 
 
 public class zOItem {
@@ -25,6 +29,14 @@ public class zOItem {
     public AbstractItem zItem;
     public Player player = null;
     public Boolean textureDamage = false;
+    NBTTagCompound preTag;
+
+    HashMap<String, String> strings = new HashMap<>();
+    HashMap<String, Integer> ints = new HashMap<>();
+    HashMap<String, UUID> uuids = new HashMap<>();
+    HashMap<String, Double> doubles = new HashMap<>();
+    HashMap<String, Boolean> booleans = new HashMap<>();
+
     @Deprecated
     public zOItem(AbstractItem zItem, ItemStack itemStack, ArrayList<String> lore, String id) {
         this.item = itemStack;
@@ -53,7 +65,6 @@ public class zOItem {
         this.player = player;
     }
 
-    @Deprecated
     public zOItem(AbstractItem zItem, Player player, ItemStack itemStack, String id, Boolean textureDamage) {
         this.item = itemStack;
         this.itemMeta = this.item.getItemMeta();
@@ -64,6 +75,7 @@ public class zOItem {
         this.textureDamage = textureDamage;
     }
 
+    @Deprecated
     public zOItem(AbstractItem zItem, Player player, Boolean textureDamage) {
         this.item = new ItemStack(zItem.getMaterial());
         this.itemMeta = this.item.getItemMeta();
@@ -74,6 +86,7 @@ public class zOItem {
         this.textureDamage = textureDamage;
     }
 
+    @Deprecated
     public zOItem(AbstractItem zItem, Player player) {
         this.item = new ItemStack(zItem.getMaterial());
         this.itemMeta = this.item.getItemMeta();
@@ -92,6 +105,7 @@ public class zOItem {
 
     //@Deprecated
     public void setItem(String displayName) {
+        preTag = Utility.getItemTag(item);
         //item = CraftItemStack.asBukkitCopy(nmsCopy);
             try {
                 /*
@@ -140,16 +154,27 @@ public class zOItem {
                         }
                         lore.add("");
                     }
-                    if (player.getGameMode().equals(GameMode.CREATIVE) || player.getGameMode().equals(GameMode.SPECTATOR)) {
+                    if (player.getGameMode().equals(GameMode.CREATIVE) || player.getGameMode().equals(GameMode.SPECTATOR) || preTag.hasKey(zItemNBT.CREATIVE_GET)) {
+                        if(!preTag.hasKey(zItemNBT.CREATIVE_GET)) {
+                            booleans.put(zItemNBT.CREATIVE_GET, true);
+                            strings.put(zItemNBT.CREATIVE_GET_USER, player.getDisplayName());
+                            preTag.setString(zItemNBT.CREATIVE_GET_USER, player.getDisplayName());
+                        }
                         lore.add(ChatColor.LIGHT_PURPLE + "In Kreativ bekommen");
-                        lore.add(ChatColor.DARK_GRAY + "" + ChatColor.ITALIC + "»" + player.getDisplayName() + "«");
+                        lore.add(ChatColor.DARK_GRAY + "" + ChatColor.ITALIC + "»" + preTag.getString(zItemNBT.CREATIVE_GET_USER) + "«");
                     }
                 } else {
                     if(zItem.requiredIntelligence() > 0) {
                         lore.add(ChatColor.GRAY + "Benötigt Intelligenz " + zItem.requiredIntelligence());
                     }
                 }
-                lore.add(ChatColor.DARK_GRAY + "" + ChatColor.ITALIC + id + " [" + zItem.itemVersion() + "]");
+                String itemVersion = zItem.itemVersion() + "";
+                if(preTag.hasKey(zItemNBT.ITEM_VERSION))  {
+                    itemVersion = preTag.getString(zItemNBT.ITEM_VERSION);
+                } else {
+                    strings.put(zItemNBT.ITEM_VERSION, itemVersion);
+                }
+                lore.add(ChatColor.DARK_GRAY + "" + ChatColor.ITALIC + id + " [" + itemVersion + "]");
 
                 if (textureDamage) {
                     Damageable damageable = (Damageable) itemMeta;
@@ -177,11 +202,13 @@ public class zOItem {
         NBTTagCompound tag = getTagCompound();
         //tag.setString(zItemNBT.CONST_ITEM_ID, id);
         //tag.setDouble(zItemNBT.CONST_ITEM_VERSION, zItem.itemVersion());
-        zItem.getNBTStrings().keySet().forEach((s -> tag.setString(s, zItem.getNBTStrings().get(s))));
+        /*zItem.getNBTStrings().keySet().forEach((s -> tag.setString(s, zItem.getNBTStrings().get(s))));
         zItem.getNBTUUIDS().keySet().forEach((s -> tag.setString(s, zItem.getNBTUUIDS().get(s).toString())));
         zItem.getNBTInts().keySet().forEach((s -> tag.setInt(s, zItem.getNBTInts().get(s))));
         zItem.getNBTDoubles().keySet().forEach((s -> tag.setDouble(s, zItem.getNBTDoubles().get(s))));
         zItem.getNBTBooleans().keySet().forEach((s -> tag.setBoolean(s, zItem.getNBTBooleans().get(s))));
+
+         */
     }
 
     @Deprecated
@@ -193,6 +220,12 @@ public class zOItem {
         NBTTagCompound tag = nmsCopy.hasTag() ? nmsCopy.getTag() : new NBTTagCompound();
         tag.setString(zItemNBT.ITEM_ID, id);
         tag.setDouble(zItemNBT.ITEM_VERSION, zItem.itemVersion());
+
+        strings.keySet().forEach((s -> tag.setString(s, strings.get(s))));
+        uuids.keySet().forEach((s -> tag.setString(s, uuids.get(s).toString())));
+        ints.keySet().forEach((s -> tag.setInt(s, ints.get(s))));
+        doubles.keySet().forEach((s -> tag.setDouble(s, doubles.get(s))));
+        booleans.keySet().forEach((s -> tag.setBoolean(s, booleans.get(s))));
         return tag;
     }
 }

@@ -19,4 +19,6 @@ public class zItemNBT {
     public static final String ITEM_DURABILITY = "itemDurability";
     public static final String ITEM_AMOUNT = "abstractItemAmount";
     public static final String LIQUID_AMOUNT = "abstractLiquidAmount";
+    public static final String CREATIVE_GET = "creativeGet";
+    public static final String CREATIVE_GET_USER = "creativeGetUser";
 }

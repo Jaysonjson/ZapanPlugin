@@ -1,10 +1,7 @@
 package jayson.json.zapan.items.other;
 
 import jayson.json.zapan.Utility;
-import jayson.json.zapan.items.AbstractItem;
-import jayson.json.zapan.items.ItemUseType;
-import jayson.json.zapan.items.zItemNBT;
-import jayson.json.zapan.items.zOItem;
+import jayson.json.zapan.items.*;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -21,7 +18,7 @@ public class ScrapItem extends AbstractItem {
     }
 
     @Override
-    public ItemStack createItem(Player player, ItemStack stack) {
+    public ItemStack createItem(Player player, ItemStack stack, zAdditionalItemInformation infoItem) {
         boolean exists = true;
         if(stack == null) {
             stack = new ItemStack(getMaterial());

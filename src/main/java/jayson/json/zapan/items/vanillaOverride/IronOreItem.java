@@ -1,6 +1,5 @@
-package jayson.json.zapan.items.currency;
+package jayson.json.zapan.items.vanillaOverride;
 
-import jayson.json.zapan.Utility;
 import jayson.json.zapan.items.*;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.ChatColor;
@@ -10,35 +9,18 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-public class ZoryhaShardItem extends AbstractItem {
+public class IronOreItem extends AbstractItem {
 
-    double currencyValue;
-    public ZoryhaShardItem(String id, Material material, ItemUseType itemUseType) {
+    public IronOreItem(String id, Material material, ItemUseType itemUseType) {
         super(id, material, itemUseType);
     }
 
     @Override
     public ItemStack createItem(Player player, ItemStack stack, zAdditionalItemInformation infoItem) {
-        boolean exists = true;
-        if(stack == null) {
-            stack = new ItemStack(getMaterial());
-            exists = false;
-        }
-        zOItem oItem = new zOItem(this, player, stack, getId(),true);
+        zOItem oItem = new zOItem(this, player,true);
 
-        if(exists) {
-            NBTTagCompound tag = getTag(Utility.getItemTag(Utility.createNMSCopy(stack)));
-            if(tag.hasKey(zItemNBT.ZORYHASHARD_AMOUNT)) {
-                currencyValue = tag.getDouble(zItemNBT.ZORYHASHARD_AMOUNT);
-            } else {
-                currencyValue = 1;
-            }
-        } else {
-            currencyValue = 1;
-        }
+        oItem.setItem(ChatColor.GRAY + "Eisenerz");
 
-        oItem.lore.add(ChatColor.GRAY + "" + currencyValue + "¢");
-        oItem.setItem(ChatColor.AQUA + "Zoryha Bruckstück");
         oItem.createNMSCopy();
         oItem.nmsCopy.setTag(getTag(oItem.getTagCompound()));
         oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
@@ -47,13 +29,10 @@ public class ZoryhaShardItem extends AbstractItem {
 
     @Override
     public NBTTagCompound getTag(NBTTagCompound tag) {
+        tag.setBoolean(zItemNBT.CAN_CRAFT, false);
         tag.setBoolean(zItemNBT.CAN_CRAFT_MINECRAFT, false);
-        if(!tag.hasKey(zItemNBT.ZORYHASHARD_AMOUNT)) {
-            tag.setDouble(zItemNBT.ZORYHASHARD_AMOUNT, currencyValue);
-        }
         return tag;
     }
-
 
     @Override
     public @NotNull String getId() {
@@ -69,4 +48,10 @@ public class ZoryhaShardItem extends AbstractItem {
     public ItemUseType getItemUseType() {
         return super.getItemUseType();
     }
+
+    @Override
+    public boolean isVanillaOverride() {
+        return true;
+    }
+
 }

@@ -1,10 +1,7 @@
 package jayson.json.zapan.items.vanillaOverride;
 
 import jayson.json.zapan.Utility;
-import jayson.json.zapan.items.AbstractItem;
-import jayson.json.zapan.items.ItemUseType;
-import jayson.json.zapan.items.zItemNBT;
-import jayson.json.zapan.items.zOItem;
+import jayson.json.zapan.items.*;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -14,21 +11,46 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Random;
+
 public class IronIngotItem extends AbstractItem {
 
 
+    int amount = 0;
+    boolean amountUpdate = false;
     public IronIngotItem(String id, Material material, ItemUseType itemUseType) {
         super(id, material, itemUseType);
     }
 
 
     @Override
-    public ItemStack createItem(Player player, ItemStack stack) {
-        zOItem oItem = new zOItem(this, player,true);
+    public ItemStack createItem(Player player, ItemStack stack, zAdditionalItemInformation infoItem) {
+        boolean exists = true;
+        if(stack == null) {
+            stack = new ItemStack(getMaterial());
+            exists = false;
+        }
+        zOItem oItem = new zOItem(this, player, stack, getId(),true);
 
+        if(exists) {
+            NBTTagCompound tag = getTag(Utility.getItemTag(Utility.createNMSCopy(stack)));
+            if(tag.hasKey(zItemNBT.ITEM_AMOUNT)) {
+                amount = tag.getInt(zItemNBT.ITEM_AMOUNT);
+            }
+        } else {
+            amount = new Random().nextInt(75);
+            amount += new Random().nextInt(25);
+        }
+        if(infoItem != null) {
+            if(infoItem.amount > 0) {
+                amount = infoItem.amount;
+                amountUpdate = true;
+            }
+        }
+        System.out.println(amount + " in Item");
+        oItem.lore.add(ChatColor.GRAY + "" + amount + "g");
         oItem.itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-        oItem.setItem(ChatColor.DARK_GRAY + "Eisen");
-
+        oItem.setItem(ChatColor.GRAY + "Eisen");
         oItem.createNMSCopy();
         oItem.nmsCopy.setTag(getTag(oItem.getTagCompound()));
         oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
@@ -38,7 +60,10 @@ public class IronIngotItem extends AbstractItem {
     @Override
     public NBTTagCompound getTag(NBTTagCompound tag) {
         tag.setBoolean(zItemNBT.CAN_CRAFT, true);
-        tag.setBoolean(zItemNBT.CAN_CRAFT_MINECRAFT, false);
+        tag.setBoolean(zItemNBT.CAN_CRAFT_MINECRAFT, true);
+        if(!tag.hasKey(zItemNBT.ITEM_AMOUNT) || amountUpdate) {
+            tag.setInt(zItemNBT.ITEM_AMOUNT, amount);
+        }
         return tag;
     }
 
