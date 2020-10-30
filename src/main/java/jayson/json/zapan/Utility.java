@@ -575,10 +575,10 @@ public class Utility {
 
     public static void updatePlayerInventory(Player player) {
         for (ItemStack content : player.getInventory().getContents()) {
-            if(iszItem(content)) {
+            if(isAbstractItem(content)) {
                 AbstractItem abstractItem = getAbstractItemFromNMS(content);
                 if(abstractItem != null) {
-                    abstractItem.update(player);
+                    abstractItem.update(player, content, null);
                 }
             }
         }

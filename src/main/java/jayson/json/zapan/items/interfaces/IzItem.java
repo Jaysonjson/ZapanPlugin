@@ -14,8 +14,7 @@ public interface IzItem {
     String getId();
     void setId(String id);
     ItemStack createItem(Player player, ItemStack stack, zAdditionalItemInformation infoItem);
-    void update(ItemStack itemStack);
-    ItemStack update(Player player);
+    ItemStack update(Player player, ItemStack itemStack, zAdditionalItemInformation infoItem);
     ItemUseType getItemUseType();
     @NotNull
     Material getMaterial();

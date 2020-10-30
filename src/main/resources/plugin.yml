@@ -42,6 +42,9 @@ commands:
   areas:
     description: Zeigt Gebiete an
     usage: /areas
+  itemids:
+    description: Item IDS
+    usage: /itemids
 permissions:
   zapan.sethealth:
     description: SetHealth

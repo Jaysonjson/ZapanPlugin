@@ -3,6 +3,7 @@ package jayson.json.zapan.items;
 import jayson.json.zapan.Utility;
 import jayson.json.zapan.data.zPlayer;
 import jayson.json.zapan.io.DataHandler;
+import jayson.json.zapan.skillclass.zAlchemistClass;
 import jayson.json.zapan.skillclass.zClass;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.ChatColor;
@@ -135,8 +136,8 @@ public class zOItem {
                     }
                     if (zPlayer.getPlayerClass().current.equals(zClass.ALCHEMIST)) {
                         lore.add("");
-                        //Checken if Spieler hat Item gelernt
-                        if (false) {
+                        zAlchemistClass alchemistClass = zPlayer.getPlayerClass().getAlchemistData();
+                        if (alchemistClass.getLearnedItems().contains(id)) {
                             if (zItem.getEarthValue() > 0) {
                                 lore.add(ChatColor.GREEN + "»Erde: " + zItem.getEarthValue());
                             }

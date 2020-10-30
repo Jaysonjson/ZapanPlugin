@@ -7,11 +7,6 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.jetbrains.annotations.NotNull;
-
-import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.UUID;
 
 public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzMarketItem, IzConsumeItem, IzTextureItem, IzToolItem, IzAlchemyItem {
 
@@ -40,14 +35,8 @@ public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzM
     }
 
     @Override
-    @Deprecated
-    public void update(ItemStack itemStack) {
-        itemStack = createItem(null, null, null);
-    }
-
-    @Override
-    public ItemStack update(Player player) {
-        return createItem(player, null, null);
+    public ItemStack update(Player player, ItemStack itemStack, zAdditionalItemInformation infoItem) {
+        return createItem(player, itemStack, infoItem);
     }
 
     @Override
