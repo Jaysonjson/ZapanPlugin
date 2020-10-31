@@ -26,12 +26,24 @@ public class Smelting implements Listener {
         ItemStack itemStack = event.getResult();
         ItemStack existingItem = inventory.getItem(2);
         NBTTagCompound tag = Utility.getItemTag(Utility.createNMSCopy(itemStack));
-        System.out.println(Utility.getItemTag(existingItem).getInt(zItemNBT.ITEM_AMOUNT) + "-existing");
-        int amount = Utility.addAmount(Utility.getAbstractVanillaOverride(itemStack).createItem(null, null, null), existingItem);
-        System.out.println(amount + " addition");
+        boolean override = false;
+
         if(!tag.hasKey(zItemNBT.ITEM_ID)) {
             if (Utility.isAbstractVanillaItem(itemStack)) {
-                ItemStack item = Utility.getAbstractVanillaOverride(itemStack).createItem(null, null, null);
+                override = true;
+                itemStack = Utility.getAbstractVanillaOverride(itemStack).createItem(null, null, null);
+                tag = Utility.getItemTag(itemStack);
+                inventory.setItem(2, itemStack);
+                System.out.println(itemStack);
+            }
+        }
+
+        System.out.println(Utility.getItemTag(existingItem).getInt(zItemNBT.ITEM_AMOUNT) + "-existing");
+        int amount = Utility.addAmount(Utility.getAbstractVanillaOverride(itemStack).createItem(null, itemStack, null), existingItem);
+        System.out.println(amount + " addition");
+
+        if(override) {
+                ItemStack item = Utility.getAbstractVanillaOverride(itemStack).createItem(null, itemStack, null);
 
                 net.minecraft.server.v1_16_R2.ItemStack nmsStack = Utility.createNMSCopy(item);
                 NBTTagCompound tagI = nmsStack.getTag();
@@ -39,16 +51,11 @@ public class Smelting implements Listener {
                 nmsStack.setTag(tagI);
                 item = CraftItemStack.asBukkitCopy(nmsStack);
                 item.setAmount(1);
+                System.out.println(item);
                 //event.setResult(item);
                 inventory.setItem(2, item);
-            }
         }
-        /*
-        for (HumanEntity viewer : inventory.getViewers()) {
-            Player player = (Player) viewer;
-            player.updateInventory();
-        }
-        */
+
     }
 }
 
