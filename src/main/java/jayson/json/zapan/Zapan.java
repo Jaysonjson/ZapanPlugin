@@ -10,6 +10,7 @@ import jayson.json.zapan.io.DataHandler;
 import jayson.json.zapan.items.lists.ItemRegistry;
 import jayson.json.zapan.npc.NPC;
 import org.bukkit.Bukkit;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -36,24 +37,26 @@ public final class Zapan extends JavaPlugin {
         References.reloadDrops();
         Utility.reloadAreas();
         NPC.loadNPCS();
-        Bukkit.getPluginManager().registerEvents(new PlayerJoin(), this);
-        Bukkit.getPluginManager().registerEvents(new PlayerDeath(), this);
-        Bukkit.getPluginManager().registerEvents(new PlayerRespawn(), this);
-        Bukkit.getPluginManager().registerEvents(new PlayerMove(), this);
-        Bukkit.getPluginManager().registerEvents(new MobSpawn(), this);
-        Bukkit.getPluginManager().registerEvents(new CraftItem(), this);
-        Bukkit.getPluginManager().registerEvents(new BlockBreak(), this);
-        Bukkit.getPluginManager().registerEvents(new BlockPlace(), this);
-        Bukkit.getPluginManager().registerEvents(new DropItem(), this);
-        Bukkit.getPluginManager().registerEvents(new EntityDeath(), this);
-        Bukkit.getPluginManager().registerEvents(new ItemClick(), this);
-        Bukkit.getPluginManager().registerEvents(new ChatEvent(), this);
-        Bukkit.getPluginManager().registerEvents(new ItemUse(), this);
-        Bukkit.getPluginManager().registerEvents(new EntityDamage(), this);
-        Bukkit.getPluginManager().registerEvents(new BanPlayer(), this);
-        Bukkit.getPluginManager().registerEvents(new ItemPickup(), this);
-        Bukkit.getPluginManager().registerEvents(new ItemDespawn(), this);
-        Bukkit.getPluginManager().registerEvents(new Smelting(), this);
+        registerEvents(
+                new PlayerJoin(),
+                new PlayerDeath(),
+                new PlayerRespawn(),
+                new PlayerMove(),
+                new MobSpawn(),
+                new CraftItem(),
+                new BlockBreak(),
+                new BlockPlace(),
+                new DropItem(),
+                new EntityDeath(),
+                new ItemClick(),
+                new ChatEvent(),
+                new ItemUse(),
+                new EntityDamage(),
+                new BanPlayer(),
+                new ItemPickup(),
+                new ItemDespawn(),
+                new Smelting()
+        );
         this.getCommand("areas").setExecutor(new AreaCommand());
         this.getCommand("sethealth").setExecutor(new SetHealthCommand());
         this.getCommand("area").setExecutor(new CreateAreaCommand());
@@ -74,5 +77,10 @@ public final class Zapan extends JavaPlugin {
     public void onDisable() {
     }
 
+    public static void registerEvents(Listener... listener) {
+        for (Listener listener1 : listener) {
+            Bukkit.getPluginManager().registerEvents(listener1, INSTANCE);
+        }
+    }
 
 }

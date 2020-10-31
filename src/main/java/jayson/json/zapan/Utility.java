@@ -573,12 +573,15 @@ public class Utility {
         return false;
     }
 
+    @Deprecated
     public static void updatePlayerInventory(Player player) {
+        int i = 0;
         for (ItemStack content : player.getInventory().getContents()) {
+            i++;
             if(isAbstractItem(content)) {
                 AbstractItem abstractItem = getAbstractItemFromNMS(content);
                 if(abstractItem != null) {
-                    abstractItem.update(player, content, null);
+                   player.getInventory().setItem(i, abstractItem.update(player, content, null));
                 }
             }
         }
