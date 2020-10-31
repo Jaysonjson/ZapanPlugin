@@ -1,10 +1,7 @@
 package jayson.json.zapan.items.ability;
 
 import jayson.json.zapan.io.DataHandler;
-import jayson.json.zapan.items.AbstractItem;
-import jayson.json.zapan.items.ItemUseType;
-import jayson.json.zapan.items.zItemNBT;
-import jayson.json.zapan.items.zOItem;
+import jayson.json.zapan.items.*;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -74,6 +71,11 @@ public class BombBeltItem extends AbstractItem {
     @Override
     public @NotNull String getId() {
         return super.id;
+    }
+
+    @Override
+    public ItemStack createItem(Player player, ItemStack stack, zAdditionalItemInformation infoItem) {
+        return null;
     }
 
     @Override

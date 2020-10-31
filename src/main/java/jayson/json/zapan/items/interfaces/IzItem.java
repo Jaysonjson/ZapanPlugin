@@ -13,6 +13,7 @@ public interface IzItem {
     @NotNull
     String getId();
     void setId(String id);
+    @Deprecated
     ItemStack createItem(Player player, ItemStack stack, zAdditionalItemInformation infoItem);
     ItemStack update(Player player, ItemStack itemStack, zAdditionalItemInformation infoItem);
     ItemUseType getItemUseType();

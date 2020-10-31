@@ -30,11 +30,6 @@ public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzM
     }
 
     @Override
-    public ItemStack createItem(Player player, ItemStack stack, zAdditionalItemInformation infoItem) {
-        return new ItemStack(Material.AIR);
-    }
-
-    @Override
     public ItemStack update(Player player, ItemStack itemStack, zAdditionalItemInformation infoItem) {
         return createItem(player, itemStack, infoItem);
     }

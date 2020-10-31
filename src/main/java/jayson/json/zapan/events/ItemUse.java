@@ -2,10 +2,14 @@ package jayson.json.zapan.events;
 
 import jayson.json.zapan.Utility;
 import jayson.json.zapan.items.AbstractItem;
+import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.Material;
+import org.bukkit.craftbukkit.v1_16_R2.inventory.CraftItemStack;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 public class ItemUse implements Listener {
 
@@ -21,6 +25,7 @@ public class ItemUse implements Listener {
         event.getItem().setItemMeta(bookMeta);
               */
         if(event.getItem() != null) {
+
             if(Utility.isBannedItem(event.getItem())) {
                 event.setCancelled(true);
             }
