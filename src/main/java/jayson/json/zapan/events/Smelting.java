@@ -22,44 +22,25 @@ public class Smelting implements Listener {
     public void Smelting(FurnaceSmeltEvent event) {
         Furnace furnace = (Furnace) event.getBlock().getState();
         Inventory inventory = furnace.getInventory();
+
         ItemStack itemStack = event.getResult();
         ItemStack existingItem = inventory.getItem(2);
         NBTTagCompound tag = Utility.getItemTag(Utility.createNMSCopy(itemStack));
-        System.out.println(Utility.getItemTag(existingItem).getInt(zItemNBT.ITEM_AMOUNT));
+        System.out.println(Utility.getItemTag(existingItem).getInt(zItemNBT.ITEM_AMOUNT) + "-existing");
         int amount = Utility.addAmount(Utility.getAbstractVanillaOverride(itemStack).createItem(null, null, null), existingItem);
-        if (Utility.isAbstractItem(itemStack)) {
-            ItemStack item = Utility.getAbstractItemFromNMS(itemStack).createItem(null, itemStack, null);
-
-            net.minecraft.server.v1_16_R2.ItemStack nmsStack = Utility.createNMSCopy(item);
-            NBTTagCompound tagI = nmsStack.getTag();
-            tagI.setInt(zItemNBT.ITEM_AMOUNT, amount);
-            System.out.println(tagI.getInt(zItemNBT.ITEM_AMOUNT));
-            nmsStack.setTag(tagI);
-            item = CraftItemStack.asBukkitCopy(nmsStack);
-            NBTTagCompound tagCompound = Utility.getItemTag(item);
-            System.out.println(tagCompound.getInt(zItemNBT.ITEM_AMOUNT));
-
-            item.setAmount(1);
-            event.setResult(item);
-            //inventory.setItem(2, item);
-        }
+        System.out.println(amount + " addition");
         if(!tag.hasKey(zItemNBT.ITEM_ID)) {
             if (Utility.isAbstractVanillaItem(itemStack)) {
                 ItemStack item = Utility.getAbstractVanillaOverride(itemStack).createItem(null, null, null);
 
-                //ItemStack itemStack = event.getItem();
                 net.minecraft.server.v1_16_R2.ItemStack nmsStack = Utility.createNMSCopy(item);
                 NBTTagCompound tagI = nmsStack.getTag();
                 tagI.setInt(zItemNBT.ITEM_AMOUNT, amount);
-                System.out.println(tagI.getInt(zItemNBT.ITEM_AMOUNT));
                 nmsStack.setTag(tagI);
                 item = CraftItemStack.asBukkitCopy(nmsStack);
-                NBTTagCompound tagCompound = Utility.getItemTag(item);
-                System.out.println(tagCompound.getInt(zItemNBT.ITEM_AMOUNT));
-
                 item.setAmount(1);
-                event.setResult(item);
-                //inventory.setItem(2, item);
+                //event.setResult(item);
+                inventory.setItem(2, item);
             }
         }
         /*

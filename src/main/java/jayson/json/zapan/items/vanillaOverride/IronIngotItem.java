@@ -41,13 +41,6 @@ public class IronIngotItem extends AbstractItem {
             amount = new Random().nextInt(75);
             amount += new Random().nextInt(25);
         }
-        if(infoItem != null) {
-            if(infoItem.amount > 0) {
-                amount = infoItem.amount;
-                amountUpdate = true;
-            }
-        }
-        System.out.println(amount + " in Item");
         oItem.lore.add(ChatColor.GRAY + "" + amount + "g");
         oItem.itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         oItem.setItem(ChatColor.GRAY + "Eisen");
