@@ -1,6 +1,9 @@
 package jayson.json.zapan.items;
 
 import jayson.json.zapan.items.interfaces.*;
+import jayson.json.zapan.items.nbt.INBTObject;
+import jayson.json.zapan.items.nbt.NBTBoolean;
+import jayson.json.zapan.items.nbt.NBTString;
 import jayson.json.zapan.other.zItemMarketModifierType;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.Material;
@@ -8,7 +11,10 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzMarketItem, IzConsumeItem, IzTextureItem, IzToolItem, IzAlchemyItem {
+import java.util.HashMap;
+import java.util.UUID;
+
+public abstract class AbstractItem implements IzItem, IzNBTItem, IzAbilityItem, IzAmmo, IzMarketItem, IzConsumeItem, IzTextureItem, IzToolItem, IzAlchemyItem {
 
     @Deprecated
     @Override
@@ -32,6 +38,36 @@ public abstract class AbstractItem implements IzItem, IzAbilityItem, IzAmmo, IzM
     @Override
     public ItemStack update(Player player, ItemStack itemStack, zAdditionalItemInformation infoItem) {
         return createItem(player, itemStack, infoItem);
+    }
+
+    @Override
+    public HashMap<String, NBTString> getNBTStrings() {
+        return null;
+    }
+
+    @Override
+    public HashMap<String, Integer> getNBTInts() {
+        return null;
+    }
+
+    @Override
+    public HashMap<String, UUID> getNBTUUIDS() {
+        return null;
+    }
+
+    @Override
+    public HashMap<String, Double> getNBTDoubles() {
+        return null;
+    }
+
+    @Override
+    public HashMap<String, NBTBoolean> getNBTBooleans() {
+        return null;
+    }
+
+    @Override
+    public HashMap<String, INBTObject> getNBTObjects() {
+        return new HashMap<>();
     }
 
     @Override

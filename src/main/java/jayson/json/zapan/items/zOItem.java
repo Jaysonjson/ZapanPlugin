@@ -3,6 +3,8 @@ package jayson.json.zapan.items;
 import jayson.json.zapan.Utility;
 import jayson.json.zapan.data.zPlayer;
 import jayson.json.zapan.io.DataHandler;
+import jayson.json.zapan.items.nbt.INBTObject;
+import jayson.json.zapan.items.nbt.NBTType;
 import jayson.json.zapan.skillclass.zAlchemistClass;
 import jayson.json.zapan.skillclass.zClass;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
@@ -201,6 +203,25 @@ public class zOItem {
 
     public void setTagCompound() {
         NBTTagCompound tag = getTagCompound();
+
+        for (String s : zItem.getNBTObjects().keySet()) {
+            INBTObject nbt = zItem.getNBTObjects().get(s);
+            NBTType type = nbt.getType();
+            switch (type) {
+                case UUID:
+                    tag.setString(s, );
+                    break;
+                case DOUBLE:
+                    break;
+                case STRING:
+                    break;
+                case BOOLEAN:
+                    break;
+                case INTEGER:
+                    break;
+            }
+        }
+
         //tag.setString(zItemNBT.CONST_ITEM_ID, id);
         //tag.setDouble(zItemNBT.CONST_ITEM_VERSION, zItem.itemVersion());
         /*zItem.getNBTStrings().keySet().forEach((s -> tag.setString(s, zItem.getNBTStrings().get(s))));
@@ -222,11 +243,12 @@ public class zOItem {
         tag.setString(zItemNBT.ITEM_ID, id);
         tag.setDouble(zItemNBT.ITEM_VERSION, zItem.itemVersion());
 
-        strings.keySet().forEach((s -> tag.setString(s, strings.get(s))));
+        /*strings.keySet().forEach((s -> tag.setString(s, strings.get(s))));
         uuids.keySet().forEach((s -> tag.setString(s, uuids.get(s).toString())));
         ints.keySet().forEach((s -> tag.setInt(s, ints.get(s))));
         doubles.keySet().forEach((s -> tag.setDouble(s, doubles.get(s))));
-        booleans.keySet().forEach((s -> tag.setBoolean(s, booleans.get(s))));
+        booleans.keySet().forEach((s -> tag.setBoolean(s, booleans.get(s)));
+         */
         return tag;
     }
 }

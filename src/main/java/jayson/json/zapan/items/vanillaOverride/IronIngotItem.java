@@ -2,6 +2,9 @@ package jayson.json.zapan.items.vanillaOverride;
 
 import jayson.json.zapan.Utility;
 import jayson.json.zapan.items.*;
+import jayson.json.zapan.items.nbt.INBTObject;
+import jayson.json.zapan.items.nbt.NBTBoolean;
+import jayson.json.zapan.items.nbt.NBTInteger;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -11,13 +14,13 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
 import java.util.Random;
 
 public class IronIngotItem extends AbstractItem {
 
 
     int amount = 0;
-    boolean amountUpdate = false;
     public IronIngotItem(String id, Material material, ItemUseType itemUseType) {
         super(id, material, itemUseType);
     }
@@ -54,10 +57,19 @@ public class IronIngotItem extends AbstractItem {
     public NBTTagCompound getTag(NBTTagCompound tag) {
         tag.setBoolean(zItemNBT.CAN_CRAFT, true);
         tag.setBoolean(zItemNBT.CAN_CRAFT_MINECRAFT, true);
-        if(!tag.hasKey(zItemNBT.ITEM_AMOUNT) || amountUpdate) {
+        if(!tag.hasKey(zItemNBT.ITEM_AMOUNT)) {
             tag.setInt(zItemNBT.ITEM_AMOUNT, amount);
         }
         return tag;
+    }
+
+    @Override
+    public HashMap<String, INBTObject> getNBTObjects() {
+        HashMap<String, INBTObject> tags = new HashMap<>();
+        tags.put(zItemNBT.CAN_CRAFT, new NBTBoolean(true, true));
+        tags.put(zItemNBT.CAN_CRAFT_MINECRAFT, new NBTBoolean(true, true));
+        tags.put(zItemNBT.ITEM_AMOUNT, new NBTInteger(0, false));
+        return tags;
     }
 
     @Override
