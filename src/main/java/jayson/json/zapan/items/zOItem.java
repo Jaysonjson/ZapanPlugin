@@ -206,18 +206,26 @@ public class zOItem {
 
         for (String s : zItem.getNBTObjects().keySet()) {
             INBTObject nbt = zItem.getNBTObjects().get(s);
+            boolean changeTag = false;
+            if(!nbt.changeAble()) {
+                if(!tag.hasKey(s)) {
+                    changeTag = true;
+                }
+            }
             NBTType type = nbt.getType();
             switch (type) {
                 case UUID:
-                    tag.setString(s, );
+                case STRING:
+                    tag.setString(s, (String) nbt.defaultValue());
                     break;
                 case DOUBLE:
-                    break;
-                case STRING:
+                    tag.setDouble(s, (Double) nbt.defaultValue());
                     break;
                 case BOOLEAN:
+                    tag.setBoolean(s, (Boolean) nbt.defaultValue());
                     break;
                 case INTEGER:
+                    tag.setInt(s, (Integer) nbt.defaultValue());
                     break;
             }
         }
