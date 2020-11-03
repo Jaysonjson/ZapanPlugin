@@ -1,5 +1,6 @@
 package jayson.json.zapan.items;
 
+import jayson.json.zapan.inventories.ItemInventoryData;
 import jayson.json.zapan.items.interfaces.*;
 import jayson.json.zapan.items.nbt.INBTObject;
 import jayson.json.zapan.items.nbt.NBTBoolean;
@@ -43,6 +44,11 @@ public abstract class AbstractItem implements IzItem, IzNBTItem, IzAbilityItem, 
     @Override
     public HashMap<String, NBTString> getNBTStrings() {
         return null;
+    }
+
+    @Override
+    public void ability(Player player, ItemInventoryData itemInventoryData) {
+
     }
 
     @Override

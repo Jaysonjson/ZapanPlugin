@@ -1,6 +1,7 @@
 package jayson.json.zapan.events;
 
 import jayson.json.zapan.Utility;
+import jayson.json.zapan.inventories.ItemInventoryData;
 import jayson.json.zapan.items.AbstractItem;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.Material;

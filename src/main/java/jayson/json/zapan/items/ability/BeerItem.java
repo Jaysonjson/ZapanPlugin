@@ -8,6 +8,8 @@ import jayson.json.zapan.items.nbt.NBTInteger;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Sound;
+import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_16_R2.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
@@ -21,7 +23,7 @@ public class BeerItem extends AbstractItem {
 
 
     int amount = 0;
-    public IronIngotItem(String id, Material material, ItemUseType itemUseType) {
+    public BeerItem(String id, Material material, ItemUseType itemUseType) {
         super(id, material, itemUseType);
     }
 
@@ -61,6 +63,18 @@ public class BeerItem extends AbstractItem {
             tag.setInt(zItemNBT.LIQUID_AMOUNT, amount);
         }
         return tag;
+    }
+
+    @Override
+    public void ability(World world, Player player, ItemStack itemStack) {
+        NBTTagCompound tag = Utility.getItemTag(itemStack);
+        if()
+        player.playSound(player.getLocation(), Sound.ENTITY_GENERIC_DRINK, 1, 1);
+    }
+
+    @Override
+    public boolean isAbilityItem() {
+        return true;
     }
 
     @Override

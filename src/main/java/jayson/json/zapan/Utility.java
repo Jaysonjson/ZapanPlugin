@@ -474,7 +474,7 @@ public class Utility {
     @Deprecated
     public static boolean isValidAbilityItem(ItemStack itemStack) {
         for (zItemAbility value : zItemAbility.values()) {
-            if(value.getAbstractItem().createItem(null, itemStack, null).isSimilar(itemStack)) {
+            if(value.getAbstractItem().createItem(itemStack).isSimilar(itemStack)) {
                 return true;
             }
         }
