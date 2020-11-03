@@ -15,6 +15,18 @@ public interface IzItem {
     void setId(String id);
     @Deprecated
     ItemStack createItem(Player player, ItemStack stack, zAdditionalItemInformation infoItem);
+    default ItemStack createItem() {
+        return createItem(null, null, null);
+    };
+    default ItemStack createItem(Player player) {
+        return createItem(player, null, null);
+    };
+    default ItemStack createItem(ItemStack itemStack) {
+        return createItem(null, itemStack, null);
+    };
+    default ItemStack createItem(Player player, ItemStack itemStack) {
+        return createItem(player, itemStack, null);
+    };
     ItemStack update(Player player, ItemStack itemStack, zAdditionalItemInformation infoItem);
     ItemUseType getItemUseType();
     @NotNull
