@@ -47,11 +47,6 @@ public abstract class AbstractItem implements IzItem, IzNBTItem, IzAbilityItem, 
     }
 
     @Override
-    public void ability(Player player, ItemInventoryData itemInventoryData) {
-
-    }
-
-    @Override
     public HashMap<String, Integer> getNBTInts() {
         return null;
     }

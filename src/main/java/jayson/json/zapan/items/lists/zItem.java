@@ -2,6 +2,7 @@ package jayson.json.zapan.items.lists;
 
 import jayson.json.zapan.items.AbstractItem;
 import jayson.json.zapan.items.ItemUseType;
+import jayson.json.zapan.items.ability.BeerItem;
 import jayson.json.zapan.items.crafting.*;
 import jayson.json.zapan.items.interfaces.IzItemRegistry;
 import jayson.json.zapan.items.other.ScrapItem;
@@ -29,6 +30,8 @@ public enum zItem implements IzItemRegistry {
     SILVERINGOT(new SilverIngotItem("silverIngotItem", Material.NETHERITE_HOE, ItemUseType.CRAFTING, 2)),
     MALTITEM(new MaltItem("maltItem", Material.NETHERITE_HOE, ItemUseType.CRAFTING, 3)),
     HOPITEM(new HopItem("hopItem", Material.NETHERITE_HOE, ItemUseType.CRAFTING, 4)),
+    BEERITEM(new BeerItem("beerItem", Material.NETHERITE_HOE, ItemUseType.ABILITY, 5)),
+    GLASSITEM(new BeerItem("glassItem", Material.NETHERITE_HOE, ItemUseType.ABILITY, 6)),
     IRONINGOT(new IronIngotItem("ironIngotItem", Material.IRON_INGOT, ItemUseType.CRAFTING)),
     IRONORE(new IronOreItem("ironOreItem", Material.IRON_ORE, ItemUseType.CRAFTING)),
     SCRAP(new ScrapItem("scrapItem", Material.NETHERITE_SCRAP, ItemUseType.CURRENCY));

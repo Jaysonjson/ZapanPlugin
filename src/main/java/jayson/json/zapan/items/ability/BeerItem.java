@@ -1,7 +1,10 @@
 package jayson.json.zapan.items.ability;
 
 import jayson.json.zapan.Utility;
+import jayson.json.zapan.data.zPlayer;
+import jayson.json.zapan.io.DataHandler;
 import jayson.json.zapan.items.*;
+import jayson.json.zapan.items.lists.zItem;
 import jayson.json.zapan.items.nbt.INBTObject;
 import jayson.json.zapan.items.nbt.NBTBoolean;
 import jayson.json.zapan.items.nbt.NBTInteger;
@@ -14,6 +17,8 @@ import org.bukkit.craftbukkit.v1_16_R2.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
@@ -22,9 +27,11 @@ import java.util.Random;
 public class BeerItem extends AbstractItem {
 
 
-    int amount = 0;
-    public BeerItem(String id, Material material, ItemUseType itemUseType) {
+    int damage;
+    private int amount;
+    public BeerItem(String id, Material material, ItemUseType itemUseType, int damageValue) {
         super(id, material, itemUseType);
+        this.damage = damageValue;
     }
 
 
@@ -65,11 +72,33 @@ public class BeerItem extends AbstractItem {
         return tag;
     }
 
+    //WIP
     @Override
     public void ability(World world, Player player, ItemStack itemStack) {
-        NBTTagCompound tag = Utility.getItemTag(itemStack);
-        if()
+        zPlayer zPlayer = DataHandler.loadPlayer(player.getUniqueId());
+        zPlayer.getPlayerSpecial().alcohol += new Random().nextDouble() / 15;
+        player.sendMessage("Alkohol: " + zPlayer.getPlayerSpecial().alcohol);
+        net.minecraft.server.v1_16_R2.ItemStack nmsStack = Utility.createNMSCopy(itemStack);
+        NBTTagCompound tag = nmsStack.getTag();
+        tag.setInt(zItemNBT.LIQUID_AMOUNT, tag.getInt(zItemNBT.LIQUID_AMOUNT) - 10);
+        nmsStack.setTag(tag);
+        itemStack = CraftItemStack.asBukkitCopy(nmsStack);
+        if(tag.getInt(zItemNBT.LIQUID_AMOUNT) < 0) {
+            itemStack = zItem.GLASSITEM.getAbstractItem().createItem(player);
+        }
+        player.setItemInHand(itemStack);
+        player.addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, (int) (zPlayer.getPlayerSpecial().alcohol * 740),0));
+        if(zPlayer.getPlayerSpecial().alcohol > 1) {
+            player.addPotionEffect(new PotionEffect(PotionEffectType.POISON, (int) (zPlayer.getPlayerSpecial().alcohol * 100),0));
+        }
+        if(zPlayer.getPlayerSpecial().alcohol > 2) {
+            player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, (int) (zPlayer.getPlayerSpecial().alcohol * 60),0));
+        }
+        if(zPlayer.getPlayerSpecial().alcohol > 3) {
+            player.addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, (int) (zPlayer.getPlayerSpecial().alcohol * 700),2));
+        }
         player.playSound(player.getLocation(), Sound.ENTITY_GENERIC_DRINK, 1, 1);
+        DataHandler.savePlayer(zPlayer);
     }
 
     @Override
@@ -90,5 +119,10 @@ public class BeerItem extends AbstractItem {
     @Override
     public ItemUseType getItemUseType() {
         return super.getItemUseType();
+    }
+
+    @Override
+    public int getDamageValue() {
+        return damage;
     }
 }

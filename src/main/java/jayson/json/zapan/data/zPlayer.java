@@ -24,8 +24,14 @@ public class zPlayer implements IHasUUID {
 
     private zPlayerClass playerClass = new zPlayerClass();
 
+    private zPlayerSpecial playerSpecial = new zPlayerSpecial();
+
     public zPlayerClass getPlayerClass() {
         return playerClass;
+    }
+
+    public zPlayerSpecial getPlayerSpecial() {
+        return playerSpecial;
     }
 
     public zHealth getHealth() {

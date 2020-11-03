@@ -33,7 +33,7 @@ public class IronIngotItem extends AbstractItem {
             stack = new ItemStack(getMaterial());
             exists = false;
         }
-        zOItem oItem = new zOItem(this, player, stack, getId(),true);
+        zOItem oItem = new zOItem(this, player, stack, getId(),false);
 
         if(exists) {
             NBTTagCompound tag = getTag(Utility.getItemTag(Utility.createNMSCopy(stack)));

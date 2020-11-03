@@ -17,7 +17,7 @@ public class IronOreItem extends AbstractItem {
 
     @Override
     public ItemStack createItem(Player player, ItemStack stack, zAdditionalItemInformation infoItem) {
-        zOItem oItem = new zOItem(this, player,true);
+        zOItem oItem = new zOItem(this, player,false);
 
         oItem.setItem(ChatColor.GRAY + "Eisenerz");
 

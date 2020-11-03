@@ -24,7 +24,7 @@ public class WallBlazeRodItem extends AbstractItem {
 
     @Override
     public ItemStack createItem(Player player, ItemStack stack, zAdditionalItemInformation infoItem) {
-        zOItem oItem = new zOItem(this, player,true);
+        zOItem oItem = new zOItem(this, player,false);
         oItem.lore.add(ChatColor.GRAY + "Macht eine diagonale Wand aus Feuer");
         oItem.setItem(ChatColor.RED + "Feuer Es05");
 

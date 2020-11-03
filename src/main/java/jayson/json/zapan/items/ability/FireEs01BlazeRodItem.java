@@ -25,7 +25,7 @@ public class FireEs01BlazeRodItem extends AbstractItem {
 
     @Override
     public ItemStack createItem(Player player, ItemStack stack, zAdditionalItemInformation infoItem) {
-        zOItem oItem = new zOItem(this, player,true);
+        zOItem oItem = new zOItem(this, player,false);
         oItem.lore.add(ChatColor.GRAY + "Platziert zufällig Feuer in der Nähe");
         oItem.setItem(ChatColor.RED + "Feuer Es01");
 
