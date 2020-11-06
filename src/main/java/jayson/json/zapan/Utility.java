@@ -26,6 +26,8 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.io.BukkitObjectInputStream;
 import org.bukkit.util.io.BukkitObjectOutputStream;
 import org.yaml.snakeyaml.external.biz.base64Coder.Base64Coder;
@@ -517,6 +519,20 @@ public class Utility {
         return false;
     }
 
+    public static void makeDrunk(Player player, zPlayer zPlayer) {
+        if(zPlayer.getPlayerSpecial().alcohol > 0.5) {
+            player.addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, (int) (zPlayer.getPlayerSpecial().alcohol * 740), 0));
+        }
+        if(zPlayer.getPlayerSpecial().alcohol > 1) {
+            player.addPotionEffect(new PotionEffect(PotionEffectType.POISON, (int) (zPlayer.getPlayerSpecial().alcohol * 100),0));
+        }
+        if(zPlayer.getPlayerSpecial().alcohol > 2) {
+            player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, (int) (zPlayer.getPlayerSpecial().alcohol * 60),0));
+        }
+        if(zPlayer.getPlayerSpecial().alcohol > 3) {
+            player.addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, (int) (zPlayer.getPlayerSpecial().alcohol * 700),2));
+        }
+    }
 
     @Deprecated
     public static boolean iszItem(ItemStack itemStack) {

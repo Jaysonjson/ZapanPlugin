@@ -1,8 +1,8 @@
 package jayson.json.zapan.data.zguildobj;
 
-import jayson.json.zapan.data.zPlayer;
-import jayson.json.zapan.io.DataHandler;
 import jayson.json.zapan.skillclass.*;
+import jayson.json.zapan.skillclass.alchemist.zAlchemistClass;
+import jayson.json.zapan.skillclass.fighter.zFighterClass;
 import org.jetbrains.annotations.NotNull;
 
 public class zPlayerClass {

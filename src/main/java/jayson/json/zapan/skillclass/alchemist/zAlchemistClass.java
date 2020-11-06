@@ -1,4 +1,6 @@
-package jayson.json.zapan.skillclass;
+package jayson.json.zapan.skillclass.alchemist;
+
+import jayson.json.zapan.skillclass.zAbstractClass;
 
 import java.util.ArrayList;
 

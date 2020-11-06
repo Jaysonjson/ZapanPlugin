@@ -2,6 +2,8 @@ package jayson.json.zapan.skillclass;
 
 import jayson.json.zapan.items.ItemUseType;
 import jayson.json.zapan.items.classes.*;
+import jayson.json.zapan.skillclass.alchemist.zAlchemistClass;
+import jayson.json.zapan.skillclass.fighter.zFighterClass;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;

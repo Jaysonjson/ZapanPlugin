@@ -5,7 +5,7 @@ import jayson.json.zapan.data.zPlayer;
 import jayson.json.zapan.io.DataHandler;
 import jayson.json.zapan.items.nbt.INBTObject;
 import jayson.json.zapan.items.nbt.NBTType;
-import jayson.json.zapan.skillclass.zAlchemistClass;
+import jayson.json.zapan.skillclass.alchemist.zAlchemistClass;
 import jayson.json.zapan.skillclass.zClass;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.ChatColor;
@@ -16,7 +16,6 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
-import sun.nio.ch.Util;
 
 import java.util.ArrayList;
 import java.util.HashMap;

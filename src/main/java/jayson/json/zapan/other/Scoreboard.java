@@ -13,6 +13,8 @@ import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.ScoreboardManager;
 
+import java.text.DecimalFormat;
+
 public class Scoreboard {
 
     public static void updateScoreboard(Player player) {
@@ -65,11 +67,16 @@ public class Scoreboard {
         Score areaScore = score.getScore(areaColor + area.displayName + ChatColor.RESET + " (" + ChatColor.BOLD + Utility.formatInteger((int)areaDistance.x) + ChatColor.RESET + ", " +  ChatColor.BOLD + Utility.formatInteger((int) areaDistance.z) + ChatColor.RESET + ")");
         Score lineSpace2 = score.getScore("-0------=2=------0-");
         Score levelScore = score.getScore("LvL: " + zPlayer.getLevel().level);
+        Score alcoholScore = null;
+        if(zPlayer.getPlayerSpecial().alcohol > 0) {
+           alcoholScore = score.getScore(ChatColor.RED + "Alkohol: " + ChatColor.GOLD + new DecimalFormat("#.##").format(zPlayer.getPlayerSpecial().alcohol));
+        }
         Score lineSpace3 = score.getScore("-0------=3=------0-");
         Score classSore = score.getScore(ChatColor.RED + zPlayer.getPlayerClass().current.getName());
         setScores(
                 classSore,
                 lineSpace3,
+                alcoholScore,
                 levelScore,
                 lineSpace2,
                 nextAreaScore,

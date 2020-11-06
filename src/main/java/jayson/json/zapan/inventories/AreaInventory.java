@@ -147,6 +147,7 @@ public class AreaInventory implements Listener {
                     openInventory(player);
                 });
             } else {
+                event.setCancelled(true);
                 chatPlayers.remove(player);
                 chatPlayersType.remove(player);
             }
