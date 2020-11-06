@@ -1,7 +1,6 @@
 package jayson.json.zapan.commands;
 
-import jayson.json.zapan.inventories.AreaListInventory;
-import jayson.json.zapan.inventories.ItemInventory;
+import jayson.json.zapan.inventories.area.AreaListInventory;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

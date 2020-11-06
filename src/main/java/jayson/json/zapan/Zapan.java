@@ -2,10 +2,8 @@
 package jayson.json.zapan;
 import jayson.json.zapan.commands.*;
 import jayson.json.zapan.data.zArea;
-import jayson.json.zapan.data.zDrops;
 import jayson.json.zapan.events.*;
 import jayson.json.zapan.events.inventory.ItemClick;
-import jayson.json.zapan.inventories.AreaListInventory;
 import jayson.json.zapan.io.DataHandler;
 import jayson.json.zapan.items.lists.ItemRegistry;
 import jayson.json.zapan.npc.NPC;
@@ -15,7 +13,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public final class Zapan extends JavaPlugin {
 

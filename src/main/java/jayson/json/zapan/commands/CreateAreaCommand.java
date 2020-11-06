@@ -5,14 +5,12 @@ import jayson.json.zapan.Zapan;
 import jayson.json.zapan.data.zArea;
 import jayson.json.zapan.data.zareaobj.zWorld;
 import jayson.json.zapan.data.zareaobj.zLocation;
-import jayson.json.zapan.inventories.AreaInventory;
 import jayson.json.zapan.io.DataHandler;
 import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 

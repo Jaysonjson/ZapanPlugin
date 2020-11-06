@@ -1,4 +1,4 @@
-package jayson.json.zapan.inventories;
+package jayson.json.zapan.inventories.area;
 
 
 import jayson.json.zapan.Utility;

@@ -1,25 +1,16 @@
 package jayson.json.zapan.events;
 
 import jayson.json.zapan.Utility;
-import jayson.json.zapan.data.zGuild;
 import jayson.json.zapan.data.zPlayer;
-import jayson.json.zapan.inventories.AreaInventory;
-import jayson.json.zapan.inventories.ClassInventory;
-import jayson.json.zapan.inventories.GuildChunkInventory;
 import jayson.json.zapan.inventories.StarterClassInventory;
-import jayson.json.zapan.inventories.guild.GuildInventory;
 import jayson.json.zapan.io.DataHandler;
 import jayson.json.zapan.npc.NPC;
 import jayson.json.zapan.other.Scoreboard;
 import jayson.json.zapan.skillclass.zClass;
-import org.bukkit.Bukkit;
-import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
 
 public class PlayerJoin implements Listener {
 

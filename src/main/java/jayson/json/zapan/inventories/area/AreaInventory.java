@@ -1,4 +1,4 @@
-package jayson.json.zapan.inventories;
+package jayson.json.zapan.inventories.area;
 
 import jayson.json.zapan.Utility;
 import jayson.json.zapan.Zapan;
@@ -15,7 +15,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Pattern;
 
