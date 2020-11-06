@@ -22,7 +22,6 @@ public class Smelting implements Listener {
     public void Smelting(FurnaceSmeltEvent event) {
         Furnace furnace = (Furnace) event.getBlock().getState();
         Inventory inventory = furnace.getInventory();
-
         ItemStack itemStack = event.getResult();
         ItemStack existingItem = inventory.getItem(2);
         NBTTagCompound tag = Utility.getItemTag(Utility.createNMSCopy(itemStack));
@@ -32,9 +31,7 @@ public class Smelting implements Listener {
             if (Utility.isAbstractVanillaItem(itemStack)) {
                 override = true;
                 itemStack = Utility.getAbstractVanillaOverride(itemStack).createItem(null, null, null);
-                tag = Utility.getItemTag(itemStack);
                 inventory.setItem(2, itemStack);
-                System.out.println(itemStack);
             }
         }
 
@@ -50,7 +47,6 @@ public class Smelting implements Listener {
                 item = CraftItemStack.asBukkitCopy(nmsStack);
                 item = Utility.getAbstractVanillaOverride(itemStack).createItem(item);
                 item.setAmount(1);
-                System.out.println(item);
                 //event.setResult(item);
                 inventory.setItem(2, item);
         }
