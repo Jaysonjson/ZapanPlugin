@@ -38,9 +38,7 @@ public class Smelting implements Listener {
             }
         }
 
-        System.out.println(Utility.getItemTag(existingItem).getInt(zItemNBT.ITEM_AMOUNT) + "-existing");
         int amount = Utility.addAmount(Utility.getAbstractVanillaOverride(itemStack).createItem(null, itemStack, null), existingItem);
-        System.out.println(amount + " addition");
 
         if(override) {
                 ItemStack item = Utility.getAbstractVanillaOverride(itemStack).createItem(null, itemStack, null);
@@ -50,6 +48,7 @@ public class Smelting implements Listener {
                 tagI.setInt(zItemNBT.ITEM_AMOUNT, amount);
                 nmsStack.setTag(tagI);
                 item = CraftItemStack.asBukkitCopy(nmsStack);
+                item = Utility.getAbstractVanillaOverride(itemStack).createItem(item);
                 item.setAmount(1);
                 System.out.println(item);
                 //event.setResult(item);
