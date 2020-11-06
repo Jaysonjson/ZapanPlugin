@@ -31,7 +31,7 @@ public enum zItem implements IzItemRegistry {
     MALTITEM(new MaltItem("maltItem", Material.NETHERITE_HOE, ItemUseType.CRAFTING, 3)),
     HOPITEM(new HopItem("hopItem", Material.NETHERITE_HOE, ItemUseType.CRAFTING, 4)),
     BEERITEM(new BeerItem("beerItem", Material.NETHERITE_HOE, ItemUseType.ABILITY, 5)),
-    GLASSITEM(new BeerItem("glassItem", Material.NETHERITE_HOE, ItemUseType.ABILITY, 6)),
+    GLASSITEM(new GlassItem("glassItem", Material.NETHERITE_HOE, ItemUseType.ABILITY, 6)),
     IRONINGOT(new IronIngotItem("ironIngotItem", Material.IRON_INGOT, ItemUseType.CRAFTING)),
     IRONORE(new IronOreItem("ironOreItem", Material.IRON_ORE, ItemUseType.CRAFTING)),
     SCRAP(new ScrapItem("scrapItem", Material.NETHERITE_SCRAP, ItemUseType.CURRENCY));

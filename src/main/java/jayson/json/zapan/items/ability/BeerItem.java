@@ -46,8 +46,8 @@ public class BeerItem extends AbstractItem {
 
         if(exists) {
             NBTTagCompound tag = getTag(Utility.getItemTag(Utility.createNMSCopy(stack)));
-            if(tag.hasKey(zItemNBT.ITEM_AMOUNT)) {
-                amount = tag.getInt(zItemNBT.ITEM_AMOUNT);
+            if(tag.hasKey(zItemNBT.LIQUID_AMOUNT)) {
+                amount = tag.getInt(zItemNBT.LIQUID_AMOUNT);
             }
         } else {
             amount = new Random().nextInt(75);
@@ -83,9 +83,11 @@ public class BeerItem extends AbstractItem {
         tag.setInt(zItemNBT.LIQUID_AMOUNT, tag.getInt(zItemNBT.LIQUID_AMOUNT) - 10);
         nmsStack.setTag(tag);
         itemStack = CraftItemStack.asBukkitCopy(nmsStack);
+        itemStack = createItem(player, itemStack);
         if(tag.getInt(zItemNBT.LIQUID_AMOUNT) < 0) {
             itemStack = zItem.GLASSITEM.getAbstractItem().createItem(player);
         }
+        System.out.println(itemStack);
         player.setItemInHand(itemStack);
         player.addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, (int) (zPlayer.getPlayerSpecial().alcohol * 740),0));
         if(zPlayer.getPlayerSpecial().alcohol > 1) {
@@ -99,6 +101,7 @@ public class BeerItem extends AbstractItem {
         }
         player.playSound(player.getLocation(), Sound.ENTITY_GENERIC_DRINK, 1, 1);
         DataHandler.savePlayer(zPlayer);
+        player.updateInventory();
     }
 
     @Override
