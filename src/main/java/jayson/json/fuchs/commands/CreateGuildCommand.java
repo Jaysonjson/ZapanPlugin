@@ -4,6 +4,7 @@ import jayson.json.fuchs.Utility;
 import jayson.json.fuchs.data.zGuild;
 import jayson.json.fuchs.data.zPlayer;
 import jayson.json.fuchs.data.zguildobj.zGuildRank;
+import jayson.json.fuchs.inventories.guild.GuildInventory;
 import jayson.json.fuchs.io.DataHandler;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -48,6 +49,8 @@ public class CreateGuildCommand implements CommandExecutor {
             } else {
                 if(zPlayer.getGuildUuid() != null) {
                     zGuild zGuild = DataHandler.loadGuild(zPlayer.getGuildUuid());
+                    GuildInventory guildInventory = new GuildInventory(zGuild, zPlayer);
+                    guildInventory.openInventory(player);
                 } else {
                     player.sendMessage("Du bist in keiner Guilde!");
                 }

@@ -70,6 +70,7 @@ public final class Fuchs extends JavaPlugin {
         this.getCommand("gmsp").setExecutor(new GamemodeCommand());
         this.getCommand("discordlink").setExecutor(new DiscordLinkCommand());
         this.getCommand("itemids").setExecutor(new ItemIDCommand());
+        this.getCommand("classlist").setExecutor(new ClassListCommand());
     }
 
     @Override

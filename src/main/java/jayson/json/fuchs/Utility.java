@@ -712,4 +712,31 @@ public class Utility {
         }
         return amount;
     }
+
+    public static void removeMoneyBackpack(Inventory inventory, double amount) {
+        double fakeAmount = amount;
+        for (ItemStack content : inventory.getContents()) {
+            if(content != null) {
+                if (content.hasItemMeta()) {
+                    net.minecraft.server.v1_16_R2.ItemStack nmsItem = createNMSCopy(content);
+                    NBTTagCompound tag = getItemTag(nmsItem);
+                    if (tag.hasKey(zItemNBT.HACKSILVER_AMOUNT)) {
+                        if(fakeAmount - tag.getDouble(zItemNBT.HACKSILVER_AMOUNT) < 0) {
+                            content.setAmount(0);
+                        } else {
+                            fakeAmount -= tag.getDouble(zItemNBT.HACKSILVER_AMOUNT);
+                        }
+                        if(fakeAmount - tag.getDouble(zItemNBT.HACKSILVER_AMOUNT) < 0) {
+                            FuchsItem fuchsItem = new FuchsItem(getAbstractItemFromNMS(content), content);
+                            fuchsItem.changeDoubleTag("null", 5.5);
+                        }
+                    }
+                    if(tag.hasKey(zItemNBT.IS_BACKPACK)) {
+                        ItemStack[] contents = generateInventoryContent(DataHandler.loadBackPack(UUID.fromString(tag.getString(zItemNBT.ITEM_UUID))).inventoryContent);
+                        amount += countMoney(contents);
+                    }
+                }
+            }
+        }
+    }
 }

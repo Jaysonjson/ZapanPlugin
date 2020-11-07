@@ -33,7 +33,7 @@ public class GoldBarItem extends AbstractItem {
                 currencyValue = tag.getDouble(zItemNBT.HACKSILVER_AMOUNT);
             }
         } else {
-            currencyValue = 1.250;
+            currencyValue = 1250;
         }
 
         oItem.lore.add(ChatColor.GRAY + "" + currencyValue + "Φ");

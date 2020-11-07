@@ -45,6 +45,9 @@ commands:
   itemids:
     description: Item IDS
     usage: /itemids
+  classlist:
+    description: ClassList
+    usage: /classlist
 permissions:
   zapan.sethealth:
     description: SetHealth
