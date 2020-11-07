@@ -1,0 +1,15 @@
+package jayson.json.fuchs.data;
+
+import jayson.json.fuchs.data.zdropobj.zMobDrop;
+
+import java.util.ArrayList;
+
+public class zDrops {
+
+    private ArrayList<zMobDrop> mobDrops = new ArrayList<>();
+
+
+    public ArrayList<zMobDrop> getMobDrops() {
+        return mobDrops;
+    }
+}
