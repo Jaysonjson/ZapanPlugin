@@ -8,5 +8,5 @@ public class zCraftingBreweryLiquidInput {
 	public double liquidAmount = 0.0;
 	
 	
-	public transient AbstractItem liquidInput;
+	private transient AbstractItem liquidInput;
 }

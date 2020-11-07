@@ -4,8 +4,11 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import jayson.json.fuchs.Utility;
 import jayson.json.fuchs.data.*;
+import jayson.json.fuchs.data.zcraftingobj.brewery.objs.zCraftingBreweryLiquidInput;
+import jayson.json.fuchs.data.zcraftingobj.brewery.objs.zCraftingBreweryLiquidOutput;
 import jayson.json.fuchs.data.zcraftingobj.brewery.zCraftingBrewery;
 import jayson.json.fuchs.data.zdropobj.zMobDrop;
+import jayson.json.fuchs.items.lists.zItem;
 import org.bukkit.entity.EntityType;
 
 import java.io.File;
@@ -21,7 +24,7 @@ import java.util.stream.Stream;
 
 public class DataHandler {
 
-    public static String ROOT = "plugins/zapan/";
+    public static String ROOT = "plugins/fuchs/";
     public static String PLAYER_DIR = ROOT + "/players/";
     public static String AREA_DIR = ROOT + "/areas/";
     public static String GUILD_DIR = ROOT + "/guilds/";
@@ -227,6 +230,7 @@ public class DataHandler {
                 for (String s : zCraftingBrewery.inputsID) {
                     if(Utility.itemIDExists(s)) {
                         zCraftingBrewery.inputs.add(Utility.getAbstractItemByID(s));
+
                         System.out.println("[Fuchs {Crafting}] " + s);
                     } else {
                         System.out.println("[Fuchs {Crafting}] Item mit der ID " + s + " existiert nicht, überspringen...");
@@ -245,6 +249,30 @@ public class DataHandler {
         String json = gsonBuilder.toJson(mobDrop);
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(new File(MOBDROPS_DIR + "test.json"));
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
+            outputStreamWriter.append(json);
+            outputStreamWriter.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void createBreweryCrafting() {
+
+        zCraftingBrewery craftingBrewery = new zCraftingBrewery();
+        craftingBrewery.inputsID.add(zItem.HOPITEM.getAbstractItem().getId());
+        craftingBrewery.inputsID.add(zItem.MALTITEM.getAbstractItem().getId());
+        zCraftingBreweryLiquidInput liquidInput = new zCraftingBreweryLiquidInput();
+        liquidInput.liquidAmount = 1.5;
+        liquidInput.liquidInputID = zItem.WATERITEM.getAbstractItem().getId();
+        zCraftingBreweryLiquidOutput liquidOutput = new zCraftingBreweryLiquidOutput();
+        liquidOutput.liquidAmount = 2;
+        liquidOutput.liquidOutputID = zItem.BEERITEM.getAbstractItem().getId();
+        craftingBrewery.liquidInput = liquidInput;
+        craftingBrewery.liquidOutput = liquidOutput;
+        String json = gsonBuilder.toJson(craftingBrewery);
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(new File(BREWERY_DIR + "test.json"));
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
             outputStreamWriter.append(json);
             outputStreamWriter.close();

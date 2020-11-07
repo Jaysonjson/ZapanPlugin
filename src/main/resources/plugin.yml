@@ -1,6 +1,6 @@
-name: Zapan
+name: Fuchs
 version: ${project.version}
-main: jayson.json.zapan.Zapan
+main: jayson.json.fuchs.Fuchs
 api-version: 1.16
 commands:
   sethealth:

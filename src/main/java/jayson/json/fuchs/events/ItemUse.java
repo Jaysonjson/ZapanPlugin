@@ -11,15 +11,6 @@ public class ItemUse implements Listener {
 
     @EventHandler
     public void ItemUse(PlayerInteractEvent event) {
-       /* BookMeta bookMeta = (BookMeta) event.getItem().getItemMeta();
-        bookMeta.setTitle("Skill Buch");
-        bookMeta.setAuthor("Oberbürgermeister");
-        List<String> pages = new ArrayList<>();
-        pages.add("Skill Buch");
-        pages.add("Stärke: 5");
-        bookMeta.setPages(pages);
-        event.getItem().setItemMeta(bookMeta);
-              */
         if(event.getItem() != null) {
 
             if(Utility.isBannedItem(event.getItem())) {

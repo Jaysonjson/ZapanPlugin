@@ -35,6 +35,7 @@ public final class Fuchs extends JavaPlugin {
         References.reloadDrops();
         Utility.reloadAreas();
         NPC.loadNPCS();
+        DataHandler.createBreweryCrafting();
         registerEvents(
                 new PlayerJoin(),
                 new PlayerDeath(),

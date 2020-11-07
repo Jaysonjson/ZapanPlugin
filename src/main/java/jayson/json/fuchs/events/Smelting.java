@@ -21,7 +21,6 @@ public class Smelting implements Listener {
         ItemStack existingItem = inventory.getItem(2);
         NBTTagCompound tag = Utility.getItemTag(Utility.createNMSCopy(itemStack));
         boolean override = false;
-
         if(!tag.hasKey(zItemNBT.ITEM_ID)) {
             if (Utility.isAbstractVanillaItem(itemStack)) {
                 override = true;
@@ -44,10 +43,11 @@ public class Smelting implements Listener {
                 item.setAmount(1);
                 //event.setResult(item);
                  */
-        		FuchsItem fuchsItem = new FuchsItem(Utility.getAbstractVanillaOverride(itemStack), itemStack);
-                fuchsItem.changeIntTag(zItemNBT.ITEM_AMOUNT, amount);
-        		fuchsItem.setAmount(1);
-        		inventory.setItem(2, fuchsItem.getItemStack());
+        	event.getSource().setAmount(event.getSource().getAmount() - 1);
+        	FuchsItem fuchsItem = new FuchsItem(Utility.getAbstractVanillaOverride(itemStack), itemStack);
+            fuchsItem.changeIntTag(zItemNBT.ITEM_AMOUNT, amount);
+        	fuchsItem.setAmount(1);
+        	inventory.setItem(2, fuchsItem.getItemStack());
         }
 
     }

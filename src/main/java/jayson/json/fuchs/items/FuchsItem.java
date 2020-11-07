@@ -14,6 +14,8 @@ public class FuchsItem {
 	private Player player = null;
 	private ItemStack original = null;
 	private boolean vanillaOverride = false;
+	net.minecraft.server.v1_16_R2.ItemStack nmsStack;
+	
 	public FuchsItem(AbstractItem item) {
 		this.item = item;
 	}
@@ -43,21 +45,69 @@ public class FuchsItem {
 	}
 	
 	public void changeStringTag(String key, String value) {
-        net.minecraft.server.v1_16_R2.ItemStack nmsStack = Utility.createNMSCopy(original);
-        NBTTagCompound tagI = nmsStack.getTag();
+        NBTTagCompound tagI = getTagFromOriginal();
         tagI.setString(key, value);
-        nmsStack.setTag(tagI);
+        updateOriginalTag(tagI);
+	}
+	
+	public void changeIntTag(String key, int value) {
+        NBTTagCompound tagI = getTagFromOriginal();
+        tagI.setInt(key, value);
+        updateOriginalTag(tagI);
+	}
+	
+	public void changeDoubleTag(String key, Double value) {
+        NBTTagCompound tagI = getTagFromOriginal();
+        tagI.setDouble(key, value);
+        updateOriginalTag(tagI);
+	}
+	
+	public void changeBooleanTag(String key, Boolean value) {
+        NBTTagCompound tagI = getTagFromOriginal();
+        tagI.setBoolean(key, value);
+        updateOriginalTag(tagI);
+	}
+	
+	public void changeFloatTag(String key, Float value) {
+        NBTTagCompound tagI = getTagFromOriginal();
+        tagI.setFloat(key, value);
+        updateOriginalTag(tagI);
+	}
+	
+	public void changeByteTag(String key, Byte value) {
+        NBTTagCompound tagI = getTagFromOriginal();
+        tagI.setByte(key, value);
+        updateOriginalTag(tagI);
+	}
+	
+	public void changeShortTag(String key, Short value) {
+        NBTTagCompound tagI = getTagFromOriginal();
+        tagI.setShort(key, value);
+        updateOriginalTag(tagI);
+	}
+	
+	public NBTTagCompound getTagFromOriginal() {
+        updateNMSStack();
+        NBTTagCompound tag = nmsStack.getTag();
+        return tag;
+	}
+	
+	public void updateOriginalTag(NBTTagCompound tagCompound) {
+        nmsStack.setTag(tagCompound);
         original = CraftItemStack.asBukkitCopy(nmsStack);
         original = item.createItem(original);
 	}
 	
-	public void changeIntTag(String key, int value) {
-        net.minecraft.server.v1_16_R2.ItemStack nmsStack = Utility.createNMSCopy(original);
-        NBTTagCompound tagI = nmsStack.getTag();
-        tagI.setInt(key, value);
-        nmsStack.setTag(tagI);
-        original = CraftItemStack.asBukkitCopy(nmsStack);
-        original = item.createItem(original);
+	public void updateNMSStack() {
+		 nmsStack = Utility.createNMSCopy(original);
+	}
+	
+	public net.minecraft.server.v1_16_R2.ItemStack getNmsStack() {
+		return nmsStack;
+	}
+	
+	public void setNmsStack(net.minecraft.server.v1_16_R2.ItemStack nmsStack) {
+		this.nmsStack = nmsStack;
 	}
 	
 	public void setPlayer(Player player) {

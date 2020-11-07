@@ -38,7 +38,7 @@ public class ItemClick implements Listener {
                         item.setAmount(itemStack.getAmount());
                         event.getInventory().setItem(clickedSlot, item);
                     }
-                    if (!tag.hasKey(zItemNBT.ITEM_ID) || tag.getDouble(zItemNBT.ITEM_VERSION) != 404) {
+                    if (!tag.hasKey(zItemNBT.ITEM_ID)) {
                     	if (Utility.isAbstractVanillaItem(itemStack)) {
                     		System.out.println("Vanilla Item geändert -> Click");
                         	ItemStack item = Utility.getAbstractVanillaOverride(itemStack).createItem(player, null, null);
