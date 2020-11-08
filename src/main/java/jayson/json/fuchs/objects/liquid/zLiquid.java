@@ -12,6 +12,7 @@ public enum zLiquid implements IzLiquidRegistry {
 
 	NONE(new NoneLiquid(), null),
 	BEER(new BeerLiquid(), null),
+	LAVA(new LavaLiquid(), Material.LAVA),
 	WATER(new WaterLiquid(), Material.WATER);
 	
 	Material minecraftEquivalent;

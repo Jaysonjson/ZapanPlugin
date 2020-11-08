@@ -22,6 +22,7 @@ import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ItemInventory implements Listener {
     @Nullable
@@ -36,17 +37,19 @@ public class ItemInventory implements Listener {
         Integer page_index = 0;
         Integer page = 0;
         ArrayList<ItemStack> page_content = new ArrayList<>();
-        int page_check = zRegistry.items.size();
-        for (ItemStack item : getStacks(player)) {
+        ArrayList<ItemStack> stacks = getStacks(player);
+        int page_check = stacks.size();
+        for (ItemStack item : stacks) {
             page_index++;
             if (page_index < 46) {
                 page_content.add(item);
             }
-            if (page_index >= 46 || page_index.equals(zRegistry.items.size()) || page_index.equals(page_check)) {
+            if (page_index >= 46 || page_index.equals(stacks.size()) || page_index.equals(page_check)) {
                 page++;
                 page_check -= 46;
                 InventoryPage<ArrayList<ItemStack>> pageInv = new InventoryPage<>(page_content, page);
                 pageInv.stacks = page_content.toArray(new ItemStack[0]);
+                System.out.println(Arrays.toString(pageInv.stacks));
                 pageContainer.addPage(pageInv);
                 page_content.clear();
                 page_index = 0;
