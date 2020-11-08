@@ -18,7 +18,7 @@ public class WaterLiquid extends AbstractLiquid {
 	
 	@Override
 	public int getDamageValue() {
-		return 6;
+		return 13;
 	}
 
 }

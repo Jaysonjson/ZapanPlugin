@@ -1,19 +1,12 @@
 package jayson.json.fuchs.objects.items.lists;
 
-import jayson.json.fuchs.objects.items.AbstractItem;
-import jayson.json.fuchs.objects.items.ItemUseType;
-import jayson.json.fuchs.objects.items.ability.BeerItem;
+import jayson.json.fuchs.objects.items.*;
+import jayson.json.fuchs.objects.items.ability.*;
 import jayson.json.fuchs.objects.items.crafting.*;
 import jayson.json.fuchs.objects.items.interfaces.IzItemRegistry;
-import jayson.json.fuchs.objects.items.other.LiquidContainerItem;
-import jayson.json.fuchs.objects.items.other.ScrapItem;
-import jayson.json.fuchs.objects.items.other.SkillBookItem;
-import jayson.json.fuchs.objects.items.currency.ZoryhaShardItem;
-import jayson.json.fuchs.objects.items.currency.GoldBarItem;
-import jayson.json.fuchs.objects.items.currency.GoldNuggetItem;
-import jayson.json.fuchs.objects.items.currency.HackSilverItem;
-import jayson.json.fuchs.objects.items.vanillaOverride.IronIngotItem;
-import jayson.json.fuchs.objects.items.vanillaOverride.IronOreItem;
+import jayson.json.fuchs.objects.items.other.*;
+import jayson.json.fuchs.objects.items.currency.*;
+import jayson.json.fuchs.objects.items.vanillaOverride.*;
 import org.bukkit.Material;
 
 public enum zItem implements IzItemRegistry {
@@ -35,6 +28,7 @@ public enum zItem implements IzItemRegistry {
     COPPERLIQUID(new LiquidCopperItem("copperLiquidItem", Material.NETHERITE_HOE, ItemUseType.CRAFTING, 10)),
     COPPERSWORD(new CopperSwordItem("copperSwordItem", Material.NETHERITE_HOE, ItemUseType.TOOL, 11)),
     LIQUIDCONTAINER(new LiquidContainerItem("liquidContainerItem", Material.NETHERITE_HOE, ItemUseType.CRAFTING, 12)),
+    GASCONTAINER(new GasContainerItem("gasContainerItem", Material.NETHERITE_HOE, ItemUseType.CRAFTING, 15)),
     IRONINGOT(new IronIngotItem("ironIngotItem", Material.IRON_INGOT, ItemUseType.CRAFTING)),
     IRONORE(new IronOreItem("ironOreItem", Material.IRON_ORE, ItemUseType.CRAFTING)),
     SCRAP(new ScrapItem("scrapItem", Material.NETHERITE_SCRAP, ItemUseType.CURRENCY));

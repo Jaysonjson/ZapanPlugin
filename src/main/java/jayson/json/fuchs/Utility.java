@@ -9,6 +9,8 @@ import jayson.json.fuchs.io.DataHandler;
 import jayson.json.fuchs.objects.liquid.interfaces.IzLiquid;
 import jayson.json.fuchs.objects.liquid.interfaces.IzLiquidRegistry;
 import jayson.json.fuchs.objects.zRegistry;
+import jayson.json.fuchs.objects.gas.AbstractGas;
+import jayson.json.fuchs.objects.gas.interfaces.IzGasRegistry;
 import jayson.json.fuchs.objects.items.*;
 import jayson.json.fuchs.objects.items.interfaces.IzItem;
 import jayson.json.fuchs.objects.items.interfaces.IzItemRegistry;
@@ -816,6 +818,35 @@ public class Utility {
     public static boolean liquidExists(String id) {
     	 for (IzLiquidRegistry liquid : zRegistry.liquids) {
              if(liquid.getLiquid().getId().equalsIgnoreCase(id)) {
+                 return true;
+             }
+         }
+    	return false;
+    }
+    
+    @Nullable
+    public static AbstractGas getGasByID(String id) {
+        for (IzGasRegistry gas : zRegistry.gasses) {
+            if(gas.getGas().getId().equalsIgnoreCase(id)) {
+                return gas.getGas();
+            }
+        }
+		return null;
+    }
+
+    @Nullable
+    public static IzGasRegistry getGasRegistryByID(String id) {
+        for (IzGasRegistry gas : zRegistry.gasses) {
+            if(gas.getGas().getId().equalsIgnoreCase(id)) {
+                return gas;
+            }
+        }
+        return null;
+    }
+    
+    public static boolean gasExists(String id) {
+    	 for (IzGasRegistry gas : zRegistry.gasses) {
+             if(gas.getGas().getId().equalsIgnoreCase(id)) {
                  return true;
              }
          }

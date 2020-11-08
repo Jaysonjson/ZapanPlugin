@@ -3,6 +3,7 @@ package jayson.json.fuchs.objects;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import jayson.json.fuchs.objects.gas.zGas;
 import jayson.json.fuchs.objects.gas.interfaces.IzGasRegistry;
 import jayson.json.fuchs.objects.items.interfaces.IzItemRegistry;
 import jayson.json.fuchs.objects.items.lists.zItem;
@@ -29,7 +30,7 @@ public class zRegistry {
     
     @Deprecated
     public static void reloadGasses() {
-    	
+    	gasses.addAll(Arrays.asList(zGas.values()));
     }
     
  

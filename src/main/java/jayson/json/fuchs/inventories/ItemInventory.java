@@ -7,6 +7,7 @@ import jayson.json.fuchs.objects.items.interfaces.IzItemRegistry;
 import jayson.json.fuchs.objects.items.lists.zItem;
 import jayson.json.fuchs.objects.liquid.interfaces.IzLiquidRegistry;
 import jayson.json.fuchs.objects.zRegistry;
+import jayson.json.fuchs.objects.gas.interfaces.IzGasRegistry;
 import jayson.json.fuchs.objects.items.zItemNBT;
 import jayson.json.fuchs.other.InventoryPage;
 import jayson.json.fuchs.other.InventoryPageContainer;
@@ -71,6 +72,15 @@ public class ItemInventory implements Listener {
             fuchsItem.changeDoubleTag(zItemNBT.LIQUID_AMOUNT, 500d);
             itemStacks.add(fuchsItem.getItemStack());
         }
+        
+        for (IzGasRegistry gas : zRegistry.gasses) {
+            ItemStack stack = zItem.GASCONTAINER.getAbstractItem().createItem();
+            FuchsItem fuchsItem = new FuchsItem(Utility.getAbstractItemFromNMS(stack), stack);
+            fuchsItem.changeStringTag(zItemNBT.CONTAINED_GAS, gas.getGas().getId());
+            fuchsItem.changeDoubleTag(zItemNBT.GAS_AMOUNT, 500d);
+            itemStacks.add(fuchsItem.getItemStack());	
+        }
+        
         return itemStacks;
     }
 

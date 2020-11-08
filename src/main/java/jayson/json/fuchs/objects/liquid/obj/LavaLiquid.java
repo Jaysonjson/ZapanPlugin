@@ -18,7 +18,7 @@ public class LavaLiquid extends AbstractLiquid {
 	
 	@Override
 	public int getDamageValue() {
-		return 6;
+		return 14;
 	}
 
 }

@@ -1,5 +1,7 @@
 package jayson.json.fuchs.objects.gas.interfaces;
 
-public interface IzGasRegistry {
+import jayson.json.fuchs.objects.gas.AbstractGas;
 
+public interface IzGasRegistry {
+	AbstractGas getGas();
 }
