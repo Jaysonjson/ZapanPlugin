@@ -40,6 +40,7 @@ public final class Fuchs extends JavaPlugin {
         //DataHandler.createMobDrop();
         zRegistry.reloadItems();
         zRegistry.reloadLiquids();
+        zRegistry.reloadGasses();
         References.reloadDrops();
         Utility.reloadAreas();
         NPC.loadNPCS();

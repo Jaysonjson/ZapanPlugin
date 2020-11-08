@@ -19,4 +19,7 @@ public class zItemNBT {
     public static final String LIQUID_AMOUNT = "abstractLiquidAmount";
     public static final String CREATIVE_GET = "creativeGet";
     public static final String CREATIVE_GET_USER = "creativeGetUser";
+    public static final String CONTAINED_LIQUID = "containedLiquid";
+    public static final String CONTAINED_GAS = "containedGas";
+    
 }

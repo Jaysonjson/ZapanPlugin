@@ -5,6 +5,7 @@ import jayson.json.fuchs.objects.items.ItemUseType;
 import jayson.json.fuchs.objects.items.ability.BeerItem;
 import jayson.json.fuchs.objects.items.crafting.*;
 import jayson.json.fuchs.objects.items.interfaces.IzItemRegistry;
+import jayson.json.fuchs.objects.items.other.LiquidContainerItem;
 import jayson.json.fuchs.objects.items.other.ScrapItem;
 import jayson.json.fuchs.objects.items.other.SkillBookItem;
 import jayson.json.fuchs.objects.items.currency.ZoryhaShardItem;
@@ -33,6 +34,7 @@ public enum zItem implements IzItemRegistry {
     COPPERPIPE(new CopperPipeItem("copperPipeItem", Material.NETHERITE_HOE, ItemUseType.CRAFTING, 9)),
     COPPERLIQUID(new LiquidCopperItem("copperLiquidItem", Material.NETHERITE_HOE, ItemUseType.CRAFTING, 10)),
     COPPERSWORD(new CopperSwordItem("copperSwordItem", Material.NETHERITE_HOE, ItemUseType.TOOL, 11)),
+    LIQUIDCONTAINER(new LiquidContainerItem("liquidContainerItem", Material.NETHERITE_HOE, ItemUseType.CRAFTING, 12)),
     IRONINGOT(new IronIngotItem("ironIngotItem", Material.IRON_INGOT, ItemUseType.CRAFTING)),
     IRONORE(new IronOreItem("ironOreItem", Material.IRON_ORE, ItemUseType.CRAFTING)),
     SCRAP(new ScrapItem("scrapItem", Material.NETHERITE_SCRAP, ItemUseType.CURRENCY));
