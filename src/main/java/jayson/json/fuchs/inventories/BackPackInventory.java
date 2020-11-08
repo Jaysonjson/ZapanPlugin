@@ -4,7 +4,7 @@ import jayson.json.fuchs.Utility;
 import jayson.json.fuchs.Fuchs;
 import jayson.json.fuchs.data.zBackPack;
 import jayson.json.fuchs.io.DataHandler;
-import jayson.json.fuchs.items.zItemNBT;
+import jayson.json.fuchs.objects.items.zItemNBT;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

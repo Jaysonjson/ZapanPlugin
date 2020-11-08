@@ -6,13 +6,13 @@ import jayson.json.fuchs.data.zGuild;
 import jayson.json.fuchs.data.zPlayer;
 import jayson.json.fuchs.data.zareaobj.zLocation;
 import jayson.json.fuchs.io.DataHandler;
-import jayson.json.fuchs.items.*;
-import jayson.json.fuchs.items.interfaces.IzItem;
-import jayson.json.fuchs.items.interfaces.IzItemRegistry;
-import jayson.json.fuchs.items.lists.BannedItems;
-import jayson.json.fuchs.items.lists.ItemRegistry;
-import jayson.json.fuchs.items.lists.zItem;
-import jayson.json.fuchs.items.lists.zItemAbility;
+import jayson.json.fuchs.objects.zRegistry;
+import jayson.json.fuchs.objects.items.*;
+import jayson.json.fuchs.objects.items.interfaces.IzItem;
+import jayson.json.fuchs.objects.items.interfaces.IzItemRegistry;
+import jayson.json.fuchs.objects.items.lists.BannedItems;
+import jayson.json.fuchs.objects.items.lists.zItem;
+import jayson.json.fuchs.objects.items.lists.zItemAbility;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -245,7 +245,7 @@ public class Utility {
     }
 
     public static void spawnCustomItem(Player player, AbstractItem item, World world, Location location) {
-        world.dropItemNaturally(location, item.createItem(player, null, null));
+        world.dropItemNaturally(location, item.createItem(player));
     }
 
     public static double countMoney(Player player) {
@@ -419,7 +419,7 @@ public class Utility {
 
     @Nullable
     public static AbstractItem getAbstractItemByID(String id) {
-        for (IzItemRegistry item : ItemRegistry.items) {
+        for (IzItemRegistry item : zRegistry.items) {
             if(item.getAbstractItem().getId().equalsIgnoreCase(id)) {
                 return item.getAbstractItem();
             }
@@ -428,7 +428,7 @@ public class Utility {
     }
 
     public static boolean itemIDExists(String id) {
-        for (IzItemRegistry item : ItemRegistry.items) {
+        for (IzItemRegistry item : zRegistry.items) {
             if(item.getAbstractItem().getId().equalsIgnoreCase(id)) {
                 return true;
             }
@@ -501,8 +501,8 @@ public class Utility {
 
     @Deprecated
     public static boolean isAbilityItemAllINEFF(Player player, ItemStack itemStack) {
-        for (IzItemRegistry value : ItemRegistry.items) {
-            if(value.getAbstractItem().createItem(player, itemStack, null).getType().equals(itemStack.getType())) {
+        for (IzItemRegistry value : zRegistry.items) {
+            if(value.getAbstractItem().createItem(player, itemStack).getType().equals(itemStack.getType())) {
                 return true;
             }
         }
@@ -510,7 +510,7 @@ public class Utility {
     }
 
     public static boolean isAbilityItemAll(Player player, ItemStack itemStack) {
-        for (IzItemRegistry value : ItemRegistry.items) {
+        for (IzItemRegistry value : zRegistry.items) {
             if(value.getAbstractItem().getMaterial().equals(itemStack.getType())) {
                 return true;
             }
@@ -535,8 +535,8 @@ public class Utility {
 
     @Deprecated
     public static boolean iszItem(ItemStack itemStack) {
-        for (IzItemRegistry item : ItemRegistry.items) {
-            if(item.getAbstractItem().createItem(null, itemStack, null).getType().equals(itemStack.getType())) {
+        for (IzItemRegistry item : zRegistry.items) {
+            if(item.getAbstractItem().createItem(itemStack).getType().equals(itemStack.getType())) {
                 return true;
             }
         }
@@ -544,7 +544,7 @@ public class Utility {
     }
 
     public static boolean isAbstractItem(ItemStack itemStack) {
-        for (IzItemRegistry item : ItemRegistry.items) {
+        for (IzItemRegistry item : zRegistry.items) {
             if(item.getAbstractItem().getMaterial().equals(itemStack.getType())) {
                 if(Utility.getItemTag(Utility.createNMSCopy(itemStack)).hasKey(zItemNBT.ITEM_ID)) {
                     return true;
@@ -555,7 +555,7 @@ public class Utility {
     }
 
     public static boolean isAbstractVanillaItem(ItemStack itemStack) {
-        for (IzItemRegistry item : ItemRegistry.items) {
+        for (IzItemRegistry item : zRegistry.items) {
             if(item.getAbstractItem().isVanillaOverride()) {
                 if(item.getAbstractItem().defaultVanillaOverride().equals(itemStack.getType())) {
                     if(!isBannedItem(itemStack)) {
@@ -569,7 +569,7 @@ public class Utility {
 
     @Nullable
     public static AbstractItem getAbstractVanillaOverride(ItemStack itemStack) {
-        for (IzItemRegistry item : ItemRegistry.items) {
+        for (IzItemRegistry item : zRegistry.items) {
             if(item.getAbstractItem().isVanillaOverride()) {
                 if(item.getAbstractItem().defaultVanillaOverride().equals(itemStack.getType())) {
                     return item.getAbstractItem();
@@ -596,7 +596,7 @@ public class Utility {
             if(isAbstractItem(content)) {
                 AbstractItem abstractItem = getAbstractItemFromNMS(content);
                 if(abstractItem != null) {
-                   player.getInventory().setItem(i, abstractItem.update(player, content, null));
+                   player.getInventory().setItem(i, abstractItem.update(player, content));
                 }
             }
         }

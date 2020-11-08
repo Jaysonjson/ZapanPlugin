@@ -1,6 +1,6 @@
 package jayson.json.fuchs.data.zdropobj;
 
-import jayson.json.fuchs.items.AbstractItem;
+import jayson.json.fuchs.objects.items.AbstractItem;
 import org.bukkit.entity.EntityType;
 import java.util.HashMap;
 

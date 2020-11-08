@@ -1,7 +1,7 @@
 package jayson.json.fuchs.commands;
 
-import jayson.json.fuchs.items.interfaces.IzItemRegistry;
-import jayson.json.fuchs.items.lists.ItemRegistry;
+import jayson.json.fuchs.objects.zRegistry;
+import jayson.json.fuchs.objects.items.interfaces.IzItemRegistry;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -12,10 +12,10 @@ public class ItemIDCommand implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
         StringBuilder content = new StringBuilder();
         int i = 0;
-        for (IzItemRegistry item : ItemRegistry.items) {
+        for (IzItemRegistry item : zRegistry.items) {
         	i++;
         	String suffix = ", ";
-        	if(i >= ItemRegistry.items.size()) {
+        	if(i >= zRegistry.items.size()) {
         		suffix = "";
         	}
             content.append(item.getAbstractItem().getId()).append(suffix);

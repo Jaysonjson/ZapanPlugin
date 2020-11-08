@@ -8,7 +8,7 @@ import jayson.json.fuchs.data.zcraftingobj.brewery.objs.zCraftingBreweryLiquidIn
 import jayson.json.fuchs.data.zcraftingobj.brewery.objs.zCraftingBreweryLiquidOutput;
 import jayson.json.fuchs.data.zcraftingobj.brewery.zCraftingBrewery;
 import jayson.json.fuchs.data.zdropobj.zMobDrop;
-import jayson.json.fuchs.items.lists.zItem;
+import jayson.json.fuchs.objects.items.lists.zItem;
 import org.bukkit.entity.EntityType;
 
 import java.io.File;

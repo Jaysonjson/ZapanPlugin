@@ -1,7 +1,7 @@
 package jayson.json.fuchs.events.item;
 
 import jayson.json.fuchs.Utility;
-import jayson.json.fuchs.items.AbstractItem;
+import jayson.json.fuchs.objects.items.AbstractItem;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import jayson.json.fuchs.data.zcraftingobj.brewery.objs.zCraftingBreweryLiquidInput;
 import jayson.json.fuchs.data.zcraftingobj.brewery.objs.zCraftingBreweryLiquidOutput;
-import jayson.json.fuchs.items.AbstractItem;
+import jayson.json.fuchs.objects.items.AbstractItem;
 
 public class zCraftingBrewery {
 

@@ -2,9 +2,9 @@ package jayson.json.fuchs.inventories;
 
 import jayson.json.fuchs.Utility;
 import jayson.json.fuchs.Fuchs;
-import jayson.json.fuchs.items.interfaces.IzItemRegistry;
-import jayson.json.fuchs.items.lists.ItemRegistry;
-import jayson.json.fuchs.items.zItemNBT;
+import jayson.json.fuchs.objects.items.interfaces.IzItemRegistry;
+import jayson.json.fuchs.objects.zRegistry;
+import jayson.json.fuchs.objects.items.zItemNBT;
 import jayson.json.fuchs.other.InventoryPage;
 import jayson.json.fuchs.other.InventoryPageContainer;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
@@ -33,13 +33,13 @@ public class ItemInventory implements Listener {
         Integer page_index = 0;
         Integer page = 0;
         ArrayList<ItemStack> page_content = new ArrayList<>();
-        int page_check = ItemRegistry.items.size();
-        for (IzItemRegistry item : ItemRegistry.items) {
+        int page_check = zRegistry.items.size();
+        for (IzItemRegistry item : zRegistry.items) {
             page_index++;
             if (page_index < 46) {
                 page_content.add(item.getAbstractItem().createItem(player));
             }
-            if (page_index >= 46 || page_index.equals(ItemRegistry.items.size()) || page_index.equals(page_check)) {
+            if (page_index >= 46 || page_index.equals(zRegistry.items.size()) || page_index.equals(page_check)) {
                 page++;
                 page_check -= 46;
                 InventoryPage<ArrayList<ItemStack>> pageInv = new InventoryPage<>(page_content, page);

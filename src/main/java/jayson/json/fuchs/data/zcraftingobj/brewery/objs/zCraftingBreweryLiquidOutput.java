@@ -1,6 +1,6 @@
 package jayson.json.fuchs.data.zcraftingobj.brewery.objs;
 
-import jayson.json.fuchs.items.AbstractItem;
+import jayson.json.fuchs.objects.items.AbstractItem;
 
 public class zCraftingBreweryLiquidOutput {
     public String liquidOutputID = "";

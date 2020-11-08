@@ -1,7 +1,7 @@
 package jayson.json.fuchs.skillclass;
 
-import jayson.json.fuchs.items.ItemUseType;
-import jayson.json.fuchs.items.classes.*;
+import jayson.json.fuchs.objects.items.ItemUseType;
+import jayson.json.fuchs.objects.items.classes.*;
 import jayson.json.fuchs.skillclass.alchemist.zAlchemistClass;
 import jayson.json.fuchs.skillclass.fighter.zFighterClass;
 import org.bukkit.ChatColor;
@@ -13,12 +13,12 @@ import javax.annotation.Nullable;
 public enum zClass {
 
     NONE("Keine Klasse", new zDefaultClass(),ChatColor.RED + "", new ItemStack(Material.AIR)),
-    FIGHTER("Kämpfer",new zFighterClass(), ChatColor.RED + "", new FighterClassItem("fighterClassItem", Material.NETHERITE_SWORD, ItemUseType.OTHER).createItem(null, null, null)),
-    FARMER("Farmer", new zDefaultClass(),ChatColor.RED + "", new FarmerClassItem("farmerClassItem", Material.NETHERITE_HOE, ItemUseType.OTHER).createItem(null, null, null)),
-    CRAFTER("Schmied", new zDefaultClass(),ChatColor.RED + "", new CrafterClassItem("crafterClassItem", Material.CRAFTING_TABLE, ItemUseType.OTHER).createItem(null, null, null)),
-    TRAVELER("Wanderer", new zDefaultClass(),ChatColor.RED + "", new TravelerClassItem("travelerClassItem", Material.IRON_BOOTS, ItemUseType.OTHER).createItem(null, null, null)),
-    POTIONER("Brauer", new zDefaultClass(),ChatColor.RED + "", new PotionerClassItem("potionerClassItem", Material.LINGERING_POTION, ItemUseType.OTHER).createItem(null, null, null)),
-    ALCHEMIST("Alchemist", new zAlchemistClass(),ChatColor.RED + "", new AlchemistClassItem("alchemistClassItem", Material.LAVA_BUCKET, ItemUseType.OTHER).createItem(null, null, null));
+    FIGHTER("Kämpfer",new zFighterClass(), ChatColor.RED + "", new FighterClassItem("fighterClassItem", Material.NETHERITE_SWORD, ItemUseType.OTHER).createItem()),
+    FARMER("Farmer", new zDefaultClass(),ChatColor.RED + "", new FarmerClassItem("farmerClassItem", Material.NETHERITE_HOE, ItemUseType.OTHER).createItem()),
+    CRAFTER("Schmied", new zDefaultClass(),ChatColor.RED + "", new CrafterClassItem("crafterClassItem", Material.CRAFTING_TABLE, ItemUseType.OTHER).createItem()),
+    TRAVELER("Wanderer", new zDefaultClass(),ChatColor.RED + "", new TravelerClassItem("travelerClassItem", Material.IRON_BOOTS, ItemUseType.OTHER).createItem()),
+    POTIONER("Brauer", new zDefaultClass(),ChatColor.RED + "", new PotionerClassItem("potionerClassItem", Material.LINGERING_POTION, ItemUseType.OTHER).createItem()),
+    ALCHEMIST("Alchemist", new zAlchemistClass(),ChatColor.RED + "", new AlchemistClassItem("alchemistClassItem", Material.LAVA_BUCKET, ItemUseType.OTHER).createItem());
 
 
     private String name;

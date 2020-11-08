@@ -1,7 +1,7 @@
 package jayson.json.fuchs.events.item;
 
-import jayson.json.fuchs.items.lists.BannedItems;
-import jayson.json.fuchs.items.zItemNBT;
+import jayson.json.fuchs.objects.items.lists.BannedItems;
+import jayson.json.fuchs.objects.items.zItemNBT;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.craftbukkit.v1_16_R2.inventory.CraftItemStack;
 import org.bukkit.event.EventHandler;

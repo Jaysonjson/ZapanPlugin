@@ -1,8 +1,8 @@
 package jayson.json.fuchs.events;
 
 import jayson.json.fuchs.Utility;
-import jayson.json.fuchs.items.FuchsItem;
-import jayson.json.fuchs.items.zItemNBT;
+import jayson.json.fuchs.objects.items.FuchsItem;
+import jayson.json.fuchs.objects.items.zItemNBT;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.block.Furnace;
 import org.bukkit.event.EventHandler;
@@ -24,12 +24,12 @@ public class Smelting implements Listener {
         if(!tag.hasKey(zItemNBT.ITEM_ID)) {
             if (Utility.isAbstractVanillaItem(itemStack)) {
                 override = true;
-                itemStack = Utility.getAbstractVanillaOverride(itemStack).createItem(null, null, null);
+                itemStack = Utility.getAbstractVanillaOverride(itemStack).createItem();
                 inventory.setItem(2, itemStack);
             }
         }
 
-        int amount = Utility.addAmount(Utility.getAbstractVanillaOverride(itemStack).createItem(null, itemStack, null), existingItem);
+        int amount = Utility.addAmount(Utility.getAbstractVanillaOverride(itemStack).createItem(itemStack), existingItem);
 
         if(override) {
                 /*ItemStack item = Utility.getAbstractVanillaOverride(itemStack).createItem(null, itemStack, null);

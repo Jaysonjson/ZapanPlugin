@@ -6,7 +6,7 @@ import jayson.json.fuchs.Fuchs;
 import jayson.json.fuchs.data.zArea;
 import jayson.json.fuchs.io.DataHandler;
 
-import jayson.json.fuchs.items.zItemNBT;
+import jayson.json.fuchs.objects.items.zItemNBT;
 import jayson.json.fuchs.other.InventoryPage;
 import jayson.json.fuchs.other.InventoryPageContainer;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;

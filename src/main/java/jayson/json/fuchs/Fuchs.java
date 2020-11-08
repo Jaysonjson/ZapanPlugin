@@ -12,7 +12,7 @@ import jayson.json.fuchs.events.entity.player.*;
 import jayson.json.fuchs.events.inventory.ItemClick;
 import jayson.json.fuchs.events.item.*;
 import jayson.json.fuchs.io.DataHandler;
-import jayson.json.fuchs.items.lists.ItemRegistry;
+import jayson.json.fuchs.objects.zRegistry;
 import jayson.json.fuchs.npc.NPC;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
@@ -38,7 +38,8 @@ public final class Fuchs extends JavaPlugin {
         new File(DataHandler.MOBDROPS_DIR).mkdirs();
         new File(DataHandler.BREWERY_DIR).mkdirs();
         //DataHandler.createMobDrop();
-        ItemRegistry.reloadItems();
+        zRegistry.reloadItems();
+        zRegistry.reloadLiquids();
         References.reloadDrops();
         Utility.reloadAreas();
         NPC.loadNPCS();

@@ -2,7 +2,7 @@ package jayson.json.fuchs.data.zcraftingobj.smeltery;
 
 import java.util.ArrayList;
 
-import jayson.json.fuchs.items.AbstractItem;
+import jayson.json.fuchs.objects.items.AbstractItem;
 
 public class zCraftingSmeltery {
 
