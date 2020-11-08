@@ -1,4 +1,4 @@
-package jayson.json.fuchs.events;
+package jayson.json.fuchs.events.entity.player;
 
 import org.bukkit.BanList;
 import org.bukkit.Bukkit;

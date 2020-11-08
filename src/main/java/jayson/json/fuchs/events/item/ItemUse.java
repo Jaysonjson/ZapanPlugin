@@ -1,4 +1,4 @@
-package jayson.json.fuchs.events;
+package jayson.json.fuchs.events.item;
 
 import jayson.json.fuchs.Utility;
 import jayson.json.fuchs.items.AbstractItem;

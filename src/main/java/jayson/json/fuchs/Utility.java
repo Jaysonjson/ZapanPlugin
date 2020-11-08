@@ -1,6 +1,7 @@
 package jayson.json.fuchs;
 
 import jayson.json.fuchs.data.zArea;
+import jayson.json.fuchs.data.zBackPack;
 import jayson.json.fuchs.data.zGuild;
 import jayson.json.fuchs.data.zPlayer;
 import jayson.json.fuchs.data.zareaobj.zLocation;
@@ -713,30 +714,75 @@ public class Utility {
         return amount;
     }
 
-    public static void removeMoneyBackpack(Inventory inventory, double amount) {
+    public static ItemStack[] removeMoney(ItemStack[] contents, double amount) {
         double fakeAmount = amount;
-        for (ItemStack content : inventory.getContents()) {
+        int i = 0;
+        for (ItemStack content : contents) {
             if(content != null) {
                 if (content.hasItemMeta()) {
                     net.minecraft.server.v1_16_R2.ItemStack nmsItem = createNMSCopy(content);
                     NBTTagCompound tag = getItemTag(nmsItem);
                     if (tag.hasKey(zItemNBT.HACKSILVER_AMOUNT)) {
-                        if(fakeAmount - tag.getDouble(zItemNBT.HACKSILVER_AMOUNT) < 0) {
-                            content.setAmount(0);
-                        } else {
-                            fakeAmount -= tag.getDouble(zItemNBT.HACKSILVER_AMOUNT);
+                        fakeAmount -= tag.getDouble(zItemNBT.HACKSILVER_AMOUNT);
+                        double decrease = fakeAmount - tag.getDouble(zItemNBT.HACKSILVER_AMOUNT);
+                        if(decrease > 0) {
+                            content.setAmount(content.getAmount() - 1);
                         }
-                        if(fakeAmount - tag.getDouble(zItemNBT.HACKSILVER_AMOUNT) < 0) {
-                            FuchsItem fuchsItem = new FuchsItem(getAbstractItemFromNMS(content), content);
-                            fuchsItem.changeDoubleTag("null", 5.5);
+
+                        if(decrease < 0) {
+                            if(tag.getDouble(zItemNBT.HACKSILVER_AMOUNT) > decrease) {
+                                FuchsItem fuchsItem = new FuchsItem(getAbstractItemFromNMS(content), content);
+                                fuchsItem.changeDoubleTag(zItemNBT.HACKSILVER_AMOUNT, tag.getDouble(zItemNBT.HACKSILVER_AMOUNT) + decrease);
+                                contents[i] = fuchsItem.getItemStack();
+                            } else {
+                                content.setAmount(content.getAmount() - 1);
+                            }
                         }
-                    }
-                    if(tag.hasKey(zItemNBT.IS_BACKPACK)) {
-                        ItemStack[] contents = generateInventoryContent(DataHandler.loadBackPack(UUID.fromString(tag.getString(zItemNBT.ITEM_UUID))).inventoryContent);
-                        amount += countMoney(contents);
                     }
                 }
             }
         }
+        return contents;
+    }
+    public static ItemStack[] removeMoneyBackpack(Inventory inventory, double amount) {
+        ItemStack[] contents = inventory.getContents();
+        double fakeAmount = amount;
+        int i = 0;
+        for (ItemStack content : contents) {
+            if(content != null) {
+                if (content.hasItemMeta()) {
+                    net.minecraft.server.v1_16_R2.ItemStack nmsItem = createNMSCopy(content);
+                    NBTTagCompound tag = getItemTag(nmsItem);
+                    if (tag.hasKey(zItemNBT.HACKSILVER_AMOUNT)) {
+                        fakeAmount -= tag.getDouble(zItemNBT.HACKSILVER_AMOUNT);
+                        double decrease = fakeAmount - tag.getDouble(zItemNBT.HACKSILVER_AMOUNT);
+                        if(decrease > 0) {
+                            content.setAmount(content.getAmount() - 1);
+                            contents[i] = content;
+                        }
+
+                        if(decrease < 0) {
+                            if(tag.getDouble(zItemNBT.HACKSILVER_AMOUNT) > decrease) {
+                                FuchsItem fuchsItem = new FuchsItem(getAbstractItemFromNMS(content), content);
+                                fuchsItem.changeDoubleTag(zItemNBT.HACKSILVER_AMOUNT, tag.getDouble(zItemNBT.HACKSILVER_AMOUNT) + decrease);
+                                contents[i] = fuchsItem.getItemStack();
+                            } else {
+                                content.setAmount(content.getAmount() - 1);
+                                contents[i] = content;
+                            }
+                        }
+                    }
+                    if(tag.hasKey(zItemNBT.IS_BACKPACK)) {
+                        ItemStack[] contentsF = generateInventoryContent(DataHandler.loadBackPack(UUID.fromString(tag.getString(zItemNBT.ITEM_UUID))).inventoryContent);
+                        ItemStack[] BGcontent = removeMoney(contentsF, amount);
+                        zBackPack backPack = DataHandler.loadBackPack(UUID.fromString(tag.getString(zItemNBT.ITEM_UUID)));
+                        backPack.setItemStacks(BGcontent);
+                        DataHandler.saveBackPack(backPack);
+                    }
+                }
+            }
+            i++;
+        }
+        return contents;
     }
 }

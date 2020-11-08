@@ -37,6 +37,8 @@ public class CreateGuildCommand implements CommandExecutor {
                             DataHandler.saveGuild(zGuild);
                             DataHandler.savePlayer(zPlayer);
                             player.sendMessage("Guilde " + zGuild.name + " (" + zGuild.uuid + ") erstellt!");
+                            player.getInventory().setContents(Utility.removeMoneyBackpack(player.getInventory(), 50000));
+                            player.updateInventory();
                         } else {
                             player.sendMessage("Eine Guilde mit dem Namen \"" + args[1] + "\" existiert bereits!");
                             return true;

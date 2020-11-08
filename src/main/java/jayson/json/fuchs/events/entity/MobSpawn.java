@@ -1,4 +1,4 @@
-package jayson.json.fuchs.events;
+package jayson.json.fuchs.events.entity;
 
 import jayson.json.fuchs.Utility;
 import org.bukkit.entity.Monster;

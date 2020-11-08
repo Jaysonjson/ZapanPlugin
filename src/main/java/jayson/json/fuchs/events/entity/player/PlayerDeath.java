@@ -1,4 +1,4 @@
-package jayson.json.fuchs.events;
+package jayson.json.fuchs.events.entity.player;
 
 import jayson.json.fuchs.data.zPlayer;
 import jayson.json.fuchs.io.DataHandler;
