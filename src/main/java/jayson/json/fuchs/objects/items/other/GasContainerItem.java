@@ -4,7 +4,6 @@ import javax.annotation.Nullable;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_16_R2.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -14,7 +13,6 @@ import jayson.json.fuchs.Utility;
 import jayson.json.fuchs.objects.gas.AbstractGas;
 import jayson.json.fuchs.objects.gas.zGas;
 import jayson.json.fuchs.objects.items.AbstractItem;
-import jayson.json.fuchs.objects.items.FuchsItem;
 import jayson.json.fuchs.objects.items.ItemUseType;
 import jayson.json.fuchs.objects.items.zItemNBT;
 import jayson.json.fuchs.objects.items.zOItem;
