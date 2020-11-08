@@ -7,11 +7,12 @@ import org.bukkit.Material;
 
 import jayson.json.fuchs.objects.liquid.interfaces.IzLiquidRegistry;
 import jayson.json.fuchs.objects.liquid.obj.*;
+
 public enum zLiquid implements IzLiquidRegistry {
 
 	NONE(new NoneLiquid(), null),
 	BEER(new BeerLiquid(), null),
-	WATER(null, Material.WATER);
+	WATER(new WaterLiquid(), Material.WATER);
 	
 	Material minecraftEquivalent;
 	AbstractLiquid liquid;

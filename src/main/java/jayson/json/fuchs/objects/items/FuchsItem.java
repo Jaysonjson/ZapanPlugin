@@ -92,6 +92,31 @@ public class FuchsItem {
         return tag;
 	}
 	
+	public double getDoubleFromTag(String key) {
+		NBTTagCompound tagI = getTagFromOriginal();
+		return tagI.getDouble(key);
+	}
+	
+	public int getIntFromTag(String key) {
+		NBTTagCompound tagI = getTagFromOriginal();
+		return tagI.getInt(key);
+	}
+	
+	public String getStringFromTag(String key) {
+		NBTTagCompound tagI = getTagFromOriginal();
+		return tagI.getString(key);
+	}
+	
+	public float getFloatFromTag(String key) {
+		NBTTagCompound tagI = getTagFromOriginal();
+		return tagI.getFloat(key);
+	}
+	
+	public byte getByteFromTag(String key) {
+		NBTTagCompound tagI = getTagFromOriginal();
+		return tagI.getByte(key);
+	}
+	
 	public void updateOriginalTag(NBTTagCompound tagCompound) {
         nmsStack.setTag(tagCompound);
         original = CraftItemStack.asBukkitCopy(nmsStack);

@@ -2,7 +2,10 @@ package jayson.json.fuchs.inventories;
 
 import jayson.json.fuchs.Utility;
 import jayson.json.fuchs.Fuchs;
+import jayson.json.fuchs.objects.items.FuchsItem;
 import jayson.json.fuchs.objects.items.interfaces.IzItemRegistry;
+import jayson.json.fuchs.objects.items.lists.zItem;
+import jayson.json.fuchs.objects.liquid.interfaces.IzLiquidRegistry;
 import jayson.json.fuchs.objects.zRegistry;
 import jayson.json.fuchs.objects.items.zItemNBT;
 import jayson.json.fuchs.other.InventoryPage;
@@ -34,10 +37,10 @@ public class ItemInventory implements Listener {
         Integer page = 0;
         ArrayList<ItemStack> page_content = new ArrayList<>();
         int page_check = zRegistry.items.size();
-        for (IzItemRegistry item : zRegistry.items) {
+        for (ItemStack item : getStacks(player)) {
             page_index++;
             if (page_index < 46) {
-                page_content.add(item.getAbstractItem().createItem(player));
+                page_content.add(item);
             }
             if (page_index >= 46 || page_index.equals(zRegistry.items.size()) || page_index.equals(page_check)) {
                 page++;
@@ -49,6 +52,23 @@ public class ItemInventory implements Listener {
                 page_index = 0;
             }
         }
+    }
+
+    public ArrayList<ItemStack> getStacks(Player player) {
+        ArrayList<ItemStack> itemStacks = new ArrayList<>();
+
+        for (IzItemRegistry item : zRegistry.items) {
+            itemStacks.add(item.getAbstractItem().createItem(player));
+        }
+
+        for (IzLiquidRegistry liquid : zRegistry.liquids) {
+            ItemStack stack = zItem.LIQUIDCONTAINER.getAbstractItem().createItem();
+            FuchsItem fuchsItem = new FuchsItem(Utility.getAbstractItemFromNMS(stack), stack);
+            fuchsItem.changeStringTag(zItemNBT.CONTAINED_LIQUID, liquid.getLiquid().getId());
+            fuchsItem.changeDoubleTag(zItemNBT.LIQUID_AMOUNT, 500d);
+            itemStacks.add(fuchsItem.getItemStack());
+        }
+        return itemStacks;
     }
 
     @EventHandler

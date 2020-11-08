@@ -1,5 +1,7 @@
 package jayson.json.fuchs.objects.items.other;
 
+import javax.annotation.Nullable;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -80,9 +82,14 @@ public class LiquidContainerItem extends AbstractItem {
     @Override
     public void ability(World world, Player player, ItemStack itemStack) {
     	FuchsItem fuchsItem = new FuchsItem(Utility.getAbstractItemFromNMS(itemStack), itemStack);
-        fuchsItem.changeStringTag(zItemNBT.CONTAINED_LIQUID, zLiquid.BEER.getLiquid().getId());
+    	String liId = fuchsItem.getStringFromTag(zItemNBT.CONTAINED_LIQUID);
+    	AbstractLiquid aLiquid = Utility.liquidExists(liId) ? Utility.getLiquidByID(liId) : zLiquid.NONE.getLiquid();
+    	aLiquid.drinkAction(world, player, itemStack);
+    	//FuchsItem fuchsItem = new FuchsItem(Utility.getAbstractItemFromNMS(itemStack), itemStack);
+        //fuchsItem.changeStringTag(zItemNBT.CONTAINED_LIQUID, zLiquid.BEER.getLiquid().getId());
+        //fuchsItem.changeDoubleTag(zItemNBT.LIQUID_AMOUNT, 500d);
     	//world.dropItemNaturally(player.getLocation(), fuchsItem.getItemStack());
-        player.setItemInHand(fuchsItem.getItemStack());
+        //player.setItemInHand(fuchsItem.getItemStack());
     }
     
     @Override
@@ -106,6 +113,7 @@ public class LiquidContainerItem extends AbstractItem {
     }
 
     @Override
+    @Nullable
     public int getDamageValue() {
         return abstractLiquid.getDamageValue();
     }

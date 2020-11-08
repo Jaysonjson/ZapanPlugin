@@ -134,7 +134,11 @@ public class Utility {
             }
         }
         Collections.sort(distancesD);
-        return distances.get(distancesD.get(0));
+        if(distancesD.size() > 0) {
+            return distances.get(distancesD.get(0));
+        } else {
+            return new zArea();
+        }
     }
 
     public static zArea getNearestArea(Player player) {
