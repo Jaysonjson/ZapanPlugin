@@ -48,6 +48,9 @@ commands:
   classlist:
     description: ClassList
     usage: /classlist
+  fuchs:
+    description: Fuchs Plugin
+    usage: /fuchs
 permissions:
   zapan.sethealth:
     description: SetHealth

@@ -1,7 +1,6 @@
 package jayson.json.fuchs.objects.items.lists;
 
 import jayson.json.fuchs.objects.items.*;
-import jayson.json.fuchs.objects.items.ability.liquid.BeerItem;
 import jayson.json.fuchs.objects.items.crafting.*;
 import jayson.json.fuchs.objects.items.interfaces.IzItemRegistry;
 import jayson.json.fuchs.objects.items.other.*;

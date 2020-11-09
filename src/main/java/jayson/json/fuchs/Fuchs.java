@@ -25,6 +25,7 @@ public final class Fuchs extends JavaPlugin {
 
     public static Fuchs INSTANCE;
     public ArrayList<zArea> areas = new ArrayList<>();
+    public static double version = 0.1;
     public Fuchs() {
         INSTANCE = this;
     }
@@ -63,7 +64,8 @@ public final class Fuchs extends JavaPlugin {
                 new BanPlayer(),
                 new ItemPickup(),
                 new ItemDespawn(),
-                new Smelting()
+                new Smelting(),
+                new PlayerSleep()
         );
         this.getCommand("areas").setExecutor(new AreaCommand());
         this.getCommand("sethealth").setExecutor(new SetHealthCommand());
@@ -80,6 +82,8 @@ public final class Fuchs extends JavaPlugin {
         this.getCommand("discordlink").setExecutor(new DiscordLinkCommand());
         this.getCommand("itemids").setExecutor(new ItemIDCommand());
         this.getCommand("classlist").setExecutor(new ClassListCommand());
+        this.getCommand("fuchs").setExecutor(new FuchsCommand());
+
     }
 
     @Override

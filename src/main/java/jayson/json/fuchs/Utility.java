@@ -658,20 +658,23 @@ public class Utility {
     }
 
     public static ItemStack createInventoryStack(Material material, int amount, String displayName) {
-        ItemStack itemstack = new ItemStack(material);
-        itemstack.setAmount(amount);
-        ItemMeta itemstackMeta = itemstack.getItemMeta();
-        itemstackMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
-        itemstackMeta.setDisplayName(displayName);
-        itemstack.setItemMeta(itemstackMeta);
-        return itemstack;
+        return createInventoryStack(material, amount, displayName, new ArrayList<String>());
+    }
+    
+    public static ItemStack createInventoryStack(Material material, int amount, String displayName, ArrayList<String> lore) {
+        return createInventoryStack(new ItemStack(material), amount, displayName, lore);
     }
 
     public static ItemStack createInventoryStack(ItemStack itemstack, int amount, String displayName) {
+        return createInventoryStack(itemstack, amount, displayName, new ArrayList<String>());
+    }
+    
+    public static ItemStack createInventoryStack(ItemStack itemstack, int amount, String displayName, ArrayList<String> lore) {
         itemstack.setAmount(amount);
         ItemMeta itemstackMeta = itemstack.getItemMeta();
         itemstackMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
         itemstackMeta.setDisplayName(displayName);
+        itemstackMeta.setLore(lore);
         itemstack.setItemMeta(itemstackMeta);
         return itemstack;
     }

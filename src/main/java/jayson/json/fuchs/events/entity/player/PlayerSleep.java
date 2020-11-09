@@ -12,7 +12,7 @@ public class PlayerSleep implements Listener {
     public void PlayerSleep(PlayerBedLeaveEvent event) {
         zPlayer zPlayer = DataHandler.loadPlayer(event.getPlayer().getUniqueId());
         if(zPlayer.getPlayerSpecial().alcohol > 0) {
-            zPlayer.getPlayerSpecial().alcohol /= 0.5;
+            zPlayer.getPlayerSpecial().alcohol *= 0.5;
             DataHandler.savePlayer(zPlayer);
         }
 

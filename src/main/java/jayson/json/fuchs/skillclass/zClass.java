@@ -23,7 +23,6 @@ public enum zClass {
 
     private String name;
     private zAbstractClass abstractClass;
-    private ChatColor color = ChatColor.RESET;
     private String colors;
     private ItemStack symbol;
     zClass(String name, zAbstractClass abstractClass, String colors, ItemStack symbol) {

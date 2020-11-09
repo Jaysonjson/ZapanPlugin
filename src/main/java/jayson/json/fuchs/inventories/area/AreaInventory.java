@@ -15,6 +15,8 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nullable;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Pattern;
 
@@ -41,12 +43,12 @@ public class AreaInventory implements Listener {
     public void openInventory(Player player) {
         if(area != null) {
             inventory = Bukkit.createInventory(player, 54, area.displayName);
-            setContents();
+            setContents(player);
             player.openInventory(inventory);
         }
     }
 
-    public void setContents() {
+    public void setContents(Player player) {
         for (int i = 0; i < 54; i++) {
             inventory.setItem(i, new ItemStack(Material.GLASS_PANE));
         }
@@ -57,8 +59,20 @@ public class AreaInventory implements Listener {
         } else if(area.priority > 64) {
             prioItemAmount = 64;
         }
+        
+        ArrayList<String> locationLore = new ArrayList<>();
+        locationLore.add("x: " + area.location.x);
+        locationLore.add("y: " + area.location.y);
+        locationLore.add("z: " + area.location.z);
+        locationLore.add("distanz: " + player.getLocation().distance(area.createLocation(player.getWorld())));
+        
         inventory.setItem(11, Utility.createInventoryStack(Material.SLIME_BALL, prioItemAmount,"Priorität: " + area.priority));
+        inventory.setItem(12, Utility.createInventoryStack(Material.PAPER, 1, "Lage", locationLore));
         inventory.setItem(19, Utility.createInventoryWoolColor(area.breakBlocks, "Blöcke Zerstören", 1));
+        inventory.setItem(20, Utility.createInventoryWoolColor(area.placeBlocks, "Blöcke Platzieren", 1));
+        inventory.setItem(21, Utility.createInventoryWoolColor(area.spawnMobs, "Spawn Mobs", 1));
+        inventory.setItem(22, Utility.createInventoryWoolColor(area.allowOverlap, "Überlappung Erlauben", 1));
+        inventory.setItem(23, Utility.createInventoryWoolColor(area.allowOwnerOverlap, "Besitzer Überlappung Erlauben", 1));
         inventory.setItem(49, Utility.createInventoryStack(Material.PAPER, 1, "Zurück"));
     }
 
@@ -84,11 +98,27 @@ public class AreaInventory implements Listener {
                             player.sendMessage("Schreibe eine Zahl in den Chat, um die Priorität zu ändern. Schreibe \"Abbrechen\" um Abzubrechen");
                             player.closeInventory();
                         }
-                        if (itemName.equalsIgnoreCase("Blöcke Zerstören")) {
-                            area.breakBlocks = !area.breakBlocks;
-                            DataHandler.saveArea(area);
-                            //player.updateInventory();
+
+          
+                        switch(itemName) {
+                        	case "Blöcke Zerstören":
+                                area.breakBlocks = !area.breakBlocks;
+                        		break;
+                        	case "Blöcke Platzieren":
+                                area.placeBlocks = !area.placeBlocks;
+                        		break;
+                        	case "Spawn Mobs":
+                                area.spawnMobs = !area.spawnMobs;
+                        		break;
+                        	case "Überlappung Erlauben":
+                        		area.allowOverlap = !area.allowOverlap;
+                        		break;
+                        	case "Besitzer Überlappung Erlauben":
+                        		break;
                         }
+                        
+                        DataHandler.saveArea(area);
+                        
                         if(itemName.equalsIgnoreCase("Zurück")) {
                             if(areaListInventory != null) {
                                 areaListInventory.openInventory(player, 0);
@@ -98,7 +128,7 @@ public class AreaInventory implements Listener {
                                 inventory.openInventory(player, 0);
                             }
                         }
-                        setContents();
+                        setContents((Player) event.getWhoClicked());
                     }
                 }
             }
