@@ -6,7 +6,6 @@ import jayson.json.fuchs.data.zGuild;
 import jayson.json.fuchs.data.zPlayer;
 import jayson.json.fuchs.data.zareaobj.zLocation;
 import jayson.json.fuchs.io.DataHandler;
-import jayson.json.fuchs.objects.liquid.interfaces.IzLiquid;
 import jayson.json.fuchs.objects.liquid.interfaces.IzLiquidRegistry;
 import jayson.json.fuchs.objects.zRegistry;
 import jayson.json.fuchs.objects.gas.AbstractGas;

@@ -17,19 +17,16 @@ public class zRegistry {
     public static ArrayList<IzLiquidRegistry> liquids = new ArrayList<>();
     public static ArrayList<IzGasRegistry> gasses = new ArrayList<>();
     
-    @Deprecated
-    public static void reloadItems() {
+    public static void addFuchsItems() {
         items.addAll(Arrays.asList(zItemAbility.values()));
         items.addAll(Arrays.asList(zItem.values()));
     }
 
-    @Deprecated
-    public static void reloadLiquids() {
+    public static void addFuchsLiquids() {
     	liquids.addAll(Arrays.asList(zLiquid.values()));
     }
     
-    @Deprecated
-    public static void reloadGasses() {
+    public static void addFuchsGasses() {
     	gasses.addAll(Arrays.asList(zGas.values()));
     }
     
@@ -45,7 +42,6 @@ public class zRegistry {
             }
         }
     }
-    
     
     public static void addLiquid(IzLiquidRegistry izLiquidRegistry) {
     	liquids.add(izLiquidRegistry);

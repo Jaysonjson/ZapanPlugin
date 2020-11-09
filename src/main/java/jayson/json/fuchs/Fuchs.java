@@ -38,9 +38,9 @@ public final class Fuchs extends JavaPlugin {
         new File(DataHandler.MOBDROPS_DIR).mkdirs();
         new File(DataHandler.BREWERY_DIR).mkdirs();
         //DataHandler.createMobDrop();
-        zRegistry.reloadItems();
-        zRegistry.reloadLiquids();
-        zRegistry.reloadGasses();
+        zRegistry.addFuchsItems();
+        zRegistry.addFuchsLiquids();
+        zRegistry.addFuchsGasses();
         References.reloadDrops();
         Utility.reloadAreas();
         NPC.loadNPCS();

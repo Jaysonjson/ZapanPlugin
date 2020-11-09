@@ -1,4 +1,4 @@
-package jayson.json.fuchs.objects.items.ability;
+package jayson.json.fuchs.objects.items.ability.liquid;
 
 import jayson.json.fuchs.Utility;
 import jayson.json.fuchs.data.zPlayer;

@@ -1,4 +1,4 @@
-package jayson.json.fuchs.objects.items.ability;
+package jayson.json.fuchs.objects.items.ability.essence.fire;
 
 import jayson.json.fuchs.objects.items.*;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
