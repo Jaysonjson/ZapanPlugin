@@ -9,6 +9,8 @@ import jayson.json.fuchs.data.zcraftingobj.brewery.objs.zCraftingBreweryLiquidOu
 import jayson.json.fuchs.data.zcraftingobj.brewery.zCraftingBrewery;
 import jayson.json.fuchs.data.zdropobj.zMobDrop;
 import jayson.json.fuchs.objects.items.lists.zItem;
+import jayson.json.fuchs.objects.liquid.zLiquid;
+
 import org.bukkit.entity.EntityType;
 
 import java.io.File;
@@ -260,14 +262,14 @@ public class DataHandler {
     public static void createBreweryCrafting() {
 
         zCraftingBrewery craftingBrewery = new zCraftingBrewery();
-        craftingBrewery.inputsID.add(zItem.HOPITEM.getAbstractItem().getId());
-        craftingBrewery.inputsID.add(zItem.MALTITEM.getAbstractItem().getId());
+        craftingBrewery.inputsID.add(zItem.HOP_ITEM.getAbstractItem().getId());
+        craftingBrewery.inputsID.add(zItem.MALT_ITEM.getAbstractItem().getId());
         zCraftingBreweryLiquidInput liquidInput = new zCraftingBreweryLiquidInput();
         liquidInput.liquidAmount = 1.5;
-        liquidInput.liquidInputID = zItem.WATERITEM.getAbstractItem().getId();
+        liquidInput.liquidInputID = zLiquid.WATER.getLiquid().getId();
         zCraftingBreweryLiquidOutput liquidOutput = new zCraftingBreweryLiquidOutput();
         liquidOutput.liquidAmount = 2;
-        liquidOutput.liquidOutputID = zItem.BEERITEM.getAbstractItem().getId();
+        liquidOutput.liquidOutputID = zLiquid.BEER.getLiquid().getId();
         craftingBrewery.liquidInput = liquidInput;
         craftingBrewery.liquidOutput = liquidOutput;
         String json = gsonBuilder.toJson(craftingBrewery);

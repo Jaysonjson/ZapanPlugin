@@ -67,7 +67,7 @@ public class ItemInventory implements Listener {
 
         for (IzLiquidRegistry liquid : zRegistry.liquids) {
         	if(liquid.getLiquid().getId() != "none") {
-        		ItemStack stack = zItem.LIQUIDCONTAINER.getAbstractItem().createItem();
+        		ItemStack stack = zItem.LIQUID_CONTAINER.getAbstractItem().createItem();
             	FuchsItem fuchsItem = new FuchsItem(Utility.getAbstractItemFromNMS(stack), stack);
             	fuchsItem.changeStringTag(zItemNBT.CONTAINED_LIQUID, liquid.getLiquid().getId());
             	fuchsItem.changeDoubleTag(zItemNBT.LIQUID_AMOUNT, 500d);
@@ -77,7 +77,7 @@ public class ItemInventory implements Listener {
         
         for (IzGasRegistry gas : zRegistry.gasses) {
         	if(gas.getGas().getId() != "none") {
-        		ItemStack stack = zItem.GASCONTAINER.getAbstractItem().createItem();
+        		ItemStack stack = zItem.GAS_CONTAINER.getAbstractItem().createItem();
         		FuchsItem fuchsItem = new FuchsItem(Utility.getAbstractItemFromNMS(stack), stack);
         		fuchsItem.changeStringTag(zItemNBT.CONTAINED_GAS, gas.getGas().getId());
         		fuchsItem.changeDoubleTag(zItemNBT.GAS_AMOUNT, 500d);

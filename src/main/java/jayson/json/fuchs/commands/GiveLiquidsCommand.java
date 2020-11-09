@@ -18,7 +18,7 @@ public class GiveLiquidsCommand implements CommandExecutor {
 	public boolean onCommand(CommandSender arg0, Command arg1, String arg2, String[] arg3) {
 		if(arg0.isOp()) {
 			for (IzLiquidRegistry liquid : zRegistry.liquids) {
-				ItemStack stack = zItem.LIQUIDCONTAINER.getAbstractItem().createItem();
+				ItemStack stack = zItem.LIQUID_CONTAINER.getAbstractItem().createItem();
 				FuchsItem fuchsItem = new FuchsItem(Utility.getAbstractItemFromNMS(stack), stack);
 				fuchsItem.changeStringTag(zItemNBT.CONTAINED_LIQUID, liquid.getLiquid().getId());
 				fuchsItem.changeDoubleTag(zItemNBT.LIQUID_AMOUNT, 500d);

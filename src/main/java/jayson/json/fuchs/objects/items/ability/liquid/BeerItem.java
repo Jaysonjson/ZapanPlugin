@@ -80,7 +80,7 @@ public class BeerItem extends AbstractItem {
         itemStack = CraftItemStack.asBukkitCopy(nmsStack);
         itemStack = createItem(player, itemStack);
         if(tag.getInt(zItemNBT.LIQUID_AMOUNT) < 0) {
-            itemStack = zItem.GLASSITEM.getAbstractItem().createItem(player);
+            itemStack = zItem.GLASS_ITEM.getAbstractItem().createItem(player);
         }
         System.out.println(itemStack);
         player.setItemInHand(itemStack);

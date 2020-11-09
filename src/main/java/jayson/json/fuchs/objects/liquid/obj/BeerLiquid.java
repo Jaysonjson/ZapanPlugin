@@ -5,7 +5,6 @@ import java.util.Random;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.World;
-import org.bukkit.craftbukkit.v1_16_R2.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -14,10 +13,7 @@ import jayson.json.fuchs.data.zPlayer;
 import jayson.json.fuchs.io.DataHandler;
 import jayson.json.fuchs.objects.items.FuchsItem;
 import jayson.json.fuchs.objects.items.zItemNBT;
-import jayson.json.fuchs.objects.items.lists.zItem;
 import jayson.json.fuchs.objects.liquid.AbstractLiquid;
-import jayson.json.fuchs.objects.liquid.zLiquid;
-import net.minecraft.server.v1_16_R2.NBTTagCompound;
 
 public class BeerLiquid extends AbstractLiquid {
 
@@ -41,6 +37,7 @@ public class BeerLiquid extends AbstractLiquid {
 		return true;
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public void drinkAction(World world, Player player, ItemStack itemStack) {
         zPlayer zPlayer = DataHandler.loadPlayer(player.getUniqueId());

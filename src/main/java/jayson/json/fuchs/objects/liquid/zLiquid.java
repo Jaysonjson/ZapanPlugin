@@ -7,11 +7,17 @@ import org.bukkit.Material;
 
 import jayson.json.fuchs.objects.liquid.interfaces.IzLiquidRegistry;
 import jayson.json.fuchs.objects.liquid.obj.*;
+import jayson.json.fuchs.objects.liquid.obj.metal.*;
 
 public enum zLiquid implements IzLiquidRegistry {
 
 	NONE(new NoneLiquid(), null),
 	BEER(new BeerLiquid(), null),
+	ETHANOL(new EthanolLiquid(), null),
+	MIXXED(new MixxedLiquid(), null),
+	MOLTEN_COPPER(new MoltenCopperLiquid(), null),
+	MOLTEN_IRON(new MoltenIronLiquid(), null),
+	MOLTEN_GOLD(new MoltenGoldLiquid(), null),
 	LAVA(new LavaLiquid(), Material.LAVA),
 	WATER(new WaterLiquid(), Material.WATER);
 	
