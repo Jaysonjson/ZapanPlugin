@@ -142,8 +142,8 @@ public class zOItem {
                         break;
                 }
                  */
-                if(!zItem.getItemUseType().getLoreText().equalsIgnoreCase("")) {
-                    lore.add(zItem.getItemUseType().getLoreText());
+                if(!zItem.getItemUse().getLoreText().equalsIgnoreCase("")) {
+                    lore.add(zItem.getItemUse().getLoreText());
                 }
                 if (player != null) {
                     zPlayer zPlayer = DataHandler.loadPlayer(player.getUniqueId());
@@ -233,6 +233,8 @@ public class zOItem {
             NBTType type = nbt.getType();
             switch (type) {
                 case UUID:
+                	tag.setString(s, (String) nbt.defaultValue());
+                	break;
                 case STRING:
                     tag.setString(s, (String) nbt.defaultValue());
                     break;

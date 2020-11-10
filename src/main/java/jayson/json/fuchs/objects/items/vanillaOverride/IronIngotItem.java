@@ -68,7 +68,7 @@ public class IronIngotItem extends AbstractItem {
         HashMap<String, INBTObject> tags = new HashMap<>();
         tags.put(zItemNBT.CAN_CRAFT, new NBTBoolean(true, true));
         tags.put(zItemNBT.CAN_CRAFT_MINECRAFT, new NBTBoolean(true, true));
-        tags.put(zItemNBT.ITEM_AMOUNT, new NBTInteger(0, false));
+        tags.put(zItemNBT.ITEM_AMOUNT, new NBTInteger(amount, false));
         return tags;
     }
 

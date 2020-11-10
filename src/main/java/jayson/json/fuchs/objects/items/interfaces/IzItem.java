@@ -24,6 +24,9 @@ public interface IzItem {
     };
     ItemStack update(Player player, ItemStack itemStack);
     ItemUseType getItemUseType();
+    default IItemUseType getItemUse() {
+    	return getItemUseType();
+    };
     @NotNull
     Material getMaterial();
     void setMaterial(Material material);

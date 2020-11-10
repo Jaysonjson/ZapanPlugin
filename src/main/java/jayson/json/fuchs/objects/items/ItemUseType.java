@@ -2,7 +2,9 @@ package jayson.json.fuchs.objects.items;
 
 import org.bukkit.ChatColor;
 
-public enum ItemUseType {
+import jayson.json.fuchs.objects.items.interfaces.IItemUseType;
+
+public enum ItemUseType implements IItemUseType {
 
     CRAFTING(ChatColor.AQUA + "Herstellungsmaterial"),
     ABILITY(ChatColor.AQUA + "Benutzbar"),
@@ -15,6 +17,7 @@ public enum ItemUseType {
         this.loreText = loreText;
     }
 
+    @Override
     public String getLoreText() {
         return loreText;
     }

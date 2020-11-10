@@ -171,8 +171,10 @@ public abstract class AbstractItem implements IzItem, IzNBTItem, IzAbilityItem, 
         return zItemMarketModifierType.SCRAPYARD;
     }
 
+    //Semi-Alt, --> getItemUse(); Interface (IItemUseType) - / Lib
     @Override
     public ItemUseType getItemUseType() {
         return itemUseType;
     }
+    
 }

@@ -21,5 +21,4 @@ public class EthanolLiquid extends AbstractLiquid {
 		return 16;
 	}
 
-
 }

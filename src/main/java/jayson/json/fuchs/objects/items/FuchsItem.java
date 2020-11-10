@@ -14,7 +14,7 @@ public class FuchsItem {
 	private Player player = null;
 	private ItemStack original = null;
 	private boolean vanillaOverride = false;
-	net.minecraft.server.v1_16_R2.ItemStack nmsStack;
+	private net.minecraft.server.v1_16_R2.ItemStack nmsStack = null;
 	
 	public FuchsItem(AbstractItem item) {
 		this.item = item;
