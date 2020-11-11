@@ -15,8 +15,9 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class EntityDamage implements Listener {
-    @EventHandler
-    public void EntityDamage(EntityDamageByEntityEvent event) {
+    @SuppressWarnings("deprecation")
+	@EventHandler
+    public void entityDamageEvent(EntityDamageByEntityEvent event) {
         if(event.getDamager() instanceof Player) {
             Player player = (Player) event.getDamager();
             zPlayer zPlayer = DataHandler.loadPlayer(player.getUniqueId());

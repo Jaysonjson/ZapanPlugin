@@ -26,20 +26,12 @@ import java.util.stream.Stream;
 
 public class DataHandler {
 
-    public static String ROOT = "plugins/fuchs/";
-    public static String PLAYER_DIR = ROOT + "/players/";
-    public static String AREA_DIR = ROOT + "/areas/";
-    public static String GUILD_DIR = ROOT + "/guilds/";
-    public static String SERVER_DIR = ROOT;
-    public static String BACKPACK_DIR = PLAYER_DIR + "/backpacks/";
-    public static String MOBDROPS_DIR = ROOT + "/drops/mobs/";
-    public static String BREWERY_DIR = ROOT + "/crafting/brewery/";
     private static final Gson gsonBuilder = new GsonBuilder().setPrettyPrinting().excludeFieldsWithModifiers(Modifier.TRANSIENT).create();
     private static final Gson gson = new Gson();
 
 
     public static zPlayer loadPlayer(UUID uuid) {
-        File file = new File(PLAYER_DIR + uuid.toString() + ".json");
+        File file = new File(FileHandler.PLAYER_DIR + uuid.toString() + ".json");
         zPlayer player;
         if(!file.exists()) {
             player = new zPlayer();
@@ -55,7 +47,7 @@ public class DataHandler {
     public static void savePlayer(zPlayer player) {
         String json = gsonBuilder.toJson(player);
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream(new File(PLAYER_DIR + player.getUUID().toString() + ".json"));
+            FileOutputStream fileOutputStream = new FileOutputStream(new File(FileHandler.PLAYER_DIR + player.getUUID().toString() + ".json"));
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
             outputStreamWriter.append(json);
             outputStreamWriter.close();
@@ -65,7 +57,7 @@ public class DataHandler {
     }
 
     public static zBackPack loadBackPack(UUID uuid) {
-        File file = new File(BACKPACK_DIR + uuid.toString() + ".json");
+        File file = new File(FileHandler.BACKPACK_DIR + uuid.toString() + ".json");
         zBackPack backPack;
         if(!file.exists()) {
             backPack = new zBackPack();
@@ -81,7 +73,7 @@ public class DataHandler {
     public static void saveBackPack(zBackPack backPack) {
         String json = gsonBuilder.toJson(backPack);
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream(new File(BACKPACK_DIR + backPack.getUUID().toString() + ".json"));
+            FileOutputStream fileOutputStream = new FileOutputStream(new File(FileHandler.BACKPACK_DIR + backPack.getUUID().toString() + ".json"));
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
             outputStreamWriter.append(json);
             outputStreamWriter.close();
@@ -91,18 +83,18 @@ public class DataHandler {
     }
 
     public static void deleteBackPack(UUID uuid) {
-        new File(BACKPACK_DIR + uuid.toString() + ".json").delete();
+        new File(FileHandler.BACKPACK_DIR + uuid.toString() + ".json").delete();
     }
 
     public static boolean backPackExists(UUID uuid) {
-        return new File(BACKPACK_DIR + uuid.toString() + ".json").exists();
+        return new File(FileHandler.BACKPACK_DIR + uuid.toString() + ".json").exists();
     }
 
 
     public static void saveServer(zServer server) {
         String json = gsonBuilder.toJson(server);
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream(new File(SERVER_DIR + "server.json"));
+            FileOutputStream fileOutputStream = new FileOutputStream(new File(FileHandler.SERVER_DIR + "server.json"));
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
             outputStreamWriter.append(json);
             outputStreamWriter.close();
@@ -112,7 +104,7 @@ public class DataHandler {
     }
 
     public static zServer loadServer() {
-        File file = new File(SERVER_DIR + "server.json");
+        File file = new File(FileHandler.SERVER_DIR + "server.json");
         zServer server;
         if(!file.exists()) {
             server = new zServer();
@@ -126,7 +118,7 @@ public class DataHandler {
     public static void saveDiscord(zDiscord discord) {
         String json = gsonBuilder.toJson(discord);
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream(new File(SERVER_DIR + "discord.json"));
+            FileOutputStream fileOutputStream = new FileOutputStream(new File(FileHandler.SERVER_DIR + "discord.json"));
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
             outputStreamWriter.append(json);
             outputStreamWriter.close();
@@ -136,7 +128,7 @@ public class DataHandler {
     }
 
     public static zDiscord loadDiscord() {
-        File file = new File(SERVER_DIR + "discord.json");
+        File file = new File(FileHandler.SERVER_DIR + "discord.json");
         zDiscord discord;
         if(!file.exists()) {
             discord = new zDiscord();
@@ -152,7 +144,7 @@ public class DataHandler {
     public static void saveArea(zArea area) {
         String json = gsonBuilder.toJson(area);
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream(new File(AREA_DIR + area.uuid.toString() + ".json"));
+            FileOutputStream fileOutputStream = new FileOutputStream(new File(FileHandler.AREA_DIR + area.uuid.toString() + ".json"));
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
             outputStreamWriter.append(json);
             outputStreamWriter.close();
@@ -162,7 +154,7 @@ public class DataHandler {
     }
 
     public static zArea loadArea(UUID uuid) {
-        File file = new File(AREA_DIR + uuid.toString() + ".json");
+        File file = new File(FileHandler.AREA_DIR + uuid.toString() + ".json");
         zArea area;
         if(!file.exists()) {
             area = new zArea();
@@ -177,7 +169,7 @@ public class DataHandler {
     public static void saveGuild(zGuild guild) {
         String json = gsonBuilder.toJson(guild);
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream(new File(GUILD_DIR + guild.uuid.toString() + ".json"));
+            FileOutputStream fileOutputStream = new FileOutputStream(new File(FileHandler.GUILD_DIR + guild.uuid.toString() + ".json"));
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
             outputStreamWriter.append(json);
             outputStreamWriter.close();
@@ -191,7 +183,7 @@ public class DataHandler {
     }
 
     public static zGuild loadGuild(String uuid) {
-        File file = new File(GUILD_DIR + uuid.toString() + ".json");
+        File file = new File(FileHandler.GUILD_DIR + uuid.toString() + ".json");
         zGuild guild;
         if(!file.exists()) {
             guild = new zGuild();
@@ -204,7 +196,7 @@ public class DataHandler {
     }
 
     public static zDrops loadDrops() {
-        File mobDrops = new File(MOBDROPS_DIR);
+        File mobDrops = new File(FileHandler.MOBDROPS_DIR);
         zDrops zDrops = new zDrops();
         for (File file : mobDrops.listFiles()) {
             if(file.getName().toLowerCase().contains("json")) {
@@ -224,7 +216,7 @@ public class DataHandler {
     }
 
     public static zCrafting loadCrafting() {
-        File brewery = new File(BREWERY_DIR);
+        File brewery = new File(FileHandler.BREWERY_DIR);
         zCrafting zCrafting = new zCrafting();
         for (File file : brewery.listFiles()) {
             if(file.getName().toLowerCase().contains("json")) {
@@ -250,7 +242,7 @@ public class DataHandler {
         mobDrop.itemDropsID.put("scrapItem", 2);
         String json = gsonBuilder.toJson(mobDrop);
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream(new File(MOBDROPS_DIR + "test.json"));
+            FileOutputStream fileOutputStream = new FileOutputStream(new File(FileHandler.MOBDROPS_DIR + "test.json"));
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
             outputStreamWriter.append(json);
             outputStreamWriter.close();
@@ -274,7 +266,7 @@ public class DataHandler {
         craftingBrewery.liquidOutput = liquidOutput;
         String json = gsonBuilder.toJson(craftingBrewery);
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream(new File(BREWERY_DIR + "test.json"));
+            FileOutputStream fileOutputStream = new FileOutputStream(new File(FileHandler.BREWERY_DIR + "test.json"));
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
             outputStreamWriter.append(json);
             outputStreamWriter.close();

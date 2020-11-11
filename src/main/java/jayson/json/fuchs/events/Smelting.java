@@ -14,7 +14,7 @@ import org.bukkit.inventory.ItemStack;
 public class Smelting implements Listener {
 
     @EventHandler
-    public void Smelting(FurnaceSmeltEvent event) {
+    public void smeltingEvent(FurnaceSmeltEvent event) {
         Furnace furnace = (Furnace) event.getBlock().getState();
         Inventory inventory = furnace.getInventory();
         ItemStack itemStack = event.getResult();

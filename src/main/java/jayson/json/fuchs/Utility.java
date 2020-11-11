@@ -6,6 +6,7 @@ import jayson.json.fuchs.data.zGuild;
 import jayson.json.fuchs.data.zPlayer;
 import jayson.json.fuchs.data.zareaobj.zLocation;
 import jayson.json.fuchs.io.DataHandler;
+import jayson.json.fuchs.io.FileHandler;
 import jayson.json.fuchs.objects.liquid.interfaces.IzLiquidRegistry;
 import jayson.json.fuchs.objects.zRegistry;
 import jayson.json.fuchs.objects.gas.AbstractGas;
@@ -39,7 +40,9 @@ import org.yaml.snakeyaml.external.biz.base64Coder.Base64Coder;
 
 import javax.annotation.Nullable;
 import java.io.ByteArrayInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 public class Utility {
@@ -356,7 +359,7 @@ public class Utility {
         Fuchs.INSTANCE.areas.clear();
         HashMap<String, zArea> areaHash = new HashMap<>();
         ArrayList<String> sortedHash = new ArrayList<>();
-        for (File file : new File(DataHandler.AREA_DIR).listFiles()) {
+        for (File file : new File(FileHandler.AREA_DIR).listFiles()) {
             ///^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/
             try {
                 zArea area = DataHandler.loadArea(UUID.fromString(file.getName().replaceAll(".json", "")));
@@ -375,11 +378,11 @@ public class Utility {
     }
 
     public static boolean guildExists(UUID uuid) {
-        return new File(DataHandler.GUILD_DIR + uuid.toString() + ".json").exists();
+        return new File(FileHandler.GUILD_DIR + uuid.toString() + ".json").exists();
     }
 
     public static boolean guildExists(String name) {
-        for (File file : new File(DataHandler.GUILD_DIR).listFiles()) {
+        for (File file : new File(FileHandler.GUILD_DIR).listFiles()) {
             zGuild guild = DataHandler.loadGuild(file.getName().replaceAll(".json", ""));
             if(guild.name.equalsIgnoreCase(name)) {
                 return true;
@@ -389,7 +392,7 @@ public class Utility {
     }
 
     public static boolean areaExistsUUID(UUID uuid) {
-        return new File(DataHandler.AREA_DIR + uuid.toString() + ".json").exists();
+        return new File(FileHandler.AREA_DIR + uuid.toString() + ".json").exists();
     }
 
     public static boolean areaExists(String name) {
@@ -446,7 +449,7 @@ public class Utility {
 
     public static void deleteArea(String name) {
         if(areaExists(name)) {
-            new File(DataHandler.AREA_DIR + name.toLowerCase() + ".json").delete();
+            new File(FileHandler.AREA_DIR + name.toLowerCase() + ".json").delete();
         }
     }
 
@@ -853,5 +856,15 @@ public class Utility {
              }
          }
     	return false;
+    }
+    
+    public static byte[] toByteArray(List<String> list) throws IOException {
+    	ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    	@SuppressWarnings("resource")
+		DataOutputStream out = new DataOutputStream(baos);
+    	for (String element : list) {
+    		out.writeUTF(element);
+    	}
+    	return baos.toByteArray();
     }
 }

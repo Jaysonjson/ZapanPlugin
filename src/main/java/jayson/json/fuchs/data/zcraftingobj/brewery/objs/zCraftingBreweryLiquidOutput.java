@@ -8,4 +8,8 @@ public class zCraftingBreweryLiquidOutput {
 
 
     private transient AbstractItem liquidOutput;
+    
+    public AbstractItem getLiquidOutput() {
+		return liquidOutput;
+	}
 }

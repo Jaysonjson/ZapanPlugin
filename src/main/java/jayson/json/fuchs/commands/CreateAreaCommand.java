@@ -11,8 +11,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.UUID;
 
@@ -80,7 +78,7 @@ public class CreateAreaCommand implements CommandExecutor {
         }
         return false;
     }
-
+/*
     private ItemStack GetWoolColor(boolean bool, String name) {
         ItemStack wool = new ItemStack(Material.RED_WOOL);
         ItemMeta woolMeta = wool.getItemMeta();
@@ -92,4 +90,5 @@ public class CreateAreaCommand implements CommandExecutor {
         wool.setItemMeta(woolMeta);
         return wool;
     }
+    */
 }

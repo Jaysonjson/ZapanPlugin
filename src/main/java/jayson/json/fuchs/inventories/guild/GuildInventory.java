@@ -36,7 +36,8 @@ public class GuildInventory implements Listener {
         player.openInventory(inventory);
     }
 
-    public void setContents() {
+    @SuppressWarnings("deprecation")
+	public void setContents() {
         for (int i = 0; i < 54; i++) {
             inventory.setItem(i, new ItemStack(Material.GLASS_PANE));
         }

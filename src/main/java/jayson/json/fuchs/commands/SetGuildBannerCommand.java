@@ -14,7 +14,9 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class SetGuildBannerCommand implements CommandExecutor {
-    @Override
+   
+	@SuppressWarnings("deprecation")
+	@Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
         Player player = (Player) commandSender;
       if(player.getInventory().getItemInMainHand().getItemMeta() instanceof BannerMeta) {
@@ -39,4 +41,5 @@ public class SetGuildBannerCommand implements CommandExecutor {
        */
         return false;
     }
+	
 }

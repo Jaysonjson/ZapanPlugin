@@ -12,7 +12,7 @@ import org.bukkit.inventory.ItemStack;
 public class CraftItem implements Listener {
 
     @EventHandler
-    public void CraftItem(CraftItemEvent event) {
+    public void craftItemEvent(CraftItemEvent event) {
         for (ItemStack content : event.getInventory().getContents()) {
             if(content != null) {
                 net.minecraft.server.v1_16_R2.ItemStack nmsItem = CraftItemStack.asNMSCopy(content);

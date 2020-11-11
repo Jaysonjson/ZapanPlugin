@@ -8,7 +8,7 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 public class PlayerRespawn implements Listener {
 
     @EventHandler
-    public void PlayerRespawn(PlayerRespawnEvent event) {
+    public void playerRespawnEvent(PlayerRespawnEvent event) {
         Utility.refreshHearts(event.getPlayer());
     }
 }

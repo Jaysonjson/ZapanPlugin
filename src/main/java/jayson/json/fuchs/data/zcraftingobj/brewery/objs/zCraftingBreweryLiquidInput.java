@@ -9,4 +9,8 @@ public class zCraftingBreweryLiquidInput {
 	
 	
 	private transient AbstractItem liquidInput;
+	
+	public AbstractItem getLiquidInput() {
+		return liquidInput;
+	}
 }

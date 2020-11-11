@@ -37,6 +37,9 @@ public class zPlayerClass {
             case ALCHEMIST:
                 obj = alchemistData;
                 break;
+		default:
+			obj = defaultData;
+			break;
         }
         return obj;
     }

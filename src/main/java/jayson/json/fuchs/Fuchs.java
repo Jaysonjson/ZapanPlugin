@@ -12,6 +12,7 @@ import jayson.json.fuchs.events.entity.player.*;
 import jayson.json.fuchs.events.inventory.ItemClick;
 import jayson.json.fuchs.events.item.*;
 import jayson.json.fuchs.io.DataHandler;
+import jayson.json.fuchs.io.FileHandler;
 import jayson.json.fuchs.objects.zRegistry;
 import jayson.json.fuchs.npc.NPC;
 import org.bukkit.Bukkit;
@@ -32,12 +33,18 @@ public final class Fuchs extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        new File(DataHandler.PLAYER_DIR).mkdirs();
+        /*new File(DataHandler.PLAYER_DIR).mkdirs();
         new File(DataHandler.AREA_DIR).mkdirs();
         new File(DataHandler.GUILD_DIR).mkdirs();
         new File(DataHandler.BACKPACK_DIR).mkdirs();
         new File(DataHandler.MOBDROPS_DIR).mkdirs();
         new File(DataHandler.BREWERY_DIR).mkdirs();
+        */
+        try {
+            new FileHandler().createDirectories();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
         //DataHandler.createMobDrop();
         zRegistry.addFuchsItems();
         zRegistry.addFuchsLiquids();

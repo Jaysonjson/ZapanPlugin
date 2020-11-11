@@ -9,7 +9,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 public class PlayerDeath implements Listener {
 
     @EventHandler
-    public void PlayerDeath(PlayerDeathEvent event) {
+    public void playerDeathEvent(PlayerDeathEvent event) {
         //Player player = event.getEntity();
         zPlayer player = DataHandler.loadPlayer(event.getEntity().getUniqueId());
         player.getHealth().health -= 2;

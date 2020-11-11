@@ -13,7 +13,7 @@ import java.util.UUID;
 
 public class ItemDespawn implements Listener {
     @EventHandler
-    public void ItemDespawn(ItemDespawnEvent event) {
+    public void itemDespawnEvent(ItemDespawnEvent event) {
         ItemStack item = event.getEntity().getItemStack();
         if(item.hasItemMeta()) {
             NBTTagCompound tag = Utility.getItemTag(item);

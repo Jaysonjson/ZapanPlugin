@@ -15,7 +15,7 @@ import java.util.Random;
 public class EntityDeath implements Listener {
 
     @EventHandler
-    public void EntityDeath(EntityDeathEvent event) {
+    public void entityDeathEvent(EntityDeathEvent event) {
         Random random = new Random();
         EntityType type = event.getEntityType();
         for (zMobDrop mobDrop : References.drops.getMobDrops()) {

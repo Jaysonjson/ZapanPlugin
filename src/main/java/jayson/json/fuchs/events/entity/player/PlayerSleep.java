@@ -9,7 +9,7 @@ import org.bukkit.event.player.PlayerBedLeaveEvent;
 public class PlayerSleep implements Listener {
 
     @EventHandler
-    public void PlayerSleep(PlayerBedLeaveEvent event) {
+    public void playerSleepEvent(PlayerBedLeaveEvent event) {
         zPlayer zPlayer = DataHandler.loadPlayer(event.getPlayer().getUniqueId());
         if(zPlayer.getPlayerSpecial().alcohol > 0) {
             zPlayer.getPlayerSpecial().alcohol *= 0.5;

@@ -10,7 +10,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 public class ItemUse implements Listener {
 
     @EventHandler
-    public void ItemUse(PlayerInteractEvent event) {
+    public void itemUseEvent(PlayerInteractEvent event) {
         if(event.getItem() != null) {
 
             if(Utility.isBannedItem(event.getItem())) {

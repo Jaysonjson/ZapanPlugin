@@ -14,16 +14,15 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public class PlayerMove implements Listener {
 
-    private ArrayList<Player> players = new ArrayList<>();
+    //private ArrayList<Player> players = new ArrayList<>();
 
 
     @EventHandler
-    public void PlayerMove(PlayerMoveEvent event) {
+    public void playerMoveEvent(PlayerMoveEvent event) {
         Player player = event.getPlayer();
         zPlayer zPlayer = DataHandler.loadPlayer(player.getUniqueId());
         Random random = new Random();

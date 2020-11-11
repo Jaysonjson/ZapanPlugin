@@ -12,7 +12,7 @@ import org.bukkit.inventory.ItemStack;
 public class ItemPickup implements Listener {
 
     @EventHandler
-    public void ItemPickup(EntityPickupItemEvent event) {
+    public void itemPickupEvent(EntityPickupItemEvent event) {
         ItemStack itemStack = event.getItem().getItemStack();
         if (event.getEntity() instanceof Player) {
             Player player = (Player) event.getEntity();
