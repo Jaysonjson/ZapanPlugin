@@ -3,11 +3,18 @@ package jayson.json.fuchs.io;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import jayson.json.fuchs.Utility;
-import jayson.json.fuchs.data.*;
-import jayson.json.fuchs.data.zcraftingobj.brewery.objs.zCraftingBreweryLiquidInput;
-import jayson.json.fuchs.data.zcraftingobj.brewery.objs.zCraftingBreweryLiquidOutput;
-import jayson.json.fuchs.data.zcraftingobj.brewery.zCraftingBrewery;
-import jayson.json.fuchs.data.zdropobj.zMobDrop;
+import jayson.json.fuchs.data.area.data.zArea;
+import jayson.json.fuchs.data.backpack.data.zBackPack;
+import jayson.json.fuchs.data.crafting.data.zCrafting;
+import jayson.json.fuchs.data.crafting.obj.brewery.objs.zCraftingBreweryLiquidInput;
+import jayson.json.fuchs.data.crafting.obj.brewery.objs.zCraftingBreweryLiquidOutput;
+import jayson.json.fuchs.data.crafting.obj.brewery.zCraftingBrewery;
+import jayson.json.fuchs.data.discord.data.zDiscord;
+import jayson.json.fuchs.data.drop.data.zDrops;
+import jayson.json.fuchs.data.drop.obj.zMobDrop;
+import jayson.json.fuchs.data.guild.data.zGuild;
+import jayson.json.fuchs.data.player.data.zPlayer;
+import jayson.json.fuchs.data.server.data.zServer;
 import jayson.json.fuchs.objects.items.lists.zItem;
 import jayson.json.fuchs.objects.liquid.zLiquid;
 
@@ -169,7 +176,7 @@ public class DataHandler {
     public static void saveGuild(zGuild guild) {
         String json = gsonBuilder.toJson(guild);
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream(new File(FileHandler.GUILD_DIR + guild.uuid.toString() + ".json"));
+            FileOutputStream fileOutputStream = new FileOutputStream(new File(FileHandler.GUILD_DIR + guild.getUUID().toString() + ".json"));
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
             outputStreamWriter.append(json);
             outputStreamWriter.close();
@@ -187,7 +194,7 @@ public class DataHandler {
         zGuild guild;
         if(!file.exists()) {
             guild = new zGuild();
-            guild.name = "Unbekannt";
+            guild.setName("Unbekannt");
             saveGuild(guild);
         } else {
             guild = gson.fromJson(readData(file), zGuild.class);

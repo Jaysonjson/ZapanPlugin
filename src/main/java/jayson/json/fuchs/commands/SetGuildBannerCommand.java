@@ -1,6 +1,6 @@
 package jayson.json.fuchs.commands;
 
-import jayson.json.fuchs.data.zGuild;
+import jayson.json.fuchs.data.guild.data.zGuild;
 import jayson.json.fuchs.io.DataHandler;
 import org.bukkit.block.banner.Pattern;
 import org.bukkit.command.Command;
@@ -24,10 +24,10 @@ public class SetGuildBannerCommand implements CommandExecutor {
             zGuild zGuild = new zGuild();
             assert im != null;
             if(im.getPatterns() != null) {
-                zGuild.banner.color = im.getBaseColor();
-                zGuild.banner.pattern = (ArrayList<Pattern>) im.getPatterns();
+                zGuild.getBanner().color = im.getBaseColor();
+                zGuild.getBanner().pattern = (ArrayList<Pattern>) im.getPatterns();
             }
-            zGuild.uuid = UUID.randomUUID();
+            zGuild.setUUID(UUID.randomUUID());
             DataHandler.saveGuild(zGuild);
             return false;
         }

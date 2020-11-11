@@ -1,8 +1,8 @@
 package jayson.json.fuchs.events.entity.player;
 
 import jayson.json.fuchs.Utility;
-import jayson.json.fuchs.data.zArea;
-import jayson.json.fuchs.data.zPlayer;
+import jayson.json.fuchs.data.area.data.zArea;
+import jayson.json.fuchs.data.player.data.zPlayer;
 import jayson.json.fuchs.io.DataHandler;
 import jayson.json.fuchs.other.Scoreboard;
 import net.md_5.bungee.api.ChatColor;

@@ -1,6 +1,6 @@
 package jayson.json.fuchs.events.entity.player;
 
-import jayson.json.fuchs.data.zPlayer;
+import jayson.json.fuchs.data.player.data.zPlayer;
 import jayson.json.fuchs.io.DataHandler;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

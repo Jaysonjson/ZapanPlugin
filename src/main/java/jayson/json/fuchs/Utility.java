@@ -1,10 +1,10 @@
 package jayson.json.fuchs;
 
-import jayson.json.fuchs.data.zArea;
-import jayson.json.fuchs.data.zBackPack;
-import jayson.json.fuchs.data.zGuild;
-import jayson.json.fuchs.data.zPlayer;
-import jayson.json.fuchs.data.zareaobj.zLocation;
+import jayson.json.fuchs.data.area.data.zArea;
+import jayson.json.fuchs.data.backpack.data.zBackPack;
+import jayson.json.fuchs.data.guild.data.zGuild;
+import jayson.json.fuchs.data.player.data.zPlayer;
+import jayson.json.fuchs.data.area.obj.zLocation;
 import jayson.json.fuchs.io.DataHandler;
 import jayson.json.fuchs.io.FileHandler;
 import jayson.json.fuchs.objects.liquid.interfaces.IzLiquidRegistry;
@@ -384,7 +384,7 @@ public class Utility {
     public static boolean guildExists(String name) {
         for (File file : new File(FileHandler.GUILD_DIR).listFiles()) {
             zGuild guild = DataHandler.loadGuild(file.getName().replaceAll(".json", ""));
-            if(guild.name.equalsIgnoreCase(name)) {
+            if(guild.getName().equalsIgnoreCase(name)) {
                 return true;
             }
         }

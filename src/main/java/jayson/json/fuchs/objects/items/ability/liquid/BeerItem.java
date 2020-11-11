@@ -1,7 +1,7 @@
 package jayson.json.fuchs.objects.items.ability.liquid;
 
 import jayson.json.fuchs.Utility;
-import jayson.json.fuchs.data.zPlayer;
+import jayson.json.fuchs.data.player.data.zPlayer;
 import jayson.json.fuchs.io.DataHandler;
 import jayson.json.fuchs.objects.items.*;
 import jayson.json.fuchs.objects.items.lists.zItem;

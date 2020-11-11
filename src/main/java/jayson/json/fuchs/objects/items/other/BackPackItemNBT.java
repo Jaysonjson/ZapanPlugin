@@ -1,7 +1,7 @@
 package jayson.json.fuchs.objects.items.other;
 
 import jayson.json.fuchs.Utility;
-import jayson.json.fuchs.inventories.BackPackNBTInventory;
+import jayson.json.fuchs.inventories.backpack.BackPackNBTInventory;
 import jayson.json.fuchs.objects.items.*;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
 

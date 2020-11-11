@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public interface IzAbilityItem extends IzItem {
-    //void ability(Player player, ItemInventoryData itemInventoryData);
+	//void ability(Player player, ItemInventoryData itemInventoryData);
     /*@Deprecated
     default void ability(World world, Player player, ItemStack itemStack) {
         ability(player, null);

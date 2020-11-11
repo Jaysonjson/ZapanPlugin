@@ -2,7 +2,7 @@ package jayson.json.fuchs.inventories.area;
 
 import jayson.json.fuchs.Utility;
 import jayson.json.fuchs.Fuchs;
-import jayson.json.fuchs.data.zArea;
+import jayson.json.fuchs.data.area.data.zArea;
 import jayson.json.fuchs.io.DataHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

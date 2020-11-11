@@ -2,7 +2,7 @@ package jayson.json.fuchs.events.entity;
 
 import jayson.json.fuchs.References;
 import jayson.json.fuchs.Utility;
-import jayson.json.fuchs.data.zdropobj.zMobDrop;
+import jayson.json.fuchs.data.drop.obj.zMobDrop;
 import jayson.json.fuchs.objects.items.AbstractItem;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;

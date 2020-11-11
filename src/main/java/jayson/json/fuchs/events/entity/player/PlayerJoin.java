@@ -1,8 +1,8 @@
 package jayson.json.fuchs.events.entity.player;
 
 import jayson.json.fuchs.Utility;
-import jayson.json.fuchs.data.zPlayer;
-import jayson.json.fuchs.inventories.StarterClassInventory;
+import jayson.json.fuchs.data.player.data.zPlayer;
+import jayson.json.fuchs.inventories.classes.StarterClassInventory;
 import jayson.json.fuchs.io.DataHandler;
 import jayson.json.fuchs.npc.NPC;
 import jayson.json.fuchs.other.Scoreboard;

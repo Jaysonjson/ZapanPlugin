@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import jayson.json.fuchs.Utility;
-import jayson.json.fuchs.data.zPlayer;
+import jayson.json.fuchs.data.player.data.zPlayer;
 import jayson.json.fuchs.io.DataHandler;
 import jayson.json.fuchs.objects.items.FuchsItem;
 import jayson.json.fuchs.objects.items.zItemNBT;

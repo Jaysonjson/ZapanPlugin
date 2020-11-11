@@ -1,6 +1,6 @@
 package jayson.json.fuchs.events;
 
-import jayson.json.fuchs.data.zPlayer;
+import jayson.json.fuchs.data.player.data.zPlayer;
 import jayson.json.fuchs.io.DataHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
@@ -15,7 +15,7 @@ public class ChatEvent implements Listener {
         String guildName = "";
         zPlayer zPlayer = DataHandler.loadPlayer(event.getPlayer().getUniqueId());
         if(zPlayer.isInGuild()) {
-            guildName = "[" + ChatColor.AQUA + DataHandler.loadGuild(zPlayer.getGuildUuid()).name + ChatColor.RESET + "] ";
+            guildName = "[" + ChatColor.AQUA + DataHandler.loadGuild(zPlayer.getGuildUuid()).getName() + ChatColor.RESET + "] ";
         }
         event.setFormat(guildName + event.getPlayer().getDisplayName() + "§7: " + event.getMessage());
     }

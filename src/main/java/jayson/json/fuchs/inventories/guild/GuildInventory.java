@@ -2,8 +2,8 @@ package jayson.json.fuchs.inventories.guild;
 
 import jayson.json.fuchs.Utility;
 import jayson.json.fuchs.Fuchs;
-import jayson.json.fuchs.data.zGuild;
-import jayson.json.fuchs.data.zPlayer;
+import jayson.json.fuchs.data.guild.data.zGuild;
+import jayson.json.fuchs.data.player.data.zPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -31,7 +31,7 @@ public class GuildInventory implements Listener {
     }
 
     public void openInventory(Player player) {
-        inventory = Bukkit.createInventory(player, 54, guild.name);
+        inventory = Bukkit.createInventory(player, 54, guild.getName());
         setContents();
         player.openInventory(inventory);
     }
@@ -43,8 +43,8 @@ public class GuildInventory implements Listener {
         }
         ItemStack bannerItem = new ItemStack(Material.WHITE_BANNER);
         BannerMeta im = (BannerMeta) bannerItem.getItemMeta();
-        im.setBaseColor(guild.banner.color);
-        im.setPatterns(guild.banner.pattern);
+        im.setBaseColor(guild.getBanner().color);
+        im.setPatterns(guild.getBanner().pattern);
         bannerItem.setItemMeta(im);
         inventory.setItem(31, bannerItem);
         inventory.setItem(10, Utility.createInventoryStack(Material.PLAYER_HEAD, 1, "Spieler"));

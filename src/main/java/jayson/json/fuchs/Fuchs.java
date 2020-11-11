@@ -1,7 +1,13 @@
 
 package jayson.json.fuchs;
 import jayson.json.fuchs.commands.*;
-import jayson.json.fuchs.data.zArea;
+import jayson.json.fuchs.commands.area.AreaCommand;
+import jayson.json.fuchs.commands.area.CreateAreaCommand;
+import jayson.json.fuchs.commands.guild.CreateGuildCommand;
+import jayson.json.fuchs.commands.item.GiveCustomItem;
+import jayson.json.fuchs.commands.item.ItemCommand;
+import jayson.json.fuchs.commands.item.ItemIDCommand;
+import jayson.json.fuchs.data.area.data.zArea;
 import jayson.json.fuchs.events.*;
 import jayson.json.fuchs.events.block.BlockBreak;
 import jayson.json.fuchs.events.block.BlockPlace;
@@ -19,7 +25,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
 import java.util.ArrayList;
 
 public final class Fuchs extends JavaPlugin {
@@ -33,13 +38,6 @@ public final class Fuchs extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        /*new File(DataHandler.PLAYER_DIR).mkdirs();
-        new File(DataHandler.AREA_DIR).mkdirs();
-        new File(DataHandler.GUILD_DIR).mkdirs();
-        new File(DataHandler.BACKPACK_DIR).mkdirs();
-        new File(DataHandler.MOBDROPS_DIR).mkdirs();
-        new File(DataHandler.BREWERY_DIR).mkdirs();
-        */
         try {
             new FileHandler().createDirectories();
         } catch (IllegalAccessException e) {

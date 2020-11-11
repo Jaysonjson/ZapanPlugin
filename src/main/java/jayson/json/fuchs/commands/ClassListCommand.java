@@ -1,6 +1,6 @@
 package jayson.json.fuchs.commands;
 
-import jayson.json.fuchs.inventories.ClassInventory;
+import jayson.json.fuchs.inventories.classes.ClassInventory;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

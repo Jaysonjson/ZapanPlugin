@@ -1,9 +1,9 @@
 package jayson.json.fuchs.other;
 
 import jayson.json.fuchs.Utility;
-import jayson.json.fuchs.data.zArea;
-import jayson.json.fuchs.data.zPlayer;
-import jayson.json.fuchs.data.zareaobj.zLocation;
+import jayson.json.fuchs.data.area.data.zArea;
+import jayson.json.fuchs.data.player.data.zPlayer;
+import jayson.json.fuchs.data.area.obj.zLocation;
 import jayson.json.fuchs.io.DataHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

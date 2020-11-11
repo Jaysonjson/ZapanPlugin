@@ -1,6 +1,6 @@
 package jayson.json.fuchs.objects.items.other;
 
-import jayson.json.fuchs.data.zPlayer;
+import jayson.json.fuchs.data.player.data.zPlayer;
 import jayson.json.fuchs.io.DataHandler;
 import jayson.json.fuchs.objects.items.*;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;

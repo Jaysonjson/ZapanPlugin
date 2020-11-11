@@ -1,6 +1,6 @@
 package jayson.json.fuchs;
 
-import jayson.json.fuchs.data.zDrops;
+import jayson.json.fuchs.data.drop.data.zDrops;
 import jayson.json.fuchs.io.DataHandler;
 
 public class References {
