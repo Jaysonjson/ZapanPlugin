@@ -1,6 +1,6 @@
 package jayson.json.fuchs.objects.items.interfaces;
 
-import jayson.json.fuchs.other.zItemMarketModifierType;
+import jayson.json.fuchs.objects.items.zItemMarketModifierType;
 
 public interface IzMarketItem {
 

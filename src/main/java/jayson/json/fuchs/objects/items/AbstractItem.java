@@ -4,7 +4,6 @@ import jayson.json.fuchs.objects.items.interfaces.*;
 import jayson.json.fuchs.objects.items.nbt.INBTObject;
 import jayson.json.fuchs.objects.items.nbt.NBTBoolean;
 import jayson.json.fuchs.objects.items.nbt.NBTString;
-import jayson.json.fuchs.other.zItemMarketModifierType;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.Material;
 import org.bukkit.World;
