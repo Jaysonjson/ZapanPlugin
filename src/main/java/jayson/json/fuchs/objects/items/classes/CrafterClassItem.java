@@ -1,6 +1,7 @@
 package jayson.json.fuchs.objects.items.classes;
 
 import jayson.json.fuchs.objects.items.*;
+import jayson.json.fuchs.objects.items.interfaces.IItemUseType;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -45,8 +46,8 @@ public class CrafterClassItem extends AbstractItem {
     }
 
     @Override
-    public ItemUseType getItemUseType() {
-        return super.getItemUseType();
+    public IItemUseType getItemUse() {
+        return super.getItemUse();
     }
 
 }

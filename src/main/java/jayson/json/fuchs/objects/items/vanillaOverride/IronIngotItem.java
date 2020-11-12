@@ -2,6 +2,7 @@ package jayson.json.fuchs.objects.items.vanillaOverride;
 
 import jayson.json.fuchs.Utility;
 import jayson.json.fuchs.objects.items.*;
+import jayson.json.fuchs.objects.items.interfaces.IItemUseType;
 import jayson.json.fuchs.objects.items.nbt.INBTObject;
 import jayson.json.fuchs.objects.items.nbt.NBTBoolean;
 import jayson.json.fuchs.objects.items.nbt.NBTInteger;
@@ -83,8 +84,8 @@ public class IronIngotItem extends AbstractItem {
     }
 
     @Override
-    public ItemUseType getItemUseType() {
-        return super.getItemUseType();
+    public IItemUseType getItemUse() {
+        return super.getItemUse();
     }
 
     @Override

@@ -1,6 +1,8 @@
 package jayson.json.fuchs.objects.items.ability;
 
 import jayson.json.fuchs.objects.items.*;
+import jayson.json.fuchs.objects.items.interfaces.IItemUseType;
+
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -75,7 +77,7 @@ public class BombBeltItem extends AbstractItem {
     }
 
     @Override
-    public ItemUseType getItemUseType() {
-        return super.getItemUseType();
+    public IItemUseType getItemUse() {
+        return super.getItemUse();
     }
 }

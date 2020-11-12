@@ -23,10 +23,10 @@ public class FileHandler {
     @Directory
     public static String BREWERY_DIR = ROOT + "/crafting/brewery/";
     
-    public void createDirectories() throws IllegalAccessException {
+    public static void createDirectories() throws IllegalAccessException {
         for (Field field : FileHandler.class.getFields()) {
             if(field.isAnnotationPresent(Directory.class)) {
-                new File((String) field.get(this)).mkdirs();
+                new File((String) field.get(FileHandler.class)).mkdirs();
             }
         }
     }

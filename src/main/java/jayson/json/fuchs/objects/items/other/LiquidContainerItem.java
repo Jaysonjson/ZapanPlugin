@@ -17,6 +17,7 @@ import jayson.json.fuchs.objects.items.FuchsItem;
 import jayson.json.fuchs.objects.items.ItemUseType;
 import jayson.json.fuchs.objects.items.zItemNBT;
 import jayson.json.fuchs.objects.items.zOItem;
+import jayson.json.fuchs.objects.items.interfaces.IItemUseType;
 import jayson.json.fuchs.objects.liquid.AbstractLiquid;
 import jayson.json.fuchs.objects.liquid.zLiquid;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
@@ -108,8 +109,8 @@ public class LiquidContainerItem extends AbstractItem {
     }
 
     @Override
-    public ItemUseType getItemUseType() {
-        return super.getItemUseType();
+    public IItemUseType getItemUse() {
+        return super.getItemUse();
     }
 
     @Override

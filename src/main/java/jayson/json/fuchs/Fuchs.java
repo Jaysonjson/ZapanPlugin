@@ -39,7 +39,7 @@ public final class Fuchs extends JavaPlugin {
     @Override
     public void onEnable() {
         try {
-            new FileHandler().createDirectories();
+			FileHandler.createDirectories();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }

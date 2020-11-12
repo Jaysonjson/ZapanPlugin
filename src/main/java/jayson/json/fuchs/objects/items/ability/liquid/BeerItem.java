@@ -4,6 +4,7 @@ import jayson.json.fuchs.Utility;
 import jayson.json.fuchs.data.player.data.zPlayer;
 import jayson.json.fuchs.io.DataHandler;
 import jayson.json.fuchs.objects.items.*;
+import jayson.json.fuchs.objects.items.interfaces.IItemUseType;
 import jayson.json.fuchs.objects.items.lists.zItem;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.ChatColor;
@@ -106,8 +107,8 @@ public class BeerItem extends AbstractItem {
     }
 
     @Override
-    public ItemUseType getItemUseType() {
-        return super.getItemUseType();
+    public IItemUseType getItemUse() {
+        return super.getItemUse();
     }
 
     @Override

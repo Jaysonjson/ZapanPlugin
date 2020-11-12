@@ -3,6 +3,7 @@ package jayson.json.fuchs.objects.items.other;
 import jayson.json.fuchs.Utility;
 import jayson.json.fuchs.inventories.backpack.BackPackNBTInventory;
 import jayson.json.fuchs.objects.items.*;
+import jayson.json.fuchs.objects.items.interfaces.IItemUseType;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
 
 
@@ -84,7 +85,7 @@ public class BackPackItemNBT extends AbstractItem {
     }
 
     @Override
-    public ItemUseType getItemUseType() {
-        return super.getItemUseType();
+    public IItemUseType getItemUse() {
+        return super.getItemUse();
     }
 }

@@ -16,6 +16,7 @@ import jayson.json.fuchs.objects.items.AbstractItem;
 import jayson.json.fuchs.objects.items.ItemUseType;
 import jayson.json.fuchs.objects.items.zItemNBT;
 import jayson.json.fuchs.objects.items.zOItem;
+import jayson.json.fuchs.objects.items.interfaces.IItemUseType;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
 
 public class GasContainerItem extends AbstractItem {
@@ -89,8 +90,8 @@ public class GasContainerItem extends AbstractItem {
     }
 
     @Override
-    public ItemUseType getItemUseType() {
-        return super.getItemUseType();
+    public IItemUseType getItemUse() {
+        return super.getItemUse();
     }
 
     @Override

@@ -23,8 +23,8 @@ public abstract class AbstractItem implements IzItem, IzNBTItem, IzAbilityItem, 
 
     public String id;
     public Material material;
-    public ItemUseType itemUseType;
-    public AbstractItem(String id, Material material, ItemUseType itemUseType) {
+    public IItemUseType itemUseType;
+    public AbstractItem(String id, Material material, IItemUseType itemUseType) {
         this.id = id;
         this.material = material;
         this.itemUseType = itemUseType;
@@ -166,14 +166,27 @@ public abstract class AbstractItem implements IzItem, IzNBTItem, IzAbilityItem, 
     }
 
     @Override
+    @Deprecated
     public zItemMarketModifierType MARKET_MODIFIER_TYPE() {
         return zItemMarketModifierType.SCRAPYARD;
     }
 
     //Semi-Alt, --> getItemUse(); Interface (IItemUseType) - / Lib
     @Override
+    @Deprecated
     public ItemUseType getItemUseType() {
-        return itemUseType;
+        return (ItemUseType) itemUseType;
     }
+    
+    @Override
+    public IItemUseType getItemUse() {
+    	return itemUseType;
+    }
+    
+    @Override
+    public IMarketModifierType MARKET_MODIFIER() {
+    	return IzMarketItem.super.MARKET_MODIFIER();
+    }
+    
     
 }

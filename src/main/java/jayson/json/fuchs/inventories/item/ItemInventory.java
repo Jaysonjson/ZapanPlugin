@@ -23,7 +23,6 @@ import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class ItemInventory implements Listener {
     @Nullable
@@ -50,7 +49,6 @@ public class ItemInventory implements Listener {
                 page_check -= 46;
                 InventoryPage<ArrayList<ItemStack>> pageInv = new InventoryPage<>(page_content, page);
                 pageInv.stacks = page_content.toArray(new ItemStack[0]);
-                System.out.println(Arrays.toString(pageInv.stacks));
                 pageContainer.addPage(pageInv);
                 page_content.clear();
                 page_index = 0;
@@ -146,35 +144,5 @@ public class ItemInventory implements Listener {
         }
         player.openInventory(inventory);
     }
-/*
-    private void createPage(Player player, Inventory inventory, int page) {
-        inventory.clear();
-        ItemStack[] contents = pageContainer.getPage(page).getStacks();
-        for (ItemStack content : contents) {
-            inventory.addItem(content);
-        }
-        for (int i = contents.length; i < 45; i++) {
-            inventory.addItem(differentItem(new ItemStack(Material.GLASS_PANE)));
-        }
-        if (currentPage > 0) {
-            inventory.addItem(differentItem(new ItemStack(Material.GREEN_WOOL), "Letzte Seite"));
-        } else {
-            inventory.addItem(differentItem(new ItemStack(Material.RED_WOOL), "Letzte Seite"));
-        }
-        inventory.addItem(differentItem(new ItemStack(Material.GLASS_PANE)));
-        inventory.addItem(differentItem(new ItemStack(Material.GLASS_PANE)));
-        inventory.addItem(differentItem(new ItemStack(Material.GLASS_PANE)));
-        inventory.addItem(differentItem(new ItemStack(Material.PAPER), "Derzeitige Seite: " + page));
-        inventory.addItem(differentItem(new ItemStack(Material.GLASS_PANE)));
-        inventory.addItem(differentItem(new ItemStack(Material.GLASS_PANE)));
-        inventory.addItem(differentItem(new ItemStack(Material.GLASS_PANE)));
-        if (currentPage + 2 < pageContainer.size()) {
-            inventory.addItem(differentItem(new ItemStack(Material.GREEN_WOOL), "Nächste Seite"));
-        } else {
-            inventory.addItem(differentItem(new ItemStack(Material.RED_WOOL), "Nächste Seite"));
-        }
-        player.openInventory(inventory);
-    }
-*/
 
 }
