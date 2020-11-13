@@ -1,11 +1,11 @@
 package jayson.json.fuchs.objects.items.lists;
 
 import jayson.json.fuchs.objects.items.*;
-import jayson.json.fuchs.objects.items.crafting.*;
+import jayson.json.fuchs.objects.items.type.crafting.*;
 import jayson.json.fuchs.objects.items.interfaces.IzItemRegistry;
-import jayson.json.fuchs.objects.items.other.*;
-import jayson.json.fuchs.objects.items.currency.*;
-import jayson.json.fuchs.objects.items.vanillaOverride.*;
+import jayson.json.fuchs.objects.items.type.other.*;
+import jayson.json.fuchs.objects.items.type.currency.*;
+import jayson.json.fuchs.objects.items.type.vanillaOverride.*;
 import org.bukkit.Material;
 
 public enum zItem implements IzItemRegistry {
@@ -21,7 +21,7 @@ public enum zItem implements IzItemRegistry {
     HOP_ITEM(new HopItem("hopItem", Material.NETHERITE_HOE, ItemUseType.CRAFTING, 4)),
     //BEER_ITEM(new BeerItem("beerItem", Material.NETHERITE_HOE, ItemUseType.ABILITY, 5)),
     GLASS_ITEM(new GlassItem("glassItem", Material.NETHERITE_HOE, ItemUseType.ABILITY, 6)),
-    WATER_ITEM(new WaterItem("waterItem", Material.NETHERITE_HOE, ItemUseType.CRAFTING, 7)),
+    //WATER_ITEM(new WaterItem("waterItem", Material.NETHERITE_HOE, ItemUseType.CRAFTING, 7)),
     COPPER_ROD(new CopperRodItem("copperRodItem", Material.NETHERITE_HOE, ItemUseType.CRAFTING, 8)),
     COPPER_PIPE(new CopperPipeItem("copperPipeItem", Material.NETHERITE_HOE, ItemUseType.CRAFTING, 9)),
     COPPER_LIQUID(new LiquidCopperItem("copperLiquidItem", Material.NETHERITE_HOE, ItemUseType.CRAFTING, 10)),

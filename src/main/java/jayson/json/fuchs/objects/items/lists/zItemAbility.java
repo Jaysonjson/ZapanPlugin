@@ -2,10 +2,10 @@ package jayson.json.fuchs.objects.items.lists;
 
 import jayson.json.fuchs.objects.items.AbstractItem;
 import jayson.json.fuchs.objects.items.ItemUseType;
-import jayson.json.fuchs.objects.items.ability.essence.fire.FireEs01BlazeRodItem;
-import jayson.json.fuchs.objects.items.ability.essence.fire.WallBlazeRodItem;
+import jayson.json.fuchs.objects.items.type.ability.essence.fire.FireEs01BlazeRodItem;
+import jayson.json.fuchs.objects.items.type.ability.essence.fire.WallBlazeRodItem;
 import jayson.json.fuchs.objects.items.interfaces.IzItemRegistry;
-import jayson.json.fuchs.objects.items.other.*;
+import jayson.json.fuchs.objects.items.type.other.*;
 import org.bukkit.Material;
 
 public enum zItemAbility implements IzItemRegistry {
