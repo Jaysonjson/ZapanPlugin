@@ -2,7 +2,7 @@ package jayson.json.fuchs.commands;
 
 import jayson.json.fuchs.Utility;
 import jayson.json.fuchs.data.player.data.zPlayer;
-import jayson.json.fuchs.io.DataHandler;
+import jayson.json.fuchs.data.io.DataHandler;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;

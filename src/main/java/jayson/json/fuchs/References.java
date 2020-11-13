@@ -1,7 +1,7 @@
 package jayson.json.fuchs;
 
 import jayson.json.fuchs.data.drop.data.zDrops;
-import jayson.json.fuchs.io.DataHandler;
+import jayson.json.fuchs.data.io.DataHandler;
 
 public class References {
     public static zDrops drops;

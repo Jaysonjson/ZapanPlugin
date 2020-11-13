@@ -1,7 +1,7 @@
 package jayson.json.fuchs.commands;
 
 import jayson.json.fuchs.data.discord.data.zDiscord;
-import jayson.json.fuchs.io.DataHandler;
+import jayson.json.fuchs.data.io.DataHandler;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

@@ -4,7 +4,7 @@ package jayson.json.fuchs.inventories.area;
 import jayson.json.fuchs.Utility;
 import jayson.json.fuchs.Fuchs;
 import jayson.json.fuchs.data.area.data.zArea;
-import jayson.json.fuchs.io.DataHandler;
+import jayson.json.fuchs.data.io.DataHandler;
 
 import jayson.json.fuchs.objects.items.zItemNBT;
 import jayson.json.fuchs.other.InventoryPage;

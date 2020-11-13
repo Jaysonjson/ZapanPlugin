@@ -5,7 +5,7 @@ import jayson.json.fuchs.Fuchs;
 import jayson.json.fuchs.data.area.data.zArea;
 import jayson.json.fuchs.data.area.obj.zWorld;
 import jayson.json.fuchs.data.area.obj.zLocation;
-import jayson.json.fuchs.io.DataHandler;
+import jayson.json.fuchs.data.io.DataHandler;
 import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

@@ -3,7 +3,7 @@ package jayson.json.fuchs.inventories.classes;
 import jayson.json.fuchs.Utility;
 import jayson.json.fuchs.Fuchs;
 import jayson.json.fuchs.data.player.data.zPlayer;
-import jayson.json.fuchs.io.DataHandler;
+import jayson.json.fuchs.data.io.DataHandler;
 import jayson.json.fuchs.skillclass.zClass;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

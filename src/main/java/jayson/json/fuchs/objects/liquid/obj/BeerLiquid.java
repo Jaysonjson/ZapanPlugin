@@ -10,7 +10,7 @@ import org.bukkit.inventory.ItemStack;
 
 import jayson.json.fuchs.Utility;
 import jayson.json.fuchs.data.player.data.zPlayer;
-import jayson.json.fuchs.io.DataHandler;
+import jayson.json.fuchs.data.io.DataHandler;
 import jayson.json.fuchs.objects.items.FuchsItem;
 import jayson.json.fuchs.objects.items.zItemNBT;
 import jayson.json.fuchs.objects.liquid.AbstractLiquid;

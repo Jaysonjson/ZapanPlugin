@@ -1,7 +1,7 @@
 package jayson.json.fuchs.events;
 
 import jayson.json.fuchs.data.player.data.zPlayer;
-import jayson.json.fuchs.io.DataHandler;
+import jayson.json.fuchs.data.io.DataHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;

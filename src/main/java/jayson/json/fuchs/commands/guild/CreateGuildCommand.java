@@ -5,7 +5,7 @@ import jayson.json.fuchs.data.guild.data.zGuild;
 import jayson.json.fuchs.data.player.data.zPlayer;
 import jayson.json.fuchs.data.guild.obj.zGuildRank;
 import jayson.json.fuchs.inventories.guild.GuildInventory;
-import jayson.json.fuchs.io.DataHandler;
+import jayson.json.fuchs.data.io.DataHandler;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

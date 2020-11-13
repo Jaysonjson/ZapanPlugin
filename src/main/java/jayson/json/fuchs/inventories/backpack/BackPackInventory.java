@@ -3,7 +3,7 @@ package jayson.json.fuchs.inventories.backpack;
 import jayson.json.fuchs.Utility;
 import jayson.json.fuchs.Fuchs;
 import jayson.json.fuchs.data.backpack.data.zBackPack;
-import jayson.json.fuchs.io.DataHandler;
+import jayson.json.fuchs.data.io.DataHandler;
 import jayson.json.fuchs.objects.items.zItemNBT;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.Bukkit;

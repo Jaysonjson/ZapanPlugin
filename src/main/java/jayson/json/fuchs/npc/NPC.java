@@ -6,7 +6,7 @@ import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import jayson.json.fuchs.data.server.data.zServer;
 import jayson.json.fuchs.data.server.obj.zNPC;
-import jayson.json.fuchs.io.DataHandler;
+import jayson.json.fuchs.data.io.DataHandler;
 import net.minecraft.server.v1_16_R2.*;
 import org.bukkit.Bukkit;
 import org.bukkit.craftbukkit.v1_16_R2.CraftServer;

@@ -1,7 +1,7 @@
 package jayson.json.fuchs.commands;
 
 import jayson.json.fuchs.data.guild.data.zGuild;
-import jayson.json.fuchs.io.DataHandler;
+import jayson.json.fuchs.data.io.DataHandler;
 import org.bukkit.block.banner.Pattern;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

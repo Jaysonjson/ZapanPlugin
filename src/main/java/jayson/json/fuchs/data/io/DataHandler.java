@@ -1,4 +1,4 @@
-package jayson.json.fuchs.io;
+package jayson.json.fuchs.data.io;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

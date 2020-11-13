@@ -2,7 +2,7 @@ package jayson.json.fuchs.objects.items.other;
 
 import jayson.json.fuchs.Utility;
 import jayson.json.fuchs.inventories.backpack.BackPackInventory;
-import jayson.json.fuchs.io.DataHandler;
+import jayson.json.fuchs.data.io.DataHandler;
 import jayson.json.fuchs.objects.items.*;
 import jayson.json.fuchs.objects.items.interfaces.IItemUseType;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
