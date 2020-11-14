@@ -4,7 +4,6 @@ import jayson.json.fuchs.commands.*;
 import jayson.json.fuchs.commands.area.AreaCommand;
 import jayson.json.fuchs.commands.area.CreateAreaCommand;
 import jayson.json.fuchs.commands.guild.CreateGuildCommand;
-import jayson.json.fuchs.commands.item.GiveCustomItem;
 import jayson.json.fuchs.commands.item.ItemCommand;
 import jayson.json.fuchs.commands.item.ItemIDCommand;
 import jayson.json.fuchs.data.area.data.zArea;
@@ -72,23 +71,24 @@ public final class Fuchs extends JavaPlugin {
                 new Smelting(),
                 new PlayerSleep()
         );
-        this.getCommand("areas").setExecutor(new AreaCommand());
-        this.getCommand("sethealth").setExecutor(new SetHealthCommand());
-        this.getCommand("area").setExecutor(new CreateAreaCommand());
-        this.getCommand("guild").setExecutor(new CreateGuildCommand());
-        this.getCommand("giveItem").setExecutor(new GiveCustomItem());
-        this.getCommand("items").setExecutor(new ItemCommand());
-        this.getCommand("npc").setExecutor(new CreateNPCCommand());
-        this.getCommand("gba").setExecutor(new SetGuildBannerCommand());
-        this.getCommand("gmc").setExecutor(new GamemodeCommand());
-        this.getCommand("gms").setExecutor(new GamemodeCommand());
-        this.getCommand("gma").setExecutor(new GamemodeCommand());
-        this.getCommand("gmsp").setExecutor(new GamemodeCommand());
-        this.getCommand("discordlink").setExecutor(new DiscordLinkCommand());
-        this.getCommand("itemids").setExecutor(new ItemIDCommand());
-        this.getCommand("classlist").setExecutor(new ClassListCommand());
-        this.getCommand("fuchs").setExecutor(new FuchsCommand());
 
+        registerCommands(
+        		new SpigotCommand("areas", new AreaCommand()),
+        		new SpigotCommand("sethealth", new SetHealthCommand()),
+                new SpigotCommand("area", new CreateAreaCommand()),
+                new SpigotCommand("guild", new CreateGuildCommand()),
+                new SpigotCommand("items", new ItemCommand()),
+                new SpigotCommand("npc", new CreateNPCCommand()),
+                new SpigotCommand("gba", new SetGuildBannerCommand()),
+                new SpigotCommand("gmc", new GamemodeCommand()),
+                new SpigotCommand("gms", new GamemodeCommand()),
+                new SpigotCommand("gma", new GamemodeCommand()),
+                new SpigotCommand("gmsp", new GamemodeCommand()),
+                new SpigotCommand("discordlink", new DiscordLinkCommand()),
+                new SpigotCommand("itemids", new ItemIDCommand()),
+                new SpigotCommand("classlist", new ClassListCommand()),
+                new SpigotCommand("fuchs", new FuchsCommand())
+        );
     }
 
     @Override
@@ -99,6 +99,12 @@ public final class Fuchs extends JavaPlugin {
         for (Listener listener1 : listener) {
             Bukkit.getPluginManager().registerEvents(listener1, INSTANCE);
         }
+    }
+    
+    public void registerCommands(SpigotCommand... commands) {
+    	for(SpigotCommand command : commands) {
+    		this.getCommand(command.getCommand()).setExecutor(command.getCommandExecutor());
+    	}
     }
 
 }
