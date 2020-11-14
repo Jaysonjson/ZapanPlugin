@@ -34,10 +34,10 @@ public class PlayerMove implements Listener {
         }
         Scoreboard.updateScoreboard(player, zPlayer);
         zArea area = Utility.getNearestArea(event.getPlayer().getWorld().getEnvironment(), player.getLocation());
-        Location locationP0 = area.createLocation(player.getWorld()).add(area.size, area.size, area.size);
-        Location locationP1 = area.createLocation(player.getWorld()).subtract(area.size, area.size, area.size);
+        Location locationP0 = area.createLocation(player.getWorld()).add(area.getSize(), area.getSize(), area.getSize());
+        Location locationP1 = area.createLocation(player.getWorld()).subtract(area.getSize(), area.getSize(), area.getSize());
         if (Utility.isInArea(player.getLocation(), locationP0, locationP1)) {
-            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new ComponentBuilder(area.displayName.toUpperCase()).color(ChatColor.DARK_PURPLE).create());
+            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new ComponentBuilder(area.getDisplayName().toUpperCase()).color(ChatColor.DARK_PURPLE).create());
             //if (!players.contains(player)) {
                 //player.sendMessage("Du bist jetzt im Gebiet " + area.name + "!");
                 //players.add(player);

@@ -2,6 +2,7 @@ package jayson.json.fuchs.objects.items.type.ability;
 
 import jayson.json.fuchs.objects.items.*;
 import jayson.json.fuchs.objects.items.interfaces.IItemUseType;
+import jayson.json.fuchs.objects.items.type.ItemUseType;
 
 import org.bukkit.Material;
 import org.bukkit.World;

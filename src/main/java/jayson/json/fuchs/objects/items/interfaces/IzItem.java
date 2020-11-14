@@ -1,11 +1,12 @@
 package jayson.json.fuchs.objects.items.interfaces;
 
-import jayson.json.fuchs.objects.items.ItemUseType;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
+
+import jayson.json.fuchs.objects.items.type.ItemUseType;
 
 public interface IzItem {
     String id = "";

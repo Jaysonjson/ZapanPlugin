@@ -1,4 +1,4 @@
-package jayson.json.fuchs.objects.items;
+package jayson.json.fuchs.objects.items.type;
 
 import org.bukkit.ChatColor;
 

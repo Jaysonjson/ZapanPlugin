@@ -42,7 +42,7 @@ public class AreaInventory implements Listener {
 
     public void openInventory(Player player) {
         if(area != null) {
-            inventory = Bukkit.createInventory(player, 54, area.displayName);
+            inventory = Bukkit.createInventory(player, 54, area.getDisplayName());
             setContents(player);
             player.openInventory(inventory);
         }
@@ -52,27 +52,27 @@ public class AreaInventory implements Listener {
         for (int i = 0; i < 54; i++) {
             inventory.setItem(i, new ItemStack(Material.GLASS_PANE));
         }
-        inventory.setItem(10, Utility.createInventoryStack(Material.PAPER, 1, area.displayName));
-        int prioItemAmount = area.priority;;
-        if(area.priority < 1) {
+        inventory.setItem(10, Utility.createInventoryStack(Material.PAPER, 1, area.getDisplayName()));
+        int prioItemAmount = area.getPriority();;
+        if(area.getPriority() < 1) {
             prioItemAmount = 1;
-        } else if(area.priority > 64) {
+        } else if(area.getPriority() > 64) {
             prioItemAmount = 64;
         }
         
         ArrayList<String> locationLore = new ArrayList<>();
-        locationLore.add("x: " + area.location.x);
-        locationLore.add("y: " + area.location.y);
-        locationLore.add("z: " + area.location.z);
+        locationLore.add("x: " + area.getLocation().x);
+        locationLore.add("y: " + area.getLocation().y);
+        locationLore.add("z: " + area.getLocation().z);
         locationLore.add("distanz: " + player.getLocation().distance(area.createLocation(player.getWorld())));
         
-        inventory.setItem(11, Utility.createInventoryStack(Material.SLIME_BALL, prioItemAmount,"Priorität: " + area.priority));
+        inventory.setItem(11, Utility.createInventoryStack(Material.SLIME_BALL, prioItemAmount,"Priorität: " + area.getPriority()));
         inventory.setItem(12, Utility.createInventoryStack(Material.PAPER, 1, "Lage", locationLore));
-        inventory.setItem(19, Utility.createInventoryWoolColor(area.breakBlocks, "Blöcke Zerstören", 1));
-        inventory.setItem(20, Utility.createInventoryWoolColor(area.placeBlocks, "Blöcke Platzieren", 1));
-        inventory.setItem(21, Utility.createInventoryWoolColor(area.spawnMobs, "Spawn Mobs", 1));
-        inventory.setItem(22, Utility.createInventoryWoolColor(area.allowOverlap, "Überlappung Erlauben", 1));
-        inventory.setItem(23, Utility.createInventoryWoolColor(area.allowOwnerOverlap, "Besitzer Überlappung Erlauben", 1));
+        inventory.setItem(19, Utility.createInventoryWoolColor(area.isBreakBlocks(), "Blöcke Zerstören", 1));
+        inventory.setItem(20, Utility.createInventoryWoolColor(area.isPlaceBlocks(), "Blöcke Platzieren", 1));
+        inventory.setItem(21, Utility.createInventoryWoolColor(area.isSpawnMobs(), "Spawn Mobs", 1));
+        inventory.setItem(22, Utility.createInventoryWoolColor(area.isAllowOverlap(), "Überlappung Erlauben", 1));
+        inventory.setItem(23, Utility.createInventoryWoolColor(area.isAllowOwnerOverlap(), "Besitzer Überlappung Erlauben", 1));
         inventory.setItem(49, Utility.createInventoryStack(Material.PAPER, 1, "Zurück"));
     }
 
@@ -86,13 +86,13 @@ public class AreaInventory implements Listener {
                     if(event.getWhoClicked() instanceof Player) {
                         Player player = (Player) event.getWhoClicked();
                         String itemName = clickedItem.getItemMeta().getDisplayName();
-                        if (itemName.equalsIgnoreCase(area.displayName)) {
+                        if (itemName.equalsIgnoreCase(area.getDisplayName())) {
                             chatPlayers.put(player, area);
                             chatPlayersType.put(player, ChatType.NAME);
                             player.sendMessage("Schreibe eine Naricht in den Chat um den Namen zu ändern. Schreibe \"Abbrechen\" um Abzubrechen");
                             player.closeInventory();
                         }
-                        if(itemName.equalsIgnoreCase("Priorität: " + area.priority)) {
+                        if(itemName.equalsIgnoreCase("Priorität: " + area.getPriority())) {
                             chatPlayers.put(player, area);
                             chatPlayersType.put(player, ChatType.PRIORITY);
                             player.sendMessage("Schreibe eine Zahl in den Chat, um die Priorität zu ändern. Schreibe \"Abbrechen\" um Abzubrechen");
@@ -102,18 +102,19 @@ public class AreaInventory implements Listener {
           
                         switch(itemName) {
                         	case "Blöcke Zerstören":
-                                area.breakBlocks = !area.breakBlocks;
+                                area.setBreakBlocks(!area.isBreakBlocks());
                         		break;
                         	case "Blöcke Platzieren":
-                                area.placeBlocks = !area.placeBlocks;
+                                area.setPlaceBlocks(!area.isPlaceBlocks());
                         		break;
                         	case "Spawn Mobs":
-                                area.spawnMobs = !area.spawnMobs;
+                                area.setSpawnMobs(!area.isSpawnMobs());
                         		break;
                         	case "Überlappung Erlauben":
-                        		area.allowOverlap = !area.allowOverlap;
+                        		area.setAllowOverlap(!area.isAllowOverlap());
                         		break;
                         	case "Besitzer Überlappung Erlauben":
+                        		area.setAllowOwnerOverlap(!area.isAllowOwnerOverlap());
                         		break;
                         }
                         
@@ -147,8 +148,8 @@ public class AreaInventory implements Listener {
                     boolean success = false;
                     switch (type) {
                         case NAME:
-                            if(!Utility.areaExists(area.displayName)) {
-                                area.displayName = event.getMessage();
+                            if(!Utility.areaExists(area.getDisplayName())) {
+                                area.setDisplayName(event.getMessage());
                                 success = true;
                             } else {
                                 player.sendMessage("Gebietname exisitert bereits...");
@@ -156,7 +157,7 @@ public class AreaInventory implements Listener {
                             break;
                         case PRIORITY:
                             if(Pattern.matches("^[0-9]+$", event.getMessage())) {
-                                area.priority = Integer.parseInt(event.getMessage());
+                                area.setPriority(Integer.parseInt(event.getMessage()));
                                 success = true;
                             } else {
                                 player.sendMessage("Dies ist keine Zahl! Versuche es nochmal...");

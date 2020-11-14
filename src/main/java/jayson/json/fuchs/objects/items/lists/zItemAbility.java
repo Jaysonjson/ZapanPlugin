@@ -1,7 +1,7 @@
 package jayson.json.fuchs.objects.items.lists;
 
 import jayson.json.fuchs.objects.items.AbstractItem;
-import jayson.json.fuchs.objects.items.ItemUseType;
+import jayson.json.fuchs.objects.items.type.ItemUseType;
 import jayson.json.fuchs.objects.items.type.ability.essence.fire.FireEs01BlazeRodItem;
 import jayson.json.fuchs.objects.items.type.ability.essence.fire.WallBlazeRodItem;
 import jayson.json.fuchs.objects.items.interfaces.IzItemRegistry;

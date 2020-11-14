@@ -61,10 +61,10 @@ public class Scoreboard {
         if(inArea) {
             zArea nextArea = Utility.getNearestAreaOutsidePlayer(player);
             zLocation nextAreaLoc = Utility.getNearestAreaDistanceOutsidePlayer(player);
-            nextAreaScore = score.getScore(ChatColor.GOLD + nextArea.displayName + ChatColor.RESET + " (" + ChatColor.BOLD + Utility.formatInteger((int)nextAreaLoc.x) + ChatColor.RESET + ", " +  ChatColor.BOLD + Utility.formatInteger((int) nextAreaLoc.z) + ChatColor.RESET + ")");
+            nextAreaScore = score.getScore(ChatColor.GOLD + nextArea.getDisplayName() + ChatColor.RESET + " (" + ChatColor.BOLD + Utility.formatInteger((int)nextAreaLoc.x) + ChatColor.RESET + ", " +  ChatColor.BOLD + Utility.formatInteger((int) nextAreaLoc.z) + ChatColor.RESET + ")");
             areaColor = ChatColor.DARK_PURPLE + "";
         }
-        Score areaScore = score.getScore(areaColor + area.displayName + ChatColor.RESET + " (" + ChatColor.BOLD + Utility.formatInteger((int)areaDistance.x) + ChatColor.RESET + ", " +  ChatColor.BOLD + Utility.formatInteger((int) areaDistance.z) + ChatColor.RESET + ")");
+        Score areaScore = score.getScore(areaColor + area.getDisplayName() + ChatColor.RESET + " (" + ChatColor.BOLD + Utility.formatInteger((int)areaDistance.x) + ChatColor.RESET + ", " +  ChatColor.BOLD + Utility.formatInteger((int) areaDistance.z) + ChatColor.RESET + ")");
         Score lineSpace2 = score.getScore("-0------=2=------0-");
         Score levelScore = score.getScore("LvL: " + zPlayer.getLevel().level);
         Score alcoholScore = null;

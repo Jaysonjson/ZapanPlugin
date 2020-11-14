@@ -151,7 +151,7 @@ public class DataHandler {
     public static void saveArea(zArea area) {
         String json = gsonBuilder.toJson(area);
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream(new File(FileHandler.AREA_DIR + area.uuid.toString() + ".json"));
+            FileOutputStream fileOutputStream = new FileOutputStream(new File(FileHandler.AREA_DIR + area.getUuid().toString() + ".json"));
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
             outputStreamWriter.append(json);
             outputStreamWriter.close();
@@ -165,7 +165,7 @@ public class DataHandler {
         zArea area;
         if(!file.exists()) {
             area = new zArea();
-            area.uuid = uuid;
+            area.setUuid(uuid);
             saveArea(area);
         } else {
             area = gson.fromJson(readData(file), zArea.class);

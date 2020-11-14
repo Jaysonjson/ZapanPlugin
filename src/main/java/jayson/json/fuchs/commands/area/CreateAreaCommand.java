@@ -12,6 +12,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+
 import java.util.UUID;
 
 public class CreateAreaCommand implements CommandExecutor {
@@ -33,24 +34,24 @@ public class CreateAreaCommand implements CommandExecutor {
                     if(size < 50000) {
                         zArea nearestArea = Utility.getNearestArea(player);
                         zArea area = new zArea();
-                        area.size = size;
+                        area.setSize(size);
                         if(!area.canOverlap(player) && Utility.areaOverlap(player.getWorld(), area, nearestArea)) {
-                            player.sendMessage("Konnte Gebiet nicht erstellen! Es würde " + nearestArea.displayName + " überlappen und dies Erlaubt " + nearestArea.displayName + " nicht!");
+                            player.sendMessage("Konnte Gebiet nicht erstellen! Es würde " + nearestArea.getDisplayName() + " überlappen und dies Erlaubt " + nearestArea.getDisplayName() + " nicht!");
                         }
-                        area.owner = ((Player) commandSender).getUniqueId();
-                        area.uuid = UUID.randomUUID();
-                        area.displayName = args[0];
+                        area.setOwner(((Player) commandSender).getUniqueId());
+                        area.setUuid(UUID.randomUUID());
+                        area.setDisplayName(args[0]);
                         Location location = player.getLocation();
-                        area.location = new zLocation(location.getX(), location.getY(), location.getZ());
+                        area.setLocation(new zLocation(location.getX(), location.getY(), location.getZ()));
                         DataHandler.saveArea(area);
                         player.sendMessage("Gebiet " + args[0] + " erstellt!");
                         Fuchs.INSTANCE.areas.add(area);
-                        area.world = zWorld.OVERWORLD;
+                        area.setWorld(zWorld.OVERWORLD);
                         if(player.getWorld().getEnvironment() == World.Environment.NETHER) {
-                            area.world = zWorld.NETHER;
+                            area.setWorld(zWorld.NETHER);
                         }
                         if(player.getWorld().getEnvironment() == World.Environment.THE_END) {
-                            area.world = zWorld.END;
+                            area.setWorld(zWorld.END);
                         }
 
                         //player.sendMessage(Utility.areaOverlap(player.getWorld(), area, nearestArea) + "_2");

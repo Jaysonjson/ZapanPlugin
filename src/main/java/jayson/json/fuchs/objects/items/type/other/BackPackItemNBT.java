@@ -4,6 +4,7 @@ import jayson.json.fuchs.Utility;
 import jayson.json.fuchs.inventories.backpack.BackPackNBTInventory;
 import jayson.json.fuchs.objects.items.*;
 import jayson.json.fuchs.objects.items.interfaces.IItemUseType;
+import jayson.json.fuchs.objects.items.type.ItemUseType;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
 
 

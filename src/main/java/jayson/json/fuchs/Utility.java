@@ -97,8 +97,8 @@ public class Utility {
     }
 
     public static boolean isInArea(zArea area, Player player) {
-        Location p1 = area.createLocation(player.getWorld()).add(area.size, area.size, area.size);
-        Location p2 = area.createLocation(player.getWorld()).subtract(area.size, area.size, area.size);
+        Location p1 = area.createLocation(player.getWorld()).add(area.getSize(), area.getSize(), area.getSize());
+        Location p2 = area.createLocation(player.getWorld()).subtract(area.getSize(), area.getSize(), area.getSize());
         return isInArea(player.getLocation(), p1, p2);
     }
 
@@ -111,7 +111,7 @@ public class Utility {
         for (zArea areas : Fuchs.INSTANCE.areas) {
            // distances.put((location.getX() - areas.location.x), areas);
            // distancesD.add((location.getX() - areas.location.x));
-            if(areas.world.getEnvironment().equals(environment)) {
+            if(areas.getWorld().getEnvironment().equals(environment)) {
                 double distance = location.distance(areas.createLocation(location.getWorld()));
                 distances.put(distance, areas);
                 distancesD.add(distance);
@@ -130,7 +130,7 @@ public class Utility {
         }
         for (zArea areas : Fuchs.INSTANCE.areas) {
             if(!isInArea(areas, player)) {
-                if (areas.world.getEnvironment().equals(player.getWorld().getEnvironment())) {
+                if (areas.getWorld().getEnvironment().equals(player.getWorld().getEnvironment())) {
                     double distance = player.getLocation().distance(areas.createLocation(player.getWorld()));
                     distances.put(distance, areas);
                     distancesD.add(distance);
@@ -154,8 +154,8 @@ public class Utility {
         ArrayList<Double> distancesX = new ArrayList<>();
         ArrayList<Double> distancesZ = new ArrayList<>();
         for (zArea areas : Fuchs.INSTANCE.areas) {
-            distancesX.add(location.getX() - areas.location.x);
-            distancesZ.add(location.getZ() - areas.location.z);
+            distancesX.add(location.getX() - areas.getLocation().x);
+            distancesZ.add(location.getZ() - areas.getLocation().z);
         }
         Collections.sort(distancesX);
         Collections.reverse(distancesX);
@@ -167,12 +167,12 @@ public class Utility {
     public static zLocation getNearestAreaDistance(World.Environment environment, Location location) {
         zArea area = getNearestArea(environment, location);
         //return new zLocation(area.location.x - location.getX() - area.size, 0, area.location.z - location.getZ() - area.size);
-        return new zLocation(area.location.x - location.getX(), 0, area.location.z - location.getZ());
+        return new zLocation(area.getLocation().x - location.getX(), 0, area.getLocation().z - location.getZ());
     }
 
     public static zLocation getNearestAreaDistanceOutsidePlayer(Player player) {
         zArea area = getNearestAreaOutsidePlayer(player);
-        return new zLocation(area.location.x - player.getLocation().getX(), 0, area.location.z - player.getLocation().getZ());
+        return new zLocation(area.getLocation().x - player.getLocation().getX(), 0, area.getLocation().z - player.getLocation().getZ());
     }
 
     public static boolean areaOverlap(Location locationP1, Location locationP2, Location locationBP1, Location locationBP2)
@@ -186,13 +186,13 @@ public class Utility {
 
     public static boolean areaOverlap(World world, zArea area1, zArea area2) {
         Location p1 = area1.createLocation(world);
-        p1.add(area1.size, area1.size, area1.size);
+        p1.add(area1.getSize(), area1.getSize(), area1.getSize());
         Location p2 = area1.createLocation(world);
-        p2.subtract(area1.size, area1.size, area1.size);
+        p2.subtract(area1.getSize(), area1.getSize(), area1.getSize());
         Location pb1 = area2.createLocation(world);
-        pb1.add(area2.size, area2.size, area2.size);
+        pb1.add(area2.getSize(), area2.getSize(), area2.getSize());
         Location pb2 = area2.createLocation(world);
-        pb2.subtract(area2.size, area2.size, area2.size);
+        pb2.subtract(area2.getSize(), area2.getSize(), area2.getSize());
         return areaOverlap(p1, p2, pb1, pb2);
     }
 
@@ -207,9 +207,9 @@ public class Utility {
     @Deprecated
     public static boolean isInSpawnArea(Location location, World world) {
         zArea area = getNearestArea(world.getEnvironment(), location);
-        if(area.displayName.toLowerCase().equals("spawn")) {
-            Location locationP0 = area.createLocation(world).add(area.size, area.size, area.size);
-            Location locationP1 = area.createLocation(world).subtract(area.size, area.size, area.size);
+        if(area.getDisplayName().toLowerCase().equals("spawn")) {
+            Location locationP0 = area.createLocation(world).add(area.getSize(), area.getSize(), area.getSize());
+            Location locationP1 = area.createLocation(world).subtract(area.getSize(), area.getSize(), area.getSize());
             return Utility.isInArea(location, locationP0, locationP1);
         }
         return false;
@@ -217,40 +217,40 @@ public class Utility {
 
     public static boolean canBreakBlock(Player player, Location location, World world) {
         zArea area = getNearestArea(player.getWorld().getEnvironment(), location);
-        Location locationP0 = area.createLocation(world).add(area.size, area.size, area.size);
-        Location locationP1 = area.createLocation(world).subtract(area.size, area.size, area.size);
+        Location locationP0 = area.createLocation(world).add(area.getSize(), area.getSize(), area.getSize());
+        Location locationP1 = area.createLocation(world).subtract(area.getSize(), area.getSize(), area.getSize());
         if(Utility.isInArea(location, locationP0, locationP1)) {
-            return area.breakBlocks || player.isOp();
+            return area.isBreakBlocks() || player.isOp();
         }
         return true;
     }
 
     public static boolean canPlaceBlock(Player player, Location location, World world) {
         zArea area = getNearestArea(world.getEnvironment(), location);
-        Location locationP0 = area.createLocation(world).add(area.size, area.size, area.size);
-        Location locationP1 = area.createLocation(world).subtract(area.size, area.size, area.size);
+        Location locationP0 = area.createLocation(world).add(area.getSize(), area.getSize(), area.getSize());
+        Location locationP1 = area.createLocation(world).subtract(area.getSize(), area.getSize(), area.getSize());
         if(Utility.isInArea(location, locationP0, locationP1)) {
-            return area.placeBlocks || player.isOp();
+            return area.isPlaceBlocks() || player.isOp();
         }
         return true;
     }
 
     public static boolean canEntitySpawn(Location location, World world) {
         zArea area = getNearestArea(world.getEnvironment(), location);
-        Location locationP0 = area.createLocation(world).add(area.size, area.size, area.size);
-        Location locationP1 = area.createLocation(world).subtract(area.size, area.size, area.size);
+        Location locationP0 = area.createLocation(world).add(area.getSize(), area.getSize(), area.getSize());
+        Location locationP1 = area.createLocation(world).subtract(area.getSize(), area.getSize(), area.getSize());
         if(Utility.isInArea(location, locationP0, locationP1)) {
-            return area.spawnMobs;
+            return area.isSpawnMobs();
         }
         return true;
     }
 
     public static boolean canDropItem(Player player, Location location, World world) {
         zArea area = getNearestArea(world.getEnvironment(), location);
-        Location locationP0 = area.createLocation(world).add(area.size, area.size, area.size);
-        Location locationP1 = area.createLocation(world).subtract(area.size, area.size, area.size);
+        Location locationP0 = area.createLocation(world).add(area.getSize(), area.getSize(), area.getSize());
+        Location locationP1 = area.createLocation(world).subtract(area.getSize(), area.getSize(), area.getSize());
         if(Utility.isInArea(location, locationP0, locationP1)) {
-            return area.dropItems || player.isOp();
+            return area.isDropItems() || player.isOp();
         }
         return true;
     }
@@ -363,8 +363,8 @@ public class Utility {
             ///^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/
             try {
                 zArea area = DataHandler.loadArea(UUID.fromString(file.getName().replaceAll(".json", "")));
-                areaHash.put(area.priority + "_" + area.displayName, area);
-                sortedHash.add(area.priority + "_" + area.displayName);
+                areaHash.put(area.getPriority() + "_" + area.getDisplayName(), area);
+                sortedHash.add(area.getPriority() + "_" + area.getDisplayName());
                 DataHandler.saveArea(area);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -397,7 +397,7 @@ public class Utility {
 
     public static boolean areaExists(String name) {
         for (zArea area : Fuchs.INSTANCE.areas) {
-            if(area.displayName.toLowerCase().equalsIgnoreCase(name)) {
+            if(area.getDisplayName().toLowerCase().equalsIgnoreCase(name)) {
                 return true;
             }
         }

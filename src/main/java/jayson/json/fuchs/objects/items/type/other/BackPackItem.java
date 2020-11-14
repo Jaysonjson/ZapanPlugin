@@ -5,6 +5,7 @@ import jayson.json.fuchs.inventories.backpack.BackPackInventory;
 import jayson.json.fuchs.data.io.DataHandler;
 import jayson.json.fuchs.objects.items.*;
 import jayson.json.fuchs.objects.items.interfaces.IItemUseType;
+import jayson.json.fuchs.objects.items.type.ItemUseType;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;

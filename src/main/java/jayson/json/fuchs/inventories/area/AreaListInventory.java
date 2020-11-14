@@ -47,13 +47,13 @@ public class AreaListInventory implements Listener {
                 ItemStack itemStack = new ItemStack(Material.FILLED_MAP);
                 ItemMeta itemMeta = itemStack.getItemMeta();
                 ArrayList<String> lore = new ArrayList<>();
-                lore.add(ChatColor.DARK_GRAY + "" + ChatColor.ITALIC + "»" + area.uuid + "«");
+                lore.add(ChatColor.DARK_GRAY + "" + ChatColor.ITALIC + "»" + area.getUuid() + "«");
                 itemMeta.setLore(lore);
-                itemMeta.setDisplayName(area.displayName);
+                itemMeta.setDisplayName(area.getDisplayName());
                 itemStack.setItemMeta(itemMeta);
                 net.minecraft.server.v1_16_R2.ItemStack nmsCopy = Utility.createNMSCopy(itemStack);
                 NBTTagCompound tag = Utility.getItemTag(nmsCopy);
-                tag.setString(zItemNBT.ITEM_UUID, area.uuid.toString());
+                tag.setString(zItemNBT.ITEM_UUID, area.getUuid().toString());
                 tag.setInt("areaItemID_LIST", 0);
                 itemStack = CraftItemStack.asBukkitCopy(nmsCopy);
                 page_content.add(itemStack);

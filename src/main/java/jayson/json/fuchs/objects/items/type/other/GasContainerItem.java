@@ -13,10 +13,10 @@ import jayson.json.fuchs.Utility;
 import jayson.json.fuchs.objects.gas.AbstractGas;
 import jayson.json.fuchs.objects.gas.zGas;
 import jayson.json.fuchs.objects.items.AbstractItem;
-import jayson.json.fuchs.objects.items.ItemUseType;
 import jayson.json.fuchs.objects.items.zItemNBT;
 import jayson.json.fuchs.objects.items.zOItem;
 import jayson.json.fuchs.objects.items.interfaces.IItemUseType;
+import jayson.json.fuchs.objects.items.type.ItemUseType;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
 
 public class GasContainerItem extends AbstractItem {

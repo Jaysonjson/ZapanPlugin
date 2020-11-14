@@ -1,6 +1,6 @@
 package jayson.json.fuchs.skillclass;
 
-import jayson.json.fuchs.objects.items.ItemUseType;
+import jayson.json.fuchs.objects.items.type.ItemUseType;
 import jayson.json.fuchs.objects.items.type.classes.*;
 import jayson.json.fuchs.skillclass.alchemist.zAlchemistClass;
 import jayson.json.fuchs.skillclass.fighter.zFighterClass;

@@ -1,6 +1,7 @@
 package jayson.json.fuchs.objects.items.lists;
 
 import jayson.json.fuchs.objects.items.*;
+import jayson.json.fuchs.objects.items.type.ItemUseType;
 import jayson.json.fuchs.objects.items.type.crafting.*;
 import jayson.json.fuchs.objects.items.interfaces.IzItemRegistry;
 import jayson.json.fuchs.objects.items.type.other.*;
