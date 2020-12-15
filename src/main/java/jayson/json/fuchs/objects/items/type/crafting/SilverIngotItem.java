@@ -19,8 +19,7 @@ public class SilverIngotItem extends AbstractItem {
     int damage;
     int amount;
     public SilverIngotItem(String id, Material material, ItemUseType itemUseType, int damageValue) {
-        super(id, material, itemUseType);
-        this.damage = damageValue;
+        super(id, material, itemUseType, damageValue);
     }
 
     @Override
@@ -30,7 +29,7 @@ public class SilverIngotItem extends AbstractItem {
             stack = new ItemStack(getMaterial());
             exists = false;
         }
-        zOItem oItem = new zOItem(this, player, stack, true);
+        zOItem oItem = new zOItem(this, player, stack);
 
         if(exists) {
             NBTTagCompound tag = getTag(Utility.getItemTag(Utility.createNMSCopy(stack)));
@@ -75,8 +74,4 @@ public class SilverIngotItem extends AbstractItem {
         return super.getItemUse();
     }
 
-    @Override
-    public int getDamageValue() {
-        return damage;
-    }
 }

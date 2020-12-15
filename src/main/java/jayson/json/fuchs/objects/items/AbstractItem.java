@@ -26,10 +26,18 @@ public abstract class AbstractItem implements IzItem, IzNBTItem, IzAbilityItem, 
     public String id;
     public Material material;
     public IItemUseType itemUseType;
+    public int modelData;
     public AbstractItem(String id, Material material, IItemUseType itemUseType) {
         this.id = id;
         this.material = material;
         this.itemUseType = itemUseType;
+    }
+
+    public AbstractItem(String id, Material material, IItemUseType itemUseType, int modelData) {
+        this.id = id;
+        this.material = material;
+        this.itemUseType = itemUseType;
+        this.modelData = modelData;
     }
 
     public final double itemVersion() {
@@ -72,6 +80,7 @@ public abstract class AbstractItem implements IzItem, IzNBTItem, IzAbilityItem, 
     }
 
     @Override
+    @Deprecated
     public int getDamage() {
         return 0;
     }
@@ -129,12 +138,12 @@ public abstract class AbstractItem implements IzItem, IzNBTItem, IzAbilityItem, 
 
     @Override
     public int requiredIntelligence() {
-        return 0;
+        return 1;
     }
 
     @Override
     public NBTTagCompound getTag(NBTTagCompound tag) {
-        return null;
+        return new NBTTagCompound();
     }
 
     @Override
@@ -189,6 +198,10 @@ public abstract class AbstractItem implements IzItem, IzNBTItem, IzAbilityItem, 
     public IMarketModifierType MARKET_MODIFIER() {
     	return IzMarketItem.super.MARKET_MODIFIER();
     }
-    
-    
+
+    @Override
+    public int getCustomModelData() {
+        return modelData;
+    }
+
 }

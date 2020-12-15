@@ -4,7 +4,8 @@ import org.bukkit.Material;
 
 public enum BannedItems {
 
-	NETHERITE_HOE(Material.NETHERITE_HOE);
+    ;
+	//NETHERITE_HOE(Material.NETHERITE_HOE);
 
     Material material;
     BannedItems(Material material) {

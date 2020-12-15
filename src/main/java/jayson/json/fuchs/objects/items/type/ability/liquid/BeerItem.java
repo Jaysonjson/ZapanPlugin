@@ -23,11 +23,9 @@ import java.util.Random;
 public class BeerItem extends AbstractItem {
 
 
-    int damage;
     private int amount;
     public BeerItem(String id, Material material, ItemUseType itemUseType, int damageValue) {
-        super(id, material, itemUseType);
-        this.damage = damageValue;
+        super(id, material, itemUseType, damageValue);
     }
 
 
@@ -112,8 +110,4 @@ public class BeerItem extends AbstractItem {
         return super.getItemUse();
     }
 
-    @Override
-    public int getDamageValue() {
-        return damage;
-    }
 }

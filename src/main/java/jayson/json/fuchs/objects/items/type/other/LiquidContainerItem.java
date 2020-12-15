@@ -1,7 +1,5 @@
 package jayson.json.fuchs.objects.items.type.other;
 
-import javax.annotation.Nullable;
-
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -28,7 +26,7 @@ public class LiquidContainerItem extends AbstractItem {
     Double amount;
     AbstractLiquid abstractLiquid;
     public LiquidContainerItem(String id, Material material, ItemUseType itemUseType, int damageValue) {
-        super(id, material, itemUseType);
+        super(id, material, itemUseType, damageValue);
     }
 
     @Override
@@ -114,10 +112,8 @@ public class LiquidContainerItem extends AbstractItem {
     }
 
     @Override
-    @Nullable
-    public int getDamageValue() {
+    public int getCustomModelData() {
         return abstractLiquid.getDamageValue();
     }
 
-    
 }

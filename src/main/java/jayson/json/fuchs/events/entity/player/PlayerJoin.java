@@ -25,6 +25,7 @@ public class PlayerJoin implements Listener {
             StarterClassInventory classInventory = new StarterClassInventory();
             classInventory.openInventory(event.getPlayer());
         }
+        Utility.updateInventory(player);
         //AreaInventory areaInventory = new AreaInventory();
         //areaInventory.openInventory(player, Utility.getNearestArea(World.Environment.NORMAL, player.getLocation()).name);
         //GuildChunkInventory inventory = new GuildChunkInventory();

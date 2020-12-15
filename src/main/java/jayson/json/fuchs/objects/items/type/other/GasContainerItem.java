@@ -1,7 +1,5 @@
 package jayson.json.fuchs.objects.items.type.other;
 
-import javax.annotation.Nullable;
-
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_16_R2.inventory.CraftItemStack;
@@ -21,13 +19,11 @@ import net.minecraft.server.v1_16_R2.NBTTagCompound;
 
 public class GasContainerItem extends AbstractItem {
 
-	int damage;
     String gas;
     Double amount;
     AbstractGas abstractGas;
     public GasContainerItem(String id, Material material, ItemUseType itemUseType, int damageValue) {
-        super(id, material, itemUseType);
-        this.damage = damageValue;
+        super(id, material, itemUseType, damageValue);
     }
 
     @Override
@@ -94,10 +90,5 @@ public class GasContainerItem extends AbstractItem {
         return super.getItemUse();
     }
 
-    @Override
-    @Nullable
-    public int getDamageValue() {
-        return damage;
-    }
 
 }

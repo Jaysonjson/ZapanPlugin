@@ -16,11 +16,9 @@ import java.util.Random;
 
 public class LiquidCopperItem extends AbstractItem {
 
-    int damage;
     int amount;
     public LiquidCopperItem(String id, Material material, ItemUseType itemUseType, int damageValue) {
-        super(id, material, itemUseType);
-        this.damage = damageValue;
+        super(id, material, itemUseType, damageValue);
     }
 
     @Override
@@ -77,8 +75,4 @@ public class LiquidCopperItem extends AbstractItem {
         return super.getItemUse();
     }
 
-    @Override
-    public int getDamageValue() {
-        return damage;
-    }
 }

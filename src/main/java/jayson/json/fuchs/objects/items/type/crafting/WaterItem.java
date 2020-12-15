@@ -18,11 +18,9 @@ import java.util.Random;
 public class WaterItem extends AbstractItem {
 
 
-    int damage;
     private int amount;
     public WaterItem(String id, Material material, ItemUseType itemUseType, int damageValue) {
-        super(id, material, itemUseType);
-        this.damage = damageValue;
+        super(id, material, itemUseType, damageValue);
     }
 
 
@@ -78,8 +76,4 @@ public class WaterItem extends AbstractItem {
         return super.getItemUse();
     }
 
-    @Override
-    public int getDamageValue() {
-        return damage;
-    }
 }

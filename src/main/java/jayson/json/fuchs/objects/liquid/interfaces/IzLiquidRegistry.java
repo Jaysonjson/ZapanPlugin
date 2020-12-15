@@ -11,4 +11,5 @@ public interface IzLiquidRegistry {
 	AbstractLiquid getLiquid();
 	@Nullable
 	Material getMinecraftEquivalent();
+	
 }

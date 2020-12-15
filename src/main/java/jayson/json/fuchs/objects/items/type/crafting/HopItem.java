@@ -13,10 +13,8 @@ import org.jetbrains.annotations.NotNull;
 
 public class HopItem extends AbstractItem {
 
-    int damage;
     public HopItem(String id, Material material, ItemUseType itemUseType, int damageValue) {
-        super(id, material, itemUseType);
-        this.damage = damageValue;
+        super(id, material, itemUseType, damageValue);
     }
 
     @Override
@@ -53,8 +51,4 @@ public class HopItem extends AbstractItem {
         return super.getItemUse();
     }
 
-    @Override
-    public int getDamageValue() {
-        return damage;
-    }
 }

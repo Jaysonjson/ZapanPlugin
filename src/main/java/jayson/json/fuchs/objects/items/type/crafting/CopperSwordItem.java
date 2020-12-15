@@ -14,11 +14,9 @@ import org.jetbrains.annotations.NotNull;
 
 public class CopperSwordItem extends AbstractItem {
 
-    int damage;
     int durability;
     public CopperSwordItem(String id, Material material, ItemUseType itemUseType, int damageValue) {
-        super(id, material, itemUseType);
-        this.damage = damageValue;
+        super(id, material, itemUseType, damageValue);
     }
 
 
@@ -73,11 +71,6 @@ public class CopperSwordItem extends AbstractItem {
     @Override
     public IItemUseType getItemUse() {
         return super.getItemUse();
-    }
-
-    @Override
-    public int getDamageValue() {
-        return damage;
     }
 
     @Override

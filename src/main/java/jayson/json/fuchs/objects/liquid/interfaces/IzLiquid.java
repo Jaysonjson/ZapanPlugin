@@ -11,4 +11,5 @@ public interface IzLiquid {
 	int getDamageValue();
 	boolean drinkAble();
 	void drinkAction(World world, Player player, ItemStack itemStack);
+	
 }

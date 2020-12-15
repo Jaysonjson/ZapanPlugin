@@ -30,7 +30,7 @@ public class CopperIngotItem extends AbstractItem {
             stack = new ItemStack(getMaterial());
             exists = false;
         }
-        zOItem oItem = new zOItem(this, player, stack, true);
+        zOItem oItem = new zOItem(this, player, stack);
 
         if(exists) {
             NBTTagCompound tag = getTag(Utility.getItemTag(Utility.createNMSCopy(stack)));
@@ -78,6 +78,11 @@ public class CopperIngotItem extends AbstractItem {
     @Override
     public int getDamageValue() {
         return damage;
+    }
+
+    @Override
+    public int getCustomModelData() {
+        return 1;
     }
 
     @Override

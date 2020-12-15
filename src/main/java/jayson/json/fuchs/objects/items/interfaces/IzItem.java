@@ -13,6 +13,7 @@ public interface IzItem {
     @NotNull
     String getId();
     void setId(String id);
+
     ItemStack createItem(Player player, ItemStack stack);
     default ItemStack createItem() {
         return createItem(null, null);
@@ -23,6 +24,7 @@ public interface IzItem {
     default ItemStack createItem(ItemStack itemStack) {
         return createItem(null, itemStack);
     };
+
     ItemStack update(Player player, ItemStack itemStack);
     ItemUseType getItemUseType();
     default IItemUseType getItemUse() {

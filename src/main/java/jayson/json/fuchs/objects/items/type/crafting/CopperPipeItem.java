@@ -13,10 +13,8 @@ import org.jetbrains.annotations.NotNull;
 
 public class CopperPipeItem extends AbstractItem {
 
-    int damage;
     public CopperPipeItem(String id, Material material, ItemUseType itemUseType, int damageValue) {
-        super(id, material, itemUseType);
-        this.damage = damageValue;
+        super(id, material, itemUseType, damageValue);
     }
 
     @Override
@@ -55,8 +53,4 @@ public class CopperPipeItem extends AbstractItem {
         return super.getItemUse();
     }
 
-    @Override
-    public int getDamageValue() {
-        return damage;
-    }
 }

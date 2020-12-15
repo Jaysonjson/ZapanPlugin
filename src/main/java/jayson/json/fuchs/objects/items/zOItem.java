@@ -147,8 +147,8 @@ public class zOItem {
                 }
                 if (player != null) {
                     zPlayer zPlayer = DataHandler.loadPlayer(player.getUniqueId());
-                    if(zItem.requiredIntelligence() > 0) {
-                        if(zPlayer.getStats().getIntelligence() >= 5) {
+                    if(zItem.requiredIntelligence() > 1) {
+                        if(zPlayer.getStats().getIntelligence() >= zItem.requiredIntelligence()) {
                             lore.add(ChatColor.GREEN + "Benötigt Intelligenz " + zItem.requiredIntelligence());
                         } else {
                             lore.add(ChatColor.RED + "Benötigt Intelligenz " + zItem.requiredIntelligence() + " (Du hast: " + zPlayer.getStats().getIntelligence() + ")");
@@ -203,6 +203,10 @@ public class zOItem {
                     itemMeta.setUnbreakable(true);
                     itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
                 }
+                if (zItem.hasCustomModelData()) {
+                    itemMeta.setCustomModelData(zItem.getCustomModelData());
+                }
+
                 itemMeta.setLore(lore);
                 itemMeta.setDisplayName(displayName);
                 item.setItemMeta(itemMeta);

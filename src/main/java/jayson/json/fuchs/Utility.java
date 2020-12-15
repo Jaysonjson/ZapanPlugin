@@ -18,6 +18,9 @@ import jayson.json.fuchs.objects.items.lists.BannedItems;
 import jayson.json.fuchs.objects.items.lists.zItem;
 import jayson.json.fuchs.objects.items.lists.zItemAbility;
 import jayson.json.fuchs.objects.liquid.AbstractLiquid;
+import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -866,5 +869,28 @@ public class Utility {
     		out.writeUTF(element);
     	}
     	return baos.toByteArray();
+    }
+
+
+    public static void updateInventory(Player player) {
+        boolean updated = false;
+        Inventory inventory = player.getInventory();
+        for (int i = 0; i < inventory.getSize(); i++) {
+            ItemStack itemStack = inventory.getItem(i);
+            if(itemStack != null) {
+                if (!itemStack.isSimilar(new ItemStack(Material.AIR))) {
+                    if(isAbstractVanillaItem(itemStack)) {
+                        inventory.setItem(i, getAbstractVanillaOverride(itemStack).createItem(player, itemStack));
+                        updated = true;
+                    } else if(isAbstractItem(itemStack)) {
+                        inventory.setItem(i, getAbstractItemFromNMS(itemStack).createItem(player, itemStack));
+                        updated = true;
+                    }
+                }
+            }
+        }
+        if(updated) {
+            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new ComponentBuilder("Dein Inventar wurde aktualisiert!").color(ChatColor.DARK_PURPLE).create());
+        }
     }
 }
