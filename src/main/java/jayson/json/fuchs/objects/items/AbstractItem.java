@@ -11,6 +11,7 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -38,6 +39,18 @@ public abstract class AbstractItem implements IzItem, IzNBTItem, IzAbilityItem, 
         this.material = material;
         this.itemUseType = itemUseType;
         this.modelData = modelData;
+    }
+
+    @NotNull
+    @Override
+    public String getId() {
+        return id;
+    }
+
+    @NotNull
+    @Override
+    public Material getMaterial() {
+        return material;
     }
 
     public final double itemVersion() {

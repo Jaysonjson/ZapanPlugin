@@ -4,6 +4,7 @@ import jayson.json.fuchs.objects.items.*;
 import jayson.json.fuchs.objects.items.type.ItemUseType;
 import jayson.json.fuchs.objects.items.type.crafting.*;
 import jayson.json.fuchs.objects.items.interfaces.IzItemRegistry;
+import jayson.json.fuchs.objects.items.type.crafting.copper.*;
 import jayson.json.fuchs.objects.items.type.other.*;
 import jayson.json.fuchs.objects.items.type.currency.*;
 import jayson.json.fuchs.objects.items.type.vanillaOverride.*;
@@ -25,10 +26,10 @@ public enum zItem implements IzItemRegistry {
     //WATER_ITEM(new WaterItem("waterItem", Material.NETHERITE_HOE, ItemUseType.CRAFTING, 7)),
     COPPER_ROD(new CopperRodItem("copperRodItem", Material.FEATHER, ItemUseType.CRAFTING, 8)),
     COPPER_PIPE(new CopperPipeItem("copperPipeItem", Material.FEATHER, ItemUseType.CRAFTING, 9)),
-    COPPER_LIQUID(new LiquidCopperItem("copperLiquidItem", Material.FEATHER, ItemUseType.CRAFTING, 10)),
     COPPER_SWORD(new CopperSwordItem("copperSwordItem", Material.FEATHER, ItemUseType.TOOL, 11)),
     LIQUID_CONTAINER(new LiquidContainerItem("liquidContainerItem", Material.FEATHER, ItemUseType.CRAFTING, 12)),
     GAS_CONTAINER(new GasContainerItem("gasContainerItem", Material.FEATHER, ItemUseType.CRAFTING, 15)),
+    VILUM_INGOT(new VilumIngotItem("vilumIngotItem", Material.FEATHER, ItemUseType.CRAFTING, 20)),
     IRON_INGOT(new IronIngotItem("ironIngotItem", Material.IRON_INGOT, ItemUseType.CRAFTING)),
     IRO_NORE(new IronOreItem("ironOreItem", Material.IRON_ORE, ItemUseType.CRAFTING)),
     SCRAP(new ScrapItem("scrapItem", Material.NETHERITE_SCRAP, ItemUseType.CURRENCY));

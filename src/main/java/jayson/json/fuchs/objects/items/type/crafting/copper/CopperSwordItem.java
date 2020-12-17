@@ -1,4 +1,4 @@
-package jayson.json.fuchs.objects.items.type.crafting;
+package jayson.json.fuchs.objects.items.type.crafting.copper;
 
 import jayson.json.fuchs.Utility;
 import jayson.json.fuchs.objects.items.*;
@@ -12,16 +12,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Random;
+public class CopperSwordItem extends AbstractItem {
 
-public class CopperIngotItem extends AbstractItem {
-
-    int damage;
-    private int amount;
-    public CopperIngotItem(String id, Material material, ItemUseType itemUseType, int damageValue) {
-        super(id, material, itemUseType);
-        this.damage = damageValue;
+    int durability;
+    public CopperSwordItem(String id, Material material, ItemUseType itemUseType, int damageValue) {
+        super(id, material, itemUseType, damageValue);
     }
+
 
     @Override
     public ItemStack createItem(Player player, ItemStack stack) {
@@ -30,20 +27,20 @@ public class CopperIngotItem extends AbstractItem {
             stack = new ItemStack(getMaterial());
             exists = false;
         }
-        zOItem oItem = new zOItem(this, player, stack);
+        zOItem oItem = new zOItem(this, player, stack, true);
 
         if(exists) {
             NBTTagCompound tag = getTag(Utility.getItemTag(Utility.createNMSCopy(stack)));
-            if(tag.hasKey(zItemNBT.ITEM_AMOUNT)) {
-                amount = tag.getInt(zItemNBT.ITEM_AMOUNT);
+            if(tag.hasKey(zItemNBT.ITEM_DURABILITY)) {
+                durability = tag.getInt(zItemNBT.ITEM_DURABILITY);
             }
         } else {
-            amount = new Random().nextInt(400);
-            amount += new Random().nextInt(100);
+            durability = getDurability();
         }
 
-        oItem.lore.add(ChatColor.GRAY + "" + amount + "g");
-        oItem.setItem(ChatColor.GOLD + "Kupfer");
+        oItem.lore.add(ChatColor.GRAY + "Ein Schwert aus Kupfer");
+        oItem.lore.add(ChatColor.BLUE + "" + durability + "/" + getDurability());
+        oItem.setItem(ChatColor.GOLD + "Kupfer Schwert");
         oItem.createNMSCopy();
         oItem.nmsCopy.setTag(getTag(oItem.getTagCompound()));
         oItem.item = CraftItemStack.asBukkitCopy(oItem.nmsCopy);
@@ -54,11 +51,12 @@ public class CopperIngotItem extends AbstractItem {
     public NBTTagCompound getTag(NBTTagCompound tag) {
         tag.setBoolean(zItemNBT.CAN_CRAFT, true);
         tag.setBoolean(zItemNBT.CAN_CRAFT_MINECRAFT, false);
-        if(!tag.hasKey(zItemNBT.ITEM_AMOUNT)) {
-            tag.setInt(zItemNBT.ITEM_AMOUNT, amount);
+        if(!tag.hasKey(zItemNBT.ITEM_DURABILITY)) {
+            tag.setInt(zItemNBT.ITEM_DURABILITY, getDurability());
         }
         return tag;
     }
+
 
     @Override
     public @NotNull String getId() {
@@ -76,22 +74,12 @@ public class CopperIngotItem extends AbstractItem {
     }
 
     @Override
-    public int getDamageValue() {
-        return damage;
+    public int getDamage() {
+        return 3;
     }
 
     @Override
-    public int getCustomModelData() {
-        return 1;
-    }
-
-    @Override
-    public int getEarthValue() {
-        return 2;
-    }
-
-    @Override
-    public int getWaterValue() {
-        return 6;
+    public int getDurability() {
+        return 435;
     }
 }
